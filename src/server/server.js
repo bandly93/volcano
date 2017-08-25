@@ -14,12 +14,15 @@ app.get('*.js', function (req, res, next) {
 app.use(express.static(path.resolve(__dirname ,'../../dist')));
 app.use('/',express.static(path.resolve(__dirname ,'../client/public')));
 
-console.log(path.resolve(__dirname ,'../../dist'))
 
 app.use('/goodbye',function(req,res){
 	res.send('goodbye world!')
 })
 
+//redirect  to client
+app.get('*', function(req,res){
+  res.sendFile(path.resolve(__dirname ,'../client/public/index.html'))
+})
 
 app.listen(port,function(){
 	console.log(`Listening on port ${port}`)

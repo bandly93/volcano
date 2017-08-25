@@ -1,13 +1,13 @@
 import React,{Component} from 'react';
 
-function Blog(){
+function Home(){
 	return(
 		<div>
-			<p>Hello Blog!</p>
+			<p>Hello Home!</p>
 		</div>
 	)
 
 	
 }
-export default Blog
+export default Home
 

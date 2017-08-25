@@ -1,13 +1,13 @@
 import React,{Component} from 'react';
 
-function Blog(){
+function Music(){
 	return(
 		<div>
-			<p>Hello Blog!</p>
+			<p>Hello Music!</p>
 		</div>
 	)
 
 	
 }
-export default Blog
+export default Music
 

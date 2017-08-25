@@ -1,11 +1,12 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
+import NavBar from '../components/NavBar.jsx';
 
 class Index extends Component{
 	render(){
 		return(
 			<div>
-				<p>Hello world!</p>
+				<NavBar />
 			</div>
 		)
 	}

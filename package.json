@@ -2,7 +2,7 @@
   "name": "volcano",
   "version": "1.0.0",
   "description": "full stack project for pd",
-  "main": "server.js",
+  "main": "src/server/server.js",
   "scripts": {
     "start": "webpack-dev-server --hot",
     "build": "webpack -p"
