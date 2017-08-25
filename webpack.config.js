@@ -12,7 +12,7 @@ module.exports = {
   devServer:{
     
     publicPath:'/',
-    contentBase:'.src/client/public',
+    contentBase:'./src/client/public',
   	inline:true,
   	port:8080,
     proxy:{
