@@ -6,12 +6,20 @@ a{
 	font-size:calc(21px + .5vw);
 }
 p{
-	font-size:calc(21px + .5vw);
+	font-size:calc(16px + .5vw);
 }
 .navBar{
 	background-color:#074054;
 	display:flex;
 	flex-wrap:wrap;
+	justify-content: space-around;
+}
+.menuIcon{
+	display:none;
+	cursor: pointer;
+}
+.menuIcon img{
+	height:21px;
 }
 nav a{
 	text-decoration: none;
@@ -25,5 +33,20 @@ a:hover{
 @media only screen and (min-width:1000px){
 	a{
 		font-size:calc(21px + .3vw);
+	}
+}
+@media only screen and (max-width:768px){
+	a:hover{
+		background-color:orange;
+		color:white;
+	}
+	.navBar{
+		justify-content: flex-end;
+	}
+	.menuIcon{
+		display:block;
+	}
+	a{
+		display:none;
 	}
 }

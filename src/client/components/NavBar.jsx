@@ -20,6 +20,7 @@ function NavBar(){
 		<Router>
 			<div>
 				<nav className ='navBar'>
+					<a className='menuIcon'><img src='http://i.imgur.com/froRRg3.png'/></a>
 					<Link to ='/'>Home</Link>
 					<Link to ='/about'>About</Link>
 					<Link to ='/photos'>Photos</Link>
