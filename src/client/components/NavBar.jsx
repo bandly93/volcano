@@ -21,20 +21,32 @@ function NavBar(){
 			<div>
 				<nav className ='navBar'>
 					<a className='menuIcon'><img src='http://i.imgur.com/froRRg3.png'/></a>
+					<Link to ='/'>Home</Link>
+					<Link to ='/'>About</Link>
+
 					<div className="dropdown">
-					   <Link to ='/'>Home</Link>
+					   <Link to ='/'>Photos</Link>
 					   <div className="dropdown-content">
-							<a href="#">Link 1</a>
-					      <a href="#">Link 2</a>
-					      <a href="#">Link 3</a>
+							<a href="#">Fashion</a>
+					      <a href="#">Wedding</a>
+					      <a href="#">Headshots</a>
+					      <a href="#">Portraits</a>
 					   </div>
 					</div>
-					<Link to ='/about'>About</Link>
-					<Link to ='/photos'>Photos</Link>
-					<Link to='/videos'>Videos</Link>
+
+					<div className="dropdown">
+					   <Link to ='/'>Videos</Link>
+					   <div className="dropdown-content">
+							<a href="#">Lookbooks</a>
+					      <a href="#">Short Films</a>
+					      <a href="#">Music Videos</a>
+					      <a href="#">Weddings</a>
+					   </div>
+					</div>
+
 					<Link to='/music'>Music</Link>
 					<Link to='/shop'>Shop</Link>
-					<Link to ='/contact'>Contact</Link>
+					<Link to='/contact'>Contact</Link>
 					<Link to='/blog'>Blog</Link>
 				</nav>
 
