@@ -2,9 +2,14 @@ body{
 	text-align: center;
 	margin:0;
 }
+a{
+	font-size:calc(21px + .5vw);
+}
+p{
+	font-size:calc(21px + .5vw);
+}
 .navBar{
 	background-color:#074054;
-	font-size:21px;
 	display:flex;
 	flex-wrap:wrap;
 }
@@ -16,4 +21,9 @@ nav a{
 a:hover{
 	background-color:white;
 	color:#074054;
+}
+@media only screen and (min-width:1000px){
+	a{
+		font-size:calc(21px + .3vw);
+	}
 }
