@@ -35,7 +35,7 @@ a:hover{
 		font-size:calc(21px + .3vw);
 	}
 }
-@media only screen and (max-width:768px){
+@media only screen and (max-width:1000px){
 	a:hover{
 		background-color:orange;
 		color:white;
