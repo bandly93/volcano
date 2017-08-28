@@ -21,9 +21,9 @@ function NavBar(){
 			<div>
 				<nav className ='navBar'>
 					<a className='menuIcon'><img src='http://i.imgur.com/froRRg3.png'/></a>
-					<div class="dropdown">
+					<div className="dropdown">
 					   <Link to ='/'>Home</Link>
-					   <div class="dropdown-content">
+					   <div className="dropdown-content">
 							<a href="#">Link 1</a>
 					      <a href="#">Link 2</a>
 					      <a href="#">Link 3</a>
