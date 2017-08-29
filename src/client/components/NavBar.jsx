@@ -19,7 +19,8 @@ import Lookbooks from '../subViews/Lookbooks.jsx';
 import MusicVideos from '../subViews/MusicVideos.jsx';
 import Portraits from '../subViews/Portraits.jsx';
 import ShortFilms from '../subViews/ShortFilms.jsx';
-import Wedding from '../subViews/Wedding.jsx';
+import WeddingPhoto from '../subViews/WeddingPhoto.jsx';
+import WeddingVideos from '../subViews/WeddingVideos.jsx';
 
 class NavBar extends Component{
 	render(){
@@ -68,13 +69,15 @@ class NavBar extends Component{
 						<Route exact path= '/shop' component ={Shop}/>
 						<Route exact path= '/contact' component ={Contact}/>
 						<Route exact path= '/blog' component ={Blog}/>
+
 						<Route exact path= '/photos/fashion' component ={Fashion}/>
+						<Route exact path= '/photos/wedding' component ={WeddingPhoto}/>
 						<Route exact path= '/photos/headshots' component ={Headshots}/>
-						<Route exact path= '/photos/lookbooks' component ={Lookbooks}/>
 						<Route exact path= '/photos/portraits' component ={Portraits}/>
-						<Route exact path= '/videos/musicvideos' component ={MusicVideos}/>
+						<Route exact path= '/videos/lookbooks' component ={Lookbooks}/>
 						<Route exact path= '/videos/shortfilms' component ={ShortFilms}/>
-						<Route exact path= '/videos/wedding' component ={Wedding}/>
+						<Route exact path= '/videos/musicvideos' component ={MusicVideos}/>
+						<Route exact path= '/videos/wedding' component ={WeddingVideos}/>
 					</Switch>
 				</div>
 			</Router>
