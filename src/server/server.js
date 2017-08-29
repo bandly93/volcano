@@ -18,6 +18,8 @@ db.once('open',function(){
 	console.log('Connected correctly to server');
 })
 
+//routers
+var instaRouter = require('./routes/instaRouter');
 
 /*
 app.get('*.js', function (req, res, next) {
@@ -26,17 +28,17 @@ app.get('*.js', function (req, res, next) {
   next();
 });
 */
+
 app.use(express.static(path.resolve(__dirname ,'../../dist')));
 app.use('/',express.static(path.resolve(__dirname ,'../client/public')));
 
-app.use('/goodbye',function(req,res){
-	res.send('goodbye world!')
-})
+app.use('/insta',instaRouter);
 
 //redirect  to client
 app.get('*', function(req,res){
   res.sendFile(path.resolve(__dirname ,'../client/public/index.html'))
 })
+
 
 app.listen(port,function(){
 	console.log(`Listening on port ${port}`)

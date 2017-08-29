@@ -1,6 +1,6 @@
 import {createStore, applyMiddleware, combineReducers,compose} from 'redux';
 import thunk from 'redux-thunk';
-import insta from './modules/instaMOdule.js';
+import insta from './modules/instaModule.js';
 
 const reducers = combineReducers({
 	insta
