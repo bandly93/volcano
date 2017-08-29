@@ -65,7 +65,10 @@ a:hover{
 	margin:-4px;
 }
 
-span {
-	/*position:relative;*/
-	display:block;
+.dropdown-wrapper{
+	display:inline;
 }
+/*
+.caret{
+	display:inline;
+}*/
