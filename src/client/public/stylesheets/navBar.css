@@ -66,10 +66,9 @@ a:hover{
 }
 
 .dropdown-wrapper{
-	display:inline;
+	display:inline-block;
 }
 
 .caret{
-	display:inline;
-	font: 12px;
+	font-size: 60%;
 }

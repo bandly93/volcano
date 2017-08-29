@@ -33,25 +33,25 @@ class NavBar extends Component{
 
 						<div className="dropdown">
 							<div className = "dropdown-wrapper">
-						   	<Link to ='/photos'>Photos<span className = "caret">&#9660;</span></Link>
+						   	<Link to ='/photos'>Photos<span className = "caret">&#9660;</span> </Link>
 						   </div>	
 						   <div className="dropdown-content">
-								<Link to = "/fashion">Fashion</Link>
-						      <Link to = "/wedding">Wedding</Link>
-						      <Link to = "/headshots">Headshots</Link>
-						      <Link to = "/portraits">Portraits</Link>
+								<Link to = "/photos/fashion">Fashion</Link>
+						      <Link to = "/photos/wedding">Wedding</Link>
+						      <Link to = "/photos/headshots">Headshots</Link>
+						      <Link to = "/photos/portraits">Portraits</Link>
 						   </div>
 						</div>
 
 						<div className="dropdown">
 							<div className = "dropdown-wrapper">
-						   	<Link to ='/videos'>Videos<span className ="caret">&#9660;</span></Link>
+						   	<Link to ='/videos'>Videos<span className ="caret">&#9660;</span> </Link>
 						   </div>
 						   <div className="dropdown-content">
-								<Link to = "/lookbooks">Lookbooks</Link>
-						      <Link to = "/shortfilms">Short Films</Link>
-						      <Link to = "/musicvideos">Music Videos</Link>
-						      <Link to = "/wedding">Wedding</Link>
+								<Link to = "/videos/lookbooks">Lookbooks</Link>
+						      <Link to = "/videos/shortfilms">Short Films</Link>
+						      <Link to = "/videos/musicvideos">Music Videos</Link>
+						      <Link to = "/videos/wedding">Wedding</Link>
 						   </div>
 						</div>
 						<Link to='/music'>Music</Link>
@@ -59,23 +59,23 @@ class NavBar extends Component{
 						<Link to='/contact'>Contact</Link>
 						<Link to='/blog'>Blog</Link>
 					</nav>
-
-					<Route exact path= '/' component ={Home}/>
-					<Route exact path= '/about' component ={About}/>
-					<Route exact path= '/photos' component ={Photos}/>
-					<Route exact path= '/videos' component ={Videos}/>
-					<Route exact path= '/music' component ={Music}/>
-					<Route exact path= '/shop' component ={Shop}/>
-					<Route exact path= '/contact' component ={Contact}/>
-					<Route exact path= '/blog' component ={Blog}/>
-					<Route exact path= '/fashion' component ={Fashion}/>
-					<Route exact path= '/headshots' component ={Headshots}/>
-					<Route exact path= '/lookbooks' component ={Lookbooks}/>
-					<Route exact path= '/musicvideos' component ={MusicVideos}/>
-					<Route exact path= '/portraits' component ={Portraits}/>
-					<Route exact path= '/shortfilms' component ={ShortFilms}/>
-					<Route exact path= '/wedding' component ={Wedding}/>
-		
+					<Switch>
+						<Route exact path= '/' component ={Home}/>
+						<Route exact path= '/about' component ={About}/>
+						<Route exact path= '/photos' component ={Photos}/>
+						<Route exact path= '/videos' component ={Videos}/>
+						<Route exact path= '/music' component ={Music}/>
+						<Route exact path= '/shop' component ={Shop}/>
+						<Route exact path= '/contact' component ={Contact}/>
+						<Route exact path= '/blog' component ={Blog}/>
+						<Route exact path= '/photos/fashion' component ={Fashion}/>
+						<Route exact path= '/photos/headshots' component ={Headshots}/>
+						<Route exact path= '/photos/lookbooks' component ={Lookbooks}/>
+						<Route exact path= '/photos/portraits' component ={Portraits}/>
+						<Route exact path= '/videos/musicvideos' component ={MusicVideos}/>
+						<Route exact path= '/videos/shortfilms' component ={ShortFilms}/>
+						<Route exact path= '/videos/wedding' component ={Wedding}/>
+					</Switch>
 				</div>
 			</Router>
 		)

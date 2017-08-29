@@ -29,7 +29,6 @@ app.get('*.js', function (req, res, next) {
 app.use(express.static(path.resolve(__dirname ,'../../dist')));
 app.use('/',express.static(path.resolve(__dirname ,'../client/public')));
 
-
 app.use('/goodbye',function(req,res){
 	res.send('goodbye world!')
 })
