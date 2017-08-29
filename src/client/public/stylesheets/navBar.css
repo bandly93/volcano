@@ -10,6 +10,7 @@ a{
 p{
 	font-size:calc(16px + .5vw);
 	padding :15%;
+	color:white;
 }
 .navParent{
 	background-color:#074054;
@@ -78,4 +79,7 @@ a:hover{
 
 img{
 	height:400px;
+}
+.insta-photo{
+	margin:1%;
 }

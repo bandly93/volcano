@@ -14,7 +14,10 @@ class Home extends Component{
 	if(this.props.insta.images){
 		list = this.props.insta.images.map((image,index)=>{
 			
-			return <img src= {image.image} key ={image.key} />
+			return <img 
+				className = 'insta-photo'
+				src= {image.image} 
+				key ={image.key} />
 		})
 	}
 		return(
