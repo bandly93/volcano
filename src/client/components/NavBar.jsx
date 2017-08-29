@@ -32,7 +32,7 @@ class NavBar extends Component{
 						<Link to ='/about'>About</Link>
 
 						<div className="dropdown">
-						   <Link to ='/photos'>Photos &#9660 </Link>
+						   <Link to ='/photos' className = ''>Photos<span className = "caret">&#9660;</span></Link>
 						   <div className="dropdown-content">
 								<Link to = "/fashion">Fashion</Link>
 						      <Link to = "/wedding">Wedding</Link>
@@ -42,12 +42,12 @@ class NavBar extends Component{
 						</div>
 
 						<div className="dropdown">
-						   <Link to ='/videos'>Videos &#9660 </Link>
+						   <Link to ='/videos'>Videos <span className ="caret">&#9660;</span></Link>
 						   <div className="dropdown-content">
 								<Link to = "/lookbooks">Lookbooks</Link>
 						      <Link to = "/shortfilms">Short Films</Link>
 						      <Link to = "/musicvideos">Music Videos</Link>
-						      <Link to = "/weddings">Weddings</Link>
+						      <Link to = "/wedding">Wedding</Link>
 						   </div>
 						</div>
 						<Link to='/music'>Music</Link>
@@ -70,7 +70,7 @@ class NavBar extends Component{
 					<Route exact path= '/musicvideos' component ={MusicVideos}/>
 					<Route exact path= '/portraits' component ={Portraits}/>
 					<Route exact path= '/shortfilms' component ={ShortFilms}/>
-					<Route exact path= '/weddings' component ={Wedding}/>
+					<Route exact path= '/wedding' component ={Wedding}/>
 		
 				</div>
 			</Router>
