@@ -6,7 +6,8 @@ var axios =require('axios');
 instaRouter.route('/')
 
 .get(function(req,res){
-	searchInsta(res,'pdagraphy');
+	//searchInsta(res,'pdagraphy');
+	fetchInsta(res,'pdagraphy','xinhjr')
 })
 
 function searchInsta(res,user){
@@ -23,5 +24,26 @@ function searchInsta(res,user){
 		res.json({images:images})
 	})
 	.catch(err =>console.log('server error'))
+}
+function fetchInsta(res,user1,user2){
+	var images = [];
+	axios.get('https://www.instagram.com/' + user1 + '/media/')
+	.then(response=>{
+		organizeData(response,images)
+		return axios.get('https://www.instagram.com/' + user2 + '/media/')
+	})
+	.then(response=>{
+		organizeData(response,images)
+		res.json({images:images})
+	})
+	.catch(err =>console.log(err))
+}
+function organizeData(response,images){
+	response.data.items.forEach(function(image){
+			images.push({
+				key: image.id,
+				image:image.images.standard_resolution.url
+			})
+		})
 }
 module.exports = instaRouter;
