@@ -32,7 +32,7 @@ class NavBar extends Component{
 						<Link to ='/about'>About</Link>
 
 						<div className="dropdown">
-						   <Link to ='/photos'>Photos</Link>
+						   <Link to ='/photos'>Photos &#9660 </Link>
 						   <div className="dropdown-content">
 								<Link to = "/fashion">Fashion</Link>
 						      <Link to = "/wedding">Wedding</Link>
@@ -42,7 +42,7 @@ class NavBar extends Component{
 						</div>
 
 						<div className="dropdown">
-						   <Link to ='/videos'>Videos</Link>
+						   <Link to ='/videos'>Videos &#9660 </Link>
 						   <div className="dropdown-content">
 								<Link to = "/lookbooks">Lookbooks</Link>
 						      <Link to = "/shortfilms">Short Films</Link>
