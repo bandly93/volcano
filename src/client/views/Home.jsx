@@ -5,13 +5,21 @@ import {instaPosts} from '../redux/modules/instaModule';
 
 
 class Home extends Component{
+
 	componentDidMount(){
 		this.props.fetchData('/insta',this.props.instaPosts)
 	}
 	render(){
+	let list;
+	if(this.props.insta.images){
+		list = this.props.insta.images.map((image,index)=>{
+			
+			return <img src= {image.image} key ={image.key} />
+		})
+	}
 		return(
 			<div>
-				<p>Hello Home!</p>
+				{this.props.insta.images? list: null}
 			</div>
 		)
 	}
