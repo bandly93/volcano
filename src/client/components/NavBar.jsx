@@ -20,9 +20,9 @@ function NavBar(){
 		<Router>
 			<div>
 				<nav className ='navBar'>
-					<a className='menuIcon'><img src='http://i.imgur.com/froRRg3.png'/></a>
+					<a className='menuIcon'><img src='https://i.imgur.com/froRRg3.png'/></a>
 					<Link to ='/'>Home</Link>
-					<Link to ='/'>About</Link>
+					<Link to ='/about'>About</Link>
 
 					<div className="dropdown">
 					   <Link to ='/'>Photos</Link>
@@ -43,7 +43,6 @@ function NavBar(){
 					      <a href="#">Weddings</a>
 					   </div>
 					</div>
-
 					<Link to='/music'>Music</Link>
 					<Link to='/shop'>Shop</Link>
 					<Link to='/contact'>Contact</Link>
