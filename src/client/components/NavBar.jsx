@@ -13,6 +13,13 @@ import Music from '../views/Music.jsx';
 import Shop from '../views/Shop.jsx';
 import Contact from '../views/Contact.jsx';
 import Blog from '../views/Blog.jsx';
+import Fashion from '../subViews/Fashion.jsx';
+import Headshots from '../subViews/Headshots.jsx';
+import Lookbooks from '../subViews/Lookbooks.jsx';
+import MusicVideos from '../subViews/MusicVideos.jsx';
+import Portraits from '../subViews/Portraits.jsx';
+import ShortFilms from '../subViews/ShortFilms.jsx';
+import Wedding from '../subViews/Wedding.jsx';
 
 
 function NavBar(){
@@ -25,22 +32,22 @@ function NavBar(){
 					<Link to ='/about'>About</Link>
 
 					<div className="dropdown">
-					   <Link to ='/'>Photos</Link>
+					   <Link to ='/photos'>Photos</Link>
 					   <div className="dropdown-content">
-							<a href="#">Fashion</a>
-					      <a href="#">Wedding</a>
-					      <a href="#">Headshots</a>
-					      <a href="#">Portraits</a>
+							<Link to = "/fashion">Fashion</Link>
+					      <Link to = "/wedding">Wedding</Link>
+					      <Link to = "/headshots">Headshots</Link>
+					      <Link to = "/portraits">Portraits</Link>
 					   </div>
 					</div>
 
 					<div className="dropdown">
-					   <Link to ='/'>Videos</Link>
+					   <Link to ='/videos'>Videos</Link>
 					   <div className="dropdown-content">
-							<a href="#">Lookbooks</a>
-					      <a href="#">Short Films</a>
-					      <a href="#">Music Videos</a>
-					      <a href="#">Weddings</a>
+							<Link to = "/lookbooks">Lookbooks</Link>
+					      <Link to = "/shortfilms">Short Films</Link>
+					      <Link to = "/musicvideos">Music Videos</Link>
+					      <Link to = "/weddings">Weddings</Link>
 					   </div>
 					</div>
 					<Link to='/music'>Music</Link>
@@ -57,6 +64,14 @@ function NavBar(){
 				<Route exact path= '/shop' component ={Shop}/>
 				<Route exact path= '/contact' component ={Contact}/>
 				<Route exact path= '/blog' component ={Blog}/>
+				<Route exact path= '/fashion' component ={Fashion}/>
+				<Route exact path= '/headshots' component ={Headshots}/>
+				<Route exact path= '/lookbooks' component ={Lookbooks}/>
+				<Route exact path= '/musicvideos' component ={MusicVideos}/>
+				<Route exact path= '/portraits' component ={Portraits}/>
+				<Route exact path= '/shortfilms' component ={ShortFilms}/>
+				<Route exact path= '/weddings' component ={Wedding}/>
+	
 			</div>
 		</Router>
 	)
