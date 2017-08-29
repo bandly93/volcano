@@ -68,7 +68,8 @@ a:hover{
 .dropdown-wrapper{
 	display:inline;
 }
-/*
+
 .caret{
 	display:inline;
-}*/
+	font: 12px;
+}
