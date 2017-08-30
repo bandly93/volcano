@@ -1,4 +1,5 @@
-var qs = require('querystring');
+var qs = require('qs');
+var assert = require('assert');
 
 //action thunk
 export function fetchData(url,actFunc){
@@ -11,7 +12,7 @@ export function fetchData(url,actFunc){
 	}
 }
 
-export function postInfo(url,method,data,actFunc){
+export function postData(url,method,data,actFunc){
 	return(dispatch)=>{
 		fetch(url,{
 			method:method,
@@ -21,7 +22,9 @@ export function postInfo(url,method,data,actFunc){
 		})
 		.then(response => response.json())
 		.then(data=>{
-			actFunc(data)
+			if(actFunc){
+				actFunc(data)
+			}
 		})
 	}
 }

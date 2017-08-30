@@ -1,13 +1,13 @@
 import React,{Component} from 'react';
 import { connect } from 'react-redux';
 import {fetchData} from '../redux/modules/fetchThunk';
-import {instaPosts} from '../redux/modules/instaModule';
+import {instaAct} from '../redux/modules/instaModule';
 
 
 class Home extends Component{
 
 	componentDidMount(){
-		this.props.fetchData('/insta',this.props.instaPosts)
+		this.props.fetchData('/insta',this.props.instaAct)
 	}
 	render(){
 	let list;
@@ -37,7 +37,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
 	return{
 		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
-		instaPosts:(insta)=>dispatch(instaPosts(insta))
+		instaAct:(insta)=>dispatch(instaAct(insta))
 	}
 }
 

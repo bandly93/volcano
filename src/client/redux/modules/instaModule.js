@@ -1,5 +1,5 @@
 //action
-export function instaPosts(insta){
+export function instaAct(insta){
 	return{
 		type:'INSTA',
 		insta

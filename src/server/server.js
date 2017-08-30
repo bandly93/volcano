@@ -1,9 +1,14 @@
+//server
 var express = require('express');
 var morgan = require('morgan');
 var app = express();
 app.use(morgan('dev'));
 var port = process.env.PORT || 3000;
 var path = require('path');
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(require('cookie-parser')());
+
 
 //database
 var mongoose = require('mongoose');
@@ -19,6 +24,7 @@ db.once('open',function(){
 })
 
 //routers
+var adminRouter = require('./routes/adminRouter');
 var instaRouter = require('./routes/instaRouter');
 
 /*
@@ -32,6 +38,8 @@ app.get('*.js', function (req, res, next) {
 app.use(express.static(path.resolve(__dirname ,'../../dist')));
 app.use('/',express.static(path.resolve(__dirname ,'../client/public')));
 
+
+app.use('/admin',adminRouter);
 app.use('/insta',instaRouter);
 
 //redirect  to client
