@@ -34,9 +34,7 @@ class NavBar extends Component{
 						<Link to ='/about'>About</Link>
 
 						<div className="dropdown">
-							<div className = "dropdown-wrapper">
-						   	<Link to ='/photos'>Photos<span className = "caret">&#9660;</span> </Link>
-						   </div>	
+						   <Link to ='/photos'>Photos<span className = "caret">&#9660;</span></Link>	
 						   <div className="dropdown-content">
 								<Link to = "/photos/fashion">Fashion</Link>
 						      <Link to = "/photos/wedding">Wedding</Link>
@@ -46,9 +44,7 @@ class NavBar extends Component{
 						</div>
 
 						<div className="dropdown">
-							<div className = "dropdown-wrapper">
-						   	<Link to ='/videos'>Videos<span className ="caret">&#9660;</span> </Link>
-						   </div>
+						   <Link to ='/videos'>Videos<span className ="caret">&#9660;</span></Link>
 						   <div className="dropdown-content">
 								<Link to = "/videos/lookbooks">Lookbooks</Link>
 						      <Link to = "/videos/shortfilms">Short Films</Link>
