@@ -1,4 +1,5 @@
-/*register && login*/
+/*-------------------------register && login--------------------*/
+
 .reglog{
 	display:flex;
 	text-align: center;
@@ -15,7 +16,8 @@ input{
 	padding:1%;
 	margin:1%;
 }
-/* */
+/*------------------------------BODY ------------------------ */
+
 body{
 	text-align: center;
 	margin:0;
@@ -30,6 +32,15 @@ p{
 	padding :15%;
 	color:white;
 }
+/* --------------------------------HOME INSTA IMAGES ------------------------*/
+
+.insta-photo{
+	margin:1%;
+	max-height:400px;
+}
+
+/*-----------------------------------NAVBAR ----------------- */
+
 .navParent{
 	background-color:#074054;
 }
@@ -63,10 +74,7 @@ a:hover{
 .caret{
 	font-size: 60%;
 }
-.insta-photo{
-	margin:1%;
-	max-height:400px;
-}
+/*------------------------------DROPDOWN------------------------------------------*/
 
 .dropbtn {
     background-color: #074054;
@@ -99,25 +107,15 @@ nav .dropdown{
 .dropdown:hover .dropdown-content {
     display: block;
 }
-@media only screen and (min-width:1000px){
-    .dropdown-content{
-        position:absolute;
-    }
-}
+/* --------------------------MEDIA QUERY -----------------*/
 
-@media only screen and (max-width:1000px){
-    .navBar .dropdown{
-        display:none;
-    }
-    .navBar:hover .dropdown{
-        display:block;
-    }
-
-}
 @media only screen and (min-width:1000px){
 	a{
 		font-size:calc(21px + .3vw);
 	}
+	.dropdown-content{
+        position:absolute;
+    }
 }
 @media only screen and (max-width:1000px){
 	a:hover{
@@ -140,4 +138,10 @@ nav .dropdown{
 	.navBar:hover a{
 		display:block;
 	}
+	.navBar .dropdown{
+        display:none;
+    }
+    .navBar:hover .dropdown{
+        display:block;
+    }
 }
