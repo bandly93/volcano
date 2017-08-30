@@ -73,9 +73,10 @@ a:hover{
 	font-size: 60%;
 }
 
-img{
-	height:400px;
+.banner{
+	 
 }
 .insta-photo{
 	margin:1%;
+	max-height:400px;
 }

@@ -5,6 +5,7 @@ import {
   Link,
   Switch
 } from 'react-router-dom';
+import Admin from '../views/Admin.jsx';
 import Home from '../views/home.jsx';
 import About from '../views/About.jsx';
 import Photos from '../views/Photos.jsx';
@@ -61,6 +62,7 @@ class NavBar extends Component{
 						<Link to='/blog'>Blog</Link>
 					</nav>
 					<Switch>
+						<Route path = '/admin' component={Admin} />
 						<Route exact path= '/' component ={Home}/>
 						<Route exact path= '/about' component ={About}/>
 						<Route exact path= '/photos' component ={Photos}/>
