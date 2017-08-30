@@ -7,13 +7,12 @@
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+    /*position: absolute;*/
+    display: static;
 }
 
 .dropdown-content {
     display: none;
-    position: absolute;
     background-color: #074054;
 }
 
@@ -38,11 +37,23 @@ nav .dropdown{
 .dropdown:hover .dropdown-content {
     display: block;
 }
+@media only screen and (min-width:1000px){
+    .dropdown-content{
+        position:absolute;
+    }
+}
+
+
+
 @media only screen and (max-width:1000px){
     .navBar .dropdown{
         display:static;
     }
     .navBar:hover .dropdown{
         display:absolute;
+    }
+    .downtown-content{
+        /*display:static;*/
+        display:none;
     }
 }
