@@ -1,0 +1,138 @@
+/*-------------------------register && login--------------------*/
+
+.reglog{
+	display:flex;
+	text-align: center;
+	margin:3%;
+	background-color: white;
+}
+.reglogChild{
+	flex:1;
+	border-style: solid;
+	border-color: black;
+	padding:2%;
+}
+input{
+	padding:1%;
+	margin:1%;
+}
+/*------------------------------BODY ------------------------ */
+body{
+	text-align: center;
+	margin:0;
+	font-family: 'Roboto', sans-serif;
+	background-color: black;
+}
+a{
+	font-size:calc(21px + .5vw);
+}
+p{
+	font-size:calc(16px + .5vw);
+	padding :15%;
+	color:white;
+}
+/* --------------------------------HOME INSTA IMAGES ------------------------*/
+
+.insta-photo{
+	margin:1%;
+	max-height:400px;
+}
+/*-----------------------------------NAVBAR ----------------- */
+
+.menuIcon{
+	display:none;
+	cursor: pointer;
+}
+.menuIcon img{
+	height:21px;
+}
+nav a{
+	text-decoration: none;
+	color:white;
+	padding: 1% 2% 1% 2%;
+}
+a:hover{
+	background-color:white;
+	color:#074054;
+}
+
+.banner{
+	width:100%;
+	margin:-4px;
+}
+.caret{
+	font-size: 60%;
+}
+
+
+/*------------------------------DROPDOWN------------------------------------------*/
+
+.dropbtn {
+    background-color: #074054;
+    color: white;
+    padding: 16px;
+    font-size:calc(16px + .5vw);
+    border: none;
+}
+
+.dropdown-content {
+    display: none;
+    background-color: #074054;
+}
+
+nav .dropdown{
+    padding : 1% 2% 1% 2%;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+/* --------------------------MEDIA QUERY -----------------*/
+
+@media only screen and (min-width:1000px){
+	a{
+		font-size:calc(21px + .3vw);
+	}
+	.dropdown-content{
+        position:absolute;
+    }
+}
+@media only screen and (max-width:1000px){
+	a:hover{
+		background-color:orange;
+		color:white;
+	}
+	.navBar{
+		flex-direction: column;
+		align-items: flex-end;
+	}
+	.menuIcon{
+		display:block;
+	}
+	.menuIcon img{
+		height:calc(21px + 1vw);
+	}
+	a{
+		display:none;
+	}	
+	.navBar:hover a{
+		display:block;
+	}
+	.navBar .dropdown{
+        display:none;
+    }
+    .navBar:hover .dropdown{
+        display:block;
+    }
+}
