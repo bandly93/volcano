@@ -58,7 +58,7 @@ class NavBar extends Component{
 						<Link to='/blog'>Blog</Link>
 					</nav>
 					<Switch>
-						<Route path = '/admin' component={Admin} />
+						<Route path = '/admin' component={Admin}/>
 						<Route exact path= '/' component ={Home}/>
 						<Route exact path= '/about' component ={About}/>
 						<Route exact path= '/photos' component ={Photos}/>
@@ -67,7 +67,6 @@ class NavBar extends Component{
 						<Route exact path= '/shop' component ={Shop}/>
 						<Route exact path= '/contact' component ={Contact}/>
 						<Route exact path= '/blog' component ={Blog}/>
-
 						<Route exact path= '/photos/fashion' component ={Fashion}/>
 						<Route exact path= '/photos/wedding' component ={WeddingPhotos}/>
 						<Route exact path= '/photos/headshots' component ={Headshots}/>
