@@ -66,8 +66,7 @@ a:hover{
 	color:#074054;
 }
 .banner img{
-	height:400px;
-	background-repeat: repeat-y;
+	height:350px;
 }
 .caret{
 	font-size: 60%;
@@ -125,6 +124,7 @@ nav .dropdown{
 	.navBar{
 		flex-direction: column;
 		align-items: flex-end;
+		text-align:right;
 	}
 	.menuIcon{
 		display:block;
@@ -136,7 +136,7 @@ nav .dropdown{
 		display:none;
 	}	
 	.navBar:hover a{
-		display:block;
+		display:inline;
 	}
 	.navBar .dropdown{
         display:none;
