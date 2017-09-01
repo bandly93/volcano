@@ -29,7 +29,7 @@ class NavBar extends Component{
 			<Router>
 				<div>
 					<nav className ='navBar'>
-						<a className='menuIcon'><img src='https://i.imgur.com/froRRg3.png'/></a>
+						<a className='menuIcon'><img src='https://i.imgur.com/659zR69.png'/></a>
 						<Link to ='/'>Home</Link>
 						<Link to ='/about'>About</Link>
 
