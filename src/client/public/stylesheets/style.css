@@ -21,7 +21,7 @@ input{
 body{
 	text-align: center;
 	margin:0;
-	
+
 	/*font-family: 'Libre Barcode 128 Text', cursive;*/
    /*font-family: 'Sedgwick Ave', cursive;*/
 	font-family: 'Permanent Marker', cursive;
@@ -85,6 +85,8 @@ a:hover{
 .dropdown-content {
     display: none;
     background-color: white;
+    box-shadow: 4px 4px 2px #888888;
+
 }
 
 nav .dropdown{
