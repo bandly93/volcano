@@ -22,7 +22,6 @@ body{
 	text-align: center;
 	margin:0;
 	font-family: 'Roboto', sans-serif;
-	background-color: black;
 }
 a{
 	font-size:calc(21px + .5vw);
@@ -45,7 +44,7 @@ p{
 	background-color:#074054;
 }
 .navBar{
-	background-color:#074054;
+	
 	display:flex;
 	flex-wrap:wrap;
 	justify-content: space-around;
@@ -59,17 +58,16 @@ p{
 }
 nav a{
 	text-decoration: none;
-	color:white;
+	color:black;
 	padding: 1% 2% 1% 2%;
 }
 a:hover{
 	background-color:white;
 	color:#074054;
 }
-
-.banner{
-	width:100%;
-	margin:-4px;
+.banner img{
+	height:400px;
+	background-repeat: repeat-y;
 }
 .caret{
 	font-size: 60%;
