@@ -21,7 +21,8 @@ input{
 body{
 	text-align: center;
 	margin:0;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Libre Barcode 128 Text', cursive;
+
 }
 a{
 	font-size:calc(21px + .5vw);
