@@ -132,11 +132,7 @@ nav .dropdown{
 		display:none;
 	}	
 	.navBar:hover a{
-<<<<<<< Updated upstream
 		display:inline;
-=======
-		display:table-row-group;
->>>>>>> Stashed changes
 	}
 	.navBar .dropdown{
         display:none;
