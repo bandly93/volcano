@@ -25,7 +25,9 @@ db.once('open',function(){
 
 //routers
 var adminRouter = require('./routes/adminRouter');
+var flickrRouter = require('./routes/flickrRouter');
 var instaRouter = require('./routes/instaRouter');
+
 
 /*
 app.get('*.js', function (req, res, next) {
@@ -40,7 +42,9 @@ app.use('/',express.static(path.resolve(__dirname ,'../client/public')));
 
 
 app.use('/admin',adminRouter);
+app.use('/flickr',flickrRouter);
 app.use('/insta',instaRouter);
+
 
 //redirect  to client
 app.get('*', function(req,res){

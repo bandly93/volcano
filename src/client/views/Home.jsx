@@ -16,8 +16,8 @@ class Home extends Component{
 			
 			return <img 
 				className = 'insta-photo'
-				src= {image.image} 
-				key ={image.key} />
+				src = {image.image} 
+				key = {image.key} />
 		})
 	}
 		return(

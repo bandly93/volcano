@@ -1,10 +1,21 @@
 import React,{Component} from 'react';
 
-function Portraits(){
-	return(
-		<div>
-			<p>Hello Portraits!</p>
-		</div>
-	)
+
+
+
+class Portraits extends Component{
+	constructor(props){
+		super(props);
+	}
+
+	render(){
+		return(
+			<div>
+				
+
+			</div>
+		)
+	}
 }
+
 export default Portraits;

@@ -1,19 +1,33 @@
-var express = require("express");
-var flickrRouter = express().Router;
-var axios = require(axios);
-import {} from 
+var express = require('express');
+var flickrRouter = express.Router();
+var axios = require('axios');
+var config = require('../../../config.js');
 
-//testing purposes 
-
-
-var url = 'https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key='+ api_key + '&user_id=' + user_id +'&format=json&nojsoncallback=1&auth_token=72157685944084373-5b383c86c7c6a99b&api_sig=b8e516de890711f0595cedc11eda6437';
-
-//make get request to retrieve a response from the API
-
-
-flickrRouter.route("/");
+flickrRouter.route('/')
 
 .get(function(req,res){
+	fetchData(res);
+})
 
-
+const fetchData = (res) => {
+	var url = `https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=${config.API_KEY}&user_id=${config.USER_ID}&format=json&nojsoncallback=1`;
+	var images = []
+	axios.get(url)
+	.then(response => {
+		let obj = response.data.photos.photo;
+		res.json({obj});
+		obj.forEach(function(data){
+			images.push(constructJPG(data));
+		})
+		//console.log(images);
+	})
+	.catch(error => {
+		console.log(error);
+	})
 }
+
+const constructJPG = (data) => {
+	return `https://farm${data.farm}.staticflickr.com/${data.server}/${data.id}_${data.secret}.jpg`;
+}
+
+module.exports = flickrRouter;
