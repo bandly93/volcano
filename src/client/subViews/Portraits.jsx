@@ -20,7 +20,7 @@ class Portraits extends Component{
 					photosArr.map(photo => {
 						return (
 							<img 
-								className = "insta-photo"
+								className = "flickr-photo"
 								src = {photo.photo} 
 								key = {photo.name} />
 						)
