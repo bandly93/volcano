@@ -5,9 +5,7 @@ var config = require('../../../config.js');
 
 flickrRouter.route('/')
 
-.get(function(req,res){
-	fetchData(res);
-})
+.get((req,res) => fetchData(res))
 
 const fetchData = (res) => {
 	var url = `https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=${config.API_KEY}&user_id=${config.USER_ID}&format=json&nojsoncallback=1`;
@@ -15,19 +13,20 @@ const fetchData = (res) => {
 	axios.get(url)
 	.then(response => {
 		let obj = response.data.photos.photo;
+		let id = response.data.id
 		res.json({obj});
-		obj.forEach(function(data){
-			images.push(constructJPG(data));
+		obj.forEach(data => {
+			let photoObj = {}
+				photoObj.id = data.id;
+				photoObj.photo = constructJPG(data);
+			images.push(photoObj);
 		})
-		//console.log(images);
 	})
-	.catch(error => {
-		console.log(error);
-	})
+	.catch(error => console.log(error))
 }
 
-const constructJPG = (data) => {
-	return `https://farm${data.farm}.staticflickr.com/${data.server}/${data.id}_${data.secret}.jpg`;
-}
+const constructJPG = (data) => `https://farm${data.farm}.staticflickr.com/${data.server}/${data.id}_${data.secret}.jpg`;
+
+
 
 module.exports = flickrRouter;

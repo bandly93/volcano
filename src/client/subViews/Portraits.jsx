@@ -1,19 +1,18 @@
-import React,{Component} from 'react';
-
+import React,{Component} from 'react'; 
 
 
 
 class Portraits extends Component{
-	constructor(props){
-		super(props);
-	}
-
+	
 	render(){
+		let photosObj = {
+			'photo' : "https://www.cleverfiles.com/howto/wp-content/uploads/2016/08/mini.jpg",
+			'name' : "minions"
+		}
 		return(
-			<div>
-				
-
-			</div>
+			<img 
+				src = {photosObj.photo} 
+				key = {photosObj.name} />
 		)
 	}
 }
