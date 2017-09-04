@@ -1,4 +1,5 @@
 //action
+//response data 
 export function flickrAct(flickr){
 	return{
 		type:'FLICKR',

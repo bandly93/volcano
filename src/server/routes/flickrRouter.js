@@ -14,14 +14,13 @@ const fetchData = (res) => {
 	.then(response => {
 		let obj = response.data.photos.photo;
 		let id = response.data.id
-		res.json({obj});
 		obj.forEach(data => {
 			let photoObj = {}
 				photoObj.id = data.id;
 				photoObj.photo = constructJPG(data);
 			images.push(photoObj);
 		})
-		console.log(images);
+		res.json({images:images})
 	})
 	.catch(error => console.log(error))
 }
