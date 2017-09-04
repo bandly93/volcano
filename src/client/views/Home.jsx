@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import {fetchData} from '../redux/modules/fetchThunk';
 import {instaAct} from '../redux/modules/instaModule';
 
-
 class Home extends Component{
 	componentDidMount(){
 		this.props.fetchData('/insta',this.props.instaAct)
@@ -11,7 +10,7 @@ class Home extends Component{
 	render(){
 	let list;
 	if(this.props.insta.images){
-		list = this.props.insta.images.map((image,index)=>{
+		list = this.props.insta.images.map(image =>{
 			return <img 
 				className = 'insta-photo'
 				src = {image.image} 

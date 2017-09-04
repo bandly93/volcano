@@ -1,14 +1,16 @@
 var express = require('express');
 var flickrRouter = express.Router();
 var axios = require('axios');
-var config = require('../../../config.js');
+//var config = require('../../../config.js');
 
 flickrRouter.route('/')
 
 .get((req,res) => fetchData(res))
 
 const fetchData = (res) => {
-	var url = `https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=${config.API_KEY}&user_id=${config.USER_ID}&format=json&nojsoncallback=1`;
+	const key = process.env.API_KEY //|| config.API_KEY;
+	const id = process.env.USER_ID //|| config.USER_ID;
+	var url = `https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=${key}&user_id=${id}&format=json&nojsoncallback=1`;
 	var images = []
 	axios.get(url)
 	.then(response => {

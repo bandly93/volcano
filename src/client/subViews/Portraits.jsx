@@ -7,19 +7,19 @@ class Portraits extends Component{
 	componentDidMount(){
 		this.props.fetchData('/flickr',this.props.flickrAct)
 	}
-
 	render(){
 	let list;
 	if (this.props.flickr.images){
-		list = this.props.flickr.images.map(photo =>{
+		list = this.props.flickr.images.map(image =>{
 			return <img 
 				className = 'flickr-photo'
-				src = {photo.photo}
-				key = {photo.id} />
+				src = {image.photo}
+				key = {image.id} />
 		})
 	}
 		return(
 			<div>
+				<p>This shows the flickr API in use. </p>
 				{this.props.flickr.images? list: null}
 			</div>
 		)
