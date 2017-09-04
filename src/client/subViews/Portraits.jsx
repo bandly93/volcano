@@ -1,7 +1,7 @@
 import React,{Component} from 'react'; 
 
 
-let photosArr = [
+let testArr = [
 	{
 		photo : 'https://www.cleverfiles.com/howto/wp-content/uploads/2016/08/mini.jpg',
 		name : 'minions'
@@ -17,7 +17,7 @@ class Portraits extends Component{
 		return(
 			<div>
 				{
-					photosArr.map(photo => {
+					testArr.map(photo => {
 						return (
 							<img 
 								className = "flickr-photo"

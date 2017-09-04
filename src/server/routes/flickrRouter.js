@@ -21,12 +21,11 @@ const fetchData = (res) => {
 				photoObj.photo = constructJPG(data);
 			images.push(photoObj);
 		})
+		console.log(images);
 	})
 	.catch(error => console.log(error))
 }
 
 const constructJPG = (data) => `https://farm${data.farm}.staticflickr.com/${data.server}/${data.id}_${data.secret}.jpg`;
-
-
 
 module.exports = flickrRouter;

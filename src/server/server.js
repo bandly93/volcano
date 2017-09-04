@@ -23,6 +23,7 @@ db.once('open',function(){
 	console.log('Connected correctly to server');
 })
 
+<<<<<<< Updated upstream
 //passport
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -37,6 +38,8 @@ app.use(passport.session());
 
 
 
+=======
+>>>>>>> Stashed changes
 
 //routers
 var adminRouter = require('./routes/adminRouter');
