@@ -38,7 +38,7 @@ class Admin extends Component{
 					<h2>Register</h2>
 					<form onSubmit={(e)=>{
 						e.preventDefault();this.props.postData(
-							'/admin/reg','POST',this.userData());
+							'/auth/reg','POST',this.userData());
 							this.setState(this.resetData())
 							}}>
 						<input type='text' name='username' 

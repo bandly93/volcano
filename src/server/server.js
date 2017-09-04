@@ -23,11 +23,26 @@ db.once('open',function(){
 	console.log('Connected correctly to server');
 })
 
+//passport
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var User = require('./models/user');
+app.use(require('express-session')({
+	secret: '9054f3048dgfd',
+	resave:false,
+	saveUninitialized:false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
 //routers
 var adminRouter = require('./routes/adminRouter');
 var flickrRouter = require('./routes/flickrRouter');
 var instaRouter = require('./routes/instaRouter');
-
+var authRouter = require('./routes/authRouter');
 
 /*
 app.get('*.js', function (req, res, next) {
@@ -40,7 +55,7 @@ app.get('*.js', function (req, res, next) {
 app.use(express.static(path.resolve(__dirname ,'../../dist')));
 app.use('/',express.static(path.resolve(__dirname ,'../client/public')));
 
-
+app.use('/auth',authRouter);
 app.use('/admin',adminRouter);
 app.use('/flickr',flickrRouter);
 app.use('/insta',instaRouter);
