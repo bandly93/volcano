@@ -37,6 +37,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+passport.serializeUser(function(user, done) {
+	done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+	User.findById(id, function(err, user) {
+		done(err, user);
+	});
+});
+
 //routers
 var adminRouter = require('./routes/adminRouter');
 var flickrRouter = require('./routes/flickrRouter');

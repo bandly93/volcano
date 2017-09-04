@@ -7,7 +7,8 @@ adminRouter.post('/login',function(req,res){
 
 adminRouter.post('/reg',function(req,res){
 	console.log('register')
-	console.log(req.body)
+	console.log('username',req.body.username)
+	console.log('password',req.body.password)
 	res.json({register:'success!'})
 })
 
