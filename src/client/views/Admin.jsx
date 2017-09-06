@@ -8,28 +8,23 @@ class Admin extends Component{
 	constructor(props){
 		super(props);
 		this.state={
-			username:'',
-			password:''
+			regUsername:'',
+			regPassword:'',
+			logUsername:'',
+			logPassword:''
 		}
 		this.handleChange = this.handleChange.bind(this);
-		this.resetData = this.resetData.bind(this);
+		//this.resetData = this.resetData.bind(this);
 	}
 	handleChange(event){
 		this.setState({[event.target.name]:event.target.value})
 	}
-	userData(){
+	userData(user,pass){
 		let userData ={
-			username:this.state.username,
-			password:this.state.password
+			username:user,
+			password:pass
 		}
 		return userData;
-	}
-	resetData(){
-		let data ={
-			username:'',
-			password:''
-		}
-		return data;
 	}
 	test(data){
 		console.log(data)
@@ -41,26 +36,48 @@ class Admin extends Component{
 					<h2>Register</h2>
 					<form onSubmit={(e)=>{
 						e.preventDefault();this.props.postData(
-							'/auth/reg','POST',this.userData(),this.test);
-							this.setState(this.resetData())
+							'/auth/reg','POST',
+							this.userData(
+								this.state.regUsername,
+								this.state.regPassword),
+							this.test);
+							this.setState({
+								regUsername:'',
+								regPassword:''
+							})
 							}}>
-						<input type='text' name='username' 
+						<input type='text' name='regUsername' 
 						onChange={this.handleChange}
-						placeholder='username' value={this.state.username}/> 
+						placeholder='username' value={this.state.regUsername}/> 
 						<br/>
-						<input type='password' name='password' 
+						<input type='password' name='regPassword' 
 						onChange={this.handleChange}
-						placeholder='password' value={this.state.password}/> 
+						placeholder='password' value={this.state.regPassword}/> 
 						<br/>
 						<input className='buttons' type='submit' value='Register'/>
 					</form>
 				</span>
 				<span className = 'reglogChild'>
 					<h2>Login</h2>
-					<form >
-						<input type='text' name='username' placeholder='username'/> 
+						<form onSubmit={(e)=>{
+						e.preventDefault();this.props.postData(
+							'/auth/log','POST',
+							this.userData(
+								this.state.logUsername,
+								this.state.logPassword),
+							this.test);
+							this.setState({
+								logUsername:'',
+								logPassword:''
+							})
+							}}>
+						<input type='text' name='logUsername' 
+						onChange={this.handleChange}
+						placeholder='username' value={this.state.logUsername}/> 
 						<br/>
-						<input type='password' name='password' placeholder='password'/> 
+						<input type='password' name='logPassword' 
+						onChange={this.handleChange}
+						placeholder='password' value={this.state.logPassword}/> 
 						<br/>
 						<input className='buttons' type='submit' value='Login'/>
 					</form>
