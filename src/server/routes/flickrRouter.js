@@ -1,7 +1,7 @@
 var express = require('express');
 var flickrRouter = express.Router();
 var axios = require('axios');
-var config = require('../../../config.js');
+//var config = require('../../../config.js');
 
 flickrRouter.route('/')
 
@@ -19,8 +19,8 @@ data.wedding = '72157685664672911';
 data.about = '72157686272557143';
 
 const fetchPhotos = (res,pathname) => {
-	const key = process.env.API_KEY || config.flickr.API_KEY;
-	const user_id = process.env.USER_ID || config.flickr.USER_ID;
+	const key = process.env.API_KEY //|| config.flickr.API_KEY;
+	const user_id = process.env.USER_ID //|| config.flickr.USER_ID;
 	const photoset_id = data[pathname];
 
 
