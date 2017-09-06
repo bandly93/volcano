@@ -21,8 +21,8 @@ passport.use(new LocalStrategy({
 			if(!user){
 				console.log('no user')
 				console.log(req.body)
-				//res.json({message:'Incorrect username.'})
-				return done(null,false)
+				res.json({message:'Incorrect username.'})
+				//return done(null,false)
 			}
 			if(!user.validPassword(password)){
 				console.log('pw not valid')

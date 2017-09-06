@@ -2,7 +2,7 @@ var express = require('express');
 var authRouter = express.Router();
 var passport = require('passport');
 //var authStrategy = require('../auth/authStrategy');
-var LocalStrategy = require('passport-local').Strategy;
+//var LocalStrategy = require('passport-local').Strategy;
 
 authRouter.route('/reg')
 
@@ -14,8 +14,8 @@ authRouter.route('/reg')
 		if(!user){
 			console.log('no user')
 			console.log(req.body)
-			res.json({message:'Incorrect username.'})
-			//return done(null,false)
+			return res.json({message:'Incorrect username.'})
+			
 		}
 		if(!user.validPassword(password)){
 			console.log('pw not valid')
@@ -24,8 +24,11 @@ authRouter.route('/reg')
 		}
 		console.log('done')
 		return done(null,user);
-	})
-})
+	})(req,res,next);
+
+}
+	//authStrategy.authenticate('local')
+)
 
 
 module.exports = authRouter;

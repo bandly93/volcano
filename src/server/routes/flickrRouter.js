@@ -15,6 +15,7 @@ flickrRouter.route('/')
 	fetchPhotos(res,pathname);
 })
 
+
 //figure out a way to store/modularize this or use database to store?
 //potential error with wedding photos and wedding videos. they could trigger each other's data object.
 let data = {}
@@ -28,6 +29,11 @@ const fetchPhotos = (res,pathname) => {
 	const user_id = process.env.USER_ID || config.flickr.USER_ID;
 	const photoset_id = data[pathname];
 	var url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${key}&photoset_id=${photoset_id}&user_id=${user_id}&format=json&nojsoncallback=1`;
+
+const fetchData = (res) => {
+	const key = process.env.API_KEY || config.API_KEY;
+	const id = process.env.USER_ID || config.USER_ID;
+	var url = `https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&api_key=${key}&user_id=${id}&format=json&nojsoncallback=1`;
 	var images = []
 	axios.get(url)
 	.then(response => {

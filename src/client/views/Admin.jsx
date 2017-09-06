@@ -31,6 +31,9 @@ class Admin extends Component{
 		}
 		return data;
 	}
+	test(data){
+		console.log(data)
+	}
 	render(){
 		return(		
 			<div className = 'reglog'>
@@ -38,7 +41,7 @@ class Admin extends Component{
 					<h2>Register</h2>
 					<form onSubmit={(e)=>{
 						e.preventDefault();this.props.postData(
-							'/auth/reg','POST',this.userData());
+							'/auth/reg','POST',this.userData(),this.test);
 							this.setState(this.resetData())
 							}}>
 						<input type='text' name='username' 
