@@ -24,6 +24,9 @@ import WeddingPhotos from '../subViews/WeddingPhotos.jsx';
 import WeddingVideos from '../subViews/WeddingVideos.jsx';
 
 class NavBar extends Component{
+	onclick(){
+		
+	}
 	render(){
 		return(
 			<Router>

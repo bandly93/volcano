@@ -13,8 +13,8 @@ class Portraits extends Component{
 		list = this.props.flickr.images.map(image =>{
 			return <img 
 				className = 'flickr-photo'
-				src = {image.photo}
-				key = {image.id} />
+				src = {image.url}
+				key = {image.key} />
 		})
 	}
 		return(
