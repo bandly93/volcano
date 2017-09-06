@@ -9,7 +9,8 @@ flickrRouter.route('/')
 // 		THIS WILL THROW AN ERROR ON HEROKU!
 // 		Figure out how to fix the string manipulation.
 .get((req,res) => {
-	let pathname = (req.headers.referer).slice(29);
+	let index = (req.headers.referer).lastIndexOf('/');
+	let pathname = (req.headers.referer).slice(index+1);
 	fetchPhotos(res,pathname);
 })
 
