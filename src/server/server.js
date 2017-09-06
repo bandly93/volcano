@@ -35,7 +35,7 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
+/*
 passport.use(new LocalStrategy({
 	passReqToCallback:true
 },
@@ -57,6 +57,7 @@ passport.deserializeUser(function(id, done) {
 		done(err, user);
 	});
 });
+*/
 
 //routers
 var adminRouter = require('./routes/adminRouter');

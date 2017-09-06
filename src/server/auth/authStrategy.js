@@ -1,7 +1,43 @@
-var passport = require('passport');
+//var passport = require('passport');
 var User = require('../models/user');
 var LocalStrategy = require('passport-local').Strategy;
 
+module.exports = function(passport,res){
+	passport.serializeUser(function(user, done) {
+		done(null, user.id);
+	});
+
+	passport.deserializeUser(function(id, done) {
+		User.findById(id, function(err, user) {
+			done(err, user);
+		});
+	});
+	passport.use('register',new LocalStrategy({
+		passReqToCallback:true,
+	},
+		function(req,username,password,done){
+			User.findOne({'username':username},function(err,user){
+				if(err){
+					console.log('error')
+					return done(err);}
+				if(!user){
+					console.log('no user')
+					console.log(req.body)
+					return res.json({message:'Incorrect username.'})
+					
+				}
+				if(!user.validPassword(password)){
+					console.log('pw not valid')
+					//res.json({message:'Incorrect password.'})
+					return done(null,false)
+				}
+				console.log('done')
+				return done(null,user);
+			})
+		}
+	));
+}
+/*
 passport.use(new LocalStrategy({
 		passReqToCallBack: true
 	},
@@ -13,7 +49,7 @@ passport.use(new LocalStrategy({
 			}
 			if(!user){
 				return res.json({error:'cant find user'})
-			}*/
+			}
 			
 			if(err){
 				console.log('error')
@@ -35,14 +71,4 @@ passport.use(new LocalStrategy({
 	}
 ))
 
-passport.serializeUser(function(user, done) {
-	done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-	User.findById(id, function(err, user) {
-		done(err, user);
-	});
-});
-
-module.exports = passport;
+*/
