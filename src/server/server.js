@@ -69,7 +69,7 @@ app.use('/auth',authRouter);
 app.use('/admin',adminRouter);
 app.use('/flickr',flickrRouter);
 app.use('/insta',instaRouter);
-app.use('/cloud',cloudRouter);
+//app.use('/cloud',cloudRouter);
 
 
 //redirect  to client

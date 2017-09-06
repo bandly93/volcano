@@ -6,6 +6,8 @@ var axios = require('axios');
 flickrRouter.route('/')
 
 //WARNING ~~~~ be careful with the number you are slicing with. This is only working because videos and photos are both 6 letters.
+// 		THIS WILL THROW AN ERROR ON HEROKU!
+// 		Figure out how to fix the string manipulation.
 .get((req,res) => {
 	let pathname = (req.headers.referer).slice(29);
 	fetchPhotos(res,pathname);
