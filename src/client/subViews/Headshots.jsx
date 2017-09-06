@@ -19,7 +19,6 @@ class Headshots extends Component{
 	}
 		return(
 			<div>
-				<p>Display the Headshots photos with the flickr API.</p>
 				{this.props.flickr.images? list: null}
 			</div>
 		)

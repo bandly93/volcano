@@ -11,7 +11,7 @@ flickrRouter.route('/')
 // 		
 .get((req,res) => {
 	let index = (req.headers.referer).lastIndexOf('/');
-	let pathname = (req.headers.referer).slice(index+1);
+	let pathname = (req.headers.referer).slice(index + 1);
 	fetchPhotos(res,pathname);
 })
 
@@ -19,21 +19,21 @@ flickrRouter.route('/')
 //figure out a way to store/modularize this or use database to store?
 //potential error with wedding photos and wedding videos. they could trigger each other's data object.
 let data = {}
-data.portraits = '72157688653797855';
-data.headshots = '72157685664756621';
-data.wedding = '72157685664672911';
-data.about = '72157686272557143';
+data.portraits = '72157685685728341';
+data.headshots = '72157686216916554';
+data.wedding = '72157684929133582';
+data.about = '72157685935838050';
 
 const fetchPhotos = (res,pathname) => {
 	const key = process.env.API_KEY || config.flickr.API_KEY;
 	const user_id = process.env.USER_ID || config.flickr.USER_ID;
-	const photoset_id = data[pathname];
-	var url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${key}&photoset_id=${photoset_id}&user_id=${user_id}&format=json&nojsoncallback=1`;
-	var images = []
+	let photoset_id = data[pathname];
+	let url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${key}&photoset_id=${photoset_id}&user_id=${user_id}&format=json&nojsoncallback=1`;
+	let images = []
 	axios.get(url)
 	.then(response => {
 		let photosArr = response.data.photoset.photo;
-		photosArr.map(photoObj => images.push({key:photoObj.id, url:constructJPG(photoObj)}));
+		photosArr.map(photoObj => images.push({url:constructJPG(photoObj),key:photoObj.id, name:photoObj.title}));
 		res.json({images:images})
 	})
 	.catch(error => console.log(error))

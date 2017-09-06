@@ -19,7 +19,6 @@ class WeddingPhotos extends Component{
 	}
 		return(
 			<div>
-				<p>Display the Wedding photos with the flickr API.</p>
 				{this.props.flickr.images? list: null}
 			</div>
 		)

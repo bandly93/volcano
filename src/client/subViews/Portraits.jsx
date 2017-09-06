@@ -19,7 +19,6 @@ class Portraits extends Component{
 	}
 		return(
 			<div>
-				<p>Display the Portraits photos with the flickr API.</p>
 				{this.props.flickr.images? list: null}
 			</div>
 		)
