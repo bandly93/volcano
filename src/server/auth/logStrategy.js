@@ -8,6 +8,7 @@ module.exports = function(passport,res){
 	},
 		function(req,username,password,done){
 			User.findOne({'username':username},function(err,user){
+				console.log(req.user)
 				if(err){
 					console.log('error')
 					return res.json(err);}
@@ -19,10 +20,17 @@ module.exports = function(passport,res){
 				if(!user.validPassword(password)){
 					console.log('pw not valid')
 					//res.json({message:'Incorrect password.'})
-					return done(null,false)
+					return res.json({message:'Invalid password'})
 				}
 				console.log('done')
-				return done(null,user);
+				req.login(user,function(err){
+					if(err){return next(err)}
+					console.log('req.user',req.user)
+					console.log('req.session',req.session.passport)
+					return res.json({user:user.username})
+					//return res.redirect('/')
+				})
+
 			})
 		}
 	));
