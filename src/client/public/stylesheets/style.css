@@ -31,7 +31,7 @@ p{
 
 .insta-photo{
 	margin:1%;
-	max-height:400px;
+	max-height:300px;
 }
 /* --------------------------------Portrait Flickr IMAGES ------------------------*/
 
@@ -63,15 +63,19 @@ nav a{
 	text-decoration: none;
 	color:black;
 	padding: 1% 2% 1% 2%;
-	font-size:calc(24px + .5vw);
+	font-size:calc(18px);
 	font-family: 'Anton', sans-serif;
 }
 a:hover{
 	background-color:white;
 	color:#074054;
 }
+.banner{
+	background-color:black;
+}
 .banner img{
-	height:350px;
+	max-height:450px;
+	max-width:100%;
 }
 .caret{
 	font-size: 60%;

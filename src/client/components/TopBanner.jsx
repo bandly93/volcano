@@ -3,7 +3,7 @@ import React from 'react';
 function TopBanner(){
 	return(
 		<div className = 'banner'>
-			<img src='https://i.imgur.com/DtxVSrM.png'/>
+			<img src='https://i.imgur.com/QBBdgtF.png'/>
 		</div>
 	)
 }

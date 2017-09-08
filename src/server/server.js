@@ -56,13 +56,14 @@ var flickrRouter = require('./routes/flickrRouter');
 var instaRouter = require('./routes/instaRouter');
 var authRouter = require('./routes/authRouter');
 var cloudRouter = require('./routes/cloudRouter');
-
+var blogRouter = require('./routes/blogRouter');
 
 app.use('/auth',authRouter);
 app.use('/admin',adminRouter);
 app.use('/flickr',flickrRouter);
 app.use('/insta',instaRouter);
 //app.use('/cloud',cloudRouter);
+app.use('/blog',blogRouter);
 
 
 //redirect  to client

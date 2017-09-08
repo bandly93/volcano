@@ -15,6 +15,7 @@ module.exports = function(passport,res){
 				if(!user){
 					console.log('no user')
 					console.log(req.body)
+					console.log(done)
 					return res.json({message:'User does not exist.'})		
 				}
 				if(!user.validPassword(password)){
