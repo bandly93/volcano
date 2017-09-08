@@ -100,6 +100,8 @@ class Admin extends Component{
 	render(){
 		return(		
 			<div>
+			{this.props.admin.err?<h3 className='err'>{this.props.admin.err}</h3>:null}
+			{this.props.admin.success?<h3 className='success'>{this.props.admin.success}</h3>:null}
 			{this.props.admin.user?this.logout():this.regLog()}
 			</div>
 		)

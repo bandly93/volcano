@@ -1,12 +1,15 @@
 import React,{Component} from 'react';
 import { connect } from 'react-redux';
-import {postData} from '../redux/modules/fetchThunk';
+import {fetchData,postData} from '../redux/modules/fetchThunk';
+import {adminAct} from '../redux/modules/adminModule';
+
 
 class Blog extends Component{
-
-	render(){
+	componentDidMount(){
+		this.props.fetchData('/auth/log',this.props.adminAct)
+	}
+	blogPost(){
 		return(
-			<div>
 			<form onSubmit={(e)=>{
 						e.preventDefault();this.props.postData(
 							'/blog','POST',
@@ -14,7 +17,14 @@ class Blog extends Component{
 							}}>
 					<input type='textarea' />
 					<input type='submit' value='Post'/>
-				</form>
+			</form>
+		)
+	}
+	render(){
+		console.log(this.props.admin)
+		return(
+			<div>
+				{this.props.admin.user? this.blogPost():null}
 			</div>
 		)
 	}	
@@ -22,13 +32,15 @@ class Blog extends Component{
 
 const mapStateToProps = (state) =>{
 	return{
-		
+		admin:state.admin
 	};
 };
 
 const mapDispatchToProps = (dispatch) =>{
 	return{
-		postData:(url,method,data,actFunc)=>dispatch(postData(url,method,data,actFunc))	
+		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
+		postData:(url,method,data,actFunc)=>dispatch(postData(url,method,data,actFunc)),
+		adminAct:(admin)=>dispatch(adminAct(admin))	
 	}
 }
 
