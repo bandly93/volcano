@@ -24,7 +24,7 @@ body{
 	
 }
 p{
-	font-size:calc(16px + .5vw);
+	font-size:calc(16px);
 	padding :15%;
 }
 /* --------------------------------HOME INSTA IMAGES ------------------------*/
@@ -39,7 +39,6 @@ p{
 	margin:1%;
 	max-height:400px;
 }
-
 
 /*-----------------------------------NAVBAR ----------------- */
 
@@ -148,16 +147,15 @@ nav .dropdown{
 
 /*-----------------------ABOUT PAGE---------------------------*/
 
-
 span .top-row{
-	width: 50%;
+	max-width: 50%;
 }
 span .middle-row{
-	width: 33%;
+	max-width: 33%;
 }
 
 span .bottom-row{
-	width :100%;
+	max-width :100%;
 }
 
 .top-row,.middle-row,.bottom-row{
@@ -168,11 +166,12 @@ span .bottom-row{
 }
 
 .about-container img {
-	height:300px;
+	max-height:300px;
+	border-radius: 50%;
 }
 
 .middle-row img{
-	width:400px;
+	max-width:400px;
 }
 
 .bottom-row{
