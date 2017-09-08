@@ -15,9 +15,9 @@ flickrRouter.route('/')
 	fetchPhotos(res,pathname);
 })
 
-
 //figure out a way to store/modularize this or use database to store?
 //potential error with wedding photos and wedding videos. they could trigger each other's data object.
+//This approach so that theres no extra fetch calls being made. 
 let data = {}
 data.portraits = '72157685685728341';
 data.headshots = '72157686216916554';
