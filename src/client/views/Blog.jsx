@@ -28,8 +28,7 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
 	return{
-		postData:(url,method,data,actFunc)=>dispatch(postData(url,method,data,actFunc))
-		
+		postData:(url,method,data,actFunc)=>dispatch(postData(url,method,data,actFunc))	
 	}
 }
 

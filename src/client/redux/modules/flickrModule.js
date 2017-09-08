@@ -8,7 +8,7 @@ export function flickrAct(flickr){
 }
 
 //reducer
-export const flickr = (state = [],action)=>{
+export const flickr = (state = {},action)=>{
 	switch(action.type){
 		case 'FLICKR':
 			return action.flickr 

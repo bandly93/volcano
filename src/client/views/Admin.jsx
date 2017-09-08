@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { connect } from 'react-redux';
-import {postData} from '../redux/modules/fetchThunk';
+import {fetchData,postData} from '../redux/modules/fetchThunk';
 import {adminAct} from '../redux/modules/adminModule';
 
 
@@ -29,8 +29,11 @@ class Admin extends Component{
 	test(data){
 		console.log(data)
 	}
-	render(){
-		return(		
+	componentDidMount(){
+		this.props.fetchData('/auth/log',this.props.adminAct)
+	}
+	regLog(){
+		return(
 			<div className = 'reglog'>
 				<span className='reglogChild'>
 					<h2>Register</h2>
@@ -40,7 +43,7 @@ class Admin extends Component{
 							this.userData(
 								this.state.regUsername,
 								this.state.regPassword),
-							this.test);
+							this.props.adminAct);
 							this.setState({
 								regUsername:'',
 								regPassword:''
@@ -65,7 +68,7 @@ class Admin extends Component{
 							this.userData(
 								this.state.logUsername,
 								this.state.logPassword),
-							this.test);
+							this.props.adminAct);
 							this.setState({
 								logUsername:'',
 								logPassword:''
@@ -84,6 +87,22 @@ class Admin extends Component{
 				</span>
 			</div>
 		)
+	}
+	logout(){
+		return(
+			<div>
+				<form >
+					<input type='button' value='Logout' onClick={()=>this.props.fetchData('/auth/logout',this.props.adminAct)}/>
+				</form>
+			</div>
+		)
+	}
+	render(){
+		return(		
+			<div>
+			{this.props.admin.user?this.logout():this.regLog()}
+			</div>
+		)
 	}	
 }
 
@@ -95,6 +114,7 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
 	return{
+		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
 		postData:(url,method,data,actFunc)=>dispatch(postData(url,method,data,actFunc)),
 		adminAct:(admin)=>dispatch(adminAct(admin))
 	}

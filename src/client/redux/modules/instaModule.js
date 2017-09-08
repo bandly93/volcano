@@ -7,7 +7,7 @@ export function instaAct(insta){
 }
 
 //reducer
-export const insta =(state=[],action)=>{
+export const insta =(state={},action)=>{
 	switch(action.type){
 		case 'INSTA':
 			return action.insta 

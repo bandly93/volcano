@@ -20,7 +20,7 @@ authRouter.route('/reg')
 
 .post(function(req,res,next){
 	if(!req.body.username || !req.body.password){
-		return res.json({message:'incomplete form'})
+		return res.json({err:'incomplete form'})
 	}
 	require('../auth/regStrategy')(passport,res);
 	passport.authenticate('register')(req,res,next);
@@ -28,12 +28,29 @@ authRouter.route('/reg')
 
 authRouter.route('/log')
 
+.get(function(req,res){
+	if(req.user){
+		res.json({user:req.user.username})
+	}
+	else{
+		res.json({})
+	}
+})
 .post(function(req,res,next){
 	if(!req.body.username || !req.body.password){
-		return res.json({message:'incomplete form'})
+		return res.json({err:'incomplete form'})
 	}
 	require('../auth/logStrategy')(passport,res);
 	passport.authenticate('login')(req,res,next);
 })
+
+authRouter.route('/logout')
+
+.get(function(req,res){
+	req.logOut();
+	res.clearCookie('connect.sid');
+	res.json({success:'You have logged out.'})
+})
+
 
 module.exports = authRouter;

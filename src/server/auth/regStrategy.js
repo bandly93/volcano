@@ -21,11 +21,11 @@ module.exports = function(passport,res){
 						}
 						console.log('saved new user')
 						console.log(req.user)
-						return res.json({message:username})
+						return res.json({success:'You are now registered.'})
 					})
 				}
 				if(user){
-					return res.json({message:'user already exist'})
+					return res.json({err:'user already exist'})
 				}
 			})
 		}

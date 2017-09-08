@@ -16,12 +16,12 @@ module.exports = function(passport,res){
 					console.log('no user')
 					console.log(req.body)
 					console.log(done)
-					return res.json({message:'User does not exist.'})		
+					return res.json({err:'User does not exist.'})		
 				}
 				if(!user.validPassword(password)){
 					console.log('pw not valid')
-					//res.json({message:'Incorrect password.'})
-					return res.json({message:'Invalid password'})
+					//res.json({err:'Incorrect password.'})
+					return res.json({err:'Invalid password'})
 				}
 				console.log('done')
 				req.login(user,function(err){

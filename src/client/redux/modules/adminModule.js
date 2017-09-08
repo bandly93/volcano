@@ -7,7 +7,7 @@ export function adminAct(admin){
 }
 
 //reducer
-export const admin =(state=[],action)=>{
+export const admin =(state={},action)=>{
 	switch(action.type){
 		case 'ADMIN':
 			return action.admin 
