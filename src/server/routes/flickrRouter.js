@@ -1,7 +1,7 @@
 var express = require('express');
 var flickrRouter = express.Router();
 var axios = require('axios');
-//var config = require('../../../config.js');
+var config = require('../../../config.js');
 
 flickrRouter.route('/')
 
@@ -25,15 +25,20 @@ data.wedding = '72157684929133582';
 data.about = '72157685935838050';
 
 const fetchPhotos = (res,pathname) => {
-	const key = process.env.API_KEY //|| config.flickr.API_KEY;
-	const user_id = process.env.USER_ID //|| config.flickr.USER_ID;
+	const key = process.env.API_KEY || config.flickr.API_KEY;
+	const user_id = process.env.USER_ID || config.flickr.USER_ID;
 	let photoset_id = data[pathname];
 	let url = `https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${key}&photoset_id=${photoset_id}&user_id=${user_id}&format=json&nojsoncallback=1`;
 	let images = []
 	axios.get(url)
 	.then(response => {
 		let photosArr = response.data.photoset.photo;
-		photosArr.map(photoObj => images.push({url:constructJPG(photoObj),key:photoObj.id, name:photoObj.title}));
+		photosArr.map(photoObj => images.push({
+			url:constructJPG(photoObj),
+			key:photoObj.id, 
+			name:photoObj.title
+			})
+		);
 		res.json({images:images})
 	})
 	.catch(error => console.log(error))

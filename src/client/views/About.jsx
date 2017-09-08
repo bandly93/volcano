@@ -4,32 +4,58 @@ import { flickrAct } from '../redux/modules/flickrModule';
 import { connect } from 'react-redux';
 
 
-const lorem_ipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+const lorem_ipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 					
 class About extends Component{
 	componentDidMount(){
 		this.props.fetchData('/flickr',this.props.flickrAct)
 	}
-
 	render(){
-		return(
-			<div className = "about-container">
-				<div className = "top-row">
-					<span>Phuong</span>
-					<span>Xinh</span>
+		let list;
+		if(this.props.flickr.images){
+			list = this.props.flickr.images;
+			return(
+				<div className = "about-container">
+					<div className = "top-row">
+						<span>
+							<img key = {this.props.flickr.images[5].name} src = {this.props.flickr.images[5].url}/>
+							<p>{lorem_ipsum}</p>
+						</span>
+						<span>
+							<img key = {this.props.flickr.images[1].name} src = {this.props.flickr.images[1].url}/>
+							<p>{lorem_ipsum}</p>
+						</span>
+					</div>
+					<div className = "middle-row">
+						<span>
+							<img key = {this.props.flickr.images[0].name} src = {this.props.flickr.images[0].url}/>
+							<p>{lorem_ipsum}</p>
+						</span>
+						<span>
+							<img key = {this.props.flickr.images[2].name} src = {this.props.flickr.images[2].url}/>
+							<p>{lorem_ipsum}</p>
+						</span>
+						<span>
+							<img key = {this.props.flickr.images[4].name} src = {this.props.flickr.images[4].url}/>
+							<p>{lorem_ipsum}</p>
+						</span>
+					</div>
+					<div className = "bottom-row">
+						<span>
+							<img key = {this.props.flickr.images[3].name} src = {this.props.flickr.images[3].url}/>
+							<p>{lorem_ipsum}</p>
+						</span>
+					</div>
 
 				</div>
-				<div className = "middle-row">
-					<span>Alex</span>
-					<span>Dizzy</span>
-					<span>Geoffrey</span>
+			)
+		}else{
+			return (
+				<div>
+					{this.props.flickr.images? list: null}
 				</div>
-				<div className = "bottom-row">
-					<span>Chan</span>
-				</div>
-
-			</div>
-		)
+			)	
+		}
 	}
 }
 

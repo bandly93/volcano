@@ -145,3 +145,37 @@ nav .dropdown{
         display:block;
     }
 }
+
+/*-----------------------ABOUT PAGE---------------------------*/
+
+
+span .top-row{
+	width: 50%;
+}
+span .middle-row{
+	width: 33%;
+}
+
+span .bottom-row{
+	width :100%;
+}
+
+.top-row,.middle-row,.bottom-row{
+	display:flex;
+}
+.about-container p{
+	padding: 2%;
+}
+
+.about-container img {
+	height:300px;
+}
+
+.middle-row img{
+	width:400px;
+}
+
+.bottom-row{
+	justify-content: center;
+}
+
