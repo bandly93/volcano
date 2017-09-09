@@ -33,12 +33,7 @@ const fetchPhotos = (res,pathname) => {
 	axios.get(url)
 	.then(response => {
 		let photosArr = response.data.photoset.photo;
-		photosArr.map(photoObj => images.push({
-			url:constructJPG(photoObj),
-			key:photoObj.id, 
-			name:photoObj.title
-			})
-		);
+		photosArr.map(photoObj => images.push({url:constructJPG(photoObj),key:photoObj.id, name:photoObj.title}));
 		res.json({images:images})
 	})
 	.catch(error => console.log(error))
