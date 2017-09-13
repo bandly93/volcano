@@ -15,17 +15,37 @@ input{
 	margin:1%;
 }
 /*------------------------------BODY ------------------------ */
-
+html,body{
+	height:100%;
+	margin:0;
+}
 body{
 	text-align: center;
-	margin:0;
+
 /*	font-family: 'Anton', sans-serif;
 	font-family: 'Bitter', serif;*/
-	
 }
 p{
 	font-size:calc(16px);
 	padding :15%;
+}
+/* --------------------------------Index ------------------------*/
+#index{
+	min-height:100%;
+}
+#index div{
+	height:100vh;
+}
+/* --------------------------------LANDING ------------------------*/
+.landing{
+	background-color: black;
+	color:white;
+}
+.landing img{
+	max-width:100%;
+}
+.landing button{
+	padding:1%;
 }
 /* --------------------------------HOME INSTA IMAGES ------------------------*/
 
