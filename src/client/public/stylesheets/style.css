@@ -33,7 +33,7 @@ p{
 #index{
 	min-height:100%;
 }
-#index div{
+#index div:nth-child(1){
 	height:100vh;
 }
 /* --------------------------------LANDING ------------------------*/
