@@ -1,5 +1,9 @@
+<<<<<<< Updated upstream
 'use strict';
 
+=======
+"use strict";
+>>>>>>> Stashed changes
 var express = require('express');
 var flickrRouter = express.Router();
 var axios = require('axios');

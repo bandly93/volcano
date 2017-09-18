@@ -6,6 +6,10 @@ import {
   Switch
 } from 'react-router-dom';
 import Admin from '../views/Admin.jsx';
+<<<<<<< Updated upstream
+=======
+import Home from '../views/Home.jsx';
+>>>>>>> Stashed changes
 import About from '../views/About.jsx';
 import Photos from '../views/Photos.jsx';
 import Shop from '../views/Shop.jsx';
@@ -15,12 +19,15 @@ import {withRouter} from "react-router-dom";
 
 
 class NavBar extends Component{
+<<<<<<< Updated upstream
 	super(props){
 		constructor(props);
 	}
 	goToLanding(){
 		this.props.history.push('/')
 	}
+=======
+>>>>>>> Stashed changes
 	render(){
 		return(
 			<Router>
@@ -46,5 +53,9 @@ class NavBar extends Component{
 	}
 }
 
+<<<<<<< Updated upstream
 
 export default withRouter(NavBar);
+=======
+export default NavBar
+>>>>>>> Stashed changes
