@@ -2,17 +2,20 @@ import React,{Component} from 'react';
 import Landing from '../views/Landing.jsx';
 import NavBar from './NavBar.jsx';
 import {
-  BrowserRouter as Router,
+  Router,
   Route,
-  Link,
   Switch
 } from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory'
+
+
+const history = createBrowserHistory();
 
 const ClientRouter =() =>(
-	<Router>
+	<Router history = {history}>
 		<Switch>
 			<Route exact path ='/' component={Landing}/>	
-			<Route exact path = '/about' component={NavBar}/>
+			<Route path = '*' component={NavBar}/>
 		</Switch>
 	</Router>
 )
