@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express');
 var flickrRouter = express.Router();
 var axios = require('axios');

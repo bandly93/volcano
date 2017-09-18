@@ -137,7 +137,7 @@ nav .dropdown{
    }
 }
 @media only screen and (max-width:1000px){
-	a:hover{
+	nav a:hover{
 		color:#074054;
 	}
 	.navBar{
@@ -151,7 +151,7 @@ nav .dropdown{
 	.menuIcon img{
 		height:calc(21px + 1vw);
 	}
-	a{
+	nav a{
 		display:none;
 	}	
 	.navBar:hover a{
