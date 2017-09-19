@@ -200,9 +200,6 @@ nav .dropdown{
 span .top-row{
 	max-width: 50%;
 }
-.top-row{
-	display:flex;
-}
 .about-container p{
 	padding: 2%;
 }
