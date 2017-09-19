@@ -8,7 +8,7 @@ function Landing(){
 			<img src='https://i.imgur.com/Ati7QzX.png'/>
 			<h1>Multimedia Production</h1>
 			<h1>Photos + Videos</h1>
-			<Link to ='/about'><button>Enter</button></Link>
+			<Link to ='/multimedia'><button>Enter</button></Link>
 		</div>
 	)
 

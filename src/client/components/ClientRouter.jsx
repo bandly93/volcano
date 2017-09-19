@@ -1,19 +1,6 @@
 import React,{Component} from 'react';
 import Landing from '../views/Landing.jsx';
-<<<<<<< Updated upstream
 import NavBar from './NavBar.jsx';
-=======
-import Admin from '../views/Admin.jsx';
-import Home from '../views/Home.jsx';
-import About from '../views/About.jsx';
-import Photos from '../views/Photos.jsx';
-import Videos from '../views/Videos.jsx';
-import Music from '../views/Music.jsx';
-import Shop from '../views/Shop.jsx';
-import Contact from '../views/Contact.jsx';
-import Blog from '../views/Blog.jsx';
-
->>>>>>> Stashed changes
 import {
   Router,
   Route,
