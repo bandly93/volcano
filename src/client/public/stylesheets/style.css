@@ -185,15 +185,14 @@ nav .dropdown{
 /*-----------------------ABOUT PAGE---------------------------*/
 @media only screen and (max-width:1000px){
    .top-row{
-      display:flex;
+      display:block;
    }
 }
 
 @media only screen and (min-width:1000px){
 	.top-row{
-		display:block;
+		display:flex;
 	}
-
 }
 
 
