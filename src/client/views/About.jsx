@@ -26,27 +26,6 @@ class About extends Component{
 							<p>{lorem_ipsum}</p>
 						</span>
 					</div>
-					<div className = "middle-row">
-						<span>
-							<img key = {this.props.flickr.images[0].name} src = {this.props.flickr.images[0].url}/>
-							<p>{lorem_ipsum}</p>
-						</span>
-						<span>
-							<img key = {this.props.flickr.images[2].name} src = {this.props.flickr.images[2].url}/>
-							<p>{lorem_ipsum}</p>
-						</span>
-						<span>
-							<img key = {this.props.flickr.images[4].name} src = {this.props.flickr.images[4].url}/>
-							<p>{lorem_ipsum}</p>
-						</span>
-					</div>
-					<div className = "bottom-row">
-						<span>
-							<img key = {this.props.flickr.images[3].name} src = {this.props.flickr.images[3].url}/>
-							<p>{lorem_ipsum}</p>
-						</span>
-					</div>
-
 				</div>
 			)
 		}else{

@@ -183,36 +183,32 @@ nav .dropdown{
 }
 
 /*-----------------------ABOUT PAGE---------------------------*/
+@media only screen and (max-width:1000px){
+   .top-row{
+      display:flex;
+   }
+}
+
+@media only screen and (min-width:1000px){
+	.top-row{
+		display:inline;
+	}
+
+}
+
 
 span .top-row{
 	max-width: 50%;
 }
-span .middle-row{
-	max-width: 33%;
-}
-
-span .bottom-row{
-	max-width :100%;
-}
-
-.top-row,.middle-row,.bottom-row{
+.top-row{
 	display:flex;
 }
 .about-container p{
 	padding: 2%;
 }
-
 .about-container img {
 	max-height:300px;
 	border-radius: 50%;
-}
-
-.middle-row img{
-	max-width:400px;
-}
-
-.bottom-row{
-	justify-content: center;
 }
 
 /*-----------------------FLASH MESSAGES---------------------------*/
