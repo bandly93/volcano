@@ -35,6 +35,7 @@ p{
 }
 #index div:nth-child(1){
 	height:100vh;
+
 }
 /* --------------------------------LANDING ------------------------*/
 .landing{
@@ -62,11 +63,13 @@ p{
 
 /*-----------------------------------NAVBAR ----------------- */
 
+.nav-container{
+	padding:0 5%;
+}
 .navParent{
 	background-color:#074054;
 }
 .navBar{
-	
 	display:flex;
 	flex-wrap:wrap;
 	justify-content: space-around;
@@ -88,10 +91,9 @@ p{
 	height:21px;
 }
 nav a:not(.logo){
-	margin-top:5%;
+	margin:5% 1% 1% 1%;
 	text-decoration: none;
 	color:black;
-	padding: 1% 2% 1% 2%;
 	font-size:calc(18px);
 	font-family: 'Anton', sans-serif;
 }

@@ -24,7 +24,7 @@ class NavBar extends Component{
 	render(){
 		return(
 			<Router>
-				<div>
+				<div className = "nav-container">
 					<nav className ='navBar'>
 						<a className='menuIcon'><img src='https://i.imgur.com/659zR69.png'/></a>
 						
