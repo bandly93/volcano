@@ -5,9 +5,9 @@ import {
   Link,
   Switch
 } from 'react-router-dom';
-import Admin from '../views/Admin.jsx';
+import Admin from  '../views/Admin.jsx';
 import About from '../views/About.jsx';
-import Photos from '../views/Photos.jsx';
+import Multimedia from '../views/Multimedia.jsx';
 import Shop from '../views/Shop.jsx';
 import Blog from '../views/Blog.jsx';
 import {withRouter} from "react-router-dom";
