@@ -27,15 +27,13 @@ body{
 }
 p{
 	font-size:calc(16px);
-	padding :15%;
 }
 /* --------------------------------Index ------------------------*/
 #index{
 	min-height:100%;
 }
-#index div:nth-child(1){
+#index > div:nth-child(1) > .landing{
 	height:100vh;
-
 }
 /* --------------------------------LANDING ------------------------*/
 .landing{
@@ -185,25 +183,27 @@ nav .dropdown{
 
 /*-----------------------ABOUT PAGE---------------------------*/
 @media only screen and (max-width:1000px){
-   .top-row{
+   .about{
       display:block;
+      margin-bottom:2%;
    }
 }
 
 @media only screen and (min-width:1000px){
-	.top-row{
+	.about{
 		display:flex;
+		margin-bottom:4%;
 	}
 }
 
 
-span .top-row{
+span .about{
 	max-width: 50%;
 }
-.about-container p{
+.about p{
 	padding: 2%;
 }
-.about-container img {
+.about img {
 	max-height:300px;
 	border-radius: 50%;
 }
@@ -218,4 +218,12 @@ span .top-row{
 	background-color: green;
 	color:white;
 	padding:1%;
+}
+
+/*-----------------------FORM---------------------------*/
+th{
+	border:1px solid black;
+}
+input{
+	display:inline-block;
 }

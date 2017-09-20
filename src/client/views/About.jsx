@@ -12,18 +12,16 @@ class About extends Component{
 		this.props.fetchData('/flickr',this.props.flickrAct)
 	}
 	list(){
-		return(
-			<div className = "about-container">
-				<div className = "top-row">
-					<span>
-						<img key = {this.props.flickr.images[5].name} src = {this.props.flickr.images[5].url}/>
-						<p>{lorem_ipsum}</p>
-					</span>
-					<span>
-						<img key = {this.props.flickr.images[1].name} src = {this.props.flickr.images[1].url}/>
-						<p>{lorem_ipsum}</p>
-					</span>
-				</div>
+		return(			
+			<div className = "about">
+				<span>
+					<img key = {this.props.flickr.images[5].name} src = {this.props.flickr.images[5].url}/>
+					<p>{lorem_ipsum}</p>
+				</span>
+				<span>
+					<img key = {this.props.flickr.images[1].name} src = {this.props.flickr.images[1].url}/>
+					<p>{lorem_ipsum}</p>
+				</span>
 			</div>
 		)
 	}
