@@ -57,7 +57,7 @@ class Admin extends Component{
 						onChange={this.handleChange}
 						placeholder='password' value={this.state.regPassword}/> 
 						<br/>
-						<input className='buttons' type='submit' value='Register'/>
+						<input className='submit' type='submit' value='Register'/>
 					</form>
 				</span>
 				<span className = 'reglogChild'>
@@ -82,7 +82,7 @@ class Admin extends Component{
 						onChange={this.handleChange}
 						placeholder='password' value={this.state.logPassword}/> 
 						<br/>
-						<input className='buttons' type='submit' value='Login'/>
+						<input className='submit' type='submit' value='Login'/>
 					</form>
 				</span>
 			</div>

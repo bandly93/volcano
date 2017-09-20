@@ -1,14 +1,13 @@
 import {createStore, applyMiddleware, combineReducers,compose} from 'redux';
 import thunk from 'redux-thunk';
-import insta from './modules/instaModule.js';
 import admin from './modules/adminModule.js';
 import flickr from './modules/flickrModule.js';
-
+import msg from './modules/msgModule.js';
 
 const reducers = combineReducers({
-	insta,
 	admin,
-	flickr
+	flickr,
+	msg
 })
 
 export default function configureStore(initialState){

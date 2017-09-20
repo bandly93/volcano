@@ -240,9 +240,23 @@ span .about{
 }
 
 /*-----------------------FORM---------------------------*/
-th{
-	border:1px solid black;
+
+.contact-form input:not(.submit){
+	width:300px;
 }
-input{
+
+form{
 	display:inline-block;
+	width:325px;
+	margin:3%;
+}
+textarea{
+	width:305px;
+}
+.submit{
+	width:100px;
+	padding:5px;
+	border:none;
+	background-color: white;
+	border:1px solid gray;
 }
