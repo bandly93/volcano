@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import Landing from '../views/Landing.jsx';
 import NavBar from './NavBar.jsx';
+import Dashboard from '../adminViews/Dashboard.jsx';
 import {
   Router,
   Route,
@@ -14,7 +15,8 @@ const history = createBrowserHistory();
 const ClientRouter =() =>(
 	<Router history = {history}>
 		<Switch>
-			<Route exact path ='/' component={Landing}/>	
+			<Route exact path ='/' component={Landing}/>
+			<Route path ='/dashboard' component ={Dashboard}/>	
 			<Route path = '*' component={NavBar}/>
 		</Switch>
 	</Router>

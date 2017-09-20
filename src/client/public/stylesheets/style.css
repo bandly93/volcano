@@ -107,14 +107,14 @@ p{
 .menuIcon img{
 	height:21px;
 }
-nav a:not(.logo){
+.navBar a:not(.logo){
 	margin:5% 1% 1% 1%;
 	text-decoration: none;
 	color:black;
 	font-size:calc(18px);
 	font-family: 'Anton', sans-serif;
 }
-a:hover{
+.navBar a:hover{
 	color:#074054;
 }
 .banner{
@@ -135,7 +135,7 @@ a:hover{
     box-shadow: 4px 4px 2px #888888;
 }
 
-nav .dropdown{
+.navBar .dropdown{
     padding : 1% 2% 1% 2%;
 }
 
@@ -166,10 +166,13 @@ nav .dropdown{
    }
 }
 @media only screen and (max-width:1000px){
-	nav a:not(.logo){
+	.navBar{
+		margin-top:2%;
+	}
+	.navBar a:not(.logo){
 		margin-top:0;
 	}
-	nav a:hover{
+	.navBar a:hover{
 		color:#074054;
 	}
 	.logo img{
@@ -186,7 +189,7 @@ nav .dropdown{
 	.menuIcon img{
 		height:calc(21px + 1vw);
 	}
-	nav a{
+	.navBar a:not(.menuIcon){
 		display:none;
 	}	
 	.navBar:hover a{
@@ -259,4 +262,9 @@ textarea{
 	border:none;
 	background-color: white;
 	border:1px solid gray;
+}
+
+/*-----------------------ADMIN---------------------------*/
+.dash-nav{
+	text-align: left;
 }
