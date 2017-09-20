@@ -1,4 +1,21 @@
 /*-------------------------register && login--------------------*/
+.multimedia-flexbox {
+	display:inline-flex;
+}
+
+.multimedia-right-side a, .multimedia-left-side a{
+	padding:32% 32% 32% 32%;
+	border: 2px solid black;
+	display:block;
+}
+
+
+
+
+
+
+
+/*-------------------------register && login--------------------*/
 
 .reglog{
 	display:flex;
@@ -10,7 +27,7 @@
 	flex:1;
 	padding:2%;
 
-	
+
 }
 input{
 	padding:1%;

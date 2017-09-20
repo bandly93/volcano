@@ -40,7 +40,7 @@ class NavBar extends Component{
 					<Switch>
 						<Route path = '/admin' component={Admin}/>
 						<Route exact path= '/about' component ={About}/>
-						<Route exact path= '/multimedia' component ={Photos}/>
+						<Route exact path= '/multimedia' component ={Multimedia}/>
 						<Route exact path= '/shop' component ={Shop}/>
 						<Route exact path= '/blog' component ={Blog}/>
 					</Switch>
