@@ -1,18 +1,31 @@
 var express = require('express');
 var msgRouter = express.Router();
 var Msg = require('../models/msg.js');
+var authCheck = require('../auth/authCheck');
+
 
 msgRouter.route('/')
-
+//.get(authCheck,function(req,res){
+.get(function(req,res){
+	Msg.find({}).sort('-createdAt').exec(function(err,msgs){
+		if(err){
+			//throw err;
+			console.log(err)
+			res.json({err:'error'});
+		} 
+		//console.log(msgs)
+		res.json(msgs);
+	})
+})
 .post(function(req,res){
-	console.log(req.body)
+	//console.log(req.body)
 	var msg = new Msg(req.body)
 	msg.save(function(err){
-		if(err) return handleError(err);
-	})
-	Msg.find({}).exec(function(err,msg){
-		if(err) throw err;
-		res.json(msg);
+		if(err){
+			console.log(err);
+			res.json({err:'error'})
+		}
+		res.json({msg:'success!'})
 	})
 })
 

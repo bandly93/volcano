@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import admin from './modules/adminModule.js';
 import flickr from './modules/flickrModule.js';
 import msg from './modules/msgModule.js';
+import allMsg from './modules/allMsgModule.js';
 
 const reducers = combineReducers({
 	admin,
 	flickr,
-	msg
+	msg,
+	allMsg
 })
 
 export default function configureStore(initialState){
