@@ -1,19 +1,14 @@
-/*-------------------------register && login--------------------*/
+/*-------------------------multimedia--------------------*/
 .multimedia-flexbox {
-	display:inline-flex;
+	display:flex;
+	justify-content: center;
 }
 
 .multimedia-right-side a, .multimedia-left-side a{
-	padding:32% 32% 32% 32%;
+	/*padding:32% 32% 32% 32%;*/
 	border: 2px solid black;
 	display:block;
 }
-
-
-
-
-
-
 
 /*-------------------------register && login--------------------*/
 
@@ -26,8 +21,6 @@
 .reglogChild{
 	flex:1;
 	padding:2%;
-
-
 }
 input{
 	padding:1%;
