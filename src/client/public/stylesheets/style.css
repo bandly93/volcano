@@ -286,6 +286,12 @@ textarea{
 	margin-left:8%;
 }
 .close{
-	margin-left: 2%;
+	margin:2% 2% 1% 2%;
 	cursor: pointer;
+	background-color: maroon;
+	border:none;
+	color:white;
+}
+.msg-container hr{
+	margin:0 8%;
 }

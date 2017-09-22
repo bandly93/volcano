@@ -14,7 +14,7 @@ class Messages extends Component{
 	}
 	delete(msg){
 		const id = msg._id
-		this.props.postData('/msg','DELETE',{id:id},this.props.allMsgAct)
+		this.props.postData('/msg','DELETE',{_id:id},this.props.allMsgAct)
 	}
 	list(){
 		return this.props.allMsg.map(msg=>{
