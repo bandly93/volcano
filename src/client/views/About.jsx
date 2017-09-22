@@ -25,10 +25,16 @@ class About extends Component{
 			</div>
 		)
 	}
+	success(){
+		return(
+			<p className='success'>message successfully sent!</p>
+		)
+	}
 	render(){	
 		return (
 			<div>
 				{this.props.flickr.images? this.list(): null}
+				{this.props.msg.msg? this.success():null}
 				<ContactForm />
 			</div>
 		)	
@@ -38,7 +44,8 @@ class About extends Component{
 
 const mapStateToProps = (state) =>{
 	return{
-		flickr:state.flickr
+		flickr:state.flickr,
+		msg:state.msg
 	}
 };
 

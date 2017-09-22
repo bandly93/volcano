@@ -14,15 +14,14 @@ msgRouter.route('/')
 })
 .post(function(req,res){
 	const email = {
-	  to: 'stevenle2011@gmail.com',
+	  to: config.email,
 	  from: req.body.email,
 	  subject: 'VBZ Inquiry from: '+req.body.name,
-	  text: req.body.message,
-	  
+	  text: req.body.message,  
 	};
 		
 	sgMail.send(email);
-	console.log(req.body)
+	//console.log(req.body)
 	var msg = new Msg(req.body)
 	msg.save(function(err){
 		if(err){
