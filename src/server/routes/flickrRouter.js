@@ -23,7 +23,7 @@ flickrRouter.route('/')
 let data = {}
 data.portraits = '72157685685728341';
 data.headshots = '72157686216916554';
-data.wedding = '72157684929133582';
+data.weddingphotos = '72157684929133582';
 data.about = '72157685935838050';
 
 const fetchPhotos = (res,pathname) => {
