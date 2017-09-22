@@ -3,3 +3,4 @@
 nom-debug.log
 /*.env
 config.js
+sendgrid.env

@@ -3,6 +3,9 @@ var msgRouter = express.Router();
 var Msg = require('../models/msg.js');
 var authCheck = require('../auth/authCheck');
 
+var config = require('../../../config.js')
+const sgMail = require('@sendgrid/mail');
+sgMail.setApiKey(config.sendgrid.API_KEY);
 
 msgRouter.route('/')
 //.get(authCheck,function(req,res){
@@ -10,7 +13,16 @@ msgRouter.route('/')
 	getMessages(req,res);
 })
 .post(function(req,res){
-	//console.log(req.body)
+	const email = {
+	  to: 'stevenle2011@gmail.com',
+	  from: req.body.email,
+	  subject: 'VBZ Inquiry from: '+req.body.name,
+	  text: req.body.message,
+	  
+	};
+		
+	sgMail.send(email);
+	console.log(req.body)
 	var msg = new Msg(req.body)
 	msg.save(function(err){
 		if(err){
@@ -43,4 +55,6 @@ function getMessages(req,res){
 		res.json(msgs);
 	})
 }
+
+
 module.exports = msgRouter;

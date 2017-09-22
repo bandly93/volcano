@@ -7,7 +7,7 @@ export function allMsgAct(allMsg){
 }
 
 //reducer
-export const allMsg =(state={},action)=>{
+export const allMsg =(state=[],action)=>{
 	switch(action.type){
 		case 'ALLMSG':
 			return action.allMsg 

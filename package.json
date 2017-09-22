@@ -20,6 +20,7 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
+    "@sendgrid/mail": "^6.1.4",
     "axios": "^0.16.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
