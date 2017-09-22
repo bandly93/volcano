@@ -28,6 +28,9 @@ msgRouter.route('/')
 		res.json({msg:'success!'})
 	})
 })
-
+.delete(function(req,res){
+	console.log('delete!')
+	console.log(req.body)
+})
 
 module.exports = msgRouter;

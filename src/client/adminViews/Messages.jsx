@@ -5,12 +5,20 @@ import {allMsgAct} from '../redux/modules/allMsgModule';
 import Message from '../components/Message.jsx';
 
 class Messages extends Component{
+	constructor(props){
+		super(props);
+		this.delete = this.delete.bind(this);
+	}
 	componentDidMount(){
 		this.props.fetchData('/msg',this.props.allMsgAct)
 	}
+	delete(msg){
+		const id = msg._id
+		this.props.postData('/msg','DELETE',{id:id},this.props.allMsgAct)
+	}
 	list(){
 		return this.props.allMsg.map(msg=>{
-			return <Message key={msg._id} msg={msg}/>
+			return <Message key={msg._id} msg={msg} delete={this.delete}/>
 		})
 	}
 	render(){

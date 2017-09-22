@@ -286,4 +286,13 @@ textarea{
 }
 .message{
 	border:1px solid black;
+	text-align: left;
+	padding:0 2% 2% 2%;
+}
+.message p:not(.close){
+	margin-left:8%;
+}
+.close{
+	margin-left: 2%;
+	cursor: pointer;
 }
