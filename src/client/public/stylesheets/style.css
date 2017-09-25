@@ -4,10 +4,9 @@
 	justify-content: center;
 }
 
-.multimedia-right-side a, .multimedia-left-side a{
+.multimedia a{
 	/*padding:32% 32% 32% 32%;*/
-	display:block;
-
+	flex:1;
 }
 
 .multimedia-flexbox img {

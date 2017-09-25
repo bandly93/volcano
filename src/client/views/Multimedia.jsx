@@ -31,7 +31,7 @@ class Multimedia extends Component{
 						<Route path = "/shortfilms" component = {ShortFilms}/>
 					</Switch>
 					<div className = "multimedia-flexbox">
-						<div className = "multimedia-right-side">
+						<div className = "multimedia">
 							<h1>Photos</h1>
 							<Link to = "/portraits">
 								<img src='https://farm5.staticflickr.com/4355/36883361836_82d0cb2496.jpg'/>
@@ -46,7 +46,7 @@ class Multimedia extends Component{
 								<img src='https://farm5.staticflickr.com/4347/36257977233_b65bd98d06.jpg'/>
 							</Link>
 						</div>
-						<div className = "multimedia-left-side">
+						<div className = "multimedia">
 							<h1>Motion</h1>
 							<Link to = "/lookbooks">
 								<img src='https://via.placeholder.com/500x350'/>

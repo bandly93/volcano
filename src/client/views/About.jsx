@@ -10,9 +10,6 @@ import XinhImg from '../public/images/about/xinh.jpg';
 const lorem_ipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 					
 class About extends Component{
-	componentDidMount(){
-		this.props.fetchData('/flickr',this.props.flickrAct)
-	}
 	list(){
 		return(			
 			<div className = "about">
@@ -40,7 +37,7 @@ class About extends Component{
 	render(){	
 		return (
 			<div>
-				{this.props.flickr.images? this.list(): null}
+				{this.list()}
 				{this.props.msg.msg? this.success():null}
 				{this.props.msg.err? this.error():null}
 				<ContactForm />
