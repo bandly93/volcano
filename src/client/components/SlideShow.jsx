@@ -1,11 +1,5 @@
 import React, {Component} from 'react';
 
-
-let images = [
-	"https://farm5.staticflickr.com/4355/36883361836_82d0cb2496.jpg",
-	"https://via.placeholder.com/500x350"
-]
-
 class SlideShow extends Component{
 	constructor(props){
 		super(props);
@@ -25,7 +19,7 @@ class SlideShow extends Component{
 		console.log(this.state.imgArr);
 	}
 	minusOne(){
-		this.setState(()=>{
+		this.setState(()=> {
 			return {
 				imgArr: this.state.imgArr - 1
 			}
@@ -34,11 +28,15 @@ class SlideShow extends Component{
 	}
 
 	render(){
+		let images = [
+			"https://farm5.staticflickr.com/4355/36883361836_82d0cb2496.jpg",
+			"https://via.placeholder.com/500x350"
+		]
 		return(
 			<div className = 'slideshow-container'>
 				<div>
 					<button className = "left-button" onClick = {() => this.minusOne()} > &#10094; </button>
-					<img src = 'https://farm5.staticflickr.com/4355/36883361836_82d0cb2496.jpg'/>
+					<img src = {images[this.state.imgArr]}/>
 					<button className = "right-button" onClick = {() => this.addOne()} > &#10095; </button>
 				</div>
 			</div>
