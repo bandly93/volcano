@@ -15,11 +15,11 @@ msgRouter.route('/')
 .post(function(req,res){
 	const email = {
 	  to: config.email,
-	  from: req.body.email,
-	  subject: 'VBZ Inquiry from: '+req.body.name,
+	  from: 'VBZ@example.com',
+	  subject: 'VBZ Inquiry from: '+req.body.name +' ('+ req.body.email+')',
 	  text: req.body.message,  
 	};
-		
+	console.log(email);	
 	sgMail.send(email);
 	//console.log(req.body)
 	var msg = new Msg(req.body)

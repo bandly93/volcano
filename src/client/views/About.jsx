@@ -30,11 +30,17 @@ class About extends Component{
 			<p className='success'>message successfully sent!</p>
 		)
 	}
+	error(){
+		return(
+			<p className='err'>there was an error</p>
+		)
+	}
 	render(){	
 		return (
 			<div>
 				{this.props.flickr.images? this.list(): null}
 				{this.props.msg.msg? this.success():null}
+				{this.props.msg.err? this.error():null}
 				<ContactForm />
 			</div>
 		)	
