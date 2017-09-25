@@ -32,20 +32,35 @@ class Multimedia extends Component{
 					<div className = "multimedia-flexbox">
 						<div className = "multimedia-right-side">
 							<h1>Photos</h1>
-							<Link to = "/portraits">Portraits</Link>
-							<Link to = "/creative">Creative</Link>
-							<Link to = "/headshots">Headshots</Link>
-							<Link to = "/weddingphotos">Wedding Photos</Link>
+							<Link to = "/portraits">
+								<img src='https://farm5.staticflickr.com/4355/36883361836_82d0cb2496.jpg'/>
+							</Link>
+							<Link to = "/creative">
+								<img src='https://via.placeholder.com/500x350'/>
+							</Link>
+							<Link to = "/headshots">
+								<img src='https://farm5.staticflickr.com/4352/36236809334_007221032b.jpg'/>
+							</Link>
+							<Link to = "/weddingphotos">
+								<img src='https://farm5.staticflickr.com/4347/36257977233_b65bd98d06.jpg'/>
+							</Link>
 						</div>
 						<div className = "multimedia-left-side">
-							<h1>Videos</h1>
-							<Link to = "/lookbooks">Lookbooks</Link>
-							<Link to = "/weddingvideos">Wedding Videos</Link>
-							<Link to = "/musicvideos">Music Videos</Link>
-							<Link to = "/shortfilms">Short Films</Link>
+							<h1>Motion</h1>
+							<Link to = "/lookbooks">
+								<img src='https://via.placeholder.com/500x350'/>
+							</Link>
+							<Link to = "/weddingvideos">
+								<img src='https://via.placeholder.com/500x350'/>
+							</Link>
+							<Link to = "/musicvideos">
+								<img src='https://via.placeholder.com/500x350'/>
+							</Link>
+							<Link to = "/shortfilms">
+								<img src='https://via.placeholder.com/500x350'/>
+							</Link>
 						</div> 
 					</div>
-					
 				</div>
 			</Router>
 		)

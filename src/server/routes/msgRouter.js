@@ -2,7 +2,6 @@ var express = require('express');
 var msgRouter = express.Router();
 var Msg = require('../models/msg.js');
 var authCheck = require('../auth/authCheck');
-
 var config = require('../../../config.js')
 const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(config.sendgrid.API_KEY);
@@ -22,7 +21,7 @@ msgRouter.route('/')
 	console.log(email);	
 	sgMail.send(email);
 	//console.log(req.body)
-	var msg = new Msg(req.body)
+	var msg = new Msg(req.body);
 	msg.save(function(err){
 		if(err){
 			console.log(err);

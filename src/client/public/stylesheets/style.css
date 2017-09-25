@@ -6,9 +6,18 @@
 
 .multimedia-right-side a, .multimedia-left-side a{
 	/*padding:32% 32% 32% 32%;*/
-	border: 2px solid black;
 	display:block;
+
 }
+
+.multimedia-flexbox img {
+	padding:2% 2%;
+}
+
+.multimedia-flexbox img:hover {
+	opacity: 0.6;
+}
+
 
 /*-------------------------register && login--------------------*/
 

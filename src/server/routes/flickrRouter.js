@@ -37,6 +37,7 @@ const fetchPhotos = (res,pathname) => {
 		let photosArr = response.data.photoset.photo;
 		photosArr.map(photoObj => images.push({url:constructJPG(photoObj),key:photoObj.id, name:photoObj.title}));
 		res.json({images:images})
+		console.log(images);
 	})
 	.catch(error => console.log(error))
 }
