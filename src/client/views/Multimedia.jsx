@@ -21,7 +21,7 @@ class Multimedia extends Component{
 			<Router>
 				<div>
 					<Switch>
-						<Route path = "/portraits" component = {SlideShow}/>
+						<Route path = "/portraits" component = {Portraits}/>
 						<Route path = "/creative" component = {Creative}/>
 						<Route path = "/headshots" component = {Headshots}/>
 						<Route path = "/weddingphotos" component = {WeddingPhotos}/>

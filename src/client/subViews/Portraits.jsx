@@ -2,24 +2,16 @@ import React,{Component} from 'react';
 import { fetchData } from '../redux/modules/fetchThunk';
 import { flickrAct } from '../redux/modules/flickrModule';
 import { connect } from 'react-redux';
+import SlideShow from '../components/SlideShow.jsx';
 
 class Portraits extends Component{
 	componentDidMount(){
 		this.props.fetchData('/flickr',this.props.flickrAct)
 	}
 	render(){
-	let list;
-	if (this.props.flickr.images){
-		list = this.props.flickr.images.map(image =>{
-			return <img 
-				className = 'flickr-photo'
-				src = {image.url}
-				key = {image.key} />
-		})
-	}
 		return(
 			<div>
-				{this.props.flickr.images? list: null}
+				<SlideShow images = {this.props.flickr.images}/>
 			</div>
 		)
 	}

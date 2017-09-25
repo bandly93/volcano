@@ -16,30 +16,29 @@ class SlideShow extends Component{
         		imgArr: this.state.imgArr + 1
       	}
     	})
-		console.log(this.state.imgArr);
 	}
 	minusOne(){
-		this.setState(()=> {
+		this.setState(() => {
 			return {
 				imgArr: this.state.imgArr - 1
 			}
 		})
-		console.log(this.state.imgArr);
 	}
 
 	render(){
-		let images = [
-			"https://farm5.staticflickr.com/4355/36883361836_82d0cb2496.jpg",
-			"https://via.placeholder.com/500x350"
-		]
-		return(
-			<div className = 'slideshow-container'>
-				<div>
+		let images = this.props.images;
+		if (this.props.images){
+			return (
+				 <div className = 'slideshow-container'>
 					<button className = "left-button" onClick = {() => this.minusOne()} > &#10094; </button>
-					<img src = {images[this.state.imgArr]}/>
+					<img src = {`${images[this.state.imgArr].url}`}/>
 					<button className = "right-button" onClick = {() => this.addOne()} > &#10095; </button>
 				</div>
-			</div>
+			)
+		}return(
+			<div>
+				{this.props.images? images: null}
+			</div>	
 		)
 	}
 }
