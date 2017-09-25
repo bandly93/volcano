@@ -1,11 +1,9 @@
 /*-------------------------multimedia--------------------*/
 .multimedia-flexbox {
 	display:flex;
-	justify-content: center;
 }
 
-.multimedia a{
-	/*padding:32% 32% 32% 32%;*/
+.multimedia{
 	flex:1;
 }
 
