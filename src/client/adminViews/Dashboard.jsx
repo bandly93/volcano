@@ -6,6 +6,7 @@ import {
   Switch
 } from 'react-router-dom';
 import Messages from './Messages.jsx';
+import PostBlog from './PostBlog.jsx';
 
 class Dashboard extends Component{
 	render(){
@@ -16,11 +17,13 @@ class Dashboard extends Component{
 					<p>Hello Dashboard!</p>
 					<nav className='dash-nav'>
 						<Link to ={`${path}/messages`}>Messages</Link>
+						<Link to ={`${path}/blog`}>Post Blog</Link>
 						<a>test</a>
 					</nav>
 				
 					<Switch>
 						<Route exact path= {`${path}/messages`} component ={Messages}/>
+						<Route exact path= {`${path}/blog`} component ={PostBlog}/>
 					</Switch>
 				</div>
 			</Router>

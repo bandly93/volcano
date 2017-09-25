@@ -6,7 +6,7 @@ import {adminAct} from '../redux/modules/adminModule';
 
 class Blog extends Component{
 	componentDidMount(){
-		this.props.fetchData('/auth/log',this.props.adminAct)
+		//this.props.fetchData('/auth/log',this.props.adminAct)
 	}
 	blogPost(){
 		return(
@@ -21,10 +21,11 @@ class Blog extends Component{
 		)
 	}
 	render(){
-		console.log(this.props.admin)
+		//console.log(this.props.admin)
 		return(
 			<div>
 				{this.props.admin.user? this.blogPost():null}
+				<p>Hello blog!</p>
 			</div>
 		)
 	}	

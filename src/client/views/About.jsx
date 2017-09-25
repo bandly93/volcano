@@ -3,6 +3,8 @@ import { fetchData } from '../redux/modules/fetchThunk';
 import { flickrAct } from '../redux/modules/flickrModule';
 import { connect } from 'react-redux';
 import ContactForm from '../components/ContactForm.jsx';
+import PdImg from '../public/images/about/pd.jpg';
+import XinhImg from '../public/images/about/xinh.jpg';
 
 
 const lorem_ipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -15,11 +17,11 @@ class About extends Component{
 		return(			
 			<div className = "about">
 				<span>
-					<img key = {this.props.flickr.images[5].name} src = {this.props.flickr.images[5].url}/>
+					<img src = {PdImg}/>
 					<p>{lorem_ipsum}</p>
 				</span>
 				<span>
-					<img key = {this.props.flickr.images[1].name} src = {this.props.flickr.images[1].url}/>
+					<img src = {XinhImg}/>
 					<p>{lorem_ipsum}</p>
 				</span>
 			</div>
