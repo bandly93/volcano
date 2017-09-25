@@ -7,6 +7,7 @@ import Lookbooks from "../subViews/Lookbooks.jsx";
 import WeddingVideos from "../subViews/WeddingVideos.jsx";
 import MusicVideos from "../subViews/MusicVideos.jsx";
 import ShortFilms from "../subViews/ShortFilms.jsx";
+import SlideShow from '../components/SlideShow.jsx';
 import {
   BrowserRouter as Router,
   Route,
@@ -20,7 +21,7 @@ class Multimedia extends Component{
 			<Router>
 				<div>
 					<Switch>
-						<Route path = "/portraits" component = {Portraits}/>
+						<Route path = "/portraits" component = {SlideShow}/>
 						<Route path = "/creative" component = {Creative}/>
 						<Route path = "/headshots" component = {Headshots}/>
 						<Route path = "/weddingphotos" component = {WeddingPhotos}/>
