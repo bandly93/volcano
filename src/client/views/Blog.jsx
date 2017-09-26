@@ -11,12 +11,11 @@ class Blog extends Component{
 	}
 	list(){
 		return this.props.blog.map(blog=>
-			<BlogComp key ={blog._id}/>
+			<BlogComp key ={blog._id} blog={blog}/>
 		)
 		
 	}
 	render(){
-	console.log(this.props.blog)
 		return(
 			<div>
 				<p>Hello blog!</p>

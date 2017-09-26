@@ -1,18 +1,20 @@
 /*-------------------------multimedia--------------------*/
-.multimedia-flexbox {
-	display:flex;
-}
+
 
 .multimedia{
 	flex:1;
 }
 
 .multimedia-flexbox img {
-	padding:2% 2%;
+	/*padding:2% 2%;*/
+	width:65%;
 }
 
 .multimedia-flexbox img:hover {
 	opacity: 0.6;
+}
+.multimedia p {
+	font-size:2vh;
 }
 
 
@@ -157,6 +159,9 @@ p{
 /* --------------------------MEDIA QUERY -----------------*/
 
 @media only screen and (min-width:1000px){
+	.multimedia-flexbox {
+		display:flex;
+	}
 	a{
 		font-size:calc(21px + .3vw);
 		padding :2%;
@@ -307,4 +312,8 @@ span .about{
 /*-----------------------BLOG-POST---------------------------*/
 .dash-container textarea{
 	width:80%;
+}
+.blog-post{
+	border:1px solid black;
+	margin:1%;
 }

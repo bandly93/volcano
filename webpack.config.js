@@ -10,7 +10,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   devServer:{
-    
     publicPath:'/',
     contentBase:'./src/client/public',
   	inline:true,
