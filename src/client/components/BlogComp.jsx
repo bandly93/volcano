@@ -1,10 +1,10 @@
 import React,{Component} from 'react';
 
-function BlogComp(){
+function BlogComp({blog}){
 
 	return(
-		<div>
-			<p>Hello BlogComp!</p>
+		<div className='blog-post'>
+			<p>{blog.blog}</p>
 		</div>
 	)
 

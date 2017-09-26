@@ -308,3 +308,7 @@ span .about{
 .dash-container textarea{
 	width:80%;
 }
+.blog-post{
+	border:1px solid black;
+	margin:1%;
+}
