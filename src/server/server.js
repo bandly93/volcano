@@ -51,7 +51,6 @@ app.use(passport.session());
 
 
 //routers
-var adminRouter = require('./routes/adminRouter');
 var flickrRouter = require('./routes/flickrRouter');
 var instaRouter = require('./routes/instaRouter');
 var authRouter = require('./routes/authRouter');
@@ -61,7 +60,6 @@ var msgRouter = require('./routes/msgRouter');
 
 
 app.use('/auth',authRouter);
-app.use('/admin',adminRouter);
 app.use('/flickr',flickrRouter);
 app.use('/insta',instaRouter);
 //app.use('/cloud',cloudRouter);

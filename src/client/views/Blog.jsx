@@ -1,31 +1,26 @@
 import React,{Component} from 'react';
 import { connect } from 'react-redux';
 import {fetchData,postData} from '../redux/modules/fetchThunk';
-import {adminAct} from '../redux/modules/adminModule';
+import {blogAct} from '../redux/modules/blogModule';
+import BlogComp from '../components/BlogComp.jsx';
 
 
 class Blog extends Component{
 	componentDidMount(){
-		//this.props.fetchData('/auth/log',this.props.adminAct)
+		this.props.fetchData('/blog/data',this.props.blogAct)
 	}
-	blogPost(){
-		return(
-			<form onSubmit={(e)=>{
-						e.preventDefault();this.props.postData(
-							'/blog','POST',
-							{hello:'goodbye'})
-							}}>
-					<input type='textarea' />
-					<input type='submit' value='Post'/>
-			</form>
+	list(){
+		return this.props.blog.map(blog=>
+			<BlogComp key ={blog._id}/>
 		)
+		
 	}
 	render(){
-		//console.log(this.props.admin)
+	console.log(this.props.blog)
 		return(
 			<div>
-				{this.props.admin.user? this.blogPost():null}
 				<p>Hello blog!</p>
+				{this.props.blog?this.list():null}
 			</div>
 		)
 	}	
@@ -33,7 +28,7 @@ class Blog extends Component{
 
 const mapStateToProps = (state) =>{
 	return{
-		admin:state.admin
+		blog:state.blog
 	};
 };
 
@@ -41,7 +36,7 @@ const mapDispatchToProps = (dispatch) =>{
 	return{
 		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
 		postData:(url,method,data,actFunc)=>dispatch(postData(url,method,data,actFunc)),
-		adminAct:(admin)=>dispatch(adminAct(admin))	
+		blogAct:(blog)=>dispatch(blogAct(blog))	
 	}
 }
 

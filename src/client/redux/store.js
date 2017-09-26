@@ -4,12 +4,15 @@ import admin from './modules/adminModule.js';
 import flickr from './modules/flickrModule.js';
 import msg from './modules/msgModule.js';
 import allMsg from './modules/allMsgModule.js';
+import blog from './modules/blogModule.js';
+
 
 const reducers = combineReducers({
 	admin,
 	flickr,
 	msg,
-	allMsg
+	allMsg,
+	blog
 })
 
 export default function configureStore(initialState){

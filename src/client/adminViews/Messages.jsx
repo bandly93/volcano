@@ -17,13 +17,13 @@ class Messages extends Component{
 		this.props.postData('/msg','DELETE',{_id:id},this.props.allMsgAct)
 	}
 	list(){
-		return this.props.allMsg.map(msg=>{
-			return <Message key={msg._id} msg={msg} delete={this.delete}/>
-		})
+		return this.props.allMsg.map(msg=>
+			<Message key={msg._id} msg={msg} delete={this.delete}/>
+		)
 	}
 	render(){
 		return(
-			<div className='msg-container'>
+			<div className='dash-container'>
 				{this.props.allMsg[0]? this.list():null}
 			</div>
 		)
