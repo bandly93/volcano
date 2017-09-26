@@ -2,8 +2,8 @@ var express = require('express');
 var msgRouter = express.Router();
 var Msg = require('../models/msg.js');
 var authCheck = require('../auth/authCheck');
-var config = require('../../../config.js')
-const sgMail = require('@sendgrid/mail');
+var config = require('../../../config.js');
+var sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(config.sendgrid.API_KEY);
 
 msgRouter.route('/')
