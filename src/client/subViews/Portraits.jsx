@@ -11,8 +11,7 @@ class Portraits extends Component{
 	render(){
 		return(
 			<div>
-			<p>hello portraits</p>
-				
+				<SlideShow images = {this.props.flickr.images}/>
 			</div>
 		)
 	}

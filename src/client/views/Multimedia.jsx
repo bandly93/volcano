@@ -16,24 +16,26 @@ import {
 } from 'react-router-dom';
 
 class Multimedia extends Component{
+
 	render(){
+		const path = this.props.match.path;
 		return(
 			<Router>
 				<div>
 					<Switch>
-						<Route path = "/multimedia/portraits" component = {Portraits}/>
-						<Route path = "/creative" component = {Creative}/>
-						<Route path = "/headshots" component = {Headshots}/>
-						<Route path = "/weddingphotos" component = {WeddingPhotos}/>
-						<Route path = "/lookbooks" component = {Lookbooks}/>
-						<Route path = "/weddingvideos" component = {WeddingVideos}/>
-						<Route path = "/musicvideos" component = {MusicVideos}/>
-						<Route path = "/shortfilms" component = {ShortFilms}/>
+						<Route exact path = {`${path}/portraits`} component = {Portraits}/>
+						<Route exact path = "/creative" component = {Creative}/>
+						<Route exact path = "/headshots" component = {Headshots}/>
+						<Route exact path = "/weddingphotos" component = {WeddingPhotos}/>
+						<Route exact path = "/lookbooks" component = {Lookbooks}/>
+						<Route exact path = "/weddingvideos" component = {WeddingVideos}/>
+						<Route exact path = "/musicvideos" component = {MusicVideos}/>
+						<Route exact path = "/shortfilms" component = {ShortFilms}/>
 					</Switch>
 					<div className = "multimedia-flexbox">
 						<div className = "multimedia">
 							<h1>Photos</h1>
-							<Link to = "/multimedia/portraits">
+							<Link to = {`${path}/portraits`} >
 								<img src='https://farm5.staticflickr.com/4355/36883361836_82d0cb2496.jpg'/>
 								<p>PORTRAITS</p>
 							</Link>
