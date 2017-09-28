@@ -5,3 +5,4 @@ nom-debug.log
 config.js
 sendgrid.env
 package-lock.json
+/dist
