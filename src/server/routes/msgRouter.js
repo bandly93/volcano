@@ -25,7 +25,7 @@ msgRouter.route('/')
 })
 .delete(function(req,res){
 
-	crud.delete(req,res,Msg,crud.get);
+	crud.delete(req,res,Msg,crud.getAll);
 
 })
 

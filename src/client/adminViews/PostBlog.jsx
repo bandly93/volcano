@@ -38,7 +38,7 @@ class PostBlog extends Component{
 			<div className='dash-container'>
 				{this.props.blog.msg?<h3 className='success'>Blog posted!</h3>:null}
 				<form onSubmit={this.blogPost} >
-					<textarea rows='1' name='title'
+					<textarea rows='2' name='title'
 					placeholder='title' value={this.state.title}
 					onChange={this.handleChange}>
 					</textarea>

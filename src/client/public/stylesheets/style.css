@@ -336,3 +336,6 @@ span .about{
 .blog-post img{
 	max-width: 100%;
 }
+.dash-container hr{
+	margin: 0 7%;
+}
