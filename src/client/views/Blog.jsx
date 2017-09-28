@@ -18,7 +18,7 @@ class Blog extends Component{
 	render(){
 		return(
 			<div>
-				<p>Hello blog!</p>
+				<h2>Volcano Boyz Blog</h2>
 				{this.props.blog?this.list():null}
 			</div>
 		)

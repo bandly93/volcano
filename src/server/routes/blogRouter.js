@@ -7,7 +7,7 @@ var crud = require('../utils/crudFunctions');
 blogRouter.route('/')
 
 .post(function(req,res){
-	console.log(req.body)
+	//console.log(req.body)
 	crud.post(req,res,Blog);
 })
 
