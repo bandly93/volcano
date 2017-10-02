@@ -1,5 +1,5 @@
 exports.getAll =(req,res,model) =>{
-	model.find({}).sort('-createdAt').exec(function(err,content){
+	model.find({}).sort('-createdAt').limit(3).exec(function(err,content){
 		if(err){
 			//throw err;
 			console.log(err)
@@ -25,5 +25,17 @@ exports.post = (req,res,model) =>{
 			res.json({err:'error'})
 		}
 		res.json({msg:'success!'})
+	})
+}
+exports.getTen = (req,res,model,id) =>{
+	model.find({_id:{$lt:id}})
+	.sort('-createdAt')
+	.limit(3)
+	.exec(function(err,content){
+		if(err){
+			console.log(err)
+			res.json({err:'error'});
+		}
+		res.json(content);
 	})
 }
