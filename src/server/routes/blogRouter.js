@@ -11,8 +11,15 @@ blogRouter.route('/')
 	crud.post(req,res,Blog);
 })
 
-blogRouter.get('/data',function(req,res){
+blogRouter.route('/data')
+
+.get(function(req,res){
 	crud.getAll(req,res,Blog)
 })
+
+.post(function(req,res){
+    crud.getTen(req,res,Blog,req.body.id)    
+})
+
 
 module.exports = blogRouter;

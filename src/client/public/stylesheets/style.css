@@ -339,3 +339,17 @@ span .about{
 .dash-container hr{
 	margin: 0 7%;
 }
+/*-----------------------PAGINATE---------------------------*/
+.paginate{
+	margin:2% 2% 5% 2%;
+}
+.paginate button{
+	border:none;
+	background-color:white;
+	font-size:20px;
+	margin-right:5%;
+	cursor: pointer;
+}
+.paginate button:focus{
+	outline:0;
+}
