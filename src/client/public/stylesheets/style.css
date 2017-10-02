@@ -314,6 +314,28 @@ span .about{
 	width:80%;
 }
 .blog-post{
-	border:1px solid black;
-	margin:1%;
+	margin:0 10%;
+	text-align: left;
+	padding:1%;
+}
+.preview{
+	text-align: left;
+	margin:5% 5% 15% 5%;
+}
+.preview img{
+	max-width:100%;
+}
+.date{
+	font-size:12px;
+}
+
+.blog-title p:nth-child(1){
+	font-size:26px;
+	color:#4c0000;
+}
+.blog-post img{
+	max-width: 100%;
+}
+.dash-container hr{
+	margin: 0 7%;
 }

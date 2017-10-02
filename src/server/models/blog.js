@@ -2,7 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var Blog = new Schema({
-	blog:String
+	rawTitle:String,
+	htmlTitle:String,
+	rawBlog:String,
+	htmlBlog:String
 },{
 	timestamps:true
 })
