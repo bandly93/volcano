@@ -6,3 +6,4 @@ config.js
 sendgrid.env
 package-lock.json
 /dist
+ecosystem.config.js
