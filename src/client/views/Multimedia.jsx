@@ -24,13 +24,13 @@ class Multimedia extends Component{
 				<div>
 					<Switch>
 						<Route exact path = {`${path}/portraits`} component = {Portraits}/>
-						<Route exact path = "/creative" component = {Creative}/>
-						<Route exact path = "/headshots" component = {Headshots}/>
-						<Route exact path = "/weddingphotos" component = {WeddingPhotos}/>
-						<Route exact path = "/lookbooks" component = {Lookbooks}/>
-						<Route exact path = "/weddingvideos" component = {WeddingVideos}/>
-						<Route exact path = "/musicvideos" component = {MusicVideos}/>
-						<Route exact path = "/shortfilms" component = {ShortFilms}/>
+						<Route exact path = {`${path}/creative`} component = {Creative}/>
+						<Route exact path = {`${path}/headshots`} component = {Headshots}/>
+						<Route exact path = {`${path}/weddingphotos`} component = {WeddingPhotos}/>
+						<Route exact path = {`${path}/lookbooks`} component = {Lookbooks}/>
+						<Route exact path = {`${path}/weddingvideos`} component = {WeddingVideos}/>
+					  <Route exact path = {`${path}/musicvideos`} component = {MusicVideos}/> 
+						<Route exact path = {`${path}/shortfilms`} component = {ShortFilms}/>
 					</Switch>
 					<div className = "multimedia-flexbox">
 						<div className = "multimedia">
@@ -39,34 +39,34 @@ class Multimedia extends Component{
 								<img src='https://farm5.staticflickr.com/4355/36883361836_82d0cb2496.jpg'/>
 								<p>PORTRAITS</p>
 							</Link>
-							<Link to = "/creative">
+							<Link to = {`${path}/creative`} >
 								<img src='https://via.placeholder.com/500x350'/>
 								<p>CREATIVE</p>
 							</Link>
-							<Link to = "/headshots">
+							<Link to = {`${path}/headshots`} >
 								<img src='https://farm5.staticflickr.com/4352/36236809334_007221032b.jpg'/>
 								<p>HEADSHOTS</p>
 							</Link>
-							<Link to = "/weddingphotos">
+							<Link to = {`${path}/weddingphotos`} >
 								<img src='https://farm5.staticflickr.com/4347/36257977233_b65bd98d06.jpg'/>
 								<p>WEDDING PHOTOS</p>
 							</Link>
 						</div>
 						<div className = "multimedia">
 							<h1>Motion</h1>
-							<Link to = "/lookbooks">
+							<Link to = {`${path}/lookbooks`} >
 								<img src='https://via.placeholder.com/500x350'/>
 								<p>LOOKBOOKS</p>
 							</Link>
-							<Link to = "/weddingvideos">
+							<Link to = {`${path}/weddingvideos`} >
 								<img src='https://via.placeholder.com/500x350'/>
 								<p>WEDDING VIDEOS</p>
 							</Link>
-							<Link to = "/musicvideos">
+							<Link to = {`${path}/musicvideos`} >
 								<img src='https://via.placeholder.com/500x350'/>
 								<p>MUSIC VIDEOS</p>
 							</Link>
-							<Link to = "/shortfilms">
+							<Link to = {`{path}/shortfilms`} >
 								<img src='https://via.placeholder.com/500x350'/>
 								<p>SHORT FILMS</p>
 							</Link>
