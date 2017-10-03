@@ -27,8 +27,21 @@ exports.post = (req,res,model) =>{
 		res.json({msg:'success!'})
 	})
 }
-exports.getTen = (req,res,model,id) =>{
-	model.find({_id:{$lt:id}})
+exports.getOld = (req,res,model) =>{
+	model.find({_id:{$lt:req.query.old}})
+	.sort('-createdAt')
+	.limit(3)
+	.exec(function(err,content){
+		if(err){
+			console.log(err)
+			res.json({err:'error'});
+		}
+		res.json(content);
+	})
+}
+
+exports.getNew = (req,res,model) =>{
+	model.find({_id:{$gt:req.query.new}})
 	.sort('-createdAt')
 	.limit(3)
 	.exec(function(err,content){

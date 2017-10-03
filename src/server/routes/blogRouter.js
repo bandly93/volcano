@@ -7,18 +7,33 @@ var crud = require('../utils/crudFunctions');
 blogRouter.route('/')
 
 .post(function(req,res){
-	//console.log(req.body)
-	crud.post(req,res,Blog);
+	//console.log(req.body)	
+    crud.post(req,res,Blog);
 })
 
-blogRouter.route('/data')
+blogRouter.route('/:id')
 
-.get(function(req,res){
-	crud.getAll(req,res,Blog)
+.get(function(req,res){	
+    //console.log('params',req.params,req.query)
+    //console.log(req.url);
+    //console.log(req);
+    if(req.query.new){
+        console.log('new', req.query.new);
+        crud.getNew(req,res,Blog);
+    }
+    else if(req.query.old){
+       console.log('old',req.query.old);
+       crud.getOld(req,res,Blog);
+    }
+    else{
+        console.log('not new or old');
+        crud.getAll(req,res,Blog)
+    }
 })
 
 .post(function(req,res){
-    crud.getTen(req,res,Blog,req.body.id)    
+    console.log(req.params,req.query)
+    crud.getTen(req,res,Blog)    
 })
 
 

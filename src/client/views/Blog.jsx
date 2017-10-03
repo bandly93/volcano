@@ -12,7 +12,10 @@ class Blog extends Component{
         this.getNextPage = this.getNextPage.bind(this);
 	}
 	componentDidMount(){
-		this.props.fetchData('/blog/data',this.props.blogAct)
+        //console.log(this.props.match.path);
+        //console.log(location.search);
+        //console.log(`/blog${location.search}`); 
+        this.props.fetchData(`/blog/data/${location.search}`,this.props.blogAct)
 	}
 	list(){
 		return this.props.blog.map(blog=>
@@ -22,7 +25,7 @@ class Blog extends Component{
 	getNextPage(param){
 		console.log(param)
         let id = {id:param};
-		this.props.postData('/blog/data','POST',id,this.props.blogAct);
+		this.props.postData(`/blog/${location.search}`,'POST',id,this.props.blogAct);
 	}
 	blogID(){
 		let obj ={};
@@ -36,7 +39,9 @@ class Blog extends Component{
 			<div>
 				<h2>Volcano Boyz Blog</h2>
 				{this.props.blog?this.list():null}
-				<Paginate getPage={this.getNextPage} blogID={this.blogID}/>
+				<Paginate getPage={this.getNextPage} 
+                path = {this.props.match.path}
+                blogID={this.blogID}/>
 			</div>
 		)
 	}	

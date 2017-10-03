@@ -42,7 +42,7 @@ class NavBar extends Component{
 						<Route exact path= '/about' component ={About}/>
 						<Route path= '/multimedia' component ={Multimedia}/>
 						<Route exact path= '/shop' component ={Shop}/>
-						<Route exact path= '/blog' component ={Blog}/>
+						<Route path= '/blog' component ={Blog}/>
 					</Switch>
 				</div>
 			</Router>
