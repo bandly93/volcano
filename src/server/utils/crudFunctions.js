@@ -42,13 +42,12 @@ exports.getOld = (req,res,model) =>{
 
 exports.getNew = (req,res,model) =>{
 	model.find({_id:{$gt:req.query.new}})
-	.sort('-createdAt')
 	.limit(3)
 	.exec(function(err,content){
 		if(err){
 			console.log(err)
 			res.json({err:'error'});
 		}
-		res.json(content);
+		res.json(content.reverse());
 	})
 }

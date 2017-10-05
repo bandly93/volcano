@@ -12,11 +12,21 @@ class Blog extends Component{
         this.getNextPage = this.getNextPage.bind(this);
 	}
 	componentDidMount(){
-        //console.log(this.props.match.path);
-        //console.log(location.search);
-        //console.log(`/blog${location.search}`); 
+        console.log('did mount',this.props.match.path,location.search);
         this.props.fetchData(`/blog/data/${location.search}`,this.props.blogAct)
 	}
+    componentWillReceiveProps(nextProps){
+        if(nextProps.location.search !== this.props.location.search){
+            console.log('will mount',nextProps.match.path,
+            nextProps.location.search);               
+ 
+            this.props.fetchData(`/blog/data/${nextProps.location.search}`,
+                this.props.blogAct)
+        } 
+    //this.props.fetchData(`/blog/data/${location.search}`,this.props.blogAct)
+       // console.log('will mount',nextProps.match.path,
+       //     nextProps.location.search);
+    }
 	list(){
 		return this.props.blog.map(blog=>
 			<BlogComp key ={blog._id} blog={blog}/>
@@ -28,11 +38,16 @@ class Blog extends Component{
 		this.props.postData(`/blog/${location.search}`,'POST',id,this.props.blogAct);
 	}
 	blogID(){
-		let obj ={};
-		let blog = this.props.blog;
-		obj.new = blog[0]._id;
-		obj.old = blog[blog.length-1]._id;
-		return obj;
+        if(this.props.blog[0]){
+            let obj ={};
+            let blog = this.props.blog;
+            obj.new = blog[0]._id;
+            obj.old = blog[blog.length-1]._id;
+            return obj;
+        }
+        else{
+            return {};
+        }
 	}
 	render(){
 		return(
