@@ -1,3 +1,6 @@
+var mongoose = require('mongoose');
+
+
 exports.getAll =(req,res,model) =>{
 	model.find({}).sort('-createdAt').limit(3).exec(function(err,content){
 		if(err){
@@ -28,26 +31,36 @@ exports.post = (req,res,model) =>{
 	})
 }
 exports.getOld = (req,res,model) =>{
-	model.find({_id:{$lt:req.query.old}})
-	.sort('-createdAt')
-	.limit(3)
-	.exec(function(err,content){
-		if(err){
-			console.log(err)
-			res.json({err:'error'});
-		}
-		res.json(content);
-	})
+    if(mongoose.Types.ObjectId.isValid(req.query.old)){
+        model.find({_id:{$lt:req.query.old}})
+        .sort('-createdAt')
+        .limit(3)
+        .exec(function(err,content){
+            if(err){
+                console.log(err)
+                res.json({err:'error'});
+            }
+            res.json(content);
+        })
+    }
+    else{
+        res.json([])
+    }
 }
 
 exports.getNew = (req,res,model) =>{
-	model.find({_id:{$gt:req.query.new}})
-	.limit(3)
-	.exec(function(err,content){
-		if(err){
-			console.log(err)
-			res.json({err:'error'});
-		}
-		res.json(content.reverse());
-	})
+    if(mongoose.Types.ObjectId.isValid(req.query.new)){
+        model.find({_id:{$gt:req.query.new}})
+        .limit(3)
+        .exec(function(err,content){
+            if(err){
+                console.log(err)
+                res.json({err:'error'});
+            }
+            res.json(content.reverse());
+        })
+    }
+    else{
+        res.json([])
+    }
 }

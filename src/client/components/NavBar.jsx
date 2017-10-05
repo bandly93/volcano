@@ -15,9 +15,9 @@ import {withRouter} from "react-router-dom";
 
 
 class NavBar extends Component{
-	super(props){
-		constructor(props);
-	}
+    constructor(){
+	    super();
+    }	
 	goToLanding(){
 		this.props.history.push('/')
 	}
