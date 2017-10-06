@@ -13,9 +13,9 @@ class SlideShow extends Component{
 		let index = this.state.index
 		let length = this.props.images.length
 		this.setState(() => {
-      	return {
+      		return {
         		index: (index+ 1) % length
-      	}
+      		}
     	})
 	}
 	minusOne(){

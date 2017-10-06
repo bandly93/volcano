@@ -1,9 +1,45 @@
+/*-------------------------file-storage-system-------------------------*/
+.file-storage-system{
+	justify-content:center;
+	padding-left:45%
+}
+
+
+
+/*-------------------slideshow buttons------------------------*/
+.slideshow-container{
+	background-color:grey;
+
+}
+
+.left-button , .right-button{
+	background-color:#f1f1f1;
+	border:none;
+	padding:8px 16px;
+
+}
+.left-button{
+	position:absolute;
+	top:50%;
+	left:30%;
+	transform:translate(0%,-50%);
+}
+.right-button{
+	position:absolute;
+	top:50%;
+	right:30%;
+	transform:translate(0%,-50%);
+}
 /*-------------------------multimedia--------------------*/
-
-
 .multimedia{
 	flex:1;
 }
+
+.multimedia img{
+	height:300px;
+	width:525px;
+}
+
 
 .multimedia-flexbox img {
 	/*padding:2% 2%;*/
@@ -16,7 +52,6 @@
 .multimedia p {
 	font-size:2vh;
 }
-
 
 /*-------------------------register && login--------------------*/
 

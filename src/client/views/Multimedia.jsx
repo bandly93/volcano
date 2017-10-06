@@ -29,7 +29,7 @@ class Multimedia extends Component{
 						<Route exact path = {`${path}/weddingphotos`} component = {WeddingPhotos}/>
 						<Route exact path = {`${path}/lookbooks`} component = {Lookbooks}/>
 						<Route exact path = {`${path}/weddingvideos`} component = {WeddingVideos}/>
-					  <Route exact path = {`${path}/musicvideos`} component = {MusicVideos}/> 
+					    <Route exact path = {`${path}/musicvideos`} component = {MusicVideos}/> 
 						<Route exact path = {`${path}/shortfilms`} component = {ShortFilms}/>
 					</Switch>
 					<div className = "multimedia-flexbox">

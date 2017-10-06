@@ -9,7 +9,6 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(require('cookie-parser')());
 
-
 //database
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -50,21 +49,24 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+
+
+
+
 //routers
 var flickrRouter = require('./routes/flickrRouter');
 var instaRouter = require('./routes/instaRouter');
 var authRouter = require('./routes/authRouter');
-var cloudRouter = require('./routes/cloudRouter');
 var blogRouter = require('./routes/blogRouter');
 var msgRouter = require('./routes/msgRouter');
-
+var uploadRouter = require('./routes/uploadRouter');
 
 app.use('/auth',authRouter);
 app.use('/flickr',flickrRouter);
 app.use('/insta',instaRouter);
-//app.use('/cloud',cloudRouter);
 app.use('/blog',blogRouter);
 app.use('/msg',msgRouter);
+app.use('/upload',uploadRouter);
 
 
 //redirect  to client
