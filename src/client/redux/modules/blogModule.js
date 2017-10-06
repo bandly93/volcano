@@ -7,7 +7,7 @@ export function blogAct(blog){
 }
 
 //reducer
-export const blog =(state=[],action)=>{
+export const blog =(state={},action)=>{
 	switch(action.type){
 		case 'BLOG':
 			return action.blog 

@@ -23,14 +23,14 @@ class Blog extends Component{
         }  
     }
 	list(){
-		return this.props.blog.map(blog=>
+		return this.props.blog.data.map(blog=>
 			<BlogComp key ={blog._id} blog={blog}/>
 		)		
 	}
 	blogID(){
-        if(this.props.blog[0]){
+        if(this.props.blog.data){
             let obj ={};
-            let blog = this.props.blog;
+            let blog = this.props.blog.data;
             obj.new = blog[0]._id;
             obj.old = blog[blog.length-1]._id;
             return obj;
@@ -40,12 +40,13 @@ class Blog extends Component{
         }
 	}
 	render(){
+//    console.log(this.props.blog);
 		return(
 			<div>
 				<h2>Volcano Boyz Blog</h2>
-				{this.props.blog?this.list():null}
-   				{this.props.blog[0]?
-                <Paginate getPage={this.getNextPage} 
+				{this.props.blog.data?this.list():null}
+   				{this.props.blog.data?
+                <Paginate page = {this.props.blog.page}
                 path = {this.props.match.path}
                 blogID={this.blogID}/> 
                 :null}
