@@ -7,4 +7,4 @@ sendgrid.env
 package-lock.json
 /dist
 ecosystem.config.js
-./src/client/public/images
+./src/client/public/images/uploads
