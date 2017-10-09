@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-function Paginate({page,blogID,path}){
-    let paginate = blogID();
+function Paginate({page,modelID,path}){
+    let paginate = modelID();
     return(
         <div className='paginate'>
                 {page.new?

@@ -40,7 +40,7 @@ class Blog extends Component{
         }
 	}
 	render(){
-//    console.log(this.props.blog);
+    //console.log(this.props.blog.page,this.props.match.path,this.blogID);
 		return(
 			<div>
 				<h2>Volcano Boyz Blog</h2>
@@ -48,7 +48,7 @@ class Blog extends Component{
    				{this.props.blog.data?
                 <Paginate page = {this.props.blog.page}
                 path = {this.props.match.path}
-                blogID={this.blogID}/> 
+                modelID={this.blogID}/> 
                 :null}
 			</div>
 		)

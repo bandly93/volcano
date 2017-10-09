@@ -19,7 +19,7 @@ msgRouter.route('/')
 })
 .post(function(req,res){
 
-	sendEmail(req,res);
+	//sendEmail(req,res);
 	crud.post(req,res,Msg);
 
 })
@@ -28,6 +28,31 @@ msgRouter.route('/')
 	crud.delete(req,res,Msg,crud.getAll);
 
 })
+
+msgRouter.route('/:id')
+
+
+.get(function(req,res,next){	
+    //console.log('params',req.params,req.query)
+    //console.log(req.url);
+    //console.log(req);
+    if(req.query.new){
+        console.log('new', req.query.new);
+        crud.getNew(req,res,Msg,next);
+    }
+    else if(req.query.old){
+       console.log('old',req.query.old);
+       crud.getOld(req,res,Msg,next);
+    }
+    else{
+        console.log('not new or old');
+        crud.getAll(req,res,Msg,next)
+    }
+})
+
+
+
+
 
 function sendEmail(req,res){
 	const email = {
