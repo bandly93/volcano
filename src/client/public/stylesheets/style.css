@@ -314,6 +314,7 @@ span .about{
 	flex-direction: column;
 	position:absolute;
 	width:20%;
+    margin-top:1%;
 }
 .dash-nav a{
 	text-decoration: none;
@@ -323,8 +324,20 @@ span .about{
 }
 .dash-container{
 	margin-left:20%;
+    margin-top:1%;
 }
-
+.dashboard{
+    padding-top:1%;
+}
+.dashboard > a:nth-child(1) {
+    text-align:right;
+    cursor:pointer;
+    color:maroon;
+}
+.dashHome{
+    padding:1%;
+    text-align:left;
+}
 /*-----------------------MESSAGES---------------------------*/
 .message{
 	border:1px solid black;

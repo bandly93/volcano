@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
-
+var num = 3;
 
 exports.getAll =(req,res,model,next) =>{
-	model.find({}).sort('-createdAt').limit(3).exec(function(err,content){
+	model.find({}).sort('-createdAt').limit(num).exec(function(err,content){
 		if(err){
 			//throw err;
 			console.log(err)
@@ -33,7 +33,7 @@ exports.getOld = (req,res,model,next) =>{
     if(mongoose.Types.ObjectId.isValid(req.query.old)){
         model.find({_id:{$lt:req.query.old}})
         .sort('-createdAt')
-        .limit(3)
+        .limit(num)
         .exec(function(err,content){
             if(err){
                 console.log(err)
@@ -53,7 +53,7 @@ exports.getOld = (req,res,model,next) =>{
 exports.getNew = (req,res,model,next) =>{
     if(mongoose.Types.ObjectId.isValid(req.query.new)){
         model.find({_id:{$gt:req.query.new}})
-        .limit(3)
+        .limit(num)
         .exec(function(err,content){
             if(err){
                 console.log(err)
