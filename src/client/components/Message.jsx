@@ -9,7 +9,8 @@ class Message extends Component{
 
 			<div className='message'>
 				<button className='close' onClick={()=>this.props.delete(msg)}>X</button>
-				<p>From: {msg.name}, {msg.email}</p>
+				<p>From: {msg.name} </p>
+                <p>Email: {msg.email}</p>
 				<hr/>
 				<p>Message: {msg.message}</p>
 			</div>

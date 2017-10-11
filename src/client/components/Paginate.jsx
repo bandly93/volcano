@@ -7,10 +7,10 @@ function Paginate({page,modelID,path}){
         <div className='paginate'>
                 {page.new?
                     <Link to = {`${path}?new=${paginate.new}`}>Newer</Link>
-                    :null}
+                    :<a></a>}
                 {page.old?
                     <Link to = {`${path}?old=${paginate.old}`}>Older</Link>
-                    :null}
+                    :<a></a>}
        </div>
     )
 }

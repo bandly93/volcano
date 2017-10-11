@@ -11,25 +11,50 @@ import Upload from './Upload.jsx';
 import UploadTest from "./TestingUpload.jsx";
 import DashHome from './DashHome.jsx';
 
+
 class Dashboard extends Component{
     constructor(){
         super();
+        this.state={
+            display:window.innerWidth <= 812? 'none':'flex'
+        }
         this.goHome = this.goHome.bind(this);
+        this.showMenu = this.showMenu.bind(this);
+        this.hideMenu = this.hideMenu.bind(this);
     }
     goHome(){
         this.props.history.push('/multimedia');
     }
+    showMenu(){
+        this.state.display=='none'?this.setState({display:'flex'})
+            :this.setState({display:'none'});
+    }
+    hideMenu(){
+        window.innerWidth <= 812?this.setState({display:'none'}):null;
+    }
 	render(){
+        //console.log(window.innerWidth);
 		const path = this.props.match.path;
 		return(
 			<Router>
 				<div className='dashboard'>
-                    <a onClick={this.goHome}>Home</a>
-					<nav className='dash-nav'>
-                        <Link to ={`${path}`}>DashHome</Link>
-						<Link to ={`${path}/messages`}>Messages</Link>
-						<Link to ={`${path}/blog`}>Post Blog</Link>
-						<Link to ={`${path}/upload`}>Upload Images</Link>
+
+                    <nav className='dash-monav'>
+                        <a className='hamburger' onClick={this.showMenu}></a>
+                        <h1 className='flex-space title'>Volcano Boyz</h1> 
+                        <a className='home-icon'onClick={this.goHome} ></a> 
+                    </nav>
+
+					<nav className='dash-nav'  
+                        style={{display:this.state.display}}>
+                        <Link to ={`${path}`} onClick={this.hideMenu}>
+                            Dash Home</Link>
+						<Link to ={`${path}/messages`}onClick={this.hideMenu}>
+                            Messages</Link>
+						<Link to ={`${path}/blog`} onClick={this.hideMenu}>
+                            Post Blog</Link>
+						<Link to ={`${path}/upload`} onClick={this.hideMenu}>
+                            Upload Images</Link>
 					</nav>
 				
 					<Switch>

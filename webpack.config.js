@@ -9,6 +9,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
+  devtool: 'source-map',
   devServer:{
     publicPath:'/',
     contentBase:'./src/client/public',
@@ -29,7 +30,8 @@ module.exports = {
       test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader", 
 		  query:{presets:['react','es2015']}
     },
-    { test: /\.jpg$/,loader: "file-loader" }
+    { test: /\.jpg$/,loader: "file-loader" },
+    { test: /\.svg/, loader: "svg-url-loader",options:{}}
   ]
 }/*,
   plugins: [

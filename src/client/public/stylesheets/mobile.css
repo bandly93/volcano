@@ -1,0 +1,163 @@
+
+/*------------------------------BODY ------------------------ */
+html,body{
+	height:100%;
+	margin:0;
+	font-family: 'Bitter', serif;
+}
+
+a{
+    text-decoration:none;
+    color:black;
+    cursor:pointer;
+}
+/* --------------------------------Index -------------*/
+#index{
+	min-height:100%;
+}
+#index > div:nth-child(1) > .landing{
+	height:100vh;
+}
+/* --------------------------------LANDING ----------*/
+.landing{
+	background-color: black;
+	color:white;
+}
+.landing img{
+	max-width:100%;
+}
+.landing button{
+	padding:1%;
+}
+
+/*-----------------------MESSAGES---------------------------*/
+.message{
+	border:1px solid teal;
+	text-align: left;
+	padding:0 2% 2% 2%;
+    margin:1%;
+}
+.message p:not(.close){
+	margin-left:8%;
+}
+.close{
+	margin:2% 2% 1% 2%;
+	cursor: pointer;
+	background-color: maroon;
+	border:none;
+	color:white;
+}
+.msg-container hr{
+	margin:0 8%;
+}
+
+/*-----------------------Pagination---------------------------*/
+.paginate{
+    display:flex;
+    padding-top:5%;
+}
+.paginate a{
+    flex:1;
+}
+
+/*-----------------------BLOG-POST---------------------------*/
+.dash-container textarea{
+	width:80%;
+}
+.blog-post{
+	margin:0 10%;
+	text-align: left;
+	padding:1%;
+}
+.preview{
+	text-align: left;
+	margin:5% 5% 15% 5%;
+}
+.preview img{
+	max-width:100%;
+}
+.date{
+	font-size:12px;
+}
+
+.blog-title p:nth-child(1){
+	font-size:26px;
+	color:#4c0000;
+}
+.blog-post img{
+	max-width: 100%;
+}
+.dash-container hr{
+	margin: 0 7%;
+}
+
+/*-----------------------------Desktop View ---------------------------*/
+/*-----------------------------Desktop View ---------------------------*/
+@media only screen and (min-width:812px){
+    a{
+        font-size:21px;
+    } 
+    .dash-nav{
+        display:flex;
+    }  
+}
+
+/*-----------------------------Mobile View ----------------------------*/
+/*-----------------------------Mobile View ----------------------------*/
+@media only screen and (max-width:812px){
+    a{
+        font-size:calc(21px + 1vw);
+    }
+   /*-----------------------------Dash Home ---------------*/
+    .dashboard{
+    }  
+    .dash-nav{
+        display:flex;
+        flex-direction:column;
+        position:absolute;
+        background-color:#404040;
+    }
+    .dash-nav a{
+        color:white;
+        padding:10%;
+    }
+    .dash-container{
+        text-align:center;
+        margin-top:3%;
+    }
+   /*---------------------------Dash Mobile Nav ----------*/
+    .dash-monav{
+        display:flex;
+        justify-content:space-between;
+    }
+    .hamburger{
+        content:url('../images/icons/hamburger.svg');
+        height:50px;
+        padding:2%;
+        background-color:teal;
+    } 
+    .home-icon{
+        content:url('../images/icons/home.svg');
+        height:50px;
+        padding:2%;
+        background-color:#800000;
+    }
+    .flex-space{
+        flex-grow:1;
+    }  
+    .title{
+        text-align:center;
+        background-color:#404040;
+        color:white;
+        margin:0;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+    }
+}
+
+
+
+
+
