@@ -21,6 +21,7 @@ class Dashboard extends Component{
         this.goHome = this.goHome.bind(this);
         this.showMenu = this.showMenu.bind(this);
         this.hideMenu = this.hideMenu.bind(this);
+        this.updateSize = this.updateSize.bind(this);
     }
     goHome(){
         this.props.history.push('/multimedia');
@@ -32,19 +33,27 @@ class Dashboard extends Component{
     hideMenu(){
         window.innerWidth <= 812?this.setState({display:'none'}):null;
     }
+    updateSize(){
+        window.innerWidth <=812? this.setState({display:'none'})
+            : this.setState({display:'flex'});
+    }
+    componentDidMount(){
+        this.updateSize();
+        window.addEventListener('resize',this.updateSize);
+    }   
 	render(){
-        //console.log(window.innerWidth);
 		const path = this.props.match.path;
 		return(
 			<Router>
 				<div className='dashboard'>
 
                     <nav className='dash-monav'>
+                        <div className='profilePic'></div>
                         <a className='hamburger' onClick={this.showMenu}></a>
                         <h1 className='flex-space title'>Volcano Boyz</h1> 
                         <a className='home-icon'onClick={this.goHome} ></a> 
                     </nav>
-
+                    <div className='dash-desk'>
 					<nav className='dash-nav'  
                         style={{display:this.state.display}}>
                         <Link to ={`${path}`} onClick={this.hideMenu}>
@@ -67,6 +76,7 @@ class Dashboard extends Component{
 						<Route exact path= {`${path}/upload`} 
                              component = {UploadTest}/>
 					</Switch>
+                    </div>
 				</div>
 			</Router>
 		)

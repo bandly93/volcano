@@ -54,7 +54,7 @@ a{
 /*-----------------------Pagination---------------------------*/
 .paginate{
     display:flex;
-    padding-top:5%;
+    padding:5% 2%;
 }
 .paginate a{
     flex:1;
@@ -87,19 +87,82 @@ a{
 .blog-post img{
 	max-width: 100%;
 }
-.dash-container hr{
-	margin: 0 7%;
+/*-----------------------Dashboard---------------------------*/
+.dashboard{
+}
+.dash-nav{
+    flex-direction:column;
 }
 
+.dash-container hr{
+	margin: 3% 7%;
+}
+
+.home-icon{
+    content:url('../images/icons/home.svg');
+    height:50px;
+    padding:2%;
+    background-color:#800000;
+}
+
+.dash-monav{
+    display:flex;
+    justify-content:space-between;
+}
+
+.flex-space{
+    flex-grow:2;
+}  
+.title{
+    text-align:center;
+    background-color:#404040;
+    color:white;
+    margin:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.dash-nav{
+    background-color:#404040;
+    min-height:100vh;
+}
+.dash-nav a{
+    color:white;
+    padding:10%;
+}
+.dash-container{
+    display:flex;
+    flex-direction:column;
+}
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
 @media only screen and (min-width:812px){
     a{
         font-size:21px;
-    } 
-    .dash-nav{
+    }
+    .dash-desk{
         display:flex;
-    }  
+    }
+    .dash-nav{
+        flex:1;
+    } 
+    .dash-nav a{
+        padding:5%;
+        border:1px solid teal;
+    } 
+    .dash-container{
+        flex:4;
+    }
+    .profilePic{
+        background-color:maroon;
+        display:block;
+        flex:1;
+    }
+    .paginate{
+        margin-left:25%;
+    } 
 }
 
 /*-----------------------------Mobile View ----------------------------*/
@@ -112,8 +175,6 @@ a{
     .dashboard{
     }  
     .dash-nav{
-        display:flex;
-        flex-direction:column;
         position:absolute;
         background-color:#404040;
     }
@@ -123,38 +184,18 @@ a{
     }
     .dash-container{
         text-align:center;
-        margin-top:3%;
+        padding-top:3%;
     }
    /*---------------------------Dash Mobile Nav ----------*/
-    .dash-monav{
-        display:flex;
-        justify-content:space-between;
-    }
     .hamburger{
         content:url('../images/icons/hamburger.svg');
         height:50px;
         padding:2%;
         background-color:teal;
+    }
+    .profilePic{
+        display:none;
     } 
-    .home-icon{
-        content:url('../images/icons/home.svg');
-        height:50px;
-        padding:2%;
-        background-color:#800000;
-    }
-    .flex-space{
-        flex-grow:1;
-    }  
-    .title{
-        text-align:center;
-        background-color:#404040;
-        color:white;
-        margin:0;
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-    }
 }
 
 
