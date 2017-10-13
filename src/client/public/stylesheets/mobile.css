@@ -89,11 +89,12 @@ a{
 }
 /*-----------------------Dashboard---------------------------*/
 .dashboard{
+    display:flex;
 }
-.dash-nav{
+.dash-sidenav{
+    flex:1;
     flex-direction:column;
 }
-
 .dash-container hr{
 	margin: 3% 7%;
 }
@@ -104,9 +105,11 @@ a{
     padding:2%;
     background-color:#800000;
 }
-
-.dash-monav{
+.dash-topnav{
     display:flex;
+}
+.dash-view{
+    flex:4;
     justify-content:space-between;
 }
 
@@ -124,17 +127,31 @@ a{
     align-items:center;
 }
 
-.dash-nav{
+.dash-sidenav{
     background-color:#404040;
     min-height:100vh;
 }
-.dash-nav a{
+.dash-sidenav a{
     color:white;
     padding:10%;
 }
 .dash-container{
+}
+.profile-pic{
     display:flex;
-    flex-direction:column;
+    background-color:teal;
+    padding:10% 5%;
+    height:50px;
+    justify-content:space-around;
+}
+.profile-pic img{
+    content:url('../images/about/profile.jpg');
+    max-height:50px;
+    border-radius:50%;
+}
+.profile-pic p{
+    display:inline;
+    color:white;
 }
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
@@ -142,27 +159,21 @@ a{
     a{
         font-size:21px;
     }
-    .dash-desk{
-        display:flex;
-    }
-    .dash-nav{
-        flex:1;
+    .dash-sidenav{
     } 
-    .dash-nav a{
-        padding:5%;
+    .dash-sidenav a{
+        padding:10%;
         border:1px solid teal;
     } 
     .dash-container{
         flex:4;
     }
-    .profilePic{
-        background-color:maroon;
-        display:block;
-        flex:1;
-    }
     .paginate{
         margin-left:25%;
-    } 
+    }
+    .profile-pic{
+        display:flex;
+    }
 }
 
 /*-----------------------------Mobile View ----------------------------*/
@@ -174,11 +185,10 @@ a{
    /*-----------------------------Dash Home ---------------*/
     .dashboard{
     }  
-    .dash-nav{
-        position:absolute;
+    .dash-sidenav{
         background-color:#404040;
     }
-    .dash-nav a{
+    .dash-sidenav a{
         color:white;
         padding:10%;
     }
@@ -193,9 +203,6 @@ a{
         padding:2%;
         background-color:teal;
     }
-    .profilePic{
-        display:none;
-    } 
 }
 
 
