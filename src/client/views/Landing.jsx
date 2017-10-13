@@ -5,10 +5,11 @@ import {Link} from 'react-router-dom';
 function Landing(){
 	return(
 		<div className='landing'>
-			<img src='https://i.imgur.com/Ati7QzX.png'/>
+			<img />
 			<h1>Multimedia Production</h1>
 			<h1>Photos + Videos</h1>
-			<Link to ='/multimedia'><button>Enter</button></Link>
+            <br/>
+            <Link to ='/multimedia'>Enter</Link>
 		</div>
 	)
 

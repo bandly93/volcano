@@ -1,0 +1,28 @@
+
+/*------------------------------Landing ------------------------ */
+.landing{
+    text-align:center;
+    padding:3%;
+}
+.landing img{
+    content:url('../images/logos/logo.jpg');
+}
+.landing a{
+    color:white;
+    border:3px solid white;
+    padding:1%;
+}    
+/*-----------------------------Desktop View ---------------------------*/
+/*-----------------------------Desktop View ---------------------------*/
+@media only screen and (min-width:812px){
+    .landing img{
+        max-width:80%;
+    }
+
+}
+
+/*-----------------------------Mobile View ----------------------------*/
+/*-----------------------------Mobile View ----------------------------*/
+@media only screen and (max-width:812px){
+
+}
