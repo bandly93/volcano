@@ -11,7 +11,7 @@ class Index extends Component{
         window.addEventListener('resize',()=>getScreenSize(window.innerWidth));
     }
 	render(){
-    console.log(window.innerWidth); 
+    //console.log(window.innerWidth); 
 		return(
 			<div className='react'>
 				<ClientRouter />
