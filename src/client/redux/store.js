@@ -5,6 +5,7 @@ import flickr from './modules/flickrModule.js';
 import msg from './modules/msgModule.js';
 import allMsg from './modules/allMsgModule.js';
 import blog from './modules/blogModule.js';
+import view from './modules/viewModule.js';
 
 
 const reducers = combineReducers({
@@ -12,7 +13,8 @@ const reducers = combineReducers({
 	flickr,
 	msg,
 	allMsg,
-	blog
+	blog,
+    view
 })
 
 export default function configureStore(initialState){

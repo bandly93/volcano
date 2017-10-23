@@ -42,6 +42,7 @@ class Dashboard extends Component{
         window.addEventListener('resize',this.updateSize);
     }   
 	render(){
+    //console.log(window)
 		const path = this.props.match.path;
 		return(
 			<Router>

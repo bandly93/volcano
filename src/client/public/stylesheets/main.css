@@ -11,18 +11,68 @@
     color:white;
     border:3px solid white;
     padding:1%;
-}    
+}
+    
+/*----------------------------- Navbar ----------------------*/
+.navBar{
+/*    border:1px solid black;*/
+}
+.navBar a{
+/*    border:1px solid black; */
+}
+.navBar{
+    display:flex;
+    justify-content:space-between;
+}
+.logo{
+    padding:1%;
+}
+.logo img{
+    content:url('../images/logos/volc.jpg');
+    height:12vh;
+}
+
+.navBar a:not(.logo){
+	text-decoration: none;
+	color:black;
+	font-size:calc(18px);
+	font-family: 'Anton', sans-serif;
+}
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
 @media only screen and (min-width:812px){
+    .navBar a:not(.logo){
+	    padding:4% 4% 4% 0%;
+    }
+    .nav-space{
+        flex-grow:.25;
+    }
     .landing img{
         max-width:80%;
     }
-
 }
 
 /*-----------------------------Mobile View ----------------------------*/
 /*-----------------------------Mobile View ----------------------------*/
 @media only screen and (max-width:812px){
-
+    .navBar a:not(.logo){
+	    padding:3%;
+    }
+   .navBar a:not(.logo):not(.menuIcon){
+        display:none;
+    }
+    .menuIcon{
+        padding-right:2%;
+    } 
+    .menuIcon img{
+        content:url('../images/icons/menu.svg');
+        height:50px;
+    }
 }
+
+
+
+
+
+
+

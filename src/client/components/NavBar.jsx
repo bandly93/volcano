@@ -21,18 +21,22 @@ class NavBar extends Component{
 	goToLanding(){
 		this.props.history.push('/')
 	}
+    showMenu(){
+        this.state.display=='none'?this.setState({display:'flex'})
+            :this.setState({display:'none'});
+    }
 	render(){
 		return(
 			<Router>
 				<div className = "nav-container">
 					<nav className ='navBar'>
-						<a className='menuIcon'>
-                            <img src='https://i.imgur.com/659zR69.png'/>
-                        </a>
 						<a className='logo' onClick={()=>this.goToLanding()}>
-							<img src='https://i.imgur.com/61r6Xw7.png'/>
+							<img/>
 						</a>
-						<span className='flex-space'></span>
+						<span className='nav-space'></span>
+                        <a className='menuIcon'>
+                            <img/>
+                        </a>
 						<Link to = '/multimedia'>Multimedia</Link>
 						<Link to ='/about'>About+Contact</Link>
 						<Link to ='/shop'>Shop</Link>
