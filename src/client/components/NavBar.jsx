@@ -14,33 +14,31 @@ import Blog from '../views/Blog.jsx';
 import {withRouter} from "react-router-dom";
 import {toggleMenu} from '../redux/modules/viewModule';
 //import PropTypes from 'prop-types';
+import NavLinks from './NavLinks.jsx';
 
 
 class NavBar extends Component{
     constructor(){
 	    super();
+        this.goToLanding = this.goToLanding.bind(this);
     }	
 	goToLanding(){
 		this.props.history.push('/')
 	}
 	render(){
         const {toggleMenu} = this.props;
-        const {screenWidth,display} = this.props.view;
+        const {screenWidth,display,navDisplay} = this.props.view;
 		return(
 			<Router>
 				<div className = "nav-container">
-					<nav className ='navBar'>
-						<a className='logo' onClick={()=>this.goToLanding()}>
+					<nav className ='navBar' style={{flexDirection:navDisplay}}>
+						<a className='logo' onClick={this.goToLanding}>
 							<img/>
 						</a>
-						<span className='nav-space'></span>
                         <a className='menuIcon'>
                             <img/>
                         </a>
-						<Link to = '/multimedia'>Multimedia</Link>
-						<Link to ='/about'>About+Contact</Link>
-						<Link to ='/shop'>Shop</Link>
-						<Link to ='/blog'>Blog</Link>
+                        <NavLinks />
 					</nav>
 					<Switch>
 						<Route path = '/admin' component={Admin}/>

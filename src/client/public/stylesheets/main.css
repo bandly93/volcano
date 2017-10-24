@@ -19,6 +19,11 @@
 }
 .navBar a{
 /*    border:1px solid black; */
+    flex:1;
+}
+
+.navBar span{
+    flex:2;
 }
 .navBar{
     display:flex;
@@ -38,17 +43,25 @@
 	font-size:calc(18px);
 	font-family: 'Anton', sans-serif;
 }
+.navLinks nav{
+    display:flex;
+    justify-content:space-between;
+    text-align:center;
+}
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
 @media only screen and (min-width:812px){
     .navBar a:not(.logo){
-	    padding:4% 4% 4% 0%;
+	    padding:4%;
     }
     .nav-space{
-        flex-grow:.25;
+        flex-grow:.75;
     }
     .landing img{
         max-width:80%;
+    }
+    .menuIcon{
+        display:none;
     }
 }
 
@@ -59,10 +72,11 @@
 	    padding:3%;
     }
    .navBar a:not(.logo):not(.menuIcon){
-        display:none;
+/*        display:none; */
     }
     .menuIcon{
         padding-right:2%;
+        display:block;
     } 
     .menuIcon img{
         content:url('../images/icons/menu.svg');
