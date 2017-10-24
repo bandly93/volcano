@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import {connect} from 'react-redux';
 import {
   BrowserRouter as Router,
   Route,
@@ -11,6 +12,7 @@ import Multimedia from '../views/Multimedia.jsx';
 import Shop from '../views/Shop.jsx';
 import Blog from '../views/Blog.jsx';
 import {withRouter} from "react-router-dom";
+import {toggleMenu} from '../redux/modules/viewModule';
 //import PropTypes from 'prop-types';
 
 
@@ -21,11 +23,9 @@ class NavBar extends Component{
 	goToLanding(){
 		this.props.history.push('/')
 	}
-    showMenu(){
-        this.state.display=='none'?this.setState({display:'flex'})
-            :this.setState({display:'none'});
-    }
 	render(){
+        const {toggleMenu} = this.props;
+        const {screenWidth,display} = this.props.view;
 		return(
 			<Router>
 				<div className = "nav-container">
@@ -57,5 +57,18 @@ class NavBar extends Component{
 
 
 
-export default withRouter(NavBar);
+const mapStateToProps = (state) =>{
+    return{
+        view:state.view,
+    }
+};
+
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        getScreenSize:(display) => dispatch(viewAct(display)),
+        toggleMenu:()=> dispatch(toggleMenu())
+    }
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(NavBar);
 
