@@ -5,11 +5,8 @@ import flickr from './modules/flickrModule.js';
 import msg from './modules/msgModule.js';
 import allMsg from './modules/allMsgModule.js';
 import blog from './modules/blogModule.js';
-<<<<<<< Updated upstream
 import view from './modules/viewModule.js';
-=======
 import upload from './modules/uploadModule.js';
->>>>>>> Stashed changes
 
 
 const reducers = combineReducers({
@@ -18,11 +15,8 @@ const reducers = combineReducers({
 	msg,
 	allMsg,
 	blog,
-<<<<<<< Updated upstream
-    view
-=======
+    view,
 	upload
->>>>>>> Stashed changes
 })
 
 export default function configureStore(initialState){
