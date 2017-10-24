@@ -1,31 +1,62 @@
 var express = require('express');
 var uploadRouter = express.Router();
-var fs = require('fs-extra');
+var fs = require('fs');
 var util = require('util');
 var formidable = require("formidable");
 uploadRouter.route('/')
 
 .post((req,res)=>{
-	var form = new formidable.IncomingForm();
-	form.parse(req,function(err,fields,files){
-		res.writeHead(200,{'content-type':'text/plain'});
-		res.write('received upload:');
-   	    res.end(util.inspect({fields: fields, files: files}));
-	});
-	form.on('end',function(fields,files){
-		var file_name =  this.openedFiles[0].name;
-	    var temp_path = this.openedFiles[0].path;
-	    var new_location = './src/client/public/images/uploads/';
-		fs.copy(temp_path,new_location+file_name,function(err){
-			if (err){
-				console.error(err);
-			
-			}else{
-				console.log("Sucessfully added a photo to the file storage system!");
-			}
+	var img = req.body.image;
+	var ext = img.split(';')[0].match(/jpeg|png|gif/)[0];
+	var data = img.replace(/^data:image\/\w+;base64,/,"");
+	var buf = new Buffer(data,'base64');
 	
-		});
-	});	
+	fs.writeFile('./src/client/public/images/uploads/image.'+ext,buf);
+	
+
+
+	/*	
+	let form = new formidable.IncomingForm();
+	form.uploadDir = "./src/client/public/images/uploads/";
+	form.keepExtensions = true;
+	form.encoding = 'utf-8';
+	form.type = 'multipart/data-form';
+	//form.maxFieldSize = 10 * 1024 * 1024;
+	form.multiples = true;
+	
+	form.parse(req,(err,fields,files) => {
+		console.log("You made it inside the form");
+		if (err){
+			console.log(err);
+			res.json({
+				result: "Error on upload",
+				data: {},
+				message: `Error on uploading photo. Error Message : ${err}`	
+			});
+		}else{
+			console.log(req.body);
+		
+		
+			if (arrayOfFiles.length > 0){
+				let fileNames = [];
+				arrayOfFiles.forEach(imageFile => fileNames.push(imageFile.name));
+				res.json({
+					result:"ok",
+					data: fileNames,
+					numberOfImages: fileNames.length,
+					message:"Upload images successfully"
+				});
+			}else{
+				res.json({
+					result:"failed",
+					data:{},
+					numberOfImages:0,
+					message:"No images to upload !"
+				});
+			}	
+		}	
+	});
+	*/
 });
 
 module.exports = uploadRouter;

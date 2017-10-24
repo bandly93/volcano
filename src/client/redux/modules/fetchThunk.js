@@ -28,3 +28,21 @@ export function postData(url,method,data,actFunc){
 		})
 	}
 }
+
+
+export function postPhoto(url,method,data,actFunc){
+	return(dispatch)=>{
+		fetch(url,{
+			method:method,
+			credentials:'same-origin',
+			headers: {'Content-Type':'multipart/form-data'},
+			body:data
+		})
+		.then(response => response.json())
+		.then(data=>{
+			if(actFunc){
+				actFunc(data)
+			}
+		})
+	}
+}

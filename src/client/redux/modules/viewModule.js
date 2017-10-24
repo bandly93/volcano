@@ -1,4 +1,4 @@
-//state modifiers
+//initial state
 const display =(size)=>{
     return size <=812? 'none':'flex';
 }
@@ -10,9 +10,7 @@ const toggle = (size,display) =>{
         return display == 'none'? 'flex':'none';
     }
     return 'flex';
-
 }
-//initial state
 const initialState ={
     screenWidth:typeof window === 'object'? window.innerWidth:null,
     display:display(window.innerWidth),
@@ -33,19 +31,18 @@ export const toggleMenu = ()=> {
 }
 export const toggleView = () => {
     return {
-        type:'TOGGLE_MAIN_NAV'
+        type:'TOGGLE_VIEW'
     }
 }
 
 //reducer
 export const view = (state=initialState,action) =>{
-    const {screenWidth} = action;
     switch(action.type){
         case 'CHANGE_VIEW':
             return {...state,
-                screenWidth:screenWidth,
-                display:display(screenWidth),
-                navDisplay:navDisplay(screenWidth)
+                screenWidth:action.screenWidth,
+                display:display(action.screenWidth),
+                navDisplay:navDisplay(action.screenWidth)
             }
         case 'TOGGLE_MENU':
             return {...state,
@@ -55,7 +52,5 @@ export const view = (state=initialState,action) =>{
             return state;
     }
 } 
-
-
 
 export default view;
