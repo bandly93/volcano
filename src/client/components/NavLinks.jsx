@@ -1,10 +1,12 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 
-const NavLinks= ()=>{
+const NavLinks= (props)=>{
+    const {toggleMenu} = props;
+    const {screenWidth,display,navDisplay,navContainer} = props.view;
     return(
-        <span className='navLinks'>
-            <nav>
+        <span className='navLinks' style={{display:navContainer}}>
+            <nav style={{display:navDisplay}}>
                 <Link to = '/multimedia'>Multimedia</Link>
                 <Link to ='/about'>About+Contact</Link>
                 <Link to ='/shop'>Shop</Link>
@@ -15,3 +17,5 @@ const NavLinks= ()=>{
 }
 
 export default NavLinks;
+
+//style={{flexDirection:navDisplay}}

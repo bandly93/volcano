@@ -1,8 +1,9 @@
-t display =(size)=>{
+//
+const display =(size)=>{
     return size <=812? 'none':'flex';
 }
 const navDisplay = (size) => {
-    return size <=812? 'column':'row'
+    return size <=812? 'flex':'block';
 }
 const toggle = (size,display) =>{
     if(size <= 812){
@@ -11,11 +12,15 @@ const toggle = (size,display) =>{
     return 'flex';
 
 }
+const navContainer = (size)=>{
+    return size <=812? 'none':'block';
+}
 //initial state
 const initialState ={
     screenWidth:typeof window === 'object'? window.innerWidth:null,
     display:display(window.innerWidth),
-    navDisplay: navDisplay(window.innerWidth)
+    navDisplay: navDisplay(window.innerWidth),
+    navContainer:navContainer(window.innerWidth)
 };
 
 //action creator
@@ -44,7 +49,8 @@ export const view = (state=initialState,action) =>{
             return {...state,
                 screenWidth:screenWidth,
                 display:display(screenWidth),
-                navDisplay:navDisplay(screenWidth)
+                navDisplay:navDisplay(screenWidth),
+                navContainer:navContainer(screenWidth)
             }
         case 'TOGGLE_MENU':
             return {...state,

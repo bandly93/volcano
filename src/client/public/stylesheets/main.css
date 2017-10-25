@@ -24,6 +24,7 @@
 
 .navBar span{
     flex:2;
+    text-align:right;
 }
 .navBar{
     display:flex;
@@ -43,11 +44,12 @@
 	font-size:calc(18px);
 	font-family: 'Anton', sans-serif;
 }
-.navLinks nav{
-    display:flex;
-    justify-content:space-between;
-    text-align:center;
+.navLinks{
+    padding:5vh 1vh;
 }
+.navLinks nav{
+}
+
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
 @media only screen and (min-width:812px){
@@ -77,10 +79,14 @@
     .menuIcon{
         padding-right:2%;
         display:block;
+        text-align:right;
     } 
     .menuIcon img{
         content:url('../images/icons/menu.svg');
         height:50px;
+    }
+    .navLinks nav{
+        display:inline-block;
     }
 }
 

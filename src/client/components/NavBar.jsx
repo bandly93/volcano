@@ -31,14 +31,14 @@ class NavBar extends Component{
 		return(
 			<Router>
 				<div className = "nav-container">
-					<nav className ='navBar' style={{flexDirection:navDisplay}}>
+					<nav className ='navBar'>
 						<a className='logo' onClick={this.goToLanding}>
 							<img/>
 						</a>
                         <a className='menuIcon'>
                             <img/>
                         </a>
-                        <NavLinks />
+                        <NavLinks {...this.props}/>
 					</nav>
 					<Switch>
 						<Route path = '/admin' component={Admin}/>
