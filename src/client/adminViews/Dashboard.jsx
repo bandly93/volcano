@@ -12,7 +12,7 @@ import Upload from './Upload.jsx';
 import UploadTest from "./TestingUpload.jsx";
 import DashHome from './DashHome.jsx';
 import ProfilePic from '../public/images/about/profile.jpg';
-import {toggleMenu} from '../redux/modules/viewModule';
+import {toggleDashNav} from '../redux/modules/viewModule';
 
 
 class Dashboard extends Component{
@@ -25,7 +25,7 @@ class Dashboard extends Component{
     }
 	render(){
 	    const path = this.props.match.path;
-        const {toggleMenu} = this.props;
+        const {toggleDashNav} = this.props;
         const {screenWidth,display} = this.props.view;
 		return(
 			<Router>
@@ -35,19 +35,19 @@ class Dashboard extends Component{
                         <img></img>
                         <p>Phuong Dang</p>
                         </div>
-                        <Link to ={`${path}`} onClick={toggleMenu}>
+                        <Link to ={`${path}`} onClick={toggleDashNav}>
                             Dash Home</Link>
-						<Link to ={`${path}/messages`}onClick={toggleMenu}>
+						<Link to ={`${path}/messages`}onClick={toggleDashNav}>
                             Messages</Link>
-						<Link to ={`${path}/blog`} onClick={toggleMenu}>
+						<Link to ={`${path}/blog`} onClick={toggleDashNav}>
                             Post Blog</Link>
-						<Link to ={`${path}/upload`} onClick={toggleMenu}>
+						<Link to ={`${path}/upload`} onClick={toggleDashNav}>
                             Upload Images</Link>
 					</nav>
 
                     <div className='dash-view'>
                         <nav className='dash-topnav'>
-                            <a className='hamburger' onClick={toggleMenu}></a>
+                            <a className='hamburger' onClick={toggleDashNav}></a>
                             <h1 className='flex-space title'>Volcano Boyz</h1> 
                             <a className='home-icon'onClick={this.goHome} ></a> 
                         </nav>
@@ -79,7 +79,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
     return{
         getScreenSize:(display) => dispatch(viewAct(display)),
-        toggleMenu:()=> dispatch(toggleMenu())
+        toggleDashNav:()=> dispatch(toggleDashNav())
     }
 };
 

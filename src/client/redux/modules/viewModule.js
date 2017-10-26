@@ -1,9 +1,8 @@
-//
+//state modifiers
+
+//dash side nav
 const display =(size)=>{
     return size <=812? 'none':'flex';
-}
-const navDisplay = (size) => {
-    return size <=812? 'flex':'block';
 }
 const toggle = (size,display) =>{
     if(size <= 812){
@@ -12,15 +11,22 @@ const toggle = (size,display) =>{
     return 'flex';
 
 }
-const navContainer = (size)=>{
+//main nav
+const toggleMain = (size,navCon) => {
+    if(size <= 812){
+        return navCon == 'none'? 'flex':'none';
+    }
+    return 'block';
+}
+const navLinks = (size)=>{
     return size <=812? 'none':'block';
 }
+
 //initial state
 const initialState ={
     screenWidth:typeof window === 'object'? window.innerWidth:null,
     display:display(window.innerWidth),
-    navDisplay: navDisplay(window.innerWidth),
-    navContainer:navContainer(window.innerWidth)
+    navLinks:navLinks(window.innerWidth)
 };
 
 //action creator
@@ -30,12 +36,12 @@ export const viewAct = display => {
         screenWidth:display 
     }
 }
-export const toggleMenu = ()=> {
+export const toggleDashNav = ()=> {
     return {
-        type:'TOGGLE_MENU'
+        type:'TOGGLE_DASH_NAV'
     }
 }
-export const toggleView = () => {
+export const toggleMainNav = () => {
     return {
         type:'TOGGLE_MAIN_NAV'
     }
@@ -49,12 +55,15 @@ export const view = (state=initialState,action) =>{
             return {...state,
                 screenWidth:screenWidth,
                 display:display(screenWidth),
-                navDisplay:navDisplay(screenWidth),
-                navContainer:navContainer(screenWidth)
+                navLinks:navLinks(screenWidth)
             }
-        case 'TOGGLE_MENU':
+        case 'TOGGLE_DASH_NAV':
             return {...state,
                 display:toggle(state.screenWidth,state.display)
+            }
+        case 'TOGGLE_MAIN_NAV':
+            return {...state,
+                navLinks:toggleMain(state.screenWidth,state.navLinks)
             }
         default:
             return state;

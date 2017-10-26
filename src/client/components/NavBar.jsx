@@ -12,7 +12,7 @@ import Multimedia from '../views/Multimedia.jsx';
 import Shop from '../views/Shop.jsx';
 import Blog from '../views/Blog.jsx';
 import {withRouter} from "react-router-dom";
-import {toggleMenu} from '../redux/modules/viewModule';
+import {toggleMainNav} from '../redux/modules/viewModule';
 //import PropTypes from 'prop-types';
 import NavLinks from './NavLinks.jsx';
 
@@ -26,8 +26,7 @@ class NavBar extends Component{
 		this.props.history.push('/')
 	}
 	render(){
-        const {toggleMenu} = this.props;
-        const {screenWidth,display,navDisplay} = this.props.view;
+        const {toggleMainNav} = this.props;
 		return(
 			<Router>
 				<div className = "nav-container">
@@ -35,7 +34,7 @@ class NavBar extends Component{
 						<a className='logo' onClick={this.goToLanding}>
 							<img/>
 						</a>
-                        <a className='menuIcon'>
+                        <a className='menuIcon' onClick={toggleMainNav}>
                             <img/>
                         </a>
                         <NavLinks {...this.props}/>
@@ -64,7 +63,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
     return{
         getScreenSize:(display) => dispatch(viewAct(display)),
-        toggleMenu:()=> dispatch(toggleMenu())
+        toggleMainNav:()=> dispatch(toggleMainNav())
     }
 };
 

@@ -44,11 +44,6 @@
 	font-size:calc(18px);
 	font-family: 'Anton', sans-serif;
 }
-.navLinks{
-    padding:5vh 1vh;
-}
-.navLinks nav{
-}
 
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
@@ -64,6 +59,9 @@
     }
     .menuIcon{
         display:none;
+    }
+    .navLinks{
+        padding:5vh 1vh;
     }
 }
 
@@ -85,8 +83,13 @@
         content:url('../images/icons/menu.svg');
         height:50px;
     }
-    .navLinks nav{
-        display:inline-block;
+    .navLinks {
+        flex-direction:column;
+        position:absolute;
+        background-color:white;
+        right:1vh;
+        top:8.5vh;
+        padding:2vh;
     }
 }
 
