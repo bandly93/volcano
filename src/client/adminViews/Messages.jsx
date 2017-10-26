@@ -28,7 +28,7 @@ class Messages extends Component{
     }
 
 	allMsgID(){
-        if(this.props.allMsg.data){
+        if(this.props.allMsg.data[0]){
             let obj ={};
             let allMsg = this.props.allMsg.data;
             obj.new = allMsg[0]._id;

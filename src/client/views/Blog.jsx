@@ -28,7 +28,7 @@ class Blog extends Component{
 		)		
 	}
 	blogID(){
-        if(this.props.blog.data){
+        if(this.props.blog.data[0]){
             let obj ={};
             let blog = this.props.blog.data;
             obj.new = blog[0]._id;
