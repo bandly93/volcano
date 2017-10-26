@@ -1,4 +1,50 @@
+/*-------------------------file-storage-system-------------------------*/
+.file-storage-system{
+	justify-content:center;
+	padding-left:45%
+}
 
+
+
+/*-------------------slideshow buttons------------------------*/
+.slideshow-container{
+	background-color:grey;
+
+}
+
+.left-button , .right-button{
+	background-color:#f1f1f1;
+	border:none;
+	padding:8px 16px;
+
+}
+.left-button{
+	position:absolute;
+	top:50%;
+	left:30%;
+	transform:translate(0%,-50%);
+}
+.right-button{
+	position:absolute;
+	top:50%;
+	right:30%;
+	transform:translate(0%,-50%);
+}
+/*-------------------------register && login--------------------*/
+.reglog{
+	display:flex;
+	text-align: center;
+	margin:3%;
+	margin-bottom: 15%;
+}
+.reglogChild{
+	flex:1;
+	padding:2%;
+}
+input{
+	padding:1%;
+	margin:1%;
+}
 /*------------------------------Landing ------------------------ */
 .landing{
     text-align:center;
@@ -14,6 +60,9 @@
 }
     
 /*----------------------------- Navbar ----------------------*/
+.nav-container{
+    text-align:center;
+}
 .navBar{
 /*    border:1px solid black;*/
 }
@@ -32,6 +81,7 @@
 }
 .logo{
     padding:1%;
+    text-align:left;
 }
 .logo img{
     content:url('../images/logos/volc.jpg');
@@ -44,10 +94,73 @@
 	font-size:calc(18px);
 	font-family: 'Anton', sans-serif;
 }
+/*-------------------------multimedia--------------------*/
+.multimedia{
+	flex:1;
+}
 
+.multimedia img{
+	max-width:65%;
+}
+
+.multimedia-flexbox img:hover {
+	opacity: 0.6;
+}
+.multimedia p {
+	font-size:2vh;
+}
+
+/*-----------------------ABOUT PAGE---------------------------*/
+span .about{
+	max-width: 50%;
+}
+.about p{
+	padding: 2%;
+}
+.about img {
+	max-height:300px;
+	border-radius: 50%;
+}
+
+/*-----------------------FLASH MESSAGES---------------------------*/
+.err{
+	background-color: red;
+	color:white;
+	padding:1%;
+}
+.success{
+	background-color: green;
+	color:white;
+	padding:1%;
+}
+
+/*-----------------------FORM---------------------------*/
+
+.contact-form input:not(.submit){
+	width:300px;
+}
+
+.contact-form{
+	display:inline-block;
+	width:325px;
+	margin:3%;
+}
+.contact-form textarea{
+	width:305px;
+}
+.submit{
+	width:100px;
+	padding:5px;
+	border:none;
+	background-color: white;
+	border:1px solid gray;
+}
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
 @media only screen and (min-width:812px){
+    .multimedia-flexbox {
+        display:flex;
+    }
     .navBar a:not(.logo){
 	    padding:4%;
     }
@@ -63,6 +176,11 @@
     .navLinks{
         padding:5vh 1vh;
     }
+
+	.about{
+		display:flex;
+		margin-bottom:4%;
+	}
 }
 
 /*-----------------------------Mobile View ----------------------------*/
@@ -91,6 +209,9 @@
         top:8.5vh;
         padding:2vh;
     }
+   .about{
+      margin-bottom:2%;
+   }
 }
 
 
