@@ -30,8 +30,8 @@ module.exports = {
       test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader", 
 		  query:{presets:['react','env','stage-3']}
     },
-    { test: /\.jpg$/,loader: "file-loader" },
-    { test: /\.svg/, loader: "svg-url-loader",options:{}}
+    { test: /\.(jpg|svg|png|gif)$/,loader: "file-loader" },
+    { test: /\.css$/, use:[{loader:"style-loader"},{loader:"css-loader"}]}
   ]
 }/*,
   plugins: [

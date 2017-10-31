@@ -4,6 +4,8 @@ import ClientRouter from '../components/ClientRouter.jsx';
 import {Provider, connect} from 'react-redux';
 import configureStore from '../redux/store';
 import {viewAct} from '../redux/modules/viewModule';
+//import 'draft-js/dist/Draft.css';
+
 
 class Index extends Component{
     componentDidMount(){

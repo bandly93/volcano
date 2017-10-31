@@ -13,7 +13,7 @@ import UploadTest from "./TestingUpload.jsx";
 import DashHome from './DashHome.jsx';
 import ProfilePic from '../public/images/about/profile.jpg';
 import {toggleDashNav} from '../redux/modules/viewModule';
-
+import MyEditor from './TestBlog.jsx';
 
 class Dashboard extends Component{
     constructor(){
@@ -43,6 +43,8 @@ class Dashboard extends Component{
                             Post Blog</Link>
 						<Link to ={`${path}/upload`} onClick={toggleDashNav}>
                             Upload Images</Link>
+                        <Link to ={`${path}/test`} onClick={toggleDashNav}>
+                            Blog Editor</Link>
 					</nav>
 
                     <div className='dash-view'>
@@ -60,6 +62,8 @@ class Dashboard extends Component{
                                  component ={PostBlog}/>
                             <Route exact path= {`${path}/upload`} 
                                  component = {UploadTest}/>
+                            <Route exact path= {`${path}/test`}
+                                 component = {MyEditor} />
                         </Switch>
                     </div>
 				

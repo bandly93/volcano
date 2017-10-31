@@ -109,14 +109,16 @@ input{
 }
 
 /*-----------------------ABOUT PAGE---------------------------*/
+.about{
+    display:flex;
+}
 span .about{
-	max-width: 50%;
+    flex:1;
 }
 .about p{
 	padding: 2%;
 }
 .about img {
-	max-height:300px;
 	border-radius: 50%;
 }
 
@@ -153,6 +155,14 @@ span .about{
 	background-color: white;
 	border:1px solid gray;
 }
+/*-----------------------DRAFTJS EDITOR---------------------------*/
+.editor{
+    border:1px solid teal;
+    margin:5%;
+    height:50vh;
+    padding:2%;
+}
+
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
 @media only screen and (min-width:812px){
@@ -179,6 +189,9 @@ span .about{
 		display:flex;
 		margin-bottom:4%;
 	}
+    .about img{
+	    max-height:300px;
+    }
 }
 
 /*-----------------------------Mobile View ----------------------------*/
@@ -207,20 +220,17 @@ span .about{
         position:absolute;
         background-color:white;
         right:1vh;
-        top:8.5vh;
+        top:9vh;
         padding:2vh;
     }
    .about{
       margin-bottom:2%;
-   }
-}
-/*
-@media only screen and (max-width:500px){
-    .landing{
-        padding-top:25%;
+      flex-wrap:wrap;
+    }    
+    .about img{
+        max-height:250px;
     }
 }
-*/
 
 
 

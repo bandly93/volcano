@@ -29,8 +29,8 @@ class NavBar extends Component{
         const {toggleMainNav} = this.props;
 		return(
 			<Router>
-				<div className = "nav-container">
-					<nav className ='navBar'>
+				<div className = "nav-container" >
+					<nav className ='navBar' >
 						<a className='logo' onClick={this.goToLanding}>
 							<img/>
 						</a>

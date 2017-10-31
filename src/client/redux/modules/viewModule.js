@@ -21,7 +21,11 @@ const toggleMain = (size,navCon) => {
 const navLinks = (size)=>{
     return size <=812? 'none':'block';
 }
-
+const hideMenu = (size,display) => {
+    if(size <= 812 && display != 'none'){
+        return 'none';
+    }
+}
 //initial state
 const initialState ={
     screenWidth:typeof window === 'object'? window.innerWidth:null,
