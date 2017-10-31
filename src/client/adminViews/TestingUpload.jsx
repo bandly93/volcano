@@ -4,12 +4,12 @@ import {uploadAct} from '../redux/modules/uploadModule';
 import {connect} from 'react-redux';
 
 class UploadTest extends Component{
+	
 	constructor(props){
 		super(props);
 		this.state = {
-			file:''
+			file:{}
 		}
-
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 		this.onFormChange = this.onFormChange.bind(this);
 	}
@@ -21,14 +21,22 @@ class UploadTest extends Component{
 	}
 
 	onFormChange(e){
-		var data = e.target.files[0]
-		var reader = new FileReader();
-		reader.onload = function(event){
-			this.setState({file:event.target.result})
-		}.bind(this);
-		reader.readAsDataURL(data);
+		//photos variable contains all the raw photo data from input
+		let photos = e.target.files;	
+		const addPhotosToState = (photos) => {
+			let d = new Date();
+			let photosObj = {};	
+			for (let i = 0; i < photos.length; i++){
+				let reader = new FileReader();
+				reader.onload = function(event){
+					photosObj[d.getTime()+i] = {name:photos[i].name,data:event.target.result}
+					this.setState({file:{...this.state.file,...photosObj}})
+				}.bind(this);
+				reader.readAsDataURL(photos[i]);
+			}
+		}
+		addPhotosToState(photos);	
 	}
-	
 	render(){
 		return(
 			<div>
