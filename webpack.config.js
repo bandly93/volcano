@@ -27,13 +27,22 @@ module.exports = {
   module: {
   loaders: [
     { 
-      test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader", 
-		  query:{presets:['react','env','stage-3']}
+		test: /\.jsx?$/,
+		exclude: /node_modules/,
+		loader:"babel-loader", 
+		options:{
+			presets:['react','env','stage-3'],
+			plugins:['transform-class-properties']
+		}
+	//	plugins:['transform-class-properties']
     },
     { test: /\.(jpg|svg|png|gif)$/,loader: "file-loader" },
     { test: /\.css$/, use:[{loader:"style-loader"},{loader:"css-loader"}]}
   ]
-}/*,
+}
+
+
+/*,
   plugins: [
 new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'

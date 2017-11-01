@@ -10,18 +10,15 @@ class UploadTest extends Component{
 		this.state = {
 			file:{}
 		}
-		this.onFormSubmit = this.onFormSubmit.bind(this);
-		this.onFormChange = this.onFormChange.bind(this);
 	}
 	
-	onFormSubmit(e){
+	onFormSubmit=(e)=>{
 		e.preventDefault();
 		console.log(this.state.file);
 		this.props.postData('/upload','POST',{image:this.state.file},this.props.uploadAct);
-	}
+	};
 
-	onFormChange(e){
-		//photos variable contains all the raw photo data from input
+	onFormChange=(e)=>{
 		let photos = e.target.files;	
 		const addPhotosToState = (photos) => {
 			let d = new Date();
@@ -36,7 +33,7 @@ class UploadTest extends Component{
 			}
 		}
 		addPhotosToState(photos);	
-	}
+	};
 	render(){
 		return(
 			<div>
