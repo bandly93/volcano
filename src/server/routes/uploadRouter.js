@@ -3,7 +3,11 @@ var uploadRouter = express.Router();
 var fs = require('fs');
 var util = require('util');
 var formidable = require("formidable");
-uploadRouter.route('/')
+var config = require("../../../config.js");
+var {URL} =require("url");
+
+
+uploadRouter.route('/upload')
 
 .post((req,res)=>{
 	/*	
@@ -51,8 +55,30 @@ uploadRouter.route('/')
 				});
 			}	
 		}	
-	});
-	
+	});	
 });
+
+
+//get all photo names
+uploadRouter.route('/getFiles')
+.post((req,res)=>{
+	let dir = new URL(config.dir.DIR_BAND);
+		
+	console.log(getFiles(dir));
+});
+
+
+const getFiles = (dir) => {
+	var files = fs.readdirSync(dir);
+	return files.reduce((arr,file) => [...arr,[{name:file,path:dir+file}]],[]);
+}
+
+
+const getFilesMap = (dir) => {
+	var files = fs.readdirSync(dir);
+	var fileName = [];
+	files.map(file => fileName.push({name:file,path:dir+file}));
+	return fileName;
+}
 
 module.exports = uploadRouter;

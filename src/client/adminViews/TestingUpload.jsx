@@ -1,7 +1,15 @@
 import React,{Component} from "react";
+import PhotoLibrary from "./PhotoLibrary.jsx";
 import {postData} from '../redux/modules/fetchThunk';
 import {uploadAct} from '../redux/modules/uploadModule';
 import {connect} from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch
+} from 'react-router-dom';
+
 
 class UploadTest extends Component{
 	
@@ -15,7 +23,7 @@ class UploadTest extends Component{
 	onFormSubmit=(e)=>{
 		e.preventDefault();
 		console.log(this.state.file);
-		this.props.postData('/upload','POST',{image:this.state.file},this.props.uploadAct);
+		this.props.postData('/upload/getFiles','POST',{image:this.state.file},this.props.uploadAct);
 	};
 
 	onFormChange=(e)=>{
@@ -35,13 +43,24 @@ class UploadTest extends Component{
 		addPhotosToState(photos);	
 	};
 	render(){
+		const path = this.props.match.path;
 		return(
-			<div>
-				<form onSubmit = {this.onFormSubmit}>
-					<input type = "file" name = "image" multiple = "multiple" onChange = {this.onFormChange}/>
-					<input type = "submit"/>
-				</form>
-			</div>
+			<Router>
+				<div>	
+					<div>
+						<form onSubmit = {this.onFormSubmit}>
+							<input type = "file" name = "image" multiple = "multiple" onChange = {this.onFormChange}/>
+							<input type = "submit"/>
+						</form>
+						<div>
+							<Link to = {`${path}/photolibrary`} >Click here to see all photos </Link>
+						</div>
+					</div>
+					<Switch>
+						<Route exact path = {`${path}/photolibrary`} component = {PhotoLibrary}/>
+					</Switch>
+				</div>
+			</Router>
 		)
 	}
 }

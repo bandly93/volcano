@@ -1,5 +1,5 @@
-/node_modules
 .DS_Store
+/node_modules
 nom-debug.log
 /*.env
 config.js
