@@ -189,6 +189,7 @@ a{
     .dash-sidenav{
         background-color:#404040;
         position:absolute;
+        z-index:2;
     }
     .dash-sidenav a{
         color:white;
