@@ -4,7 +4,7 @@ var fs = require('fs');
 var util = require('util');
 var formidable = require("formidable");
 var config = require("../../../config.js");
-var {URL} =require("url");
+var {URL} = require("url");
 
 
 uploadRouter.route('/upload')
@@ -67,18 +67,9 @@ uploadRouter.route('/getFiles')
 	console.log(getFiles(dir));
 });
 
-
 const getFiles = (dir) => {
 	var files = fs.readdirSync(dir);
-	return files.reduce((arr,file) => [...arr,[{name:file,path:dir+file}]],[]);
-}
-
-
-const getFilesMap = (dir) => {
-	var files = fs.readdirSync(dir);
-	var fileName = [];
-	files.map(file => fileName.push({name:file,path:dir+file}));
-	return fileName;
+	return files.map(file => file=({name:file,path:dir+file}));
 }
 
 module.exports = uploadRouter;

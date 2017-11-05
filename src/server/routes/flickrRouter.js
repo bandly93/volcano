@@ -25,7 +25,6 @@ data.portraits = '72157685685728341';
 data.headshots = '72157686216916554';
 data.weddingphotos = '72157684929133582';
 data.about = '72157685935838050';
-
 const fetchPhotos = (res,pathname) => {
 	const key = process.env.API_KEY || config.flickr.API_KEY;
 	const user_id = process.env.USER_ID || config.flickr.USER_ID;
