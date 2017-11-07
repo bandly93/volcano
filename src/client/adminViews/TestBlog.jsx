@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import {fetchData,postData} from '../redux/modules/fetchThunk';
 import {styleMap,getBlockStyle} from '../adminComp/editorStyle.js';
 
-
 class MyEditor extends Component{
     constructor(props){
         super(props);
@@ -51,7 +50,9 @@ class MyEditor extends Component{
     postData(){
         const {editorState} = this.state;
         var contentState = editorState.getCurrentContent();
-        this.props.postData('/editor','POST',convertToRaw(contentState));
+        var data = {editor:contentState};
+        console.log(data);
+        this.props.postData('/editor','POST',data);
     }
     render(){
         const {editorState} = this.state;

@@ -16,8 +16,8 @@ export const upload = (state = {},action)=>{
 	switch(action.type){
 		case 'UPLOAD':
 			return action.upload
-		case 'GET_ALL_PHOTOS'
-			return action
+		//case 'GET_ALL_PHOTOS'
+		//	return action
 		default:
 			return state;
 	}

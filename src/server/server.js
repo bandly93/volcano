@@ -6,7 +6,7 @@ app.use(morgan('dev'));
 var port = process.env.PORT || 3000;
 var path = require('path');
 var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(require('cookie-parser')());
 
 //database

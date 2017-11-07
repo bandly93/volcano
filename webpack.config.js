@@ -36,7 +36,7 @@ module.exports = {
 		}
 	//	plugins:['transform-class-properties']
     },
-    { test: /\.(jpg|svg|png|gif)$/,loader: "file-loader" },
+    { test: /\.(jpg|png|gif)$/,loader: "file-loader" },
     { test: /\.css$/, use:[{loader:"style-loader"},{loader:"css-loader"}]}
   ]
 }
