@@ -30,7 +30,7 @@ class NavBar extends Component{
         const titles =[
             {link: '/multimedia',title:'Multimedia',comp:Multimedia},
             {link:'/about' , title:'About+Contact',comp:About },
-            {link:'/shop', title:'Shop',comp:Multimedia },
+            {link:'/shop', title:'Shop',comp:Shop },
             {link:'/blog' , title:'Blog',comp:Blog },
             {link:'/richBlog' , title:'Rich Blog',comp:RichBlog },
            ];

@@ -10,6 +10,19 @@ editorRouter.route('/')
     crud.post(req,res,Editor);
 })
 
+editorRouter.route('/:id')
+
+.get(function(req,res,next){	
+    if(req.query.new){
+        crud.getNew(req,res,Editor,next);
+    }
+    else if(req.query.old){
+       crud.getOld(req,res,Editor,next);
+    }
+    else{
+        crud.getAll(req,res,Editor,next)
+    }
+})
 
 
 

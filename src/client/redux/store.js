@@ -7,7 +7,7 @@ import allMsg from './modules/allMsgModule.js';
 import blog from './modules/blogModule.js';
 import view from './modules/viewModule.js';
 import upload from './modules/uploadModule.js';
-
+import editor from './modules/editorModule.js';
 
 const reducers = combineReducers({
 	admin,
@@ -16,7 +16,8 @@ const reducers = combineReducers({
 	allMsg,
 	blog,
     view,
-	upload
+	upload,
+    editor,
 })
 
 export default function configureStore(initialState){

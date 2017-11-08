@@ -11,6 +11,7 @@ exports.getAll =(req,res,model,next) =>{
         checkPagination(req,res,model,content,next); 
 	})
 }
+
 exports.delete = (req,res,model,cb) =>{
 	model.findOneAndRemove(req.body).exec(function(err,removed){
 		if(err){
@@ -19,6 +20,7 @@ exports.delete = (req,res,model,cb) =>{
 		cb(req,res,model);
 	})
 }
+
 exports.post = (req,res,model) =>{
 	var content = new model(req.body);
 	content.save(function(err){
@@ -29,6 +31,7 @@ exports.post = (req,res,model) =>{
 		res.json({msg:'success!'})
 	})
 }
+
 exports.getOld = (req,res,model,next) =>{
     if(mongoose.Types.ObjectId.isValid(req.query.old)){
         model.find({_id:{$lt:req.query.old}})
@@ -40,9 +43,6 @@ exports.getOld = (req,res,model,next) =>{
                 res.json({err:'error'});
             }
             checkPagination(req,res,model,content,next);
-           // res.json({
-           //     data:content
-           // });
         })
     }
     else{
@@ -60,9 +60,6 @@ exports.getNew = (req,res,model,next) =>{
                 res.json({err:'error'});
             }
             checkPagination(req,res,model,content.reverse(),next);
-            //res.json({
-            //    data:content.reverse()
-            //});
         })
     }
     else{
