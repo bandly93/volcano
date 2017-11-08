@@ -15,7 +15,7 @@ import {withRouter} from "react-router-dom";
 import {toggleMainNav} from '../redux/modules/viewModule';
 //import PropTypes from 'prop-types';
 import NavLinks from './NavLinks.jsx';
-
+import RichBlog from '../views/RichBlog.jsx';
 
 class NavBar extends Component{
     constructor(){
@@ -27,6 +27,16 @@ class NavBar extends Component{
 	}
 	render(){
         const {toggleMainNav} = this.props;
+        const titles =[
+            {link: '/multimedia',title:'Multimedia',comp:Multimedia},
+            {link:'/about' , title:'About+Contact',comp:About },
+            {link:'/shop', title:'Shop',comp:Multimedia },
+            {link:'/blog' , title:'Blog',comp:Blog },
+            {link:'/richBlog' , title:'Rich Blog',comp:RichBlog },
+           ];
+        const routes = titles.map(each => 
+            <Route path={each.link} component={each.comp} key={each.link}/>
+        ) 
 		return(
 			<Router>
 				<div className = "nav-container" >
@@ -37,14 +47,11 @@ class NavBar extends Component{
                         <a className='menuIcon' onClick={toggleMainNav}>
                             <img/>
                         </a>
-                        <NavLinks {...this.props}/>
+                        <NavLinks {...this.props} titles={titles}/>
 					</nav>
 					<Switch>
 						<Route path = '/admin' component={Admin}/>
-						<Route exact path= '/about' component ={About}/>
-						<Route path= '/multimedia' component ={Multimedia}/>
-						<Route exact path= '/shop' component ={Shop}/>
-						<Route path= '/blog' component ={Blog}/>
+                        {routes}
 					</Switch>
 				</div>
 			</Router>

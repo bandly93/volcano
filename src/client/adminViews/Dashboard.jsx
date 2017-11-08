@@ -28,24 +28,31 @@ class Dashboard extends Component{
 	    const path = this.props.match.path;
         const {toggleDashNav} = this.props;
         const {screenWidth,display} = this.props.view;
+        const titles = [
+            {link:'', title:'Dash Home', comp:DashHome},
+            {link:'/messages', title:'Messages', comp:Messages},
+            {link:'/blog', title:'Post Blog', comp:PostBlog},
+            {link:'/upload', title:'Upload', comp:UploadTest},
+            {link:'/test', title:'Blog', comp:MyEditor},
+        ];
+        const links = titles.map(e=>
+            <Link to={`${path}${e.link}`} onClick={toggleDashNav} key={e.link}>
+                {e.title}
+            </Link>
+        )
+        const routes = titles.map(e =>
+            <Route exact path={`${path}${e.link}`} component={e.comp}
+                key={e.link}/>
+        )
 		return(
 			<Router>
 				<div className='dashboard'>
 					<nav className='dash-sidenav' style={{display:display}}>
                         <div className='profile-pic'>
-                        <img></img>
-                        <p>Phuong Dang</p>
+                            <img></img>
+                            <p>Phuong Dang</p>
                         </div>
-                        <Link to ={`${path}`} onClick={toggleDashNav}>
-                            Dash Home</Link>
-						<Link to ={`${path}/messages`}onClick={toggleDashNav}>
-                            Messages</Link>
-						<Link to ={`${path}/blog`} onClick={toggleDashNav}>
-                            Post Blog</Link>
-						<Link to ={`${path}/upload`} onClick={toggleDashNav}>
-                            Upload Images</Link>
-                        <Link to ={`${path}/test`} onClick={toggleDashNav}>
-                            Blog Editor</Link>
+                        {links}
 					</nav>
 
                     <div className='dash-view'>
@@ -55,16 +62,7 @@ class Dashboard extends Component{
                             <a className='home-icon'onClick={this.goHome} ></a> 
                         </nav>
                         <Switch>
-                            <Route exact path= {`${path}`}
-                                 component = {DashHome} />
-                            <Route exact path= {`${path}/messages`}
-                                 component ={Messages}/>
-                            <Route exact path= {`${path}/blog`}
-                                 component ={PostBlog}/>
-                            <Route exact path= {`${path}/upload`} 
-                                 component = {UploadTest}/>
-                            <Route exact path= {`${path}/test`}
-                                 component = {MyEditor} />
+                            {routes}
                         </Switch>
                     </div>
 				
