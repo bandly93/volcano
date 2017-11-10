@@ -52,6 +52,7 @@ class MyEditor extends Component{
     }
     postData(){
         const {editorState} = this.state;
+        const {editorAct} = this.props;
         var contentState = editorState.getCurrentContent();
         var data = {editor:JSON.stringify(convertToRaw(contentState))};
         //console.log(data);
@@ -62,6 +63,7 @@ class MyEditor extends Component{
     }
     render(){
         const {editorState} = this.state;
+        const {editor} = this.props;
         let className = 'RichEditor-editor';
         var contentState = editorState.getCurrentContent();
         if (!contentState.hasText()) {
@@ -70,26 +72,29 @@ class MyEditor extends Component{
             }
         }
         return(
-            <div className='RichEditor-root'>
-                <BlockStyleControls editorState={editorState}
-                    onToggle={this.toggleBlockType}/>
-                <InlineStyleControls editorState={editorState}
-                    onToggle={this.toggleInlineStyle}/>
-                <div className={className} onClick={this.focus}>
-                    <Editor 
-                         blockStyleFn={getBlockStyle}
-                         customStyleMap={styleMap}
-                         editorState={editorState}
-                         onChange={this.onChange}
-                         handleKeyCommand={this.handleKeyCommand}    
-                         ref="editor"
-                         onTab={this.onTab}
-                         spellCheck={true}
-                     />
-                </div>
-                <div className='editorButton'>
-                    <button onClick={this.postData}>
-                        Post</button>   
+            <div>
+            {editor.msg? <h3 className='success'>Blog Posted!</h3>:null}
+                <div className='RichEditor-root'>
+                    <BlockStyleControls editorState={editorState}
+                        onToggle={this.toggleBlockType}/>
+                    <InlineStyleControls editorState={editorState}
+                        onToggle={this.toggleInlineStyle}/>
+                    <div className={className} onClick={this.focus}>
+                        <Editor 
+                             blockStyleFn={getBlockStyle}
+                             customStyleMap={styleMap}
+                             editorState={editorState}
+                             onChange={this.onChange}
+                             handleKeyCommand={this.handleKeyCommand}    
+                             ref="editor"
+                             onTab={this.onTab}
+                             spellCheck={true}
+                         />
+                    </div>
+                    <div className='editorButton'>
+                        <button onClick={this.postData}>
+                            Post</button>   
+                    </div>
                 </div>
             </div>
         )
@@ -104,6 +109,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+		editorAct:(editor)=>dispatch(editorAct(editor)),	
 		postData:(url,method,data,actFunc)=>dispatch(postData(url,method,data,actFunc)),
     }
 }
