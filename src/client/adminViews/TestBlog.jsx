@@ -6,6 +6,9 @@ import InlineStyleControls from '../adminComp/InlineStyleControls.jsx';
 import { connect } from 'react-redux';
 import {fetchData,postData} from '../redux/modules/fetchThunk';
 import {styleMap,getBlockStyle} from '../adminComp/editorStyle.js';
+import {editorAct} from '../redux/modules/editorModule';
+
+
 
 class MyEditor extends Component{
     constructor(props){
@@ -50,9 +53,12 @@ class MyEditor extends Component{
     postData(){
         const {editorState} = this.state;
         var contentState = editorState.getCurrentContent();
-        var data = {editor:contentState};
-        console.log(data);
-        this.props.postData('/editor','POST',data);
+        var data = {editor:JSON.stringify(convertToRaw(contentState))};
+        //console.log(data);
+        this.props.postData('/editor','POST',data,editorAct);
+        this.setState({
+            editorState: EditorState.createEmpty()
+        });
     }
     render(){
         const {editorState} = this.state;
@@ -92,7 +98,7 @@ class MyEditor extends Component{
 
 const mapStateToProps = (state) => {
     return{
-
+		editor:state.editor
     }
 }
 

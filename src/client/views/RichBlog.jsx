@@ -17,7 +17,15 @@ class RichBlog extends Component{
     list(){
         const {data} = this.props.editor;
         return data.map(e => 
-            console.log(e)
+            <div key = {e._id} className='RichEditor-root'>
+                <Editor
+                    editorState={
+                        EditorState.createWithContent(convertFromRaw(
+                            JSON.parse(e.editor)))
+                    }
+                    readOnly={true}
+                />
+            </div>
         )
     }
     render(){
