@@ -20,29 +20,20 @@ export function postData(url,method,data,actFunc){
 			headers: {'Content-Type':'application/x-www-form-urlencoded'}, 
 			body:qs.stringify(data)
 		})
-		.then(response => response.json())
+		.then(response => {
+			response.json()
+		}).catch(function(err){
+			console.log(err);
+		})
 		.then(data=>{
 			if(actFunc){
 				actFunc(data)
 			}
-		})
+		}).catch(function(err){
+			console.log(err);
+		});
 	}
 }
 
 
-export function postPhoto(url,method,data,actFunc){
-	return(dispatch)=>{
-		fetch(url,{
-			method:method,
-			credentials:'same-origin',
-			headers: {'Content-Type':'multipart/form-data'},
-			body:data
-		})
-		.then(response => response.json())
-		.then(data=>{
-			if(actFunc){
-				actFunc(data)
-			}
-		})
-	}
-}
+
