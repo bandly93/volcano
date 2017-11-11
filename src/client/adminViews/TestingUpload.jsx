@@ -1,9 +1,7 @@
 import React,{Component} from "react";
 import PhotoLibrary from "./PhotoLibrary.jsx";
-import {postData} from '../redux/modules/fetchThunk';
 import {uploadAct} from '../redux/modules/uploadModule';
 import {postData} from '../redux/modules/fetchThunk';
-import {uploadAct,getAllPhotos} from '../redux/modules/uploadModule';
 import {connect} from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -69,6 +67,7 @@ class UploadTest extends Component{
 	}
 
 	render(){
+		const images = this.props.upload.images
 		return(
 			<div>
 				{this.form()}
