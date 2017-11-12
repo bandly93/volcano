@@ -24,8 +24,7 @@ export function postData(url,method,data,actFunc){
 			response.json()
 		}).catch(function(err){
 			console.log(err);
-		})
-		.then(data=>{
+		}).then(data=>{
 			if(actFunc){
 				actFunc(data)
 			}
@@ -34,6 +33,4 @@ export function postData(url,method,data,actFunc){
 		});
 	}
 }
-
-
 

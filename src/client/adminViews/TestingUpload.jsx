@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import PhotoLibrary from "./PhotoLibrary.jsx";
 import {uploadAct} from '../redux/modules/uploadModule';
-import {postData} from '../redux/modules/fetchThunk';
+import {postData,fetchData} from '../redux/modules/fetchThunk';
 import {connect} from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -19,19 +19,14 @@ class UploadTest extends Component{
 		}
 	}
 	
-		//NOTE USE A PROMISE TO DO A .then after doing a delete/submit.
-	reload(){	
-		this.props.postData('/upload/getFiles','POST',{},this.props.uploadAct);	
-	}
-	
 	componentDidMount(){
-		this.reload();	
+		const { fetchData,uploadAct } = this.props
+		fetchData('/upload',uploadAct);
 	}
 
 	submitPhotos=(e)=>{ 
 		e.preventDefault();
 		this.props.postData('/upload','POST',{data:this.state.image},this.props.uploadAct)
-		this.reload();
 	}
 	
 	onFormChange=(e)=>{
@@ -41,8 +36,7 @@ class UploadTest extends Component{
 
 	deletePhoto=(e)=>{
 		const photoName = e.currentTarget.name;
-		this.props.postData('/upload/delete','POST',{data:photoName},this.props.uploadAct)
-		this.reload();
+		this.props.postData('/upload','DELETE',{data:photoName},this.props.uploadAct)
 	}
 
 	form=()=>{
@@ -98,6 +92,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		postData:(url,method,data,actFunc)=>dispatch(postData(url,method,data,actFunc)),
+		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
 		uploadAct:(upload)=>dispatch(uploadAct(upload))
 	}
 }
