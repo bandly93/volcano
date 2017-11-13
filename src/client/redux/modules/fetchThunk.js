@@ -19,18 +19,13 @@ export function postData(url,method,data,actFunc){
 			credentials:'same-origin',
 			headers: {'Content-Type':'application/x-www-form-urlencoded'}, 
 			body:qs.stringify(data)
-		})
-		.then(response => {
-			response.json()
-		}).catch(function(err){
-			console.log(err);
+		}).then(response => {
+			return response.json()
 		}).then(data=>{
 			if(actFunc){
 				actFunc(data)
 			}
-		}).catch(function(err){
-			console.log(err);
-		});
+		})
 	}
 }
 
