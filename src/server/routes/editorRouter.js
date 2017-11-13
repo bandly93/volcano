@@ -10,6 +10,11 @@ editorRouter.route('/')
     crud.post(req,res,Editor);
 })
 
+.delete(function(req,res){
+    crud.delete(req,res,Editor,crud.getAll)
+})
+
+
 editorRouter.route('/:id')
 
 .get(function(req,res,next){	
