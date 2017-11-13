@@ -60,6 +60,10 @@ a{
     flex:1;
 }
 
+/*-----------------------EDIT-BLOG---------------------------*/
+.editBlogs{
+    text-align:center;
+}
 /*-----------------------BLOG-POST---------------------------*/
 .dash-container textarea{
 	width:80%;

@@ -21,7 +21,7 @@ class UploadTest extends Component{
 	
 	componentDidMount(){
 		const { fetchData,uploadAct } = this.props
-		fetchData('/upload',uploadAct);
+	//	fetchData('/upload',uploadAct);
 	}
 
 	submitPhotos=(e)=>{ 

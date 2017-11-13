@@ -20,17 +20,14 @@ export function postData(url,method,data,actFunc){
 			headers: {'Content-Type':'application/x-www-form-urlencoded'}, 
 			body:qs.stringify(data)
 		})
-		.then(response => {
-			response.json()
-		}).catch(function(err){
-			console.log(err);
-		}).then(data=>{
+        .then(response => response.json())
+        .then(data=>{
 			if(actFunc){
 				actFunc(data)
 			}
 		}).catch(function(err){
-			console.log(err);
-		});
+ 			console.log(err);
+ 		});
 	}
 }
 
