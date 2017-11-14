@@ -76,7 +76,7 @@ function checkPagination(req,res,model,data,next){
             console.log(err);
         }
         if(!content[0]){
-            console.log('no new content');
+            //console.log('no new content');
             paginate.new = false;
         }
         else{
@@ -93,7 +93,7 @@ function checkPagination(req,res,model,data,next){
                 console.log(err);
             }
             if(!content[0]){
-                console.log('no old content');
+                //console.log('no old content');
                 paginate.old = false;
             }
             else{

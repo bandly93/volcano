@@ -14,7 +14,7 @@ import DashHome from './DashHome.jsx';
 import ProfilePic from '../public/images/about/profile.jpg';
 import {toggleDashNav} from '../redux/modules/viewModule';
 import MyEditor from './TestBlog.jsx';
-
+import EditBlogs from './EditBlogs.jsx';
 
 class Dashboard extends Component{
     constructor(){
@@ -34,6 +34,7 @@ class Dashboard extends Component{
             {link:'/blog', title:'Post Blog', comp:PostBlog},
             {link:'/upload', title:'Upload', comp:UploadTest},
             {link:'/test', title:'Blog', comp:MyEditor},
+            {link:'/editblog',title:'Edit Blogs',comp:EditBlogs}
         ];
         const links = titles.map(e=>
             <Link to={`${path}${e.link}`} onClick={toggleDashNav} key={e.link}>
