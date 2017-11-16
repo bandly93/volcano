@@ -61,8 +61,11 @@ a{
 }
 
 /*-----------------------EDIT-BLOG---------------------------*/
-.editBlogs{
-    text-align:center;
+.editBlog{
+    text-align:left;
+}
+.blog{
+    padding:1% 5% 5% 5%;
 }
 /*-----------------------BLOG-POST---------------------------*/
 .dash-container textarea{

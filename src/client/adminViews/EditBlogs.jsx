@@ -19,8 +19,8 @@ class EditBlogs extends Component{
         }  
     }
     list(){
-        const {data} = this.props.editor;
-        return data.map(e => 
+        const {converted} = this.props.editor;
+        return converted.map(e => 
             <div key = {e._id} className='RichEditor-root'>
                <EditBlog blog={e} remove={this.delete}/> 
             </div>
@@ -32,8 +32,8 @@ class EditBlogs extends Component{
         postData('/editor','DELETE',{_id:id},editorAct)
     }
 	blogID=()=>{
-        const {data} = this.props.editor;
-        if(data){
+        const {data} = this.props.editor.db;
+        if(data[0]){
             let obj ={};
             let blog = data;
             obj.new = blog[0]._id;
@@ -45,16 +45,15 @@ class EditBlogs extends Component{
         }
 	}
     render(){
-    const {data,page} = this.props.editor;
+    const {path} = this.props.match;
+    const {db,converted} = this.props.editor;
         return(
             <div className='dash-container'>
                 Edit Blogs
-				{data? this.list():null}
-                {data? 
-                <Paginate page = {page}
-                path = {this.props.match.path}
-                modelID={this.blogID}/> 
-                :null}
+				{converted? this.list():null}
+                {converted? <Paginate page = {db.page} path = {path} 
+                    modelID={this.blogID}/> 
+                    :null}
             </div>
         )
     }

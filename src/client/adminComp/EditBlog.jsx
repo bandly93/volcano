@@ -8,16 +8,14 @@ import {Editor,
 
 function EditBlog({blog,remove}){
 	return(
-		<div>
-			<button className='close' 
-                onClick={()=>remove(blog)}>X</button>
-                <Editor
-                    editorState={
-                        EditorState.createWithContent(convertFromRaw(
-                            JSON.parse(blog.editor)))
-                    }
-                    readOnly={true}
-                />
+		<div className='editBlog'>
+			<button className='close' onClick={()=>remove(blog)}>X</button>
+            <div className='blog'>
+            <Editor
+                editorState={blog.editor}
+                readOnly={true}
+            />
+            </div>
 		</div>
 	)
 

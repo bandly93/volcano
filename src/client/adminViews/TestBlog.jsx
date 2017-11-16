@@ -6,7 +6,7 @@ import InlineStyleControls from '../adminComp/InlineStyleControls.jsx';
 import { connect } from 'react-redux';
 import {fetchData,postData} from '../redux/modules/fetchThunk';
 import {styleMap,getBlockStyle} from '../adminComp/editorStyle.js';
-import {editorAct} from '../redux/modules/editorModule';
+import {editorAct,postStatus} from '../redux/modules/editorModule';
 
 
 
@@ -52,11 +52,11 @@ class MyEditor extends Component{
     }
     postData(){
         const {editorState} = this.state;
-        const {editorAct} = this.props;
+        const {editorAct,postStatus} = this.props;
         var contentState = editorState.getCurrentContent();
         var data = {editor:JSON.stringify(convertToRaw(contentState))};
-        //console.log(data);
-        this.props.postData('/editor','POST',data,editorAct);
+        
+        this.props.postData('/editor','POST',data,postStatus);
         this.setState({
             editorState: EditorState.createEmpty()
         });
@@ -73,7 +73,7 @@ class MyEditor extends Component{
         }
         return(
             <div>
-            {editor.msg? <h3 className='success'>Blog Posted!</h3>:null}
+            {editor.status? <h3 className='success'>Blog Posted!</h3>:null}
                 <div className='RichEditor-root'>
                     <BlockStyleControls editorState={editorState}
                         onToggle={this.toggleBlockType}/>
@@ -111,6 +111,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
 		editorAct:(editor)=>dispatch(editorAct(editor)),	
 		postData:(url,method,data,actFunc)=>dispatch(postData(url,method,data,actFunc)),
+        postStatus:(status)=>dispatch(postStatus(status))
     }
 }
 
