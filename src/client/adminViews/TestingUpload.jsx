@@ -21,7 +21,7 @@ class UploadTest extends Component{
 	
 	componentDidMount(){
 		const { fetchData,uploadAct } = this.props
-	//	fetchData('/upload',uploadAct);
+		fetchData('/upload',uploadAct);
 	}
 
 	submitPhotos=(e)=>{ 
@@ -52,7 +52,7 @@ class UploadTest extends Component{
 
 	photoLibrary=()=>{
 		return this.props.upload.images.map(images => 
-			<div key = {images.name} >
+			<div key = {images.name} className = "upload-images">
 				<li>{images.name}</li>
 				<img src = {images.path}/>
 				<button onClick = {this.deletePhoto} name = {images.name}> x </button>
