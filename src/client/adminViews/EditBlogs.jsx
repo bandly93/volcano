@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { connect } from 'react-redux';
 import {fetchData,postData} from '../redux/modules/fetchThunk';
 import Paginate from '../components/Paginate.jsx';
-import {editorAct} from '../redux/modules/editorModule';
+import {editorAct,updateEditor} from '../redux/modules/editorModule';
 import EditBlog from '../adminComp/EditBlog.jsx';
 
 
@@ -22,7 +22,8 @@ class EditBlogs extends Component{
         const {converted} = this.props.editor;
         return converted.map(e => 
             <div key = {e._id} className='RichEditor-root'>
-               <EditBlog blog={e} remove={this.delete}/> 
+               <EditBlog blog={e} remove={this.delete} 
+                    update={this.props.updateEditor}/> 
             </div>
         )
     }
@@ -71,7 +72,8 @@ const mapDispatchToProps = (dispatch) =>{
 		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
 		postData:(url,method,data,actFunc)=>
             dispatch(postData(url,method,data,actFunc)),
-		editorAct:(editor)=>dispatch(editorAct(editor))	
+		editorAct:(editor)=>dispatch(editorAct(editor)),
+        updateEditor:(id,state)=>dispatch(updateEditor(id,state))	
 	}
 }
 export default connect(mapStateToProps,mapDispatchToProps)(EditBlogs);

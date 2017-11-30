@@ -17,6 +17,15 @@ export function postStatus(status){
         status
     }
 }
+//editor action
+export function updateEditor(id,editorState){
+    return{
+        type:'UPDATE',
+        id,
+        editorState       
+    }
+}
+
 //reducer
 export const editor =(state={},action)=>{
     const {editor,status} = action;
@@ -31,7 +40,15 @@ export const editor =(state={},action)=>{
             return{
                 ...state,
                 status
-                } 
+                }
+        case 'UPDATE':
+            return {
+                ...state,
+                converted:state.converted.map(blog =>
+                (blog._id == action.id)
+                    ? {...blog, editor:action.editorState}
+                    :blog
+                )}
 		default:
 			return state;
 	}
