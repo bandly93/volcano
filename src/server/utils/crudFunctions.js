@@ -32,6 +32,19 @@ exports.post = (req,res,model) =>{
 	})
 }
 
+exports.put = (res,model,id,change) =>{
+    console.log('put function');
+    console.log(id,change);
+    
+    model.findOneAndUpdate(id,change).exec(function(err,update){
+        if(err){
+            console.log(err);
+			res.json({err:'error'})
+		}
+		res.json({msg:'success!'})
+    })
+}
+
 exports.getOld = (req,res,model,next) =>{
     if(mongoose.Types.ObjectId.isValid(req.query.old)){
         model.find({_id:{$lt:req.query.old}})

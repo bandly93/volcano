@@ -12,7 +12,8 @@ class EditBlog extends Component{
         update(blog._id,editorState);
     }
     render(){
-    const {blog,remove,update} = this.props;
+    const {blog,remove,update,put} = this.props;
+    //console.log(put);
         return(
             <div className='editBlog'>
                 <button className='close' onClick={()=>remove(blog)}>X</button>
@@ -21,6 +22,7 @@ class EditBlog extends Component{
                     editorState={blog.editor}
                     onChange={this.update}
                 />
+                <button className='save' onClick={()=>put(blog)}>Save</button>
                 </div>
             </div>
         )

@@ -2,19 +2,20 @@ import React,{Component} from 'react';
 import { connect } from 'react-redux';
 import {fetchData,postData} from '../redux/modules/fetchThunk';
 import Paginate from '../components/Paginate.jsx';
-import {editorAct,updateEditor} from '../redux/modules/editorModule';
+import {editorAct,postStatus,updateEditor} from '../redux/modules/editorModule';
 import EditBlog from '../adminComp/EditBlog.jsx';
+import {Editor, EditorState, RichUtils,convertToRaw} from 'draft-js';
 
 
 class EditBlogs extends Component{
     componentDidMount(){
         const {fetchData,editorAct} = this.props;
-        fetchData(`/editor/data/${location.search}`,editorAct)
+        fetchData(`/editor/get/data/${location.search}`,editorAct)
     }
     componentWillReceiveProps(nextProps){
         const {fetchData,editorAct,location} = this.props;
         if(nextProps.location.search !== location.search){
-            fetchData(`/editor/data/${nextProps.location.search}`,
+            fetchData(`/editor/get/data/${nextProps.location.search}`,
                 editorAct)
         }  
     }
@@ -23,14 +24,26 @@ class EditBlogs extends Component{
         return converted.map(e => 
             <div key = {e._id} className='RichEditor-root'>
                <EditBlog blog={e} remove={this.delete} 
-                    update={this.props.updateEditor}/> 
+                    update={this.props.updateEditor}
+                    put={this.put}
+                /> 
             </div>
         )
     }
     delete=(data)=>{
         const id = data._id;
         const {postData,editorAct} = this.props;
-        postData('/editor','DELETE',{_id:id},editorAct)
+        postData('/editor','DELETE',{_id:id},editorAct);
+    }
+    put=(data)=>{
+        console.log(data)
+        const {postData,editorAct,postStatus} = this.props;
+        var contentState = data.editor.getCurrentContent();
+        let obj = {
+            _id:data._id,
+            editor:JSON.stringify(convertToRaw(contentState))
+        }
+        postData('/editor','PUT',obj,postStatus); 
     }
 	blogID=()=>{
         const {data} = this.props.editor.db;
@@ -73,7 +86,8 @@ const mapDispatchToProps = (dispatch) =>{
 		postData:(url,method,data,actFunc)=>
             dispatch(postData(url,method,data,actFunc)),
 		editorAct:(editor)=>dispatch(editorAct(editor)),
-        updateEditor:(id,state)=>dispatch(updateEditor(id,state))	
+        updateEditor:(id,state)=>dispatch(updateEditor(id,state)),	
+        postStatus:(status)=>dispatch(postStatus(status))
 	}
 }
 export default connect(mapStateToProps,mapDispatchToProps)(EditBlogs);

@@ -14,8 +14,14 @@ editorRouter.route('/')
     crud.delete(req,res,Editor,crud.getAll)
 })
 
+.put(function(req,res){
+    const {_id,editor} = req.body;
+    const query = {_id};
+    const update = {editor};
+    crud.put(res,Editor,query,update);
+})
 
-editorRouter.route('/:id')
+editorRouter.route('/get/:id')
 
 .get(function(req,res,next){	
     if(req.query.new){
