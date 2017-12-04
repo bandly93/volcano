@@ -11,6 +11,19 @@ class EditBlog extends Component{
         const {blog,update} = this.props;
         update(blog._id,editorState);
     }
+    handleKey=(command,editorState)=>{
+        const newState = RichUtils.handleKeyCommand(editorState, command);
+        if(newState){
+            this.update(newState);
+            return true;
+        }
+    }
+    onTab =(e)=>{
+        const maxDepth = 4;
+        const {blog} = this.props;
+        this.update(RichUtils.onTab(e,blog.editor,maxDepth));
+    }
+
     render(){
     const {blog,remove,update,put} = this.props;
     //console.log(put);
@@ -21,6 +34,10 @@ class EditBlog extends Component{
                 <Editor
                     editorState={blog.editor}
                     onChange={this.update}
+                    handleKeyCommand={this.handleKey}
+                    ref='editor'
+                    spellCheck={true}
+                    onTab={this.onTab}
                 />
                 <button className='save' onClick={()=>put(blog)}>Save</button>
                 </div>

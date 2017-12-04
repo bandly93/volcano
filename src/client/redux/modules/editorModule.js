@@ -17,7 +17,7 @@ export function postStatus(status){
         status
     }
 }
-//editor action
+/////// editor action ////////////////
 export function updateEditor(id,editorState){
     return{
         type:'UPDATE',
@@ -25,6 +25,13 @@ export function updateEditor(id,editorState){
         editorState       
     }
 }
+export function handleKeyCommand(id){
+    return{
+        type:'HANDLE_KEY',
+        id,
+    }
+}
+//////////////////////////////////////
 
 //reducer
 export const editor =(state={},action)=>{
