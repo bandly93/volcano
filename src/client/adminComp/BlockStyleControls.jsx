@@ -8,7 +8,6 @@ const BlockStyleControls = (props) => {
         .getCurrentContent()
         .getBlockForKey(selection.getStartKey())
         .getType();
-    console.log(blockType)    
     return (
         <div className = 'RichEditor-controls'>
             {BLOCK_TYPES.map(type =>

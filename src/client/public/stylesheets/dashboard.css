@@ -61,12 +61,10 @@ a{
 }
 
 /*-----------------------EDIT-BLOG---------------------------*/
-.editBlog{
+.putLeft{
     text-align:left;
 }
-.blog{
-    padding:1% 5% 5% 5%;
-}
+
 /*-----------------------BLOG-POST---------------------------*/
 .dash-container textarea{
 	width:80%;

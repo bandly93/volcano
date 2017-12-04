@@ -5,6 +5,9 @@ import Paginate from '../components/Paginate.jsx';
 import {editorAct,postStatus,updateEditor} from '../redux/modules/editorModule';
 import EditBlog from '../adminComp/EditBlog.jsx';
 import {Editor, EditorState, RichUtils,convertToRaw} from 'draft-js';
+import BlockStyleControls from '../adminComp/BlockStyleControls.jsx';
+import InlineStyleControls from '../adminComp/InlineStyleControls.jsx';
+import {styleMap,getBlockStyle} from '../adminComp/editorStyle.js';
 
 
 class EditBlogs extends Component{
@@ -22,12 +25,11 @@ class EditBlogs extends Component{
     list(){
         const {converted} = this.props.editor;
         return converted.map(e => 
-            <div key = {e._id} className='RichEditor-root'>
-               <EditBlog blog={e} remove={this.delete} 
-                    update={this.props.updateEditor}
-                    put={this.put}
-                /> 
-            </div>
+           <EditBlog key={e._id}
+                blog={e} remove={this.delete} 
+                update={this.props.updateEditor}
+                put={this.put}
+            /> 
         )
     }
     delete=(data)=>{
