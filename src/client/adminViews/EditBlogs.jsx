@@ -22,13 +22,13 @@ class EditBlogs extends Component{
     }
     list(){
         const {converted} = this.props.editor;
-        return converted.map(e => 
+        return converted.map(e =>
            <EditBlog key={e._id}
                 blog={e} remove={this.delete} 
                 update={this.props.updateEditor}
                 put={this.put}
                 updateInput={this.props.updateInput}
-                inputValue={this.props.text.imageURL}
+                inputValue={e.imgURL}
             /> 
         )
     }
@@ -91,7 +91,7 @@ const mapDispatchToProps = (dispatch) =>{
 		editorAct:(editor)=>dispatch(editorAct(editor)),
         updateEditor:(id,state)=>dispatch(updateEditor(id,state)),	
         postStatus:(status)=>dispatch(postStatus(status)),
-        updateInput:(input)=>dispatch(updateInput(input))
+        updateInput:(id,input)=>dispatch(updateInput(id,input))
 	}
 }
 export default connect(mapStateToProps,mapDispatchToProps)(EditBlogs);

@@ -1,7 +1,8 @@
 // action
-export function updateInput(input) {
+export function updateInput(id,input) {
     return {
         type: 'UPDATE_INPUT',
+        id,
         input
     }
 }

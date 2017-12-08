@@ -56,6 +56,14 @@ export const editor =(state={},action)=>{
                     ? {...blog, editor:action.editorState}
                     :blog
                 )}
+        case 'UPDATE_INPUT':
+            return {
+                ...state,
+                converted:state.converted.map(blog =>
+                    (blog._id == action.id)
+                        ? {...blog, imgURL:action.input}
+                        :blog
+                )}
 		default:
 			return state;
 	}
@@ -66,7 +74,8 @@ const convert =(data)=>{
     return  editorData.map(blog =>
         ({ ...blog,
             editor:EditorState.createWithContent(
-                convertFromRaw(JSON.parse(blog.editor)))
+                convertFromRaw(JSON.parse(blog.editor))),
+            imgURL:'',
 
         })
     )

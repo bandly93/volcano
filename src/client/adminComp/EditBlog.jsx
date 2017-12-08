@@ -76,6 +76,7 @@ class EditBlog extends Component{
                 <TextInput 
                     updateInput ={updateInput}
                     inputValue ={inputValue}
+                    blog ={blog}
                     />
                 <div className={className} onClick={this.focus}>
                     <Editor

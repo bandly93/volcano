@@ -2,13 +2,15 @@ import React,{Component} from 'react';
 
 class TextInput extends Component {
     updateInput=(e)=> {
-        this.props.updateInput(e.target.value)
+        const {blog,updateInput} = this.props;
+        updateInput(blog._id,e.target.value);
     }
     render(){
         return(
             <form>
                 <input 
-                    type='text' 
+                    type='text'
+                    value={this.props.inputValue} 
                     onChange={this.updateInput} 
                 />
                 <input  

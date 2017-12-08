@@ -19,7 +19,6 @@ const reducers = combineReducers({
     view,
 	upload,
     editor,
-    text,
 })
 
 export default function configureStore(initialState){
