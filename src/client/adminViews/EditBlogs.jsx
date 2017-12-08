@@ -5,9 +5,7 @@ import Paginate from '../components/Paginate.jsx';
 import {editorAct,postStatus,updateEditor} from '../redux/modules/editorModule';
 import EditBlog from '../adminComp/EditBlog.jsx';
 import {Editor, EditorState, RichUtils,convertToRaw} from 'draft-js';
-import BlockStyleControls from '../adminComp/BlockStyleControls.jsx';
-import InlineStyleControls from '../adminComp/InlineStyleControls.jsx';
-import {styleMap,getBlockStyle} from '../adminComp/editorStyle.js';
+import {updateInput} from '../redux/modules/inputModule';
 
 
 class EditBlogs extends Component{
@@ -29,6 +27,8 @@ class EditBlogs extends Component{
                 blog={e} remove={this.delete} 
                 update={this.props.updateEditor}
                 put={this.put}
+                updateInput={this.props.updateInput}
+                inputValue={this.props.text.imageURL}
             /> 
         )
     }
@@ -78,7 +78,8 @@ class EditBlogs extends Component{
 
 const mapStateToProps = (state) =>{
 	return{
-		editor:state.editor
+		editor:state.editor,
+        text:state.text,
 	};
 };
 
@@ -89,7 +90,8 @@ const mapDispatchToProps = (dispatch) =>{
             dispatch(postData(url,method,data,actFunc)),
 		editorAct:(editor)=>dispatch(editorAct(editor)),
         updateEditor:(id,state)=>dispatch(updateEditor(id,state)),	
-        postStatus:(status)=>dispatch(postStatus(status))
+        postStatus:(status)=>dispatch(postStatus(status)),
+        updateInput:(input)=>dispatch(updateInput(input))
 	}
 }
 export default connect(mapStateToProps,mapDispatchToProps)(EditBlogs);

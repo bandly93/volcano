@@ -8,6 +8,7 @@ import blog from './modules/blogModule.js';
 import view from './modules/viewModule.js';
 import upload from './modules/uploadModule.js';
 import editor from './modules/editorModule.js';
+import text from './modules/inputModule.js';
 
 const reducers = combineReducers({
 	admin,
@@ -18,6 +19,7 @@ const reducers = combineReducers({
     view,
 	upload,
     editor,
+    text,
 })
 
 export default function configureStore(initialState){

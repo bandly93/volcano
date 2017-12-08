@@ -29,9 +29,9 @@
   margin: 0 -15px -15px;
   padding: 15px;
 }
-
+/* determines size of editor */
 .RichEditor-editor .public-DraftEditor-content {
-  min-height: 50vh;
+  min-height: 5vh;
 }
 
 .RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {

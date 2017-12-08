@@ -6,7 +6,10 @@ import {Editor,
         convertFromRaw} from 'draft-js';
 import BlockStyleControls from '../adminComp/BlockStyleControls.jsx';
 import InlineStyleControls from '../adminComp/InlineStyleControls.jsx';
-import {styleMap,getBlockStyle} from '../adminComp/editorStyle.js';
+import {styleMap,
+        getBlockStyle,
+        mediaBlockRenderer} from '../adminComp/editorStyle.js';
+import TextInput from '../adminComp/TextInput.jsx';
 
 
 class EditBlog extends Component{
@@ -61,7 +64,7 @@ class EditBlog extends Component{
     }
     render(){
     let className = 'RichEditor-editor';
-    const {blog,remove,update,put} = this.props;
+    const {blog,remove,update,put,updateInput,inputValue} = this.props;
     //console.log(put);
         return(
             <div className='RichEditor-root'>
@@ -70,9 +73,14 @@ class EditBlog extends Component{
                     onToggle={this.toggleBlockType}/>
                 <InlineStyleControls editorState={blog.editor}
                     onToggle={this.toggleInlineStyle}/>
+                <TextInput 
+                    updateInput ={updateInput}
+                    inputValue ={inputValue}
+                    />
                 <div className={className} onClick={this.focus}>
                     <Editor
                         blockStyleFn={getBlockStyle}
+                        blockRendererFn={mediaBlockRenderer}
                         customStyleMap={styleMap}
                         editorState={blog.editor}
                         onChange={this.update}
