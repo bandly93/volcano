@@ -64,6 +64,14 @@ export const editor =(state={},action)=>{
                         ? {...blog, imgURL:action.input}
                         :blog
                 )}
+        case 'UPDATE_YT':
+            return {
+                ...state,
+                converted:state.converted.map(blog =>
+                    (blog._id == action.id)
+                        ? {...blog, youTube:action.input}
+                        :blog
+                )}
 		default:
 			return state;
 	}
@@ -76,7 +84,7 @@ const convert =(data)=>{
             editor:EditorState.createWithContent(
                 convertFromRaw(JSON.parse(blog.editor))),
             imgURL:'',
-
+            youTube:'',
         })
     )
 }

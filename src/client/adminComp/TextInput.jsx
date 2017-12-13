@@ -20,7 +20,7 @@ class TextInput extends Component {
                 />
                 <input  
                     type='submit'
-                    value='Add Image' 
+                    value={this.props.buttonText} 
                 />
             </form>
         )

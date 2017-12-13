@@ -7,6 +7,14 @@ export function updateInput(id,input) {
     }
 }
 
+export function updateYT(id,input) {
+    return {
+        type: 'UPDATE_YT',
+        id,
+        input
+    }
+}
+
 // reducer
 export const text = (state = initialState, action) => {
     switch(action.type) {

@@ -34,7 +34,15 @@ const Image = (props) => {
 const Video = (props) => {
     return <video controls src={props.src} style={styles.media} />;
 };
-
+const YouTube = (props) => {
+    return(
+        <iframe width="560" height="315" 
+            src={props.src} 
+            frameBorder="0" gesture="media" allow="encrypted-media" 
+            allowFullScreen>
+        </iframe>
+    )
+}
 const Media = (props) => {
     const entity = props.contentState.getEntity(
       props.block.getEntityAt(0)
@@ -49,8 +57,9 @@ let media;
       media = <Image src={src} />;
     } else if (type === 'video') {
       media = <Video src={src} />;
+    } else if (type == 'youtube') {
+      media = <YouTube src={src} />;
     }
-
     return media;
 };
 export function mediaBlockRenderer(block) {

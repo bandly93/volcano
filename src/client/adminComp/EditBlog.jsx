@@ -63,13 +63,14 @@ class EditBlog extends Component{
             </div>
         )
     }
-    confirmMedia=(blog)=>{
+    confirmMedia=(type,content)=>{
+        const {blog} = this.props;
         console.log('confirm!',blog);
         const contentState = blog.editor.getCurrentContent();
         const contentStateWithEntity = contentState.createEntity(
-            'image',
+            type,
             'IMMUTABLE',
-            {src: blog.imgURL}
+            {src: content}
         );
         const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
         const newEditorState = EditorState.set(
@@ -83,9 +84,18 @@ class EditBlog extends Component{
         )    
         this.update(newReduxState);
     }
+    addImage=(blog)=>{
+        const content = blog.imgURL
+        this.confirmMedia('image',content);
+    }
+    addYouTube=(blog)=>{
+        const content = blog.youTube;
+        this.confirmMedia('youtube',content);
+    }
     render(){
     let className = 'RichEditor-editor';
-    const {blog,remove,update,put,updateInput,inputValue} = this.props;
+    const {blog,remove,update,put,updateInput,inputValue,
+            updateYT,vidValue} = this.props;
     //console.log(put);
         return(
             <div className='RichEditor-root'>
@@ -98,7 +108,15 @@ class EditBlog extends Component{
                     updateInput ={updateInput}
                     inputValue ={inputValue}
                     data ={blog}
-                    onSubmit={this.confirmMedia}
+                    onSubmit={this.addImage}
+                    buttonText='Add Image'
+                    />
+                <TextInput
+                    updateInput ={updateYT}
+                    inputValue ={vidValue}
+                    data ={blog}
+                    onSubmit={this.addYouTube}
+                    buttonText='Add Video'
                     />
                 <div className={className} onClick={this.focus}>
                     <Editor

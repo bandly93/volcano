@@ -5,7 +5,7 @@ import Paginate from '../components/Paginate.jsx';
 import {editorAct,postStatus,updateEditor} from '../redux/modules/editorModule';
 import EditBlog from '../adminComp/EditBlog.jsx';
 import {Editor, EditorState, RichUtils,convertToRaw} from 'draft-js';
-import {updateInput} from '../redux/modules/inputModule';
+import {updateInput,updateYT} from '../redux/modules/inputModule';
 
 
 class EditBlogs extends Component{
@@ -29,6 +29,8 @@ class EditBlogs extends Component{
                 put={this.put}
                 updateInput={this.props.updateInput}
                 inputValue={e.imgURL}
+                updateYT={this.props.updateYT}
+                vidValue={e.youTube}
             /> 
         )
     }
@@ -91,7 +93,8 @@ const mapDispatchToProps = (dispatch) =>{
 		editorAct:(editor)=>dispatch(editorAct(editor)),
         updateEditor:(id,state)=>dispatch(updateEditor(id,state)),	
         postStatus:(status)=>dispatch(postStatus(status)),
-        updateInput:(id,input)=>dispatch(updateInput(id,input))
+        updateInput:(id,input)=>dispatch(updateInput(id,input)),
+        updateYT:(id,input)=>dispatch(updateYT(id,input))
 	}
 }
 export default connect(mapStateToProps,mapDispatchToProps)(EditBlogs);
