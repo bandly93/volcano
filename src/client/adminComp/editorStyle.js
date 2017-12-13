@@ -17,6 +17,12 @@ export function getBlockStyle(block) {
     }
 }
 // Media
+const styles = {
+    media: {
+        width:'100%',
+        whiteSpace:'initial'
+    }
+}
 const Audio = (props) => {
     return <audio controls src={props.src} style={styles.media} />;
 };
@@ -50,7 +56,7 @@ let media;
 export function mediaBlockRenderer(block) {
     if(block.getType() === 'atomic') {
         return {
-            compoennt: Media,
+            component: Media,
             editable: false,
         };
     }

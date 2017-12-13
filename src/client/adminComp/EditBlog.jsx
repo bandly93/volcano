@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
-import {Editor, 
+import {AtomicBlockUtils,
+        Editor, 
         EditorState, 
         RichUtils,
         convertToRaw,
@@ -46,7 +47,7 @@ class EditBlog extends Component{
         )
       );
     }
-    closeButton=()=>{
+    removeButton=()=>{
         const {blog,remove} = this.props;
         return(
             <div className='putLeft'>
@@ -62,13 +63,33 @@ class EditBlog extends Component{
             </div>
         )
     }
+    confirmMedia=(blog)=>{
+        console.log('confirm!',blog);
+        const contentState = blog.editor.getCurrentContent();
+        const contentStateWithEntity = contentState.createEntity(
+            'image',
+            'IMMUTABLE',
+            {src: blog.imgURL}
+        );
+        const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+        const newEditorState = EditorState.set(
+            blog.editor,
+            {currentContent: contentStateWithEntity}
+            );
+        const newReduxState = AtomicBlockUtils.insertAtomicBlock(
+            newEditorState,
+            entityKey,
+            ' '
+        )    
+        this.update(newReduxState);
+    }
     render(){
     let className = 'RichEditor-editor';
     const {blog,remove,update,put,updateInput,inputValue} = this.props;
     //console.log(put);
         return(
             <div className='RichEditor-root'>
-                {this.closeButton()}
+                {this.removeButton()}
                 <BlockStyleControls editorState={blog.editor}
                     onToggle={this.toggleBlockType}/>
                 <InlineStyleControls editorState={blog.editor}
@@ -76,7 +97,8 @@ class EditBlog extends Component{
                 <TextInput 
                     updateInput ={updateInput}
                     inputValue ={inputValue}
-                    blog ={blog}
+                    data ={blog}
+                    onSubmit={this.confirmMedia}
                     />
                 <div className={className} onClick={this.focus}>
                     <Editor
