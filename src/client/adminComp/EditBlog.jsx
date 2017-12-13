@@ -90,7 +90,9 @@ class EditBlog extends Component{
     }
     addYouTube=(blog)=>{
         const content = blog.youTube;
-        this.confirmMedia('youtube',content);
+        const vidURL = 'https://www.youtube.com/embed/' 
+                + content.split('com\/watch?v=')[1];
+        this.confirmMedia('youtube',vidURL);
     }
     render(){
     let className = 'RichEditor-editor';
