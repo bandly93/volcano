@@ -13,10 +13,8 @@ class Admin extends Component{
 			logUsername:'',
 			logPassword:''
 		}
-		this.handleChange = this.handleChange.bind(this);
-		//this.resetData = this.resetData.bind(this);
 	}
-	handleChange(event){
+	handleChange=(event)=>{
 		this.setState({[event.target.name]:event.target.value})
 	}
 	userData(user,pass){
@@ -32,77 +30,78 @@ class Admin extends Component{
 	componentDidMount(){
 		this.props.fetchData('/auth/log',this.props.adminAct)
 	}
+    register=(e)=>{
+        const {regUsername, regPassword} = this.state;
+        e.preventDefault();
+        this.props.postData('/auth/reg','POST',
+            this.userData(regUsername,regPassword),
+            this.props.adminAct);
+            this.setState({
+                regUsername:'',
+                regPassword:''
+            })
+    }
+    login=(e)=>{
+        const {logUsername,logPassword} = this.state;
+        e.preventDefault();
+        this.props.postData('/auth/log','POST',
+            this.userData(logUsername, logPassword),this.props.adminAct);
+            this.setState({
+                logUsername:'',
+                logPassword:''
+            })
+    }
+    logout=()=>{
+        this.props.fetchData('/auth/logout',this.props.adminAct)
+    }
 	regLog(){
+        const {regUsername,regPassword,logUsername,logPassword} = this.state;
 		return(
 			<div className = 'reglog'>
-				<span className='reglogChild'>
-					<h2>Register</h2>
-					<form onSubmit={(e)=>{
-						e.preventDefault();this.props.postData(
-							'/auth/reg','POST',
-							this.userData(
-								this.state.regUsername,
-								this.state.regPassword),
-							this.props.adminAct);
-							this.setState({
-								regUsername:'',
-								regPassword:''
-							})
-							}}>
-						<input type='text' name='regUsername' 
-						onChange={this.handleChange}
-						placeholder='username' value={this.state.regUsername}/> 
-						<br/>
-						<input type='password' name='regPassword' 
-						onChange={this.handleChange}
-						placeholder='password' value={this.state.regPassword}/> 
-						<br/>
-						<input className='submit' type='submit' value='Register'/>
-					</form>
-				</span>
-				<span className = 'reglogChild'>
-					<h2>Login</h2>
-						<form onSubmit={(e)=>{
-						e.preventDefault();this.props.postData(
-							'/auth/log','POST',
-							this.userData(
-								this.state.logUsername,
-								this.state.logPassword),
-							this.props.adminAct);
-							this.setState({
-								logUsername:'',
-								logPassword:''
-							})
-							}}>
-						<input type='text' name='logUsername' 
-						onChange={this.handleChange}
-						placeholder='username' value={this.state.logUsername}/> 
-						<br/>
-						<input type='password' name='logPassword' 
-						onChange={this.handleChange}
-						placeholder='password' value={this.state.logPassword}/> 
-						<br/>
-						<input className='submit' type='submit' value='Login'/>
-					</form>
-				</span>
+                <form onSubmit={this.register} className='reglogChild'>
+                    <h2>Register</h2>
+                    <input type='text' name='regUsername' 
+                    onChange={this.handleChange}
+                    placeholder='username' value={regUsername}/> 
+                    <br/>
+                    <input type='password' name='regPassword' 
+                    onChange={this.handleChange}
+                    placeholder='password' value={regPassword}/> 
+                    <br/>
+                    <input className='submit' type='submit' value='Register'/>
+                </form>
+                <form onSubmit={this.login} className='reglogChild'>
+                    <h2>Login</h2>
+                    <input type='text' name='logUsername' 
+                    onChange={this.handleChange}
+                    placeholder='username' value={logUsername}/> 
+                    <br/>
+                    <input type='password' name='logPassword' 
+                    onChange={this.handleChange}
+                    placeholder='password' value={logPassword}/> 
+                    <br/>
+                    <input className='submit' type='submit' value='Login'/>
+                </form>
 			</div>
 		)
 	}
-	logout(){
+	logoutButton(){
 		return(
-			<div>
-				<form >
-					<input type='button' value='Logout' onClick={()=>this.props.fetchData('/auth/logout',this.props.adminAct)}/>
-				</form>
-			</div>
+            <form >
+                <input type='button' value='Logout' onClick={this.logout}/>
+            </form>
 		)
 	}
 	render(){
 		return(		
 			<div>
-			{this.props.admin.err?<h3 className='err'>{this.props.admin.err}</h3>:null}
-			{this.props.admin.success?<h3 className='success'>{this.props.admin.success}</h3>:null}
-			{this.props.admin.user?this.logout():this.regLog()}
+			{this.props.admin.err?
+                <h3 className='err'>{this.props.admin.err}</h3>
+                :null}
+			{this.props.admin.success?
+                <h3 className='success'>{this.props.admin.success}</h3>
+                :null}
+			{this.props.admin.user?this.logoutButton():this.regLog()}
 			</div>
 		)
 	}	
@@ -117,7 +116,8 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
 	return{
 		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
-		postData:(url,method,data,actFunc)=>dispatch(postData(url,method,data,actFunc)),
+		postData:(url,method,data,actFunc)=>
+                dispatch(postData(url,method,data,actFunc)),
 		adminAct:(admin)=>dispatch(adminAct(admin))
 	}
 }
