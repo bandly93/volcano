@@ -30,7 +30,9 @@ authRouter.route('/log')
 
 .get(function(req,res){
 	if(req.user){
-		res.json({user:req.user.username})
+		res.json({
+            user:req.user.username,
+        })
 	}
 	else{
 		res.json({})

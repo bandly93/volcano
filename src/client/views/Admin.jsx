@@ -18,18 +18,20 @@ class Admin extends Component{
 		this.setState({[event.target.name]:event.target.value})
 	}
 	userData(user,pass){
-		let userData ={
+		return {
 			username:user,
 			password:pass
 		}
-		return userData;
-	}
-	test(data){
-		console.log(data)
 	}
 	componentDidMount(){
 		this.props.fetchData('/auth/log',this.props.adminAct)
 	}
+    componentWillReceiveProps(nextProps){
+        if(nextProps.admin.redirect !== this.props.admin.redirect) {
+            nextProps.admin.redirect == true? this.goHome() : null;
+            
+        }
+    }
     register=(e)=>{
         const {regUsername, regPassword} = this.state;
         e.preventDefault();
@@ -92,16 +94,20 @@ class Admin extends Component{
             </form>
 		)
 	}
+    goHome(){
+        this.props.history.push('/multimedia');
+    }
 	render(){
+    const {admin} = this.props;
 		return(		
 			<div>
-			{this.props.admin.err?
-                <h3 className='err'>{this.props.admin.err}</h3>
+			{admin.err?
+                <h3 className='err'>{admin.err}</h3>
                 :null}
-			{this.props.admin.success?
-                <h3 className='success'>{this.props.admin.success}</h3>
+			{admin.success?
+                <h3 className='success'>{admin.success}</h3>
                 :null}
-			{this.props.admin.user?this.logoutButton():this.regLog()}
+			{admin.user?this.logoutButton():this.regLog()}
 			</div>
 		)
 	}	

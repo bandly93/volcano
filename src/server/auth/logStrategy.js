@@ -28,7 +28,10 @@ module.exports = function(passport,res){
 					if(err){return next(err)}
 					console.log('req.user',req.user)
 					console.log('req.session',req.session.passport)
-					return res.json({user:user.username})
+					return res.json({
+                        user:user.username,
+                        redirect:true,
+                    })
 					//return res.redirect('/')
 				})
 
