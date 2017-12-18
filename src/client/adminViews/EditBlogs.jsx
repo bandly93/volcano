@@ -67,7 +67,7 @@ class EditBlogs extends Component{
     const {db,converted} = this.props.editor;
         return(
             <div className='dash-container'>
-                Edit Blogs
+                <h1> Edit Blogs</h1>
 				{converted? this.list():null}
                 {converted? <Paginate page = {db.page} path = {path} 
                     modelID={this.blogID}/> 

@@ -89,7 +89,6 @@ input{
 .navBar a:not(.logo){
 	text-decoration: none;
 	color:black;
-	font-size:calc(18px);
 	font-family: 'Anton', sans-serif;
 }
 /*-------------------------multimedia--------------------*/
@@ -194,11 +193,14 @@ span .about{
  /*   .landing{
         padding-top:10%;
     }*/
-    .navBar a:not(.logo){
-	    padding:3%;
+    .navBar > a:not(.logo){
+	    padding:4%;
     }
    .navBar a:not(.logo):not(.menuIcon){
 /*        display:none; */
+    }
+    .navLinks a{
+        padding:4% 4% 20% 4%; 
     }
     .menuIcon{
         padding-right:2%;
@@ -216,6 +218,7 @@ span .about{
         right:1vh;
         top:9vh;
         padding:2vh;
+        width:33%;
     }
    .about{
       margin-bottom:2%;
