@@ -199,6 +199,9 @@ span .about{
    .navBar a:not(.logo):not(.menuIcon){
 /*        display:none; */
     }
+    .navBar span{
+        width:40%;
+    }
     .navLinks a{
         padding:4% 4% 20% 4%; 
     }
