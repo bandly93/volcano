@@ -10,12 +10,12 @@ import Admin from  '../views/Admin.jsx';
 import About from '../views/About.jsx';
 import Multimedia from '../views/Multimedia.jsx';
 import Shop from '../views/Shop.jsx';
-import Blog from '../views/Blog.jsx';
+//import Blog from '../views/Blog.jsx';
 import {withRouter} from "react-router-dom";
 import {toggleMainNav} from '../redux/modules/viewModule';
 //import PropTypes from 'prop-types';
 import NavLinks from './NavLinks.jsx';
-import RichBlog from '../views/RichBlog.jsx';
+import Blog from '../views/Blog.jsx';
 
 class NavBar extends Component{
     constructor(){
@@ -31,8 +31,8 @@ class NavBar extends Component{
             {link: '/multimedia',title:'Multimedia',comp:Multimedia},
             {link:'/about' , title:'About+Contact',comp:About },
             {link:'/shop', title:'Shop',comp:Shop },
+//            {link:'/blog' , title:'Blog',comp:Blog },
             {link:'/blog' , title:'Blog',comp:Blog },
-            {link:'/richBlog' , title:'Rich Blog',comp:RichBlog },
            ];
         const routes = titles.map(each => 
             <Route path={each.link} component={each.comp} key={each.link}/>

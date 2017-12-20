@@ -31,9 +31,9 @@ class Dashboard extends Component{
         const titles = [
             {link:'', title:'Dash Home', comp:DashHome},
             {link:'/messages', title:'Messages', comp:Messages},
-            {link:'/blog', title:'Post Blog', comp:PostBlog},
+//            {link:'/blog', title:'Post Blog', comp:PostBlog},
             {link:'/upload', title:'Upload', comp:UploadTest},
-            {link:'/test', title:'Blog', comp:MyEditor},
+            {link:'/test', title:'Post Blog', comp:MyEditor},
             {link:'/editblog',title:'Edit Blogs',comp:EditBlogs}
         ];
         const links = titles.map(e=>

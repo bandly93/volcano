@@ -1,36 +1,51 @@
 import React,{Component} from 'react';
 import { connect } from 'react-redux';
 import {fetchData,postData} from '../redux/modules/fetchThunk';
-import {blogAct} from '../redux/modules/blogModule';
-import BlogComp from '../components/BlogComp.jsx';
 import Paginate from '../components/Paginate.jsx';
+import {editorAct} from '../redux/modules/editorModule';
+import {Editor, 
+        EditorState, 
+        RichUtils,
+        convertToRaw,
+        convertFromRaw} from 'draft-js';
+import {styleMap,
+        getBlockStyle,
+        mediaBlockRenderer} from '../adminComp/editorStyle.js';
 
-class Blog extends Component{
-	constructor(props){
-		super(props);
-		this.blogID = this.blogID.bind(this);
-	}
-	componentDidMount(){
-        //console.log('did mount',this.props.match.path,location.search);
-        this.props.fetchData(`/blog/data/${location.search}`,this.props.blogAct)
-	}
+class RichBlog extends Component{
+    componentDidMount(){
+        const {fetchData,editorAct} = this.props;
+        fetchData(`/editor/get/data/${location.search}`,editorAct)
+    }
     componentWillReceiveProps(nextProps){
-        if(nextProps.location.search !== this.props.location.search){
-          //  console.log('will mount',nextProps.match.path,
-          //  nextProps.location.search);               
-            this.props.fetchData(`/blog/data/${nextProps.location.search}`,
-                this.props.blogAct)
+        const {fetchData,editorAct,location} = this.props;
+        if(nextProps.location.search !== location.search){
+            fetchData(`/editor/get/data/${nextProps.location.search}`,
+                editorAct)
         }  
     }
-	list(){
-		return this.props.blog.data.map(blog=>
-			<BlogComp key ={blog._id} blog={blog}/>
-		)		
-	}
-	blogID(){
-        if(this.props.blog.data[0]){
+    list(){
+        let className = 'RichEditor-editor';
+        const {converted} = this.props.editor;
+        return converted.map(e => 
+            <div key = {e._id} className='RichEditor-root'>
+                <div className={className}>
+                <Editor
+                    editorState={e.editor}
+                    blockStyleFn={getBlockStyle}
+                    blockRendererFn={mediaBlockRenderer}
+                    customStyleMap={styleMap}
+                    readOnly={true}
+                />
+                </div>
+            </div>
+        )
+    }
+	blogID=()=>{
+        const {data} = this.props.editor.db;
+        if(data[0]){
             let obj ={};
-            let blog = this.props.blog.data;
+            let blog = data;
             obj.new = blog[0]._id;
             obj.old = blog[blog.length-1]._id;
             return obj;
@@ -39,35 +54,34 @@ class Blog extends Component{
             return {};
         }
 	}
-	render(){
-    //console.log(this.props.blog.page,this.props.match.path,this.blogID);
-		return(
-			<div>
-				<h2>Volcano Boyz Blog</h2>
-				{this.props.blog.data?this.list():null}
-   				{this.props.blog.data?
-                <Paginate page = {this.props.blog.page}
-                path = {this.props.match.path}
-                modelID={this.blogID}/> 
-                :null}
-			</div>
-		)
-	}	
+    render(){
+    const {path} = this.props.match;
+    const {converted, db} = this.props.editor;
+        return(
+            <div>
+                Hello RichBlog!
+                {converted?this.list():null}         
+                {converted? <Paginate page = {db.page} path = {path} 
+                    modelID={this.blogID}/> 
+                    :null}
+            </div>
+        )
+    }
+
 }
 
 const mapStateToProps = (state) =>{
 	return{
-		blog:state.blog
+		editor:state.editor
 	};
 };
 
 const mapDispatchToProps = (dispatch) =>{
 	return{
 		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
-		postData:(url,method,data,actFunc)=>dispatch(postData(url,method,data,actFunc)),
-		blogAct:(blog)=>dispatch(blogAct(blog))	
+		postData:(url,method,data,actFunc)=>
+            dispatch(postData(url,method,data,actFunc)),
+		editorAct:(editor)=>dispatch(editorAct(editor))	
 	}
 }
-
-export default connect(mapStateToProps,mapDispatchToProps)(Blog)
-
+export default connect(mapStateToProps,mapDispatchToProps)(RichBlog);

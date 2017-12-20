@@ -95,7 +95,7 @@ class EditBlog extends Component{
         this.confirmMedia('youtube',vidURL);
     }
     render(){
-    let className = 'RichEditor-editor';
+    let className = 'RichEditor-editor Border';
     const {blog,remove,update,put,updateInput,inputValue,
             updateYT,vidValue} = this.props;
     //console.log(put);
