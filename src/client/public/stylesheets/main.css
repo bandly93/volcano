@@ -222,6 +222,7 @@ span .about{
         top:9vh;
         padding:2vh;
         width:33%;
+        z-index:2;
     }
    .about{
       margin-bottom:2%;
