@@ -17,8 +17,10 @@
     background-color:teal;
     cursor:pointer;
 }
-.RichEditor-editor {
+.Border {
   border-top: 1px solid #ddd;
+}
+.RichEditor-editor {
   cursor: text;
   font-size: 16px;
   margin-top: 10px;

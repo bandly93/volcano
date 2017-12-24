@@ -12,7 +12,7 @@ class TextInput extends Component {
     }
     render(){
         return(
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit} className='textInput'>
                 <input 
                     type='text'
                     value={this.props.inputValue} 

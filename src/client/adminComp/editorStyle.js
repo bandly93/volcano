@@ -20,7 +20,7 @@ export function getBlockStyle(block) {
 const styles = {
     media: {
         width:'100%',
-        whiteSpace:'initial'
+        whiteSpace:'initial',
     }
 }
 const Audio = (props) => {
@@ -36,7 +36,7 @@ const Video = (props) => {
 };
 const YouTube = (props) => {
     return(
-        <iframe width="560" height="315" 
+        <iframe width="100%" height="315"
             src={props.src} 
             frameBorder="0" gesture="media" allow="encrypted-media" 
             allowFullScreen>

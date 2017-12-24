@@ -74,11 +74,11 @@ app.use('/msg',msgRouter);
 app.use('/upload',uploadRouter);
 app.use('/editor',editorRouter);
 
-
 //redirect  to client
 app.get('*', function(req,res){
   res.sendFile(path.resolve(__dirname ,'../client/public/index.html'))
 })
+
 
 
 app.listen(port,function(){

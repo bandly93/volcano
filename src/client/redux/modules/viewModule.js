@@ -1,11 +1,13 @@
 //state modifiers
 
 //dash side nav
+const maxSize = 812;
+
 const display =(size)=>{
-    return size <=812? 'none':'flex';
+    return size < maxSize? 'none':'flex';
 }
 const toggle = (size,display) =>{
-    if(size <= 812){
+    if(size < maxSize){
         return display == 'none'? 'flex':'none';
     }
     return 'flex';
@@ -13,16 +15,16 @@ const toggle = (size,display) =>{
 }
 //main nav
 const toggleMain = (size,navCon) => {
-    if(size <= 812){
+    if(size < maxSize){
         return navCon == 'none'? 'flex':'none';
     }
     return 'block';
 }
 const navLinks = (size)=>{
-    return size <=812? 'none':'block';
+    return size < maxSize? 'none':'block';
 }
 const hideMenu = (size,display) => {
-    if(size <= 812 && display != 'none'){
+    if(size < maxSize && display != 'none'){
         return 'none';
     }
 }

@@ -8,37 +8,42 @@ import {Editor,
         RichUtils,
         convertToRaw,
         convertFromRaw} from 'draft-js';
+import {styleMap,
+        getBlockStyle,
+        mediaBlockRenderer} from '../adminComp/editorStyle.js';
 
-
-class RichBlog extends Component{
+class Blog extends Component{
     componentDidMount(){
         const {fetchData,editorAct} = this.props;
-        fetchData(`/editor/data/${location.search}`,editorAct)
+        fetchData(`/editor/get/data/${location.search}`,editorAct)
     }
     componentWillReceiveProps(nextProps){
         const {fetchData,editorAct,location} = this.props;
         if(nextProps.location.search !== location.search){
-            fetchData(`/editor/data/${nextProps.location.search}`,
+            fetchData(`/editor/get/data/${nextProps.location.search}`,
                 editorAct)
         }  
     }
     list(){
-        const {data} = this.props.editor;
-        return data.map(e => 
+        let className = 'RichEditor-editor';
+        const {converted} = this.props.editor;
+        return converted.map(e => 
             <div key = {e._id} className='RichEditor-root'>
+                <div className={className}>
                 <Editor
-                    editorState={
-                        EditorState.createWithContent(convertFromRaw(
-                            JSON.parse(e.editor)))
-                    }
+                    editorState={e.editor}
+                    blockStyleFn={getBlockStyle}
+                    blockRendererFn={mediaBlockRenderer}
+                    customStyleMap={styleMap}
                     readOnly={true}
                 />
+                </div>
             </div>
         )
     }
 	blogID=()=>{
-        const {data} = this.props.editor;
-        if(data){
+        const {data} = this.props.editor.db;
+        if(data[0]){
             let obj ={};
             let blog = data;
             obj.new = blog[0]._id;
@@ -50,16 +55,15 @@ class RichBlog extends Component{
         }
 	}
     render(){
-    const {data,page} = this.props.editor;
+    const {path} = this.props.match;
+    const {converted, db} = this.props.editor;
         return(
             <div>
-                Hello RichBlog!
-                {data?this.list():null}         
-                {data? 
-                <Paginate page = {page}
-                path = {this.props.match.path}
-                modelID={this.blogID}/> 
-                :null}
+                Hello Blog!
+                {converted?this.list():null}         
+                {converted? <Paginate page = {db.page} path = {path} 
+                    modelID={this.blogID}/> 
+                    :null}
             </div>
         )
     }
@@ -80,4 +84,4 @@ const mapDispatchToProps = (dispatch) =>{
 		editorAct:(editor)=>dispatch(editorAct(editor))	
 	}
 }
-export default connect(mapStateToProps,mapDispatchToProps)(RichBlog);
+export default connect(mapStateToProps,mapDispatchToProps)(Blog);

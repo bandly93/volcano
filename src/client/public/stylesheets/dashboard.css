@@ -64,7 +64,6 @@ a{
 .putLeft{
     text-align:left;
 }
-
 /*-----------------------BLOG-POST---------------------------*/
 .dash-container textarea{
 	width:80%;
@@ -115,7 +114,6 @@ a{
 }
 .dash-view{
     flex:4;
-    justify-content:space-between;
 }
 
 .flex-space{
@@ -183,7 +181,7 @@ a{
 
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
-@media only screen and (min-width:812px){
+@media only screen and (min-width:813px){
     a{
         font-size:21px;
     }
@@ -194,7 +192,8 @@ a{
         border:1px solid teal;
     } 
     .dash-container{
-        flex:4;
+        text-align:center;
+        padding:0 15%;
     }
     .paginate{
     }

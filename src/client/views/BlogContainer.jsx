@@ -1,14 +1,12 @@
 import React,{Component} from 'react';
 import { connect } from 'react-redux';
-import {fetchData,postData} from '../redux/modules/fetchThunk';
+import {fetchData} from '../redux/modules/fetchThunk';
 import Paginate from '../components/Paginate.jsx';
-import {editorAct,postStatus,updateEditor} from '../redux/modules/editorModule';
-import EditBlog from '../adminComp/EditBlog.jsx';
+import {editorAct} from '../redux/modules/editorModule';
 import {Editor, EditorState, RichUtils,convertToRaw} from 'draft-js';
-import {updateInput,updateYT} from '../redux/modules/inputModule';
 
 
-class EditBlogs extends Component{
+class BlogContainer extends Component {
     componentDidMount(){
         const {fetchData,editorAct} = this.props;
         fetchData(`/editor/get/data/${location.search}`,editorAct)
@@ -23,45 +21,10 @@ class EditBlogs extends Component{
     list(){
         const {converted} = this.props.editor;
         return converted.map(e =>
-           <EditBlog key={e._id}
-                blog={e} remove={this.delete} 
-                update={this.props.updateEditor}
-                put={this.put}
-                updateInput={this.props.updateInput}
-                inputValue={e.imgURL}
-                updateYT={this.props.updateYT}
-                vidValue={e.youTube}
+           <this.props.component key={e._id}
             /> 
         )
     }
-    delete=(data)=>{
-        const id = data._id;
-        const {postData,editorAct} = this.props;
-        postData('/editor','DELETE',{_id:id},editorAct);
-    }
-    put=(data)=>{
-        console.log(data)
-        const {postData,editorAct,postStatus} = this.props;
-        var contentState = data.editor.getCurrentContent();
-        let obj = {
-            _id:data._id,
-            editor:JSON.stringify(convertToRaw(contentState))
-        }
-        postData('/editor','PUT',obj,postStatus); 
-    }
-	blogID=()=>{
-        const {data} = this.props.editor.db;
-        if(data[0]){
-            let obj ={};
-            let blog = data;
-            obj.new = blog[0]._id;
-            obj.old = blog[blog.length-1]._id;
-            return obj;
-        }
-        else{
-            return {};
-        }
-	}
     render(){
     const {path} = this.props.match;
     const {db,converted} = this.props.editor;
@@ -75,8 +38,8 @@ class EditBlogs extends Component{
             </div>
         )
     }
-
 }
+
 
 const mapStateToProps = (state) =>{
 	return{
@@ -97,7 +60,4 @@ const mapDispatchToProps = (dispatch) =>{
         updateYT:(id,input)=>dispatch(updateYT(id,input))
 	}
 }
-export default connect(mapStateToProps,mapDispatchToProps)(EditBlogs);
- 
-
-
+export default connect(mapStateToProps,mapDispatchToProps)(BlogContainer);
