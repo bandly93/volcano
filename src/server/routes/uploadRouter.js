@@ -15,7 +15,7 @@ uploadRouter.route('/')
 })
 
 .delete((req,res)=>{
-	crud.delete(req,res);	
+	crud.delete(req,res);
 });
 
 module.exports = uploadRouter;

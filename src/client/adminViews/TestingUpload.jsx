@@ -15,57 +15,135 @@ class UploadTest extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			file:[]
+			images:[],
+			folder:''
 		}
 	}
 	
 	componentDidMount(){
-		const { fetchData,uploadAct } = this.props
+		const { fetchData,uploadAct } = this.props;
 		fetchData('/upload',uploadAct);
 	}
 
-	submitPhotos=(e)=>{ 
+	//add functions
+	addPhotos=(e)=>{ 
 		e.preventDefault();
-		this.props.postData('/upload','POST',{data:this.state.image},this.props.uploadAct)
+		const { postData , uploadAct} = this.props;
+		postData('/upload','POST',{images:this.state.images},uploadAct);
+	}
+
+	addFolder=(e)=>{
+		e.preventDefault();
+		const { postData , uploadAct} = this.props;	
+		postData('/upload','POST',{folder:this.state.folder},uploadAct);		
 	}
 	
-	onFormChange=(e)=>{
+	photoFormChange=(e)=>{
 		const photos = e.target.files;
-		this.setState({image:constructPhotoArray(photos)});
+		this.setState({images:constructPhotoArray(photos)});
+	}
+	folderFormChange=(e)=>{
+		this.setState({folder:e.target.value});
 	}
 
-	deletePhoto=(e)=>{
-		const photoName = e.currentTarget.name;
-		this.props.postData('/upload','DELETE',{data:photoName},this.props.uploadAct)
+	//delete function	
+	deleteItem=(e)=>{
+		const { name,value } = e.currentTarget;
+		const { postData,uploadAct } = this.props;
+		postData('/upload','DELETE',{data:name,type:value},uploadAct);
 	}
 
-	form=()=>{
+	// add functions
+	addPhotoButton = () => {
 		return(
 			<div>
-				<form onSubmit = {this.submitPhotos}>
-					<input type = "file" name = "image" multiple = "multiple" onChange = {this.onFormChange}/>
+				<form onSubmit = {this.addPhotos}>
+					<input 
+						type = "file" 
+						name = "image" 
+						multiple = "multiple"
+						onChange = {this.photoFormChange}/>
 					<input type = "submit"/>
 				</form>
-			</div>
+			</div>	
 		)
 	}
 
-	photoLibrary=()=>{
-		return this.props.upload.images.map(images => 
-			<div key = {images.name} className = "upload-images">
-				<li>{images.name}</li>
-				<img src = {images.path}/>
-				<button onClick = {this.deletePhoto} name = {images.name}> x </button>
+	addFolderButton = () => {
+		return(
+			<div>
+				<form onSubmit = {this.addFolder}>
+					<input 
+						type = "text" 
+						name = "folder"
+						onChange = {this.folderFormChange}
+					/>
+					<input type = "submit"/>
+				</form>
+			</div>	
+		)
+	}
+	currentBatch=(name)=>{
+		console.log(name);
+		const { postData , uploadAct} = this.props;	
+		postData('/upload','POST',{folderName:name},uploadAct);	
+		
+	}
+		
+	folderLibrary = () => {
+		return(
+			this.props.upload.folders.map(folder => 
+				<div key = {folder.name} className = "upload-folder" > 
+					<li onClick = {()=>this.currentBatch(folder.name)} >{folder.name}</li>
+					<button value = "folder" onClick = {this.deleteItem} name = {folder.name}> x </button>
+				</div>
+			)
+		)
+	}
+	//<img src = {image.path}/>
+	
+	photoLibrary = () => {
+		return(
+			this.props.upload.images.map(image => 
+				<div key = {image.name} className = "upload-image">
+					<li>{image.name}</li>
+					<button value = "photo" onClick = {this.deleteItem} name = {image.name}> x </button>
+				</div>
+			)
+		)
+	}
+
+	noPhotos = () => {
+		return( 
+			<div>
+				<h1>No content to display here.</h1>
 			</div>
 		)
 	}
 
 	render(){
-		const images = this.props.upload.images
+		const {images, folders} = this.props.upload; 
 		return(
-			<div>
-				{this.form()}
-				{images?this.photoLibrary():null}
+			<div className = "file-storage-system">
+				<div className = "panel">
+					<h3> Folders </h3>
+					<div>
+						{folders?this.folderLibrary():this.noPhotos()}
+					</div>
+					<div>
+						{this.addFolderButton()}
+					</div>
+				</div>
+				<div className = "panel">
+					<h3> Photos </h3>
+					<div>
+						{images?this.photoLibrary():this.noPhotos()}
+					</div>
+					<div>
+						{this.addPhotoButton()}
+					</div>
+				</div>
+				
 			</div>
 		)
 	}

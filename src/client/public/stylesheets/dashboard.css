@@ -160,6 +160,27 @@ a{
     display:inline;
     color:white;
 }
+
+
+/*--------------------------File Storage System -----------------------*/
+.file-storage-system{
+	display:flex;
+	
+}
+.panel{
+	border:2px solid black;
+	flex:1;
+}
+.panel h3{
+	text-align:center;
+	border-bottom: 2px black solid;
+}
+.upload-folder{
+	display:flex;
+}
+
+
+
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
 @media only screen and (min-width:812px){
