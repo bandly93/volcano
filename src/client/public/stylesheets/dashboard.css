@@ -173,11 +173,20 @@ a{
 	text-align:center;
 	border-bottom: 2px black solid;
 }
-.upload-folder{
+.upload{
 	display:flex;
 }
 
+.upload li {
+	list-style-type:none;
+	padding: 30px;
+	text-align:center;
+}
 
+.upload img{
+	height:10vh;
+
+}
 
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/

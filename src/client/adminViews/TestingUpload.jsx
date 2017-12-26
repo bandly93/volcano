@@ -52,7 +52,6 @@ class UploadTest extends Component{
 		const { name,value } = e.currentTarget;
 		const { postData,uploadAct } = this.props;
 		const { folderName } = this.props.upload;
-		
 		postData('/upload','DELETE',{data:name,type:value,folderName:folderName},uploadAct);
 	}
 
@@ -79,8 +78,7 @@ class UploadTest extends Component{
 					<input 
 						type = "text" 
 						name = "folder"
-						onChange = {this.folderFormChange}
-					/>
+						onChange = {this.folderFormChange}/>
 					<input type = "submit"/>
 				</form>
 			</div>	
@@ -92,23 +90,38 @@ class UploadTest extends Component{
 		postData('/upload','POST',{folderName:name},uploadAct);	
 		
 	}
-		
+
+	closedFolder = () => {
+		return (
+			<img src = "../images/icons/closed-folder.png"/>
+		)	
+	}
+	openFolder = () => {
+		return (
+			<img src = "../images/icons/open-folder.png"/>
+		)	
+	}
+
 	folderLibrary = () => {
+		const { folderName, folders } = this.props.upload;
+		const result = folders.filter(folder => folder.name != ".DS_Store");
 		return(
-			this.props.upload.folders.map(folder => 
-				<div key = {folder.name} className = "upload-folder" > 
-					<li onClick = {()=>this.currentBatch(folder.name)} >{folder.name}</li>
+			result.map(folder => 
+				<div key = {folder.name} className = "upload">
+					{folder.name===folderName?this.openFolder():this.closedFolder()}	
+					<li onClick = {()=>this.currentBatch(folder.name)}>{folder.name}</li>
 					<button value = "folder" onClick = {this.deleteItem} name = {folder.name}> x </button>
 				</div>
 			)
 		)
 	}
-	//<img src = {image.path}/>
 	
 	photoLibrary = () => {
+		const { images } = this.props.upload;
+		const result = images.filter(image => image.name != ".DS_Store");
 		return(
-			this.props.upload.images.map(image => 
-				<div key = {image.name} className = "upload-image">
+			result.map(image => 
+				<div key = {image.name} className = "upload">
 					<li>{image.name}</li>
 					<button value = "photo" onClick = {this.deleteItem} name = {image.name}> x </button>
 				</div>
@@ -116,10 +129,10 @@ class UploadTest extends Component{
 		)
 	}
 
-	noPhotos = () => {
+	noContent = () => {
 		return( 
 			<div>
-				<h1>No content to display here.</h1>
+				<h1>Please create a folder or select a folder!</h1>
 			</div>
 		)
 	}
@@ -131,7 +144,7 @@ class UploadTest extends Component{
 				<div className = "panel">
 					<h3> Folders </h3>
 					<div>
-						{folders?this.folderLibrary():this.noPhotos()}
+						{folders?this.folderLibrary():this.noContent()}
 					</div>
 					<div>
 						{this.addFolderButton()}
@@ -140,7 +153,7 @@ class UploadTest extends Component{
 				<div className = "panel">
 					<h3> Photos </h3>
 					<div>
-						{images?this.photoLibrary():this.noPhotos()}
+						{images?this.photoLibrary():this.noContent()}
 					</div>
 					<div>
 						{images?this.addPhotoButton():null}
