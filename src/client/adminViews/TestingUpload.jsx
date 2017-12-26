@@ -29,7 +29,8 @@ class UploadTest extends Component{
 	addPhotos=(e)=>{ 
 		e.preventDefault();
 		const { postData , uploadAct} = this.props;
-		postData('/upload','POST',{images:this.state.images},uploadAct);
+		const { folderName } = this.props.upload;
+		postData('/upload','POST',{images:this.state.images,folderName:folderName},uploadAct);
 	}
 
 	addFolder=(e)=>{
@@ -50,7 +51,9 @@ class UploadTest extends Component{
 	deleteItem=(e)=>{
 		const { name,value } = e.currentTarget;
 		const { postData,uploadAct } = this.props;
-		postData('/upload','DELETE',{data:name,type:value},uploadAct);
+		const { folderName } = this.props.upload;
+		
+		postData('/upload','DELETE',{data:name,type:value,folderName:folderName},uploadAct);
 	}
 
 	// add functions
@@ -83,8 +86,8 @@ class UploadTest extends Component{
 			</div>	
 		)
 	}
+
 	currentBatch=(name)=>{
-		console.log(name);
 		const { postData , uploadAct} = this.props;	
 		postData('/upload','POST',{folderName:name},uploadAct);	
 		
@@ -140,7 +143,7 @@ class UploadTest extends Component{
 						{images?this.photoLibrary():this.noPhotos()}
 					</div>
 					<div>
-						{this.addPhotoButton()}
+						{images?this.addPhotoButton():null}
 					</div>
 				</div>
 				
