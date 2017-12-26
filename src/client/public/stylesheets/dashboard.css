@@ -165,16 +165,27 @@ a{
 	display:flex;
 	
 }
-.panel{
+.panel-right{
 	border:2px solid black;
-	flex:1;
+	flex:3;
 }
-.panel h3{
+
+.panel-left{
+	border:2px solid black;
+	flex:1
+}
+.panel-left+ .panel-right h3{
 	text-align:center;
 	border-bottom: 2px black solid;
 }
+.panel-left h3{
+	text-align:center;
+	border-bottom: 2px black solid;
+}
+
 .upload{
-	display:flex;
+	flex:1;
+	border-bottom: 2px black solid;
 }
 
 .upload li {
@@ -184,7 +195,7 @@ a{
 }
 
 .upload img{
-	height:10vh;
+	height:15vh;
 
 }
 

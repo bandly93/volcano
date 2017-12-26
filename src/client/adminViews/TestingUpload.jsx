@@ -19,35 +19,43 @@ class UploadTest extends Component{
 			folder:''
 		}
 	}
-	
+
+	//get all folders name on page load.
 	componentDidMount(){
 		const { fetchData,uploadAct } = this.props;
 		fetchData('/upload',uploadAct);
 	}
 
-	//add functions
-	addPhotos=(e)=>{ 
+	//function to add photos to system
+	addPhotos=(e)=>{
 		e.preventDefault();
-		const { postData , uploadAct} = this.props;
+	
+	
+		const { postData,uploadAct } = this.props;
 		const { folderName } = this.props.upload;
 		postData('/upload','POST',{images:this.state.images,folderName:folderName},uploadAct);
 	}
 
+	//function to add folder to system
 	addFolder=(e)=>{
+		
 		e.preventDefault();
-		const { postData , uploadAct} = this.props;	
+		const { postData,uploadAct } = this.props;	
 		postData('/upload','POST',{folder:this.state.folder},uploadAct);		
 	}
-	
+
+	//keep track of temporary photos to send over to system.
 	photoFormChange=(e)=>{
 		const photos = e.target.files;
 		this.setState({images:constructPhotoArray(photos)});
 	}
+
+	//keep track of folder to send over to system.
 	folderFormChange=(e)=>{
 		this.setState({folder:e.target.value});
 	}
 
-	//delete function	
+	//function to delete a target photo or folder.	
 	deleteItem=(e)=>{
 		const { name,value } = e.currentTarget;
 		const { postData,uploadAct } = this.props;
@@ -55,7 +63,7 @@ class UploadTest extends Component{
 		postData('/upload','DELETE',{data:name,type:value,folderName:folderName},uploadAct);
 	}
 
-	// add functions
+	//container that returns a add photo button.
 	addPhotoButton = () => {
 		return(
 			<div>
@@ -71,6 +79,7 @@ class UploadTest extends Component{
 		)
 	}
 
+	//containr that returns a add folder button.
 	addFolderButton = () => {
 		return(
 			<div>
@@ -78,37 +87,43 @@ class UploadTest extends Component{
 					<input 
 						type = "text" 
 						name = "folder"
+						placeholder = "add folder"
 						onChange = {this.folderFormChange}/>
 					<input type = "submit"/>
 				</form>
 			</div>	
 		)
 	}
-
+	
+	//function that sends current folder clicked to system.
 	currentBatch=(name)=>{
 		const { postData , uploadAct} = this.props;	
 		postData('/upload','POST',{folderName:name},uploadAct);	
-		
 	}
 
+	//container that returns a closed folder image.
 	closedFolder = () => {
 		return (
-			<img src = "../images/icons/closed-folder.png"/>
-		)	
-	}
-	openFolder = () => {
-		return (
-			<img src = "../images/icons/open-folder.png"/>
+			<img src = "../images/icons/closed-folder.svg"/>
 		)	
 	}
 
+	//container that returns a open folder image.
+	openFolder = () => {
+		return (
+			<img src = "../images/icons/open-folder.svg"/>
+		)	
+	}
+
+	//returns a list of all folders with empty/non-empty logic.
 	folderLibrary = () => {
-		const { folderName, folders } = this.props.upload;
+		const { folderName,folders } = this.props.upload;
+		//handles the issue where ".DS_STORE" shows up in list.
 		const result = folders.filter(folder => folder.name != ".DS_Store");
 		return(
 			result.map(folder => 
 				<div key = {folder.name} className = "upload">
-					{folder.name===folderName?this.openFolder():this.closedFolder()}	
+					{folder.name === folderName?this.openFolder():this.closedFolder()}	
 					<li onClick = {()=>this.currentBatch(folder.name)}>{folder.name}</li>
 					<button value = "folder" onClick = {this.deleteItem} name = {folder.name}> x </button>
 				</div>
@@ -116,8 +131,10 @@ class UploadTest extends Component{
 		)
 	}
 	
+	//returns a list of all photos with empty/non-empty logic.
 	photoLibrary = () => {
 		const { images } = this.props.upload;
+		//handles the issue where ".DS_STORE" shows up in list.
 		const result = images.filter(image => image.name != ".DS_Store");
 		return(
 			result.map(image => 
@@ -129,28 +146,39 @@ class UploadTest extends Component{
 		)
 	}
 
+	//returns a no content message.
 	noContent = () => {
 		return( 
 			<div>
-				<h1>Please create a folder or select a folder!</h1>
+				<h1>Select a folder to view content.</h1>
+			</div>
+		)
+	}
+	
+	//returns a no folder message.
+	noFolder = () =>{
+		return (
+			<div>
+				<h1> There are no folders. </h1>
 			</div>
 		)
 	}
 
+	//returns the file-storage-system viewer.
 	render(){
-		const {images, folders} = this.props.upload; 
+		const { images,folders } = this.props.upload;
 		return(
 			<div className = "file-storage-system">
-				<div className = "panel">
+				<div className = "panel-left">
 					<h3> Folders </h3>
 					<div>
-						{folders?this.folderLibrary():this.noContent()}
+						{folders?this.folderLibrary():this.noFolder()}
 					</div>
 					<div>
 						{this.addFolderButton()}
 					</div>
 				</div>
-				<div className = "panel">
+				<div className = "panel-right">
 					<h3> Photos </h3>
 					<div>
 						{images?this.photoLibrary():this.noContent()}
@@ -159,11 +187,11 @@ class UploadTest extends Component{
 						{images?this.addPhotoButton():null}
 					</div>
 				</div>
-				
 			</div>
 		)
 	}
 }
+
 const constructPhotoArray = (photos) => {
 	let photoArray = [];
 	for (let i = 0; i < photos.length; i++){
