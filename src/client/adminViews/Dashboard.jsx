@@ -7,7 +7,7 @@ import {
   Switch
 } from 'react-router-dom';
 import Messages from './Messages.jsx';
-import PostBlog from './PostBlog.jsx';
+import PostBlogContainer from '../adminContainers/PostBlogContainer.jsx';
 import Upload from './Upload.jsx';
 import UploadTest from "./TestingUpload.jsx";
 import DashHome from './DashHome.jsx';
@@ -31,7 +31,7 @@ class Dashboard extends Component{
         const titles = [
             {link:'', title:'Dash Home', comp:DashHome},
             {link:'/messages', title:'Messages', comp:Messages},
-            {link:'/blog', title:'Post Test', comp:PostBlog},
+            {link:'/blog', title:'Post Test', comp:PostBlogContainer},
             {link:'/upload', title:'Upload', comp:UploadTest},
             {link:'/test', title:'Post Blog', comp:MyEditor},
             {link:'/editblog',title:'Edit Blogs',comp:EditBlogs}
