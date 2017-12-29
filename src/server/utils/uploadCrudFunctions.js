@@ -10,7 +10,6 @@ exports.post = (req,res) => {
 	if (folder||images){
 		crudFunctions(req,res,addFunc);
 	}else{
-	//
 		crudFunctions(req,res,getBoth);
 	}
 }

@@ -29,16 +29,14 @@ class UploadTest extends Component{
 	//function to add photos to system
 	addPhotos=(e)=>{
 		e.preventDefault();
-	
-	
 		const { postData,uploadAct } = this.props;
 		const { folderName } = this.props.upload;
+		console.log(this.state.images);
 		postData('/upload','POST',{images:this.state.images,folderName:folderName},uploadAct);
 	}
 
 	//function to add folder to system
 	addFolder=(e)=>{
-		
 		e.preventDefault();
 		const { postData,uploadAct } = this.props;	
 		postData('/upload','POST',{folder:this.state.folder},uploadAct);		
@@ -193,6 +191,7 @@ class UploadTest extends Component{
 }
 
 const constructPhotoArray = (photos) => {
+	console.log(photos);
 	let photoArray = [];
 	for (let i = 0; i < photos.length; i++){
 		let reader = new FileReader();
