@@ -163,41 +163,72 @@ a{
 /*--------------------------File Storage System -----------------------*/
 .file-storage-system{
 	display:flex;
-	
-}
-.panel-right{
-	border:2px solid black;
-	flex:3;
 }
 
 .panel-left{
 	border:2px solid black;
-	flex:1
+	flex:1;
 }
-.panel-left+ .panel-right h3{
+
+
+.file-storage-system h3{
+	margin : 0;
+	padding: 0.6em;
+	size:10px;
+	text-align:center;
+}
+.panel-right{
+	border:2px solid black;
+	flex:5;
+}
+.panel-right li{
+	display:flex;
+}
+
+.panel-left h3, .panel-right h3{
 	text-align:center;
 	border-bottom: 2px black solid;
 }
-.panel-left h3{
+.panel-left h2{
 	text-align:center;
-	border-bottom: 2px black solid;
+	font-size:20px;
 }
 
 .upload{
-	flex:1;
+	display:block;
 	border-bottom: 2px black solid;
+}
+
+.upload button{
+	background:none;
+	border:none;
 }
 
 .upload li {
 	list-style-type:none;
-	padding: 30px;
+	padding: 10px;
 	text-align:center;
+	display:flex;
 }
 
-.upload img{
-	height:15vh;
-
+.folder-icon{
+	height:8vh;
 }
+
+.thumbnail{
+	height:50px;
+	width:50px;
+}
+
+.thumbnail:hover{
+    position:relative;
+    width:auto;
+    height:auto;
+    display:block;
+    z-index:999;
+	display:block;
+}
+
 
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/

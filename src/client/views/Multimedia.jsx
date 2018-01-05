@@ -16,9 +16,15 @@ import {
 } from 'react-router-dom';
 
 class Multimedia extends Component{
+	
+	moveToTop = () => {
+		return (
+			window.scrollTo(0,0)
+		)
+	}
 
 	render(){
-		const path = this.props.match.path;
+		const {path} = this.props.match;
 		return(
 			<Router>
 				<div>
@@ -32,42 +38,43 @@ class Multimedia extends Component{
 					    <Route exact path = {`${path}/musicvideos`} component = {MusicVideos}/> 
 						<Route exact path = {`${path}/shortfilms`} component = {ShortFilms}/>
 					</Switch>
+
 					<div className = "multimedia-flexbox">
 						<div className = "multimedia">
 							<h1>Photos</h1>
 							<Link to = {`${path}/portraits`} >
-								<img src='https://farm5.staticflickr.com/4355/36883361836_82d0cb2496.jpg'/>
+								<img onClick = {this.moveToTop} src='https://farm5.staticflickr.com/4355/36883361836_82d0cb2496.jpg'/>
 								<p>PORTRAITS</p>
 							</Link>
 							<Link to = {`${path}/creative`} >
-								<img src='https://via.placeholder.com/500x350'/>
+								<img onClick = {this.moveToTop} src='https://via.placeholder.com/500x350'/>
 								<p>CREATIVE</p>
 							</Link>
 							<Link to = {`${path}/headshots`} >
-								<img src='https://farm5.staticflickr.com/4352/36236809334_007221032b.jpg'/>
+								<img onClick = {this.moveToTop} src='https://farm5.staticflickr.com/4352/36236809334_007221032b.jpg'/>
 								<p>HEADSHOTS</p>
 							</Link>
 							<Link to = {`${path}/weddingphotos`} >
-								<img src='https://farm5.staticflickr.com/4347/36257977233_b65bd98d06.jpg'/>
+								<img onClick = {this.moveToTop} src='https://farm5.staticflickr.com/4347/36257977233_b65bd98d06.jpg'/>
 								<p>WEDDING PHOTOS</p>
 							</Link>
 						</div>
 						<div className = "multimedia">
 							<h1>Motion</h1>
 							<Link to = {`${path}/lookbooks`} >
-								<img src='https://via.placeholder.com/500x350'/>
+								<img onClick = {this.moveToTop} src='https://via.placeholder.com/500x350'/>
 								<p>LOOKBOOKS</p>
 							</Link>
 							<Link to = {`${path}/weddingvideos`} >
-								<img src='https://via.placeholder.com/500x350'/>
+								<img onClick = {this.moveToTop} src='https://via.placeholder.com/500x350'/>
 								<p>WEDDING VIDEOS</p>
 							</Link>
 							<Link to = {`${path}/musicvideos`} >
-								<img src='https://via.placeholder.com/500x350'/>
+								<img onClick = {this.moveToTop} src='https://via.placeholder.com/500x350'/>
 								<p>MUSIC VIDEOS</p>
 							</Link>
 							<Link to = {`{path}/shortfilms`} >
-								<img src='https://via.placeholder.com/500x350'/>
+								<img onClick = {this.moveToTop} src='https://via.placeholder.com/500x350'/>
 								<p>SHORT FILMS</p>
 							</Link>
 						</div> 

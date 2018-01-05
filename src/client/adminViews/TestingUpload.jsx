@@ -102,43 +102,46 @@ class UploadTest extends Component{
 	//container that returns a closed folder image.
 	closedFolder = () => {
 		return (
-			<img src = "../images/icons/closed-folder.svg"/>
+			<img src = "../images/icons/closed-folder.svg" className = "folder-icon"/>
 		)	
 	}
-
+	
 	//container that returns a open folder image.
 	openFolder = () => {
 		return (
-			<img src = "../images/icons/open-folder.svg"/>
+			<img src = "../images/icons/open-folder.svg" className = "folder-icon"/>
 		)	
 	}
 
 	//returns a list of all folders with empty/non-empty logic.
 	folderLibrary = () => {
 		const { folderName,folders } = this.props.upload;
-		//handles the issue where ".DS_STORE" shows up in list.
-		const result = folders.filter(folder => folder.name != ".DS_Store");
 		return(
-			result.map(folder => 
+			folders.map(folder => 
 				<div key = {folder.name} className = "upload">
-					{folder.name === folderName?this.openFolder():this.closedFolder()}	
-					<li onClick = {()=>this.currentBatch(folder.name)}>{folder.name}</li>
-					<button value = "folder" onClick = {this.deleteItem} name = {folder.name}> x </button>
+					<li onClick = {()=>this.currentBatch(folder.name)}>
+						{folder.name === folderName?this.openFolder():this.closedFolder()}	
+						<h2>{folder.name}</h2>
+					</li>
+					<button className = "upload-button" value = "folder" onClick = {this.deleteItem} name = {folder.name}> x </button>
 				</div>
 			)
 		)
 	}
-	
+
 	//returns a list of all photos with empty/non-empty logic.
 	photoLibrary = () => {
 		const { images } = this.props.upload;
-		//handles the issue where ".DS_STORE" shows up in list.
-		const result = images.filter(image => image.name != ".DS_Store");
 		return(
-			result.map(image => 
+			images.map(image => 
 				<div key = {image.name} className = "upload">
-					<li>{image.name}</li>
-					<button value = "photo" onClick = {this.deleteItem} name = {image.name}> x </button>
+					<div>
+						<li>
+							<img src = {image.path} className = "thumbnail" />
+							<h6>{image.name}</h6>
+							<button className = "upload-button" value = "photo" onClick = {this.deleteItem} name = {image.name}> x </button>
+						</li>	
+					</div>
 				</div>
 			)
 		)
@@ -148,7 +151,7 @@ class UploadTest extends Component{
 	noContent = () => {
 		return( 
 			<div>
-				<h1>Select a folder to view content.</h1>
+				<h1> Select a folder to view content. </h1>
 			</div>
 		)
 	}
@@ -169,21 +172,13 @@ class UploadTest extends Component{
 			<div className = "file-storage-system">
 				<div className = "panel-left">
 					<h3> Folders </h3>
-					<div>
-						{folders?this.folderLibrary():this.noFolder()}
-					</div>
-					<div>
-						{this.addFolderButton()}
-					</div>
+					<div> {folders?this.folderLibrary():this.noFolder()} </div>
+					<div> {this.addFolderButton()} </div>
 				</div>
 				<div className = "panel-right">
 					<h3> Photos </h3>
-					<div>
-						{images?this.photoLibrary():this.noContent()}
-					</div>
-					<div>
-						{images?this.addPhotoButton():null}
-					</div>
+					<div> {images?this.photoLibrary():this.noContent()} </div>
+					<div> {images?this.addPhotoButton():null} </div>
 				</div>
 			</div>
 		)
@@ -191,11 +186,11 @@ class UploadTest extends Component{
 }
 
 const constructPhotoArray = (photos) => {
-	console.log(photos);
 	let photoArray = [];
 	for (let i = 0; i < photos.length; i++){
 		let reader = new FileReader();
 		let d = new Date();
+		console.log(d);
 		reader.onload = function(event){
 			photoArray.push({id:d.getTime()+i,name:photos[i].name,data:event.target.result});
 		}

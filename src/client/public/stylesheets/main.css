@@ -1,25 +1,26 @@
 /*-------------------slideshow buttons------------------------*/
 .slideshow-container{
-	background-color:grey;
-}
-.left-button , .right-button{
-	background-color:#f1f1f1;
-	border:none;
-	padding:8px 16px;
 
 }
+
+.slideshow-container button{
+}
+
+
 .left-button{
-	position:absolute;
-	top:50%;
-	left:30%;
-	transform:translate(0%,-50%);
+
 }
 .right-button{
-	position:absolute;
-	top:50%;
-	right:30%;
-	transform:translate(0%,-50%);
+
+
 }
+.left-button, .right-button{
+	background:transparent;
+	border:none;
+
+}
+
+
 /*-------------------------register && login--------------------*/
 .reglog{
 	display:flex;
