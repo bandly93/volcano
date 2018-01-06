@@ -27,32 +27,32 @@ const crudFunctions = (req,res,action) => {
 	}
 }
 
-var filePath = './src/client/public/images/uploads/';
+var folderPath = './src/client/public/images/uploads/';
 var imagePath = '../images/uploads/';
 
 //get all folders and specific photos from file storage system.
 const getBoth = (req,res) => {
 	const { folderName } = req.body;
-	let folders = fs.readdirSync(filePath).filter(folder => folder != ".DS_Store");
-	let photos = fs.readdirSync(filePath+"/"+folderName).filter(photo => photo != ".DS_Store");	
+	let folders = fs.readdirSync(folderPath).filter(folder => folder != ".DS_Store");
+	let photos = fs.readdirSync(folderPath+"/"+folderName).filter(photo => photo != ".DS_Store");	
 	let action1 = folders.map(folder => ({name:folder,path:imagePath+folder}));
 	let action2 = photos.map(photo => ({name:photo,path:imagePath+'/'+folderName+'/'+photo}));
 	let promiseArray = [Promise.resolve(action1),Promise.resolve(action2)];	
 	Promise.all(promiseArray).then(data => {
-		res.json({images:data[1],folders:data[0],folderName:folderName});
+		res.json({folders:data[0],images:data[1],folderName});
 	}).catch(error => {
-		console.log("error from getBoth" +error);
+		console.log("error from getBoth" + error);
 	})	
 }
 
 //get all folders 
 const getFolder = (req,res) => {
-	let files = fs.readdirSync(filePath).filter(folder => folder != ".DS_Store");
-	let action = files.map(file => ({name:file,path:imagePath+file}));
+	let folders = fs.readdirSync(folderPath).filter(folder => folder != ".DS_Store");
+	let action = folders.map(folder => ({name:folder,path:imagePath+folder}));
 	let promise = new Promise((resolve,reject) => {
 		resolve(action);
-	}).then(data => {
-		res.json({folders:data});
+	}).then(folders => {
+		res.json({folders});
 	}).catch(error => {
 		console.error("error from getFolders " + error);
 	})
@@ -60,20 +60,22 @@ const getFolder = (req,res) => {
 
 //delete the target item from file storage system.
 const deleteFunc = (req,res) => {
-	const { type,folderName,data } = req.body;
-	if(type === 'photo'){
-		fs.unlink(filePath+folderName+"/"+data,(error) => {
+	const { value,folderName,name } = req.body;
+	if(value === 'photo'){
+		fs.unlink(folderPath+folderName+"/"+name,(error) => {
 			if (error){
 				console.log("error from deletePhoto " + error);
+			}else{
+				getBoth(req,res)
 			}
-			getBoth(req,res)
 		})
-	}else if(type === 'folder'){
-		fs.rmdir(filePath+data,(error) => {
+	}else if(value === 'folder'){
+		fs.rmdir(folderPath+name,(error) => {
 			if(error){
 				console.log("error from deleteFolder " + error);
+			}else{
+				getFolder(req,res)
 			}
-			getFolder(req,res)
 		})
 	}
 }
@@ -85,19 +87,20 @@ const addFunc = (req,res) => {
 		images.map(image => {
 			var data = image.data.replace(/^data:image\/\w+;base64,/,"");
 			var buf = new Buffer(data,'base64');
-			fs.writeFile(filePath+'/'+folderName+'/'+image.name,buf,(error) => {
+			fs.writeFile(folderPath+'/'+folderName+'/'+image.name,buf,(error) => {
 				if (error){
 					console.log("error from add Photos "+ error);
-				}
-				getBoth(req,res);
+				}	
 			});
 		})
+		getBoth(req,res);	
 	}else if(folder){
-		fs.mkdir(filePath+folder,(error) => {
+		fs.mkdir(folderPath+folder,(error) => {
 			if(error){
 				console.log("error from add folder " + error);
+			}else{
+				getFolder(req,res);
 			}
-			getFolder(req,res);
 		});	
 	}	
 }

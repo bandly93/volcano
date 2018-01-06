@@ -29,23 +29,24 @@ class UploadTest extends Component{
 	//function to add photos to system
 	addPhotos=(e)=>{
 		e.preventDefault();
-		const { postData,uploadAct } = this.props;
-		const { folderName } = this.props.upload;
-		console.log(this.state.images);
-		postData('/upload','POST',{images:this.state.images,folderName:folderName},uploadAct);
+		const { postData,uploadAct,upload } = this.props;
+		const { folderName } = upload;
+		const { images } = this.state;
+		postData('/upload','POST',{images,folderName},uploadAct);
 	}
 
 	//function to add folder to system
 	addFolder=(e)=>{
 		e.preventDefault();
-		const { postData,uploadAct } = this.props;	
-		postData('/upload','POST',{folder:this.state.folder},uploadAct);		
+		const { postData,uploadAct } = this.props;
+		const { folder } = this.state;	
+		postData('/upload','POST',{folder},uploadAct);		
 	}
 
 	//keep track of temporary photos to send over to system.
 	photoFormChange=(e)=>{
-		const photos = e.target.files;
-		this.setState({images:constructPhotoArray(photos)});
+		const images = constructPhotoArray(e.target.files);
+		this.setState({images});
 	}
 
 	//keep track of folder to send over to system.
@@ -56,9 +57,9 @@ class UploadTest extends Component{
 	//function to delete a target photo or folder.	
 	deleteItem=(e)=>{
 		const { name,value } = e.currentTarget;
-		const { postData,uploadAct } = this.props;
-		const { folderName } = this.props.upload;
-		postData('/upload','DELETE',{data:name,type:value,folderName:folderName},uploadAct);
+		const { postData,uploadAct,upload } = this.props;
+		const { folderName } = upload;
+		postData('/upload','DELETE',{name,value,folderName},uploadAct);
 	}
 
 	//container that returns a add photo button.
@@ -77,7 +78,7 @@ class UploadTest extends Component{
 		)
 	}
 
-	//containr that returns a add folder button.
+	//container that returns a add folder button.
 	addFolderButton = () => {
 		return(
 			<div>
@@ -94,9 +95,9 @@ class UploadTest extends Component{
 	}
 	
 	//function that sends current folder clicked to system.
-	currentBatch=(name)=>{
+	currentBatch=(folderName)=>{
 		const { postData , uploadAct} = this.props;	
-		postData('/upload','POST',{folderName:name},uploadAct);	
+		postData('/upload','POST',{folderName},uploadAct);	
 	}
 
 	//container that returns a closed folder image.
@@ -190,7 +191,6 @@ const constructPhotoArray = (photos) => {
 	for (let i = 0; i < photos.length; i++){
 		let reader = new FileReader();
 		let d = new Date();
-		console.log(d);
 		reader.onload = function(event){
 			photoArray.push({id:d.getTime()+i,name:photos[i].name,data:event.target.result});
 		}
