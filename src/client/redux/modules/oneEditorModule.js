@@ -24,6 +24,13 @@ export function updateYT(id,input) {
         input
     }
 }
+export function postStatus(status){
+    console.log(status);
+    return{
+        type: 'ONE_STATUS',
+        status
+    }
+}
 
 // initial state
 let initialState = {
@@ -34,7 +41,7 @@ let initialState = {
 
 // reducer 
 export const oneEditor = (state = initialState, action) => {
-    const {editor} = action;
+    const {editor, status} = action;
     switch (action.type) {
         case 'UPDATE_ONE':    
             return {
@@ -51,6 +58,11 @@ export const oneEditor = (state = initialState, action) => {
                 ...state,
                 youtube: action.input
             }
+        case 'ONE_STATUS':
+            return{
+                ...state,
+                status
+                }
         default:
             return state;
     }

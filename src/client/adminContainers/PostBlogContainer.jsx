@@ -2,15 +2,18 @@ import React,{Component} from 'react';
 import {AtomicBlockUtils, 
         Editor, 
         EditorState, 
-        RichUtils} from 'draft-js';
+        RichUtils,
+        convertToRaw} from 'draft-js';
 import { connect } from 'react-redux';
 import {updateOne,
         updateImage,
-        updateYT} from '../redux/modules/oneEditorModule';
+        updateYT,
+        postStatus} from '../redux/modules/oneEditorModule';
 import RichEditor from '../adminComp/RichEditor.jsx';
 import BlockStyleControls from '../adminComp/BlockStyleControls.jsx';
 import InlineStyleControls from '../adminComp/InlineStyleControls.jsx';
 import TextInput from '../adminComp/TextInput.jsx';
+import {postData} from '../redux/modules/fetchThunk';
 
 
 
@@ -64,35 +67,47 @@ class PostBlogContainer extends Component {
         console.log(check);
         this.confirmMedia('youtube',check[0]);
     }
+    postData=()=>{
+        const {oneEditor,postData,postStatus} = this.props;
+        const {editor} = oneEditor;
+
+        var contentState = editor.getCurrentContent();
+        var data = {editor:JSON.stringify(convertToRaw(contentState))};
+        postData('/editor','POST',data,postStatus);
+    }
     render() {
-    const {editor, youtube, imgURL} = this.props.oneEditor;
-    console.log(youtube, imgURL);
+    const {editor, youtube, imgURL, status} = this.props.oneEditor;
     const blog = {_id:0};
         return (
             <div className='dash-container'>
+            {status? <h3 className='success'>Blog Posted!</h3>:null}
                 <div className='RichEditor-root'>
-                <BlockStyleControls editorState={editor}
-                    onToggle={this.toggleBlockType}/>
-                <InlineStyleControls editorState={editor}
-                    onToggle={this.toggleInlineStyle}/>
-                <TextInput 
-                    updateInput ={this.props.updateImage}
-                    inputValue ={imgURL}
-                    data ={blog}
-                    onSubmit={this.addImage}
-                    buttonText='Add Image'
-                    />
-                <TextInput
-                    updateInput ={this.props.updateYT}
-                    inputValue ={youtube}
-                    data ={blog}
-                    onSubmit={this.addYouTube}
-                    buttonText='Add Video'
-                    />
+                    <BlockStyleControls editorState={editor}
+                        onToggle={this.toggleBlockType}/>
+                    <InlineStyleControls editorState={editor}
+                        onToggle={this.toggleInlineStyle}/>
+                    <TextInput 
+                        updateInput ={this.props.updateImage}
+                        inputValue ={imgURL}
+                        data ={blog}
+                        onSubmit={this.addImage}
+                        buttonText='Add Image'
+                        />
+                    <TextInput
+                        updateInput ={this.props.updateYT}
+                        inputValue ={youtube}
+                        data ={blog}
+                        onSubmit={this.addYouTube}
+                        buttonText='Add Video'
+                        />
                     <RichEditor
                         editor = {editor}
                         onChange = {this.props.updateOne}  
                     />
+                    <div className='editorButton'>
+                        <button onClick={this.postData}>
+                            Post</button>   
+                    </div>
                 </div>
             </div>
         )
@@ -110,8 +125,9 @@ const mapDispatchToProps = (dispatch) => {
     return{
         updateOne: (editor) => dispatch(updateOne(editor)),
         updateImage:(id,input)=>dispatch(updateImage(id,input)),
-        updateYT:(id,input)=>dispatch(updateYT(id,input))
-
+        updateYT:(id,input)=>dispatch(updateYT(id,input)),
+		postData:(url,meth,data,func)=>dispatch(postData(url,meth,data,func)),
+        postStatus:(status)=>dispatch(postStatus(status))
     }
 }
 
