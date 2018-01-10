@@ -33,8 +33,8 @@ var imagePath = '../images/uploads/';
 //get all folders and specific photos from file storage system.
 const getBoth = (req,res) => {
 	const { folderName } = req.body;
+	let photos = fs.readdirSync(folderPath+"/"+folderName).filter(photo => photo != ".DS_Store");
 	let folders = fs.readdirSync(folderPath).filter(folder => folder != ".DS_Store");
-	let photos = fs.readdirSync(folderPath+"/"+folderName).filter(photo => photo != ".DS_Store");	
 	let action1 = folders.map(folder => ({name:folder,path:imagePath+folder}));
 	let action2 = photos.map(photo => ({name:photo,path:imagePath+'/'+folderName+'/'+photo}));
 	let promiseArray = [Promise.resolve(action1),Promise.resolve(action2)];	
@@ -90,10 +90,10 @@ const addFunc = (req,res) => {
 			fs.writeFile(folderPath+'/'+folderName+'/'+image.name,buf,(error) => {
 				if (error){
 					console.log("error from add Photos "+ error);
-				}	
+				}
+				getBoth(req,res);	
 			});
 		})
-		getBoth(req,res);	
 	}else if(folder){
 		fs.mkdir(folderPath+folder,(error) => {
 			if(error){

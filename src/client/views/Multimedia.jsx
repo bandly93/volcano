@@ -8,6 +8,10 @@ import WeddingVideos from "../subViews/WeddingVideos.jsx";
 import MusicVideos from "../subViews/MusicVideos.jsx";
 import ShortFilms from "../subViews/ShortFilms.jsx";
 import SlideShow from '../components/SlideShow.jsx';
+
+import { uploadAct } from "../redux/modules/uploadModule";
+import { postData,fetchData } from "../redux/modules/fetchThunk";
+import { connect } from "react-redux";
 import {
   BrowserRouter as Router,
   Route,
@@ -84,5 +88,20 @@ class Multimedia extends Component{
 		)
 	}
 }
-export default Multimedia;
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		postData:(url,method,data,actFunc) => dispatch(postData(url,method,data,action)),
+		fetchData:(url,actFunc) => dispatch(fetchData(url,actFunc)),
+		uploadAct:(upload) => disptch(uploadAct(uplad))
+	}
+}
+
+const mapStateToProps = (state) => {
+	return{
+		upload:state.upload
+	}
+}
+
+export default connect(mapDispatchToProps,mapStateToProps)(Multimedia);
 

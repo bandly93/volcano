@@ -159,7 +159,7 @@ class UploadTest extends Component{
 	
 	//returns a no folder message.
 	noFolder = () =>{
-		return (
+		return(
 			<div>
 				<h1> There are no folders. </h1>
 			</div>
