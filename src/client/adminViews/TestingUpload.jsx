@@ -129,6 +129,21 @@ class UploadTest extends Component{
 			)
 		)
 	}
+	
+	toggleModal = (e) => {
+		//array of objects
+		const { images } = this.props.upload;		
+		for(let i = 0; i < images.length; i++){
+			if(images[i].name === e){
+				let modal = document.getElementsByClassName("modal")[i];
+				if(modal.style.display === "block"){
+					modal.style.display = "none";
+				}else{
+					modal.style.display = "block"
+				}
+			}
+		}
+	}
 
 	//returns a list of all photos with empty/non-empty logic.
 	photoLibrary = () => {
@@ -137,8 +152,13 @@ class UploadTest extends Component{
 			images.map(image => 
 				<div key = {image.name} className = "upload">
 					<div>
-						<li>
-							<img src = {image.path} className = "thumbnail" />
+						<li>	
+							<img src = {image.path} className = "thumbnail" onClick = {() => this.toggleModal(image.name)}/>
+							<div className = "modal" onClick = {()=>this.toggleModal(image.name)}>
+								<div className = "modal-content">
+									<img src = {image.path} />
+								</div>
+							</div>
 							<h6>{image.name}</h6>
 							<button className = "upload-button" value = "photo" onClick = {this.deleteItem} name = {image.name}> x </button>
 						</li>	
