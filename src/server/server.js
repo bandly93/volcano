@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(require('cookie-parser')());
 
-//database
+// database
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var url = process.env.MONGODB_URI || 'mongodb://localhost:27017/volcano'
@@ -29,7 +29,7 @@ db.once('open',function(){
 })
 
 
-//static files
+// static files
 /*
 app.get('*.js', function (req, res, next) {
   req.url = req.url + '.gz';
@@ -42,7 +42,7 @@ app.use(express.static(path.resolve(__dirname ,'../../dist')));
 app.use('/',express.static(path.resolve(__dirname ,'../client/public')));
 
 
-//passport
+// passport
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('./models/user');
@@ -57,27 +57,25 @@ app.use(passport.session());
 
 
 
-//routers
+// routers
 var flickrRouter = require('./routes/flickrRouter');
-// var instaRouter = require('./routes/instaRouter');
 var authRouter = require('./routes/authRouter');
-var blogRouter = require('./routes/blogRouter');
 var msgRouter = require('./routes/msgRouter');
 var uploadRouter = require('./routes/uploadRouter');
 var editorRouter = require('./routes/editorRouter');
-var apiRouter = require('./routes/apiRouter');
+var apiRouter = require('./adminRoutes/apiRouter');
 
-
+// admin api
 app.use('/api', apiRouter);
+
+// client api
 app.use('/auth',authRouter);
 app.use('/flickr',flickrRouter);
-// app.use('/insta',instaRouter);
-app.use('/blog',blogRouter);
 app.use('/msg',msgRouter);
 app.use('/upload',uploadRouter);
 app.use('/editor',editorRouter);
 
-//redirect  to client
+// redirect to client
 app.get('*', function(req,res){
   res.sendFile(path.resolve(__dirname ,'../client/public/index.html'))
 })

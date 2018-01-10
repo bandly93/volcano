@@ -73,7 +73,7 @@ class PostBlogContainer extends Component {
 
         var contentState = editor.getCurrentContent();
         var data = {editor:JSON.stringify(convertToRaw(contentState))};
-        postData('/editor','POST',data,postStatus);
+        postData('/api/editor','POST',data,postStatus);
     }
     render() {
     const {editor, youtube, imgURL, status} = this.props.oneEditor;

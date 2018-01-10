@@ -13,7 +13,7 @@ class Messages extends Component{
         this.allMsgID = this.allMsgID.bind(this);
 	}
 	componentDidMount(){
-        this.props.fetchData(`/msg/data/${location.search}`,
+        this.props.fetchData(`/api/msg/data/${location.search}`,
             this.props.allMsgAct)
 		//this.props.fetchData('/msg',this.props.allMsgAct)
 	}
@@ -22,7 +22,7 @@ class Messages extends Component{
         if(nextProps.location.search !== this.props.location.search){
           //  console.log('will mount',nextProps.match.path,
           //  nextProps.location.search);               
-            this.props.fetchData(`/msg/data/${nextProps.location.search}`,
+            this.props.fetchData(`/api/msg/data/${nextProps.location.search}`,
                 this.props.allMsgAct)
         }  
     }
@@ -41,7 +41,7 @@ class Messages extends Component{
 	}
 	delete(msg){
 		const id = msg._id
-		this.props.postData('/msg','DELETE',{_id:id},this.props.allMsgAct)
+		this.props.postData('/api/msg','DELETE',{_id:id},this.props.allMsgAct)
 	}
 	list(){
 		return this.props.allMsg.data.map(msg=>

@@ -37,7 +37,7 @@ class EditBlogs extends Component{
     delete=(data)=>{
         const id = data._id;
         const {postData,editorAct} = this.props;
-        postData('/editor','DELETE',{_id:id},editorAct);
+        postData('/api/editor','DELETE',{_id:id},editorAct);
     }
     put=(data)=>{
         console.log(data)
@@ -47,7 +47,7 @@ class EditBlogs extends Component{
             _id:data._id,
             editor:JSON.stringify(convertToRaw(contentState))
         }
-        postData('/editor','PUT',obj,postStatus); 
+        postData('/api/editor','PUT',obj,postStatus); 
     }
 	blogID=()=>{
         const {data} = this.props.editor.db;
