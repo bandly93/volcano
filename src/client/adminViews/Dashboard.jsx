@@ -8,7 +8,6 @@ import {
 } from 'react-router-dom';
 import Messages from './Messages.jsx';
 import PostBlogContainer from '../adminContainers/PostBlogContainer.jsx';
-import Upload from './Upload.jsx';
 import UploadTest from "./TestingUpload.jsx";
 import DashHome from './DashHome.jsx';
 import ProfilePic from '../public/images/about/profile.jpg';

@@ -245,19 +245,16 @@ a{
 
 .modal-content{
 	background-color:#fefefe;
-	margin: 2% 5%;
+	margin: auto;
 	padding: 20px;
 	border:1px solid #888;
 	width:80%;
-	
 }
 
 .modal-content img{
 	padding:5% 10%;
 	width:inherit;
 }
-
-
 
 .photo-dashboard{
 	display:flex;
@@ -267,7 +264,6 @@ a{
 	padding:10px;
 	border:1px black solid;
 	justify-content:center;
-	
 }
 
 /*-----------------------------Desktop View ---------------------------*/

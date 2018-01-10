@@ -164,7 +164,6 @@ class UploadTest extends Component{
 			images.map(image => 
 				<div key = {image.name} className = "upload">
 					<div className = "upload-content">
-						
 						<li>
 							<img src = {image.path} className = "thumbnail" onClick = {() => this.toggleModal(image.name)}/>
 						</li>
@@ -175,7 +174,6 @@ class UploadTest extends Component{
 								</div>
 							</div>
 						</span>
-						
 						<li>
 							<h6>{image.name}</h6>
 						</li>

@@ -9,7 +9,6 @@ import {
 } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'
 
-
 const history = createBrowserHistory();
 
 const ClientRouter =() =>(
