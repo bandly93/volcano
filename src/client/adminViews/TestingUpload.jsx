@@ -124,7 +124,7 @@ class UploadTest extends Component{
 						{folder.name === folderName?this.openFolder():this.closedFolder()}	
 						<h2>{folder.name}</h2>
 					</li>
-					<button className = "upload-button" value = "folder" onClick = {this.deleteItem} name = {folder.name}> x </button>
+					<button className = "upload-button" value = "folder" onClick = {this.deleteItem} name = {folder.name}> &times; </button>
 				</div>
 			)
 		)
@@ -144,6 +144,18 @@ class UploadTest extends Component{
 			}
 		}
 	}
+	photoDashboard = () => {
+		return (
+		<div className = "photo-dashboard">
+			<li>Photo</li>
+			<li>Name</li>
+			<li>Resolution</li>
+			<li>Size</li>
+			<li>Date Added</li>
+			<li>Delete</li>
+		</div>
+		)	
+	}
 
 	//returns a list of all photos with empty/non-empty logic.
 	photoLibrary = () => {
@@ -151,17 +163,35 @@ class UploadTest extends Component{
 		return(
 			images.map(image => 
 				<div key = {image.name} className = "upload">
-					<div>
-						<li>	
+					<div className = "upload-content">
+						
+						<li>
 							<img src = {image.path} className = "thumbnail" onClick = {() => this.toggleModal(image.name)}/>
+						</li>
+						<span>
 							<div className = "modal" onClick = {()=>this.toggleModal(image.name)}>
 								<div className = "modal-content">
 									<img src = {image.path} />
 								</div>
 							</div>
+						</span>
+						
+						<li>
 							<h6>{image.name}</h6>
+						</li>
+						<li>
+							<h6> 1024x800 </h6>
+						</li>
+						<li>
+							<h6> 50mb </h6>
+						</li>
+						<li>
+							<h6> 1/7/2018 1:30AM </h6>
+						</li>
+						
+						<li>
 							<button className = "upload-button" value = "photo" onClick = {this.deleteItem} name = {image.name}> x </button>
-						</li>	
+						</li>
 					</div>
 				</div>
 			)
@@ -198,6 +228,7 @@ class UploadTest extends Component{
 				</div>
 				<div className = "panel-right">
 					<h3> Photos </h3>
+					<div> {this.photoDashboard()}</div>
 					<div> {images?this.photoLibrary():this.noContent()} </div>
 					<div> {images?this.addPhotoButton():null} </div>
 				</div>

@@ -159,7 +159,6 @@ a{
     color:white;
 }
 
-
 /*--------------------------File Storage System -----------------------*/
 .file-storage-system{
 	display:flex;
@@ -167,9 +166,8 @@ a{
 
 .panel-left{
 	border:2px solid black;
-	flex:1.3;
+	flex:1;
 }
-
 
 .file-storage-system h3{
 	margin : 0;
@@ -178,11 +176,12 @@ a{
 	text-align:center;
 }
 .panel-right{
-	border:2px solid black;
+	border:1px solid black;
 	flex:5;
 }
 .panel-right li{
 	display:flex;
+	border:1px solid black;
 }
 
 .panel-left h3, .panel-right h3{
@@ -193,10 +192,18 @@ a{
 	text-align:center;
 	font-size:20px;
 }
+.upload-content h6 ,.upload-content li{
+	text-align:center;
+	justify-content:center;
+}
 
-.upload{
-	display:block;
-	border-bottom: 2px black solid;
+.upload-content{
+	display:flex;
+	width:-webkit-fill-available;
+}
+
+.upload-content li{
+	width:inherit;
 }
 
 .upload button{
@@ -205,10 +212,10 @@ a{
 }
 
 .upload li {
+	display:flex;
 	list-style-type:none;
 	padding: 10px;
 	text-align:center;
-	display:flex;
 }
 
 .folder-icon{
@@ -238,14 +245,29 @@ a{
 
 .modal-content{
 	background-color:#fefefe;
-	margin: 5% auto;
+	margin: 2% 5%;
 	padding: 20px;
 	border:1px solid #888;
-	width:80%
+	width:80%;
+	
 }
 
 .modal-content img{
+	padding:5% 10%;
 	width:inherit;
+}
+
+
+
+.photo-dashboard{
+	display:flex;
+}
+.photo-dashboard li{
+	flex:1;
+	padding:10px;
+	border:1px black solid;
+	justify-content:center;
+	
 }
 
 /*-----------------------------Desktop View ---------------------------*/
