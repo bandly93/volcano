@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {uploadAct} from '../redux/modules/uploadModule';
+import {postData,fetchData} from '../redux/modules/fetchThunk';
+import {connect} from 'react-redux';
 
 class SlideShow extends Component{
 	constructor(props){
@@ -46,4 +49,19 @@ class SlideShow extends Component{
 	}
 }
 
-export default SlideShow;
+
+const mapStateToProps = (state) => {
+	return{
+		upload:state.upload
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		postData:(url,method,data,actFunc)=>dispatch(postData(url,method,data,actFunc)),
+		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
+		uploadAct:(upload)=>dispatch(uploadAct(upload))
+	}
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SlideShow);

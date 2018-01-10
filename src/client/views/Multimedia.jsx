@@ -8,7 +8,6 @@ import WeddingVideos from "../subViews/WeddingVideos.jsx";
 import MusicVideos from "../subViews/MusicVideos.jsx";
 import ShortFilms from "../subViews/ShortFilms.jsx";
 import SlideShow from '../components/SlideShow.jsx';
-
 import { uploadAct } from "../redux/modules/uploadModule";
 import { postData,fetchData } from "../redux/modules/fetchThunk";
 import { connect } from "react-redux";
@@ -22,14 +21,19 @@ import {
 class Multimedia extends Component{
 	
 	moveToTop = () => {
-		return (
-			window.scrollTo(0,0)
-		)
+		let scrollSpeed = -window.scrollY/(400/30),
+		scrollInterval = setInterval(() => {
+			if(window.scrollY != 0){
+				window.scrollBy(0,scrollSpeed);
+			}else{
+			clearInterval(scrollInterval);
+			}
+		},15);
 	}
 
 	render(){
 		const {path} = this.props.match;
-		return(
+			return(
 			<Router>
 				<div>
 					<Switch>
