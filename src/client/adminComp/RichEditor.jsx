@@ -21,27 +21,27 @@ class RichEditor extends Component{
             return true;
         }
     }
-
-
+    onTab =(e)=>{
+        const maxDepth = 4;
+        const {blog} = this.props;
+        this.update(RichUtils.onTab(e,blog.editor,maxDepth));
+    }
     render() {
     let className = 'RichEditor-editor';
     const {editor,onChange} = this.props;
         return(
-            <div className='RichEditor-root'>
-
-                <div className={className} onClick={this.focus}>
-                    <Editor
-                        editorState = {editor}
-                        onChange={onChange}
-                        handleKeyCommand={this.handleKey}
-                        blockStyleFn={getBlockStyle}
-                        blockRendererFn={mediaBlockRenderer}
-                        customStyleMap={styleMap}
-                        ref='editor'
-                        spellCheck={true}
-                    />
-                </div>
-    
+            <div className={className} onClick={this.focus}>
+                <Editor
+                    blockStyleFn={getBlockStyle}
+                    blockRendererFn={mediaBlockRenderer}
+                    customStyleMap={styleMap}
+                    editorState = {editor}
+                    onChange={onChange}
+                    handleKeyCommand={this.handleKey}
+                    ref='editor'
+                    spellCheck={true}
+                    onTab={this.onTab}
+                />
             </div>
         )
     }

@@ -65,7 +65,7 @@ class EditBlog extends Component{
     }
     confirmMedia=(type,content)=>{
         const {blog} = this.props;
-        console.log('confirm!',blog);
+//        console.log('confirm!',blog);
         const contentState = blog.editor.getCurrentContent();
         const contentStateWithEntity = contentState.createEntity(
             type,
