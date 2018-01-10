@@ -2,6 +2,8 @@
 var express = require('express');
 var morgan = require('morgan');
 var app = express();
+var helmet = require('helmet');
+app.use(helmet());
 app.use(morgan('dev'));
 var port = process.env.PORT || 3000;
 var path = require('path');
@@ -57,18 +59,19 @@ app.use(passport.session());
 
 //routers
 var flickrRouter = require('./routes/flickrRouter');
-var instaRouter = require('./routes/instaRouter');
+// var instaRouter = require('./routes/instaRouter');
 var authRouter = require('./routes/authRouter');
 var blogRouter = require('./routes/blogRouter');
 var msgRouter = require('./routes/msgRouter');
 var uploadRouter = require('./routes/uploadRouter');
 var editorRouter = require('./routes/editorRouter');
+var apiRouter = require('./routes/apiRouter');
 
 
-
+app.use('/api', apiRouter);
 app.use('/auth',authRouter);
 app.use('/flickr',flickrRouter);
-app.use('/insta',instaRouter);
+// app.use('/insta',instaRouter);
 app.use('/blog',blogRouter);
 app.use('/msg',msgRouter);
 app.use('/upload',uploadRouter);

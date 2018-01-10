@@ -58,7 +58,7 @@ class RichBlog extends Component{
     const {path} = this.props.match;
     const {converted, db} = this.props.editor;
         return(
-            <div>
+            <div className='mainBlogs'>
                 Hello RichBlog!
                 {converted?this.list():null}         
                 {converted? <Paginate page = {db.page} path = {path} 

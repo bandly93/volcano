@@ -181,6 +181,9 @@ span .about{
     .about img{
 	    max-height:300px;
     }
+    .mainBlogs {
+        padding:0 20%;
+    }
 }
 
 /*-----------------------------Mobile View ----------------------------*/
