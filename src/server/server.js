@@ -58,7 +58,6 @@ app.use(passport.session());
 
 
 // routers
-var flickrRouter = require('./routes/flickrRouter');
 var authRouter = require('./routes/authRouter');
 var msgRouter = require('./routes/msgRouter');
 var uploadRouter = require('./routes/uploadRouter');
@@ -70,7 +69,6 @@ app.use('/api', apiRouter);
 
 // client api
 app.use('/auth',authRouter);
-app.use('/flickr',flickrRouter);
 app.use('/msg',msgRouter);
 app.use('/upload',uploadRouter);
 app.use('/editor',editorRouter);

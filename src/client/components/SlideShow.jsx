@@ -1,7 +1,4 @@
 import React, {Component} from 'react';
-import {uploadAct} from '../redux/modules/uploadModule';
-import {postData,fetchData} from '../redux/modules/fetchThunk';
-import {connect} from 'react-redux';
 
 class SlideShow extends Component{
 	constructor(props){
@@ -20,7 +17,6 @@ class SlideShow extends Component{
 	minusOne = () => {
 		const {index} = this.state;
 		let length = this.props.images.length;
-
 		if(index <= 0){
 			this.setState({index : length - 1})
 		}else{
@@ -33,7 +29,7 @@ class SlideShow extends Component{
 		return (
 			<div className = 'slideshow-container'>
 				<button className = "left-button" onClick = {this.minusOne}> &#10094; </button>
-				<img src = {`${images[this.state.index].url}`}/>
+				<img src = {`${images[this.state.index].path}`}/>
 				<button className = "right-button" onClick = {this.addOne}> &#10095; </button>
 			</div>
 		)
@@ -50,18 +46,5 @@ class SlideShow extends Component{
 }
 
 
-const mapStateToProps = (state) => {
-	return{
-		upload:state.upload
-	}
-}
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		postData:(url,method,data,actFunc)=>dispatch(postData(url,method,data,actFunc)),
-		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
-		uploadAct:(upload)=>dispatch(uploadAct(upload))
-	}
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(SlideShow);
+export default SlideShow;

@@ -205,13 +205,24 @@ a{
 .upload-content li{
 	width:inherit;
 }
+.upload-content h6{
+	word-wrap:break-word;
+}
+.upload{
+	border:1px solid black;
+}
 
+#image-name{
+	word-break:break-word;
+
+}
 .upload button{
 	background:none;
 	border:none;
 }
 
 .upload li {
+	font-size:0.8em;
 	display:flex;
 	list-style-type:none;
 	padding: 10px;
@@ -260,10 +271,15 @@ a{
 	display:flex;
 }
 .photo-dashboard li{
+	font-size:0.8em;
 	flex:1;
 	padding:10px;
 	border:1px black solid;
 	justify-content:center;
+}
+
+.exit-icon{
+	height:3vh;
 }
 
 /*-----------------------------Desktop View ---------------------------*/

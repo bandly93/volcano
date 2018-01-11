@@ -150,7 +150,6 @@ class UploadTest extends Component{
 			<li>Photo</li>
 			<li>Name</li>
 			<li>Resolution</li>
-			<li>Size</li>
 			<li>Date Added</li>
 			<li>Delete</li>
 		</div>
@@ -175,20 +174,23 @@ class UploadTest extends Component{
 							</div>
 						</span>
 						<li>
-							<h6>{image.name}</h6>
+							<h6 id = "image-name">{image.name}</h6>
 						</li>
 						<li>
 							<h6> 1024x800 </h6>
-						</li>
-						<li>
-							<h6> 50mb </h6>
 						</li>
 						<li>
 							<h6> 1/7/2018 1:30AM </h6>
 						</li>
 						
 						<li>
-							<button className = "upload-button" value = "photo" onClick = {this.deleteItem} name = {image.name}> x </button>
+							<button 
+								className = "upload-button" 
+								value = "photo" 
+								onClick = {this.deleteItem} 
+								name = {image.name}> 
+									<img src = "../images/icons/exit.png" className = "exit-icon"/>
+							</button>
 						</li>
 					</div>
 				</div>

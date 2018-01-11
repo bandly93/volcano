@@ -27,8 +27,8 @@ const crudFunctions = (req,res,action) => {
 	}
 }
 
-var folderPath = './src/client/public/images/uploads/';
-var imagePath = '../images/uploads/';
+var folderPath = './src/client/public/images/uploads';
+var imagePath = '../images/uploads';
 
 //get all folders and specific photos from file storage system.
 const getBoth = (req,res) => {
