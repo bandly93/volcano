@@ -15,7 +15,6 @@ class Multimedia extends Component{
 	componentDidMount(){
 		const { fetchData,uploadAct } = this.props;	
 		fetchData("/upload",uploadAct);
-
 	}
 
 	moveToTop = () => {
@@ -42,17 +41,12 @@ class Multimedia extends Component{
 
 	modal = (images) => {
 		return(
-			<span>
-				<div className = "s">
-					<div className = "s">
-						<SlideShow images = {images}/>
-					</div>
-				</div>
-			</span>
+			<SlideShow images = {images}/>
 		)
 	}
 
 	
+	/*	
 	toggleModal = (e) => {
 		
 		let modal = document.getElementsByClassName("modal")[0];
@@ -63,10 +57,9 @@ class Multimedia extends Component{
 					modal.style.display = "none";
 				}else{
 					modal.style.display = "block";
-				}
-			
-		
+				}	
 	}
+	*/
 	
 
 	render(){

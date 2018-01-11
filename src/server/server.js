@@ -28,7 +28,6 @@ db.once('open',function(){
 	console.log('Connected correctly to server');
 })
 
-
 // static files
 /*
 app.get('*.js', function (req, res, next) {
@@ -41,7 +40,6 @@ app.get('*.js', function (req, res, next) {
 app.use(express.static(path.resolve(__dirname ,'../../dist')));
 app.use('/',express.static(path.resolve(__dirname ,'../client/public')));
 
-
 // passport
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -53,9 +51,6 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-
 
 // routers
 var authRouter = require('./routes/authRouter');
@@ -77,8 +72,6 @@ app.use('/editor',editorRouter);
 app.get('*', function(req,res){
   res.sendFile(path.resolve(__dirname ,'../client/public/index.html'))
 })
-
-
 
 app.listen(port,function(){
 	console.log(`Listening on port ${port}`)

@@ -1,25 +1,8 @@
 /*-------------------slideshow buttons------------------------*/
-.slideshow-container{
-
+.slideshow-container img{
+	height:-webkit-fill-available;
+	width:unset;
 }
-
-.slideshow-container button{
-}
-
-
-.left-button{
-
-}
-.right-button{
-
-
-}
-.left-button, .right-button{
-	background:transparent;
-	border:none;
-
-}
-
 
 /*-------------------------register && login--------------------*/
 .reglog{
