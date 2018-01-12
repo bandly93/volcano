@@ -20,6 +20,13 @@ class Dashboard extends Component{
         super();
         this.goHome = this.goHome.bind(this);
     }
+    componentWillReceiveProps(nextProps){
+        /*
+        if(!nextProps.admin.user) {
+            this.props.history.push('/multimedia');
+        }
+        */
+    } 
     goHome(){
         this.props.history.push('/multimedia');
     }
@@ -76,6 +83,7 @@ class Dashboard extends Component{
 const mapStateToProps = (state) =>{
     return{
         view:state.view,
+        admin: state.admin
     }
 };
 
