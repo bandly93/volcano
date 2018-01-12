@@ -28,7 +28,7 @@ class Dashboard extends Component{
         */
     } 
     goHome(){
-        this.props.history.push('/multimedia');
+        this.props.history.push('/h/multimedia');
     }
 	render(){
 	    const path = this.props.match.path;
