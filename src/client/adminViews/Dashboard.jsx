@@ -52,6 +52,8 @@ class Dashboard extends Component{
                 key={e.link}/>
         )
 		return(
+            <div>
+            {this.props.admin.user?
 			<Router>
 				<div className='dashboard'>
 					<nav className='dash-sidenav' style={{display:display}}>
@@ -75,6 +77,8 @@ class Dashboard extends Component{
 				
 				</div>
 			</Router>
+            :null}
+            </div>
 		)
 	}	
 }

@@ -2,10 +2,10 @@ import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
 
 const NavLinks= (props)=>{
-    const {toggleMainNav,titles} = props;
+    const {toggleMainNav,titles,path} = props;
     const {navLinks} = props.view;
     const mappedLinks = titles.map(each =>
-        <Link to = {each.link} onClick={toggleMainNav} key={each.title}>
+        <Link to = {path+each.link} onClick={toggleMainNav} key={each.title}>
             {each.title}
         </Link>
     )

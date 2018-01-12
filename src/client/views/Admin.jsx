@@ -95,7 +95,7 @@ class Admin extends Component{
 		)
 	}
     goHome(){
-        this.props.history.push('/multimedia');
+        this.props.history.push('/');
     }
 	render(){
     const {admin} = this.props;

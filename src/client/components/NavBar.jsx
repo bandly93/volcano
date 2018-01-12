@@ -26,6 +26,7 @@ class NavBar extends Component{
 		this.props.history.push('/')
 	}
 	render(){
+	    const path = this.props.match.path;
         const {toggleMainNav} = this.props;
         const titles =[
             {link: '/multimedia',title:'Multimedia',comp:Multimedia},
@@ -35,7 +36,7 @@ class NavBar extends Component{
             {link:'/blog' , title:'Blog',comp:Blog },
            ];
         const routes = titles.map(each => 
-            <Route path={each.link} component={each.comp} key={each.link}/>
+            <Route path={path+each.link} component={each.comp} key={each.link}/>
         ) 
 		return(
 			<Router>
@@ -47,10 +48,10 @@ class NavBar extends Component{
                         <a className='menuIcon' onClick={toggleMainNav}>
                             <img/>
                         </a>
-                        <NavLinks {...this.props} titles={titles}/>
+                        <NavLinks {...this.props} path={path} titles={titles}/>
 					</nav>
 					<Switch>
-						<Route path = '/admin' component={Admin}/>
+						<Route path = {`${path}/admin`} component={Admin}/>
                         {routes}
 					</Switch>
 				</div>

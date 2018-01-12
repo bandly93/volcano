@@ -17,7 +17,7 @@ const ClientRouter =(props) =>(
 		<Switch>
 			<Route exact path ='/' component={Landing}/>
             <Route path ='/dashboard' component ={Dashboard}/>	
-			<Route path = '*' component={NavBar}/>
+			<Route path = '/h' component={NavBar}/>
 		</Switch>
 	</Router>
 )
