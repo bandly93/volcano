@@ -97,7 +97,7 @@ class EditBlog extends Component{
     render(){
     let className = 'RichEditor-editor Border';
     const {blog,remove,update,put,updateInput,inputValue,
-            updateYT,vidValue} = this.props;
+            updateYT,vidValue,success} = this.props;
     //console.log(put);
         return(
             <div className='RichEditor-root'>
@@ -121,6 +121,7 @@ class EditBlog extends Component{
                     buttonText='Add Video'
                     />
                 <div className={className} onClick={this.focus}>
+                    {success?<p className='success'>Edit saved!</p>: null}
                     <Editor
                         blockStyleFn={getBlockStyle}
                         blockRendererFn={mediaBlockRenderer}
