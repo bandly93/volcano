@@ -21,10 +21,14 @@ class NavBar extends Component{
     constructor(){
 	    super();
         this.goToLanding = this.goToLanding.bind(this);
+        this.goToDash = this.goToDash.bind(this);
     }	
 	goToLanding(){
 		this.props.history.push('/')
 	}
+    goToDash() {
+		this.props.history.push('/dashboard')
+    }
 	render(){
 	    const path = this.props.match.path;
         const {toggleMainNav} = this.props;
@@ -32,11 +36,11 @@ class NavBar extends Component{
             {link: '/multimedia',title:'Multimedia',comp:Multimedia},
             {link:'/about' , title:'About+Contact',comp:About },
             {link:'/shop', title:'Shop',comp:Shop },
-//            {link:'/blog' , title:'Blog',comp:Blog },
             {link:'/blog' , title:'Blog',comp:Blog },
            ];
         const routes = titles.map(each => 
-            <Route path={path+each.link} component={each.comp} key={each.link}/>
+            <Route exact path={path+each.link}  component={each.comp} 
+                key={each.link}/>
         ) 
 		return(
 			<Router>
@@ -71,7 +75,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
     return{
         getScreenSize:(display) => dispatch(viewAct(display)),
-        toggleMainNav:()=> dispatch(toggleMainNav())
+        toggleMainNav:()=> dispatch(toggleMainNav()),
     }
 };
 

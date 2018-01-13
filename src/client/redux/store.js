@@ -10,6 +10,9 @@ import upload from './modules/uploadModule.js';
 import editor from './modules/editorModule.js';
 import text from './modules/inputModule.js';
 import oneEditor from './modules/oneEditorModule.js';
+import router from './modules/routerModule.js';
+import cb from './modules/cbModule.js';
+
 
 const reducers = combineReducers({
 	admin,

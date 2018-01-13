@@ -2,6 +2,9 @@ import React,{Component} from 'react';
 import { connect } from 'react-redux';
 import {fetchData,postData} from '../redux/modules/fetchThunk';
 import {adminAct} from '../redux/modules/adminModule';
+import {Redirect} from "react-router-dom";
+import { withRouter } from 'react-router'
+
 
 
 class Admin extends Component{
@@ -58,6 +61,7 @@ class Admin extends Component{
     }
 	regLog(){
         const {regUsername,regPassword,logUsername,logPassword} = this.state;
+        console.log(this.props);
 		return(
 			<div className = 'reglog'>
                 <form onSubmit={this.register} className='reglogChild'>
@@ -95,7 +99,8 @@ class Admin extends Component{
 		)
 	}
     goHome(){
-        this.props.history.push('/');
+        this.props.history.push('/dashboard');
+        location.reload();
     }
 	render(){
     const {admin} = this.props;
@@ -128,5 +133,5 @@ const mapDispatchToProps = (dispatch) =>{
 	}
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Admin);
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Admin));
 

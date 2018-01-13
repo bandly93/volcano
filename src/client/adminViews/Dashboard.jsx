@@ -21,11 +21,9 @@ class Dashboard extends Component{
         this.goHome = this.goHome.bind(this);
     }
     componentWillReceiveProps(nextProps){
-        /*
         if(!nextProps.admin.user) {
-            this.props.history.push('/multimedia');
+            this.goHome();
         }
-        */
     } 
     goHome(){
         this.props.history.push('/h/multimedia');
@@ -39,7 +37,6 @@ class Dashboard extends Component{
             {link:'/messages', title:'Messages', comp:Messages},
             {link:'/blog', title:'Post Blog', comp:PostBlogContainer},
             {link:'/upload', title:'Upload', comp:UploadTest},
-//            {link:'/test', title:'Post Blog', comp:MyEditor},
             {link:'/editblog',title:'Edit Blogs',comp:EditBlogs}
         ];
         const links = titles.map(e=>
