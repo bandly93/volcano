@@ -2,8 +2,6 @@ import React,{Component} from 'react';
 import { connect } from 'react-redux';
 import {fetchData,postData} from '../redux/modules/fetchThunk';
 import {adminAct} from '../redux/modules/adminModule';
-import {Redirect} from "react-router-dom";
-import { withRouter } from 'react-router'
 
 
 
@@ -133,5 +131,6 @@ const mapDispatchToProps = (dispatch) =>{
 	}
 }
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Admin));
+export default connect(mapStateToProps,mapDispatchToProps)(Admin);
+
 
