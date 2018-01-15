@@ -11,6 +11,13 @@ import {
 } from 'react-router-dom';
 
 class Multimedia extends Component{
+	
+	constructor(props){
+		super(props);
+		this.state = {
+			folderName:null
+		}
+	}
 
 	componentDidMount(){
 		const { fetchData,uploadAct } = this.props;	
@@ -28,66 +35,78 @@ class Multimedia extends Component{
 		},15);
 	}
 	
-	fetchPhotos = (e) => {
-		let folderName = e.currentTarget.name;
+	fetchPhotos = (folderName) => {
 		const { postData,uploadAct } = this.props;
 		postData("/upload","POST",{folderName},uploadAct);
 	}
 
 	onClickFunctions = (e) => {
-		this.fetchPhotos(e);	
+		let promise = new Promise((resolve,reject) => {
+			resolve(this.setState({folderName:e.currentTarget.name}));
+		}).then(() => {
+			const { folderName } = this.state;
+			this.fetchPhotos(folderName);
+		}).then(() => {
+			this.toggleModal();
+		}).catch(err => {
+			console.log(err);
+		})
 		this.moveToTop();	
 	}
-
+	
 	modal = (images) => {
 		return(
-			<SlideShow images = {images}/>
+			<div className = "modal">
+				<div className = "modal-content">
+					<SlideShow images = {images} toggleModal = {this.toggleModal} />
+				</div>
+			</div>
 		)
 	}
-
 	
-	/*	
-	toggleModal = (e) => {
-		
+	toggleModal = () => {
 		let modal = document.getElementsByClassName("modal")[0];
-		console.log(modal);
-	
-			
-				if(modal.style.display === "block"){
-					modal.style.display = "none";
-				}else{
-					modal.style.display = "block";
-				}	
-	}
-	*/
-	
+		if(modal.style.display === "block"){
+			modal.style.display = "none";
+		}else{
+			modal.style.display = "block";
+		}
+	}	
 
 	render(){
 		const { images } = this.props.upload;
 		return(
 			<div>
-				{images?this.modal(images):null}
+				{images?this.modal(images):this.modal()}
 				<div className = "multimedia-flexbox">
 					<div className = "multimedia">
 						<h1>Photos</h1>
-						<img onClick = {(e) => this.onClickFunctions(e)} name = "Portraits" src='https://via.placeholder.com/500x350'/>
+						<img onClick = {(e) => this.onClickFunctions(e)} 
+							name = "Portraits" src='https://via.placeholder.com/500x350'/>
 						<p>PORTRAITS</p>
-						<img onClick = {(e) => this.onClickFunctions(e)} name = "Creative" src='https://via.placeholder.com/500x350'/>
+						<img onClick = {(e) => this.onClickFunctions(e)} 
+							name = "Creative" src='https://via.placeholder.com/500x350'/>
 						<p>CREATIVE</p>
-						<img onClick = {(e) => this.onClickFunctions(e)} name = "Headshots" src='https://via.placeholder.com/500x350'/>
+						<img onClick = {(e) => this.onClickFunctions(e)} 
+							name = "Headshots" src='https://via.placeholder.com/500x350'/>
 						<p>HEADSHOTS</p>
-						<img onClick = {(e) => this.onClickFunctions(e)} name = "WeddingPhotos" src='https://via.placeholder.com/500x350'/>
+						<img onClick = {(e) => this.onClickFunctions(e)}
+							 name = "WeddingPhotos" src='https://via.placeholder.com/500x350'/>
 						<p>WEDDING PHOTOS</p>
 					</div>
 					<div className = "multimedia">
 						<h1>Motion</h1>
-						<img onClick = {this.moveToTop} name = "Lookbooks" src='https://via.placeholder.com/500x350'/>
+						<img onClick = {this.moveToTop} 
+							name = "Lookbooks" src='https://via.placeholder.com/500x350'/>
 						<p>LOOKBOOKS</p>
-						<img onClick = {this.moveToTop} name = "WeddingVideos" src='https://via.placeholder.com/500x350'/>
+						<img onClick = {this.moveToTop} 
+							name = "WeddingVideos" src='https://via.placeholder.com/500x350'/>
 						<p>WEDDING VIDEOS</p>
-						<img onClick = {this.moveToTop} name = "MusicVideos" src='https://via.placeholder.com/500x350'/>
+						<img onClick = {this.moveToTop} 
+							name = "MusicVideos" src='https://via.placeholder.com/500x350'/>
 						<p>MUSIC VIDEOS</p>
-						<img onClick = {this.moveToTop} name = "ShortFilms" src='https://via.placeholder.com/500x350'/>
+						<img onClick = {this.moveToTop} 
+							name = "ShortFilms" src='https://via.placeholder.com/500x350'/>
 						<p>SHORT FILMS</p>
 					</div> 
 				</div>
