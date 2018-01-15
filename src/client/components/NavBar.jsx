@@ -6,7 +6,6 @@ import {
   Link,
   Switch
 } from 'react-router-dom';
-import Admin from  '../views/Admin.jsx';
 import About from '../views/About.jsx';
 import Multimedia from '../views/Multimedia.jsx';
 import Shop from '../views/Shop.jsx';
@@ -21,14 +20,10 @@ class NavBar extends Component{
     constructor(){
 	    super();
         this.goToLanding = this.goToLanding.bind(this);
-        this.goToDash = this.goToDash.bind(this);
     }	
 	goToLanding(){
 		this.props.history.push('/')
 	}
-    goToDash() {
-		this.props.history.push('/dashboard')
-    }
 	render(){
 	    const path = this.props.match.path;
         const {toggleMainNav} = this.props;
@@ -55,7 +50,6 @@ class NavBar extends Component{
                         <NavLinks {...this.props} path={path} titles={titles}/>
 					</nav>
 					<Switch>
-						<Route path = {`${path}/admin`} component={Admin}/>
                         {routes}
 					</Switch>
 				</div>

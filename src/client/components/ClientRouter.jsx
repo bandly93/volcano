@@ -9,6 +9,8 @@ import {
   Redirect
 } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'
+import Admin from  '../views/Admin.jsx';
+import Error from '../views/Error.jsx';
 
 const history = createBrowserHistory();
 
@@ -16,8 +18,10 @@ const ClientRouter =(props) =>(
 	<Router history = {history}>
 		<Switch>
 			<Route exact path ='/' component={Landing}/>
+            <Route path = '/admin' component={Admin}/>
             <Route path ='/dashboard' component ={Dashboard}/>	
 			<Route path = '/h' component={NavBar}/>
+            <Route path = '*' component={Error}/>
 		</Switch>
 	</Router>
 )

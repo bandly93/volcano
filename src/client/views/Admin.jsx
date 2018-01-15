@@ -59,7 +59,7 @@ class Admin extends Component{
     }
 	regLog(){
         const {regUsername,regPassword,logUsername,logPassword} = this.state;
-        console.log(this.props);
+//        console.log(this.props);
 		return(
 			<div className = 'reglog'>
                 <form onSubmit={this.register} className='reglogChild'>
@@ -98,7 +98,7 @@ class Admin extends Component{
 	}
     goHome(){
         this.props.history.push('/dashboard');
-        location.reload();
+ //       location.reload();
     }
 	render(){
     const {admin} = this.props;
