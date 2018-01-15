@@ -31,6 +31,7 @@ class EditBlogs extends Component{
                 inputValue={e.imgURL}
                 updateYT={this.props.updateYT}
                 vidValue={e.youTube}
+                success={e.status}
             /> 
         )
     }
@@ -40,7 +41,7 @@ class EditBlogs extends Component{
         postData('/api/editor','DELETE',{_id:id},editorAct);
     }
     put=(data)=>{
-        console.log(data)
+//        console.log(data)
         const {postData,editorAct,postStatus} = this.props;
         var contentState = data.editor.getCurrentContent();
         let obj = {

@@ -14,11 +14,11 @@ class About extends Component{
 		return(			
 			<div className = "about">
 				<span>
-					<img src = {PdImg}/>
+					<img src = {`/${PdImg}`}/>
 					<p>{lorem_ipsum}</p>
 				</span>
 				<span>
-					<img src = {XinhImg}/>
+					<img src = {`/${XinhImg}`}/>
 					<p>{lorem_ipsum}</p>
 				</span>
 			</div>

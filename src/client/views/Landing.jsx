@@ -9,7 +9,7 @@ function Landing(){
 			<h1>Multimedia Production</h1>
 			<h1>Photos + Videos</h1>
             <br/>
-            <Link to ='/multimedia'>Enter</Link>
+            <Link to ='/h/multimedia'>Enter</Link>
 		</div>
 	)
 

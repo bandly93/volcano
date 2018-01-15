@@ -46,7 +46,10 @@ export const editor =(state={},action)=>{
         case 'STATUS':
             return{
                 ...state,
-                status
+                converted:state.converted.map(blog =>
+                (blog._id == status.id)
+                    ? {...blog, status}
+                    :blog)
                 }
         case 'UPDATE':
             return {

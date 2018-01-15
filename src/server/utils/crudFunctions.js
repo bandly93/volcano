@@ -39,9 +39,15 @@ exports.put = (res,model,id,change) =>{
     model.findOneAndUpdate(id,change).exec(function(err,update){
         if(err){
             console.log(err);
-			res.json({err:'error'})
+			res.json({
+                err:'error',
+                id: id._id
+            })
 		}
-		res.json({msg:'success!'})
+		res.json({
+            msg:'success!',
+            id: id._id
+        })
     })
 }
 

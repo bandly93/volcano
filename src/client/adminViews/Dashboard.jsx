@@ -20,8 +20,13 @@ class Dashboard extends Component{
         super();
         this.goHome = this.goHome.bind(this);
     }
+    componentWillReceiveProps(nextProps){
+        if(!nextProps.admin.user) {
+            this.goHome();
+        }
+    } 
     goHome(){
-        this.props.history.push('/multimedia');
+        this.props.history.push('/h/multimedia');
     }
 	render(){
 	    const path = this.props.match.path;
@@ -32,7 +37,6 @@ class Dashboard extends Component{
             {link:'/messages', title:'Messages', comp:Messages},
             {link:'/blog', title:'Post Blog', comp:PostBlogContainer},
             {link:'/upload', title:'Upload', comp:UploadTest},
-//            {link:'/test', title:'Post Blog', comp:MyEditor},
             {link:'/editblog',title:'Edit Blogs',comp:EditBlogs}
         ];
         const links = titles.map(e=>
@@ -45,6 +49,8 @@ class Dashboard extends Component{
                 key={e.link}/>
         )
 		return(
+            <div>
+            {this.props.admin.user?
 			<Router>
 				<div className='dashboard'>
 					<nav className='dash-sidenav' style={{display:display}}>
@@ -68,6 +74,8 @@ class Dashboard extends Component{
 				
 				</div>
 			</Router>
+            :null}
+            </div>
 		)
 	}	
 }
@@ -76,6 +84,7 @@ class Dashboard extends Component{
 const mapStateToProps = (state) =>{
     return{
         view:state.view,
+        admin: state.admin
     }
 };
 

@@ -11,6 +11,7 @@ import editor from './modules/editorModule.js';
 import text from './modules/inputModule.js';
 import oneEditor from './modules/oneEditorModule.js';
 
+
 const reducers = combineReducers({
 	admin,
 	flickr,
