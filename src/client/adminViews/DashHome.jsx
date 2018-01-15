@@ -1,12 +1,42 @@
 import React,{Component} from 'react';
+import { connect } from 'react-redux';
+import {fetchData,postData} from '../redux/modules/fetchThunk';
+import {adminAct} from '../redux/modules/adminModule';
 
-function DashHome(){
-	return(
-		<div className='dash-container'>
-			<p className='dashHome'>Hello DashHome!</p>
-		</div>
-	)
 
-	
+
+class DashHome extends Component{
+    logout=()=>{
+        this.props.fetchData('/auth/logout',this.props.adminAct)
+    }
+	logoutButton(){
+		return(
+            <form >
+                <input type='button' value='Logout' onClick={this.logout}/>
+            </form>
+		)
+	}
+    render() {
+    const {admin} = this.props;
+        return(
+            <div className='dash-container'>
+                <p className='dashHome'>Hello DashHome!</p>
+                {admin.user?this.logoutButton():null}
+            </div>
+        )
+    }
 }
-export default DashHome
+
+const mapStateToProps = (state) =>{
+	return{
+		admin:state.admin
+	};
+};
+
+const mapDispatchToProps = (dispatch) =>{
+	return{
+		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
+		adminAct:(admin)=>dispatch(adminAct(admin))
+	}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(DashHome);
