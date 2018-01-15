@@ -49,9 +49,11 @@ class NavBar extends Component{
                         </a>
                         <NavLinks {...this.props} path={path} titles={titles}/>
 					</nav>
+                    <div className = 'nav-views'>
 					<Switch>
                         {routes}
 					</Switch>
+                    </div>
 				</div>
 			</Router>
 		)

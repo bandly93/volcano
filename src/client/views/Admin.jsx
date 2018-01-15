@@ -91,12 +91,15 @@ class Admin extends Component{
 	}
 	logoutButton(){
 		return(
-            <form >
-                <input type='button' value='Logout' onClick={this.logout}/>
-            </form>
+            <div className='nav-container nav-views'>
+                <form >
+                    <input type='button' value='Logout' onClick={this.logout}/>
+                </form>
+                <button onClick={this.goHome}>Go To Dashboard</button>
+            </div>
 		)
 	}
-    goHome(){
+    goHome=()=>{
         this.props.history.push('/dashboard');
  //       location.reload();
     }

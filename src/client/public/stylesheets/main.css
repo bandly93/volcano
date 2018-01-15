@@ -40,6 +40,9 @@ input{
 .nav-container{
     text-align:center;
 }
+.nav-views {
+    padding-top: 8vh;
+}
 .navBar{
 /*    border:1px solid black;*/
 }
@@ -135,6 +138,12 @@ span .about{
 	border:1px solid gray;
 }
 
+/*----------------------- Blog ---------------------------*/
+.date{
+    padding-top:2vh;
+    font-size:12px;
+    color:#7e7e7e;
+}
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
 @media only screen and (min-width:812px){

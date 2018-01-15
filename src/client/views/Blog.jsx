@@ -38,6 +38,7 @@ class RichBlog extends Component{
                     readOnly={true}
                 />
                 </div>
+                <p className='date'>{new Date(e.createdAt).toDateString()}</p>
             </div>
         )
     }
@@ -59,7 +60,6 @@ class RichBlog extends Component{
     const {converted, db} = this.props.editor;
         return(
             <div className='mainBlogs'>
-                Hello RichBlog!
                 {converted?this.list():null}         
                 {converted? <Paginate page = {db.page} path = {path} 
                     modelID={this.blogID}/> 
