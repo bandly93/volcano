@@ -7,15 +7,21 @@ class SlideShow extends Component{
 			index : 0
 		}
 	}
+	
+	//resets index everytime a new image set is passed through.
+	componentWillReceiveProps(){
+		this.setState({index:0});
+		console.log(this.props);
+	}
 
 	addOne = () => {
-		const {index} = this.state;
+		const { index } = this.state;
 		let length = this.props.images.length;
 		this.setState({index: (index+1) % length})	
 	}
 
 	minusOne = () => {
-		const {index} = this.state;
+		const { index } = this.state;
 		let length = this.props.images.length;
 		if(index <= 0){
 			this.setState({index : length - 1})
@@ -23,28 +29,33 @@ class SlideShow extends Component{
 			this.setState({index : index - 1})
 		}
 	}
-	
-	slideShow = () => {
-		const {images} = this.props;
+		
+	slideShow = (images) => {
+		const { toggleModal } = this.props;
 		return (
 			<div className = 'slideshow-container'>
-				<button className = "left-button" onClick = {this.minusOne}> &#10094; </button>
-				<img src = {`${images[this.state.index].path}`}/>
-				<button className = "right-button" onClick = {this.addOne}> &#10095; </button>
+				<div>
+					<button className = "left-button" onClick = {this.minusOne}> &#10094; </button>
+				</div>
+				<div className = "slideshow-images">
+					<img src = {`${images[this.state.index].path}`}/>
+				</div>
+				<div>
+					<button className = "right-button" onClick = {this.addOne}> &#10095; </button>
+					<img src = "../images/icons/exit.svg" id = "exit-icon-2" onClick = {toggleModal}/>
+				</div>
 			</div>
 		)
 	}
 
 	render(){
-		const {images} = this.props;
+		const { images } = this.props;
 		return (
 			<div>
-				{images?this.slideShow():null}
+				{images?this.slideShow(images):null}
 			</div>
 		)	
 	}
 }
-
-
 
 export default SlideShow;

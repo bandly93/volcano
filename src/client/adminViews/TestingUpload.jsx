@@ -189,7 +189,7 @@ class UploadTest extends Component{
 								value = "photo" 
 								onClick = {this.deleteItem} 
 								name = {image.name}> 
-									<img src = "../images/icons/exit.png" className = "exit-icon"/>
+									<img src = "../images/icons/exit.svg" className = "exit-icon"/>
 							</button>
 						</li>
 					</div>

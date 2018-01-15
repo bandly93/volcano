@@ -256,14 +256,13 @@ a{
 
 .modal-content{
 	background-color:#fefefe;
-	margin: auto;
-	padding: 20px;
+	margin: 5%;
+	padding: 5%;
 	border:1px solid #888;
-	width:80%;
+	position:relative;
 }
 
 .modal-content img{
-	padding:5% 10%;
 	width:inherit;
 }
 
@@ -281,7 +280,34 @@ a{
 .exit-icon{
 	height:3vh;
 }
+#exit-icon-2{
+	height:2em;
+	width:2em;
+	position:absolute;
+	top : 2%;
+	right:2%; 
+}
 
+.slideshow-container img {
+	height:80%;
+	width:80%;
+	position:relative;
+}
+
+.left-button,.right-button{
+	border:none;
+	position:absolute;
+	top:50%;
+	font-size:2em;
+}
+
+.left-button {
+	left:5%
+}
+
+.right-button{
+	right:5%;
+}
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
 @media only screen and (min-width:813px){

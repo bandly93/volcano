@@ -28,15 +28,15 @@ const crudFunctions = (req,res,action) => {
 }
 
 var folderPath = './src/client/public/images/uploads/';
-var imagePath = '../images/uploads';
+var imagePath = '../images/uploads/';
 
 //get all folders and specific photos from file storage system.
 const getBoth = (req,res) => {
 	const { folderName } = req.body;
-	let photos = fs.readdirSync(folderPath+"/"+folderName).filter(photo => photo != ".DS_Store");
+	let photos = fs.readdirSync(folderPath+folderName).filter(photo => photo != ".DS_Store");
 	let folders = fs.readdirSync(folderPath).filter(folder => folder != ".DS_Store");
 	let action1 = folders.map(folder => ({name:folder,path:imagePath+folder}));
-	let action2 = photos.map(photo => ({name:photo,path:imagePath+'/'+folderName+'/'+photo}));
+	let action2 = photos.map(photo => ({name:photo,path:imagePath+folderName+'/'+photo}));
 	let promiseArray = [Promise.resolve(action1),Promise.resolve(action2)];	
 	Promise.all(promiseArray).then(data => {
 		res.json({folders:data[0],images:data[1],folderName});

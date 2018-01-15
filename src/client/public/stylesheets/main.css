@@ -1,9 +1,3 @@
-/*-------------------slideshow buttons------------------------*/
-.slideshow-container img{
-	height:-webkit-fill-available;
-	width:unset;
-}
-
 /*-------------------------register && login--------------------*/
 .reglog{
 	display:flex;
