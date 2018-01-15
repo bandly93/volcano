@@ -144,6 +144,24 @@ span .about{
     font-size:12px;
     color:#7e7e7e;
 }
+/*---------------------- Misc ---------------------------*/
+.teal-button{
+    border:none;
+    color:white;
+    padding:2%;
+    background-color:teal;
+    cursor:pointer;
+}
+.white-space{
+    height:5vh;
+}
+.white-button {
+    border:1px solid black;
+    color:black;
+    padding:1.5%;
+    background-color:white;
+    cursor:pointer;
+}
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
 @media only screen and (min-width:812px){

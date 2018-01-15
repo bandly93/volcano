@@ -12,7 +12,8 @@ class DashHome extends Component{
 	logoutButton(){
 		return(
             <form >
-                <input type='button' value='Logout' onClick={this.logout}/>
+                <input  className= 'teal-button' 
+                    type='button' value='Logout' onClick={this.logout}/>
             </form>
 		)
 	}

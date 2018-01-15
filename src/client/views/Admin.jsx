@@ -93,9 +93,12 @@ class Admin extends Component{
 		return(
             <div className='nav-container nav-views'>
                 <form >
-                    <input type='button' value='Logout' onClick={this.logout}/>
+                    <input  className= 'teal-button' 
+                        type='button' value='Logout' onClick={this.logout}/>
                 </form>
-                <button onClick={this.goHome}>Go To Dashboard</button>
+                <div className='white-space'></div>
+                <button className= 'teal-button' onClick={this.goHome}>
+                    Go To Dashboard</button>
             </div>
 		)
 	}

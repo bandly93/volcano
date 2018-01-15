@@ -18,7 +18,7 @@ class TextInput extends Component {
                     value={this.props.inputValue} 
                     onChange={this.updateInput} 
                 />
-                <input  
+                <input className='white-button' 
                     type='submit'
                     value={this.props.buttonText} 
                 />
