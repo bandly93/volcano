@@ -9,11 +9,10 @@ class SlideShow extends Component{
 	}
 	
 	//resets index everytime a new image set is passed through.
-	componentWillReceiveProps(){
+	componentWillReceiveProps(nextProps){
+		if(this.props.images === nextProps.images){return}
 		this.setState({index:0});
-		console.log(this.props);
 	}
-
 	addOne = () => {
 		const { index } = this.state;
 		let length = this.props.images.length;

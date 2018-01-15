@@ -12,8 +12,8 @@ import {
 
 class Multimedia extends Component{
 	
-	constructor(props){
-		super(props);
+	constructor(){
+		super();
 		this.state = {
 			folderName:null
 		}
@@ -58,7 +58,7 @@ class Multimedia extends Component{
 		return(
 			<div className = "modal">
 				<div className = "modal-content">
-					<SlideShow images = {images} toggleModal = {this.toggleModal} />
+					<SlideShow images = {images} toggleModal = {this.toggleModal}/>
 				</div>
 			</div>
 		)
