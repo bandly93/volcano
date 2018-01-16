@@ -263,7 +263,7 @@ a{
 }
 
 .modal-content img{
-	width:inherit;
+	width:absolute;
 }
 
 .photo-dashboard{

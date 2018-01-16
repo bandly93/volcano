@@ -2,6 +2,7 @@ var fs = require("fs");
 
 exports.get = (req,res) => {
 	crudFunctions(req,res);
+	//getFirstPhotos(req,res);
 }
 
 exports.post = (req,res) => {
@@ -30,6 +31,19 @@ const crudFunctions = (req,res,action) => {
 var folderPath = './src/client/public/images/uploads/';
 var imagePath = '../images/uploads/';
 
+/*
+//get first folders from every folder.
+const getFirstPhotos = () => {
+	let firstPhotosName = [];
+	let folders = fs.readdirSync(folderPath).filter(folder => folder != ".DS_Store");
+	let action = folders.map(folderName => {
+		let photoName = fs.readdirSync(folderPath+folderName).filter(photo => photo != ".DS_Store")[0];
+		firstPhotosName.push(imagePath+folderName+"/"+photoName);
+	})
+	res.json({firstImages: firstPhotosName});
+
+}
+*/
 //get all folders and specific photos from file storage system.
 const getBoth = (req,res) => {
 	const { folderName } = req.body;

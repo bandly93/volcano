@@ -1,6 +1,5 @@
 var express = require('express');
 var uploadRouter = express.Router();
-var fs = require('fs');
 var crud = require('../utils/uploadCrudFunctions');
 
 //upload photos route

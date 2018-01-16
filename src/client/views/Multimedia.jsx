@@ -75,6 +75,7 @@ class Multimedia extends Component{
 
 	render(){
 		const { images } = this.props.upload;
+		//figure out way to check current images with images from props. this should fix the loading previous photo for a second issue./	
 		return(
 			<div>
 				{images?this.modal(images):this.modal()}
@@ -82,16 +83,16 @@ class Multimedia extends Component{
 					<div className = "multimedia">
 						<h1>Photos</h1>
 						<img onClick = {(e) => this.onClickFunctions(e)} 
-							name = "Portraits" src='https://via.placeholder.com/500x350'/>
+							name = "Portraits" src='../images/uploads/Portraits/first.jpg'/>
 						<p>PORTRAITS</p>
 						<img onClick = {(e) => this.onClickFunctions(e)} 
-							name = "Creative" src='https://via.placeholder.com/500x350'/>
+							name = "Creative" src='../images/uploads/Creative/first.jpeg'/>
 						<p>CREATIVE</p>
 						<img onClick = {(e) => this.onClickFunctions(e)} 
-							name = "Headshots" src='https://via.placeholder.com/500x350'/>
+							name = "Headshots" src='../images/uploads/Headshots/first.jpg'/>
 						<p>HEADSHOTS</p>
 						<img onClick = {(e) => this.onClickFunctions(e)}
-							 name = "WeddingPhotos" src='https://via.placeholder.com/500x350'/>
+							 name = "WeddingPhotos" src='../images/uploads/WeddingPhotos/first.jpg'/>
 						<p>WEDDING PHOTOS</p>
 					</div>
 					<div className = "multimedia">

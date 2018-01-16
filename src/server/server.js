@@ -58,6 +58,7 @@ var msgRouter = require('./routes/msgRouter');
 var uploadRouter = require('./routes/uploadRouter');
 var editorRouter = require('./routes/editorRouter');
 var apiRouter = require('./adminRoutes/apiRouter');
+var vimeoRouter = require('./routes/vimeoRouter');
 
 // admin api
 app.use('/api', apiRouter);
@@ -67,6 +68,7 @@ app.use('/auth',authRouter);
 app.use('/msg',msgRouter);
 app.use('/upload',uploadRouter);
 app.use('/editor',editorRouter);
+app.use('/vimeo',vimeoRouter);
 
 // redirect to client
 app.get('*', function(req,res){

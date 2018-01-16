@@ -14,6 +14,7 @@ import ProfilePic from '../public/images/about/profile.jpg';
 import {toggleDashNav} from '../redux/modules/viewModule';
 import MyEditor from './TestBlog.jsx';
 import EditBlogs from './EditBlogs.jsx';
+import VideoPlayerForm from '../adminViews/VideoPlayerForm.jsx';
 
 class Dashboard extends Component{
     constructor(){
@@ -37,7 +38,8 @@ class Dashboard extends Component{
             {link:'/messages', title:'Messages', comp:Messages},
             {link:'/blog', title:'Post Blog', comp:PostBlogContainer},
             {link:'/upload', title:'Upload', comp:UploadTest},
-            {link:'/editblog',title:'Edit Blogs',comp:EditBlogs}
+            {link:'/editblog',title:'Edit Blogs',comp:EditBlogs},
+			{link:'/videoplayer',title:'Video Player',comp:VideoPlayerForm}
         ];
         const links = titles.map(e=>
             <Link to={`${path}${e.link}`} onClick={toggleDashNav} key={e.link}>

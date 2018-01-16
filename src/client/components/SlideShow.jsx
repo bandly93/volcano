@@ -16,16 +16,16 @@ class SlideShow extends Component{
 	addOne = () => {
 		const { index } = this.state;
 		let length = this.props.images.length;
-		this.setState({index: (index+1) % length})	
+		this.setState({index: (index+1) % length});	
 	}
 
 	minusOne = () => {
 		const { index } = this.state;
 		let length = this.props.images.length;
 		if(index <= 0){
-			this.setState({index : length - 1})
+			this.setState({index : length - 1});
 		}else{
-			this.setState({index : index - 1})
+			this.setState({index : index - 1});
 		}
 	}
 		
