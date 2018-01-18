@@ -1,7 +1,7 @@
 import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData,postData } from '../redux/modules/fetchThunk.js';
-import { updateURL,updateName,getAllData } from '../redux/modules/vimeoModule';
+import { updateData,getData } from '../redux/modules/vimeoModule.js';
 
 //create four forms where you can add a vimeo url for the multimedia page.
 
@@ -11,23 +11,58 @@ import { updateURL,updateName,getAllData } from '../redux/modules/vimeoModule';
 class VideoPlayerForm extends Component{
 
 	componentDidMount(){
-		const { fetchData, getAllData } = this.props;
-		fetchData('/vimeo',getAllData);
+		const { fetchData,getData,updateData } = this.props;
+		fetchData('/vimeo',getData);
+	}
+
+	submitData = (e) => {
+		e.preventDefault();
+		const { postData } = this.props;
+		const { name,url } = this.props.vimeo.vimeo.formData;
+		postData('/vimeo','POST',{name,url},updateData);
+	}
+	
+	updateForm = (e) => {
+		const { updateData } = this.props;
+		const { value } = e.currentTarget;
+		const { name,url } = this.props.vimeo.vimeo.formData;
+			
+		if (e.currentTarget.name === "name"){
+			updateData({name:value,url});
+		}else{
+			updateData({name,url:value});
+		}
 	}
 	
 	form = () => {
+		const { name,url } = this.props.vimeo.vimeo.formData;
 		return(
 			<div>
-			
+				<form onSubmit = {this.submitData}>
+					<input 
+						type = "text"
+						placeholder = "name"
+						name = "name"
+						value = {name}
+						onChange = {(e)=>this.updateForm(e)}
+					/>	
+					<input
+						type = "text"
+						placeholder = "url"
+						name = "url"
+						value = {url}
+						onChange = {(e)=>this.updateForm(e)}
+					/>
+					<input type = "submit" />
+				</form>
 			</div>
-
 		)
 	}
 	
 	render(){
 		return(
 			<div>
-				<h1>Viewing from the VideoPlayerForm</h1>
+				{this.form()}
 			</div>
 		)
 	}
@@ -38,8 +73,7 @@ class VideoPlayerForm extends Component{
 //use mapStateToProps to get access to data. 
 const mapStateToProps = (state) => {
 	return {
-		url:state.url,
-		name:state.name
+		vimeo:state	
 	}
 }
 //use mapDispatchToProps to make changes to the redux state. Add Files... etc
@@ -47,9 +81,8 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		fetchData:(url,action) => dispatch(fetchData(url,action)),
 		postData:(url,method,data,action) => dispatch(postData(url,method,data,action)),
-		updateURL:(url) => dispatch(updateURL(url)),
-		updateName:(name) => dispatch(updateName(name)),
-		getAllData:() => dispatch(getAllData())
+		updateData:(data) => dispatch(updateData(data)),
+		getData:(data) => dispatch(getData(data))
 	}
 }
 

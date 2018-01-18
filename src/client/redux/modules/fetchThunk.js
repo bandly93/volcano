@@ -6,7 +6,6 @@ export function fetchData(url,actFunc){
 		fetch(url,{credentials:'same-origin'})
 			.then(response=> response.json())
 			.then(data=>{
-				console.log("hello");
 				actFunc(data)
 			})
 	}

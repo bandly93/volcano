@@ -5,40 +5,40 @@
 //reducers: takes in a state and action. then returns a new state;
 
 //update the current url to the new state;
-export const UPDATE_URL = 'UPDATE_URL';
-export const UPDATE_NAME = 'UPDATE_NAME';
+export const UPDATE_DATA = 'UPDATE_DATA';
 export const GET_ALL = 'GET_ALL';
 
-export const updateURL = (url) => {
+
+export const updateData = (data) => {
 	return {
-		type: UPDATE_URL,
-		url
+		type: UPDATE_DATA,
+		data
 	}
 }
 
-export const updateName = (name) => {
+export const getData = (data) => {
 	return {
-		type: UPDATE_NAME,
-		name
+		type: GET_ALL,
+		data
 	}
 }
 
-export const getAllData = () => {
-	return {
-		type:GET_ALL
-	}
-}
-
-export const vimeoReducer = (state = {}, action) => {
+export const vimeoReducer = (state = initialState, action) => {
 	switch(action.type){
-		case UPDATE_URL:
-			return Object.assign({},{url:action.url});
-		case UPDATE_NAME:
-			return Object.assign({},{name:action.name});
+		case UPDATE_DATA:
+			return Object.assign({},state,{formData:action.data});
 		case GET_ALL:
-			return state;
+			return Object.assign({},state,action.data);
 		default:
 			return state;
+	}
+}
+
+let initialState = {
+	urlObj: [],
+	formData: {
+		name: '',
+		url: ''
 	}
 }
 
