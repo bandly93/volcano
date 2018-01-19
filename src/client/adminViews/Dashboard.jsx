@@ -50,6 +50,7 @@ class Dashboard extends Component{
             <Route exact path={`${path}${e.link}`} component={e.comp}
                 key={e.link}/>
         )
+
 		return(
             <div>
             {this.props.admin.user?
@@ -66,7 +67,7 @@ class Dashboard extends Component{
                     <div className='dash-view'>
                         <nav className='dash-topnav'>
                             <a className='hamburger' onClick={toggleDashNav}></a>
-                            <h1 className='flex-space title'>Volcano Boyz</h1> 
+                            <h1 className='flex-space title'> </h1> 
                             <a className='home-icon'onClick={this.goHome} ></a> 
                         </nav>
                         <Switch>

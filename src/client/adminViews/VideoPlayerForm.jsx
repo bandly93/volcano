@@ -1,7 +1,8 @@
 import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData,postData } from '../redux/modules/fetchThunk.js';
-import { updateData,getData } from '../redux/modules/vimeoModule.js';
+import { updateData,getData,updateCurrentVideo } from '../redux/modules/vimeoModule.js';
+ 
 
 //create four forms where you can add a vimeo url for the multimedia page.
 
@@ -18,24 +19,24 @@ class VideoPlayerForm extends Component{
 	submitData = (e) => {
 		e.preventDefault();
 		const { postData } = this.props;
-		const { name,url } = this.props.vimeo.vimeo.formData;
-		postData('/vimeo','POST',{name,url},updateData);
+		const { name,url,currentVideo } = this.props.vimeo.vimeo
+		postData('/vimeo','POST',{name,url,currentVideo},updateData);
 	}
 	
 	updateForm = (e) => {
 		const { updateData } = this.props;
 		const { value } = e.currentTarget;
-		const { name,url } = this.props.vimeo.vimeo.formData;
+		const { name,url,currentVideo } = this.props.vimeo.vimeo
 			
 		if (e.currentTarget.name === "name"){
-			updateData({name:value,url});
+			updateData({name:value,url,id:currentVideo});
 		}else{
-			updateData({name,url:value});
+			updateData({name,url:value,id:currentVideo});
 		}
 	}
 	
 	form = () => {
-		const { name,url } = this.props.vimeo.vimeo.formData;
+		const { name,url } = this.props.vimeo.vimeo
 		return(
 			<div>
 				<form onSubmit = {this.submitData}>
@@ -59,10 +60,46 @@ class VideoPlayerForm extends Component{
 		)
 	}
 	
-	render(){
+	currentVideoSlide = (e) => {
+		const {value} = e.currentTarget;
+		const { updateCurrentVideo } = this.props;
+		updateCurrentVideo(value);
+		
+	}
+
+	numList = () => {
+		let arr = [...Array(4).keys()];
 		return(
 			<div>
-				{this.form()}
+				{	
+					arr.map(i => 
+						<li 
+							key = {i+1}
+							value = {i+1}
+							onClick = {(e)=>this.currentVideoSlide(e)}> 
+							{i+1} 
+						</li>
+					)
+				}
+			</div>
+		)
+	}	
+	
+	render(){
+		const { currentVideo } = this.props.vimeo.vimeo;
+		return(
+			<div>
+				<div>
+					<h1> Video Player </h1>
+				</div>
+				<div>
+					{this.form(currentVideo)}
+				</div>
+				<div>
+					<ul>
+						{this.numList()}
+					</ul>
+				</div>
 			</div>
 		)
 	}
@@ -82,7 +119,8 @@ const mapDispatchToProps = (dispatch) => {
 		fetchData:(url,action) => dispatch(fetchData(url,action)),
 		postData:(url,method,data,action) => dispatch(postData(url,method,data,action)),
 		updateData:(data) => dispatch(updateData(data)),
-		getData:(data) => dispatch(getData(data))
+		getData:(data) => dispatch(getData(data)),
+		updateCurrentVideo:(data) => dispatch(updateCurrentVideo(data))
 	}
 }
 
