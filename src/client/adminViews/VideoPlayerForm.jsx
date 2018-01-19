@@ -10,32 +10,50 @@ import { updateData,updateCurrentVideo } from '../redux/modules/vimeoModule.js';
 
 class VideoPlayerForm extends Component{
 
+	constants = () => {
+		const { fetchData,updateData,postData,updateCurrentVideo } = this.props;
+		const { name,url,id } = this.props.vimeo.vimeo;
+		return{
+			fetchData,
+			postData,
+			updateData,
+			updateCurrentVideo,
+			name,
+			url,
+			id
+		}
+	}
+		
 	componentDidMount(){
-		const { fetchData,updateData } = this.props;
-		fetchData('/vimeo',updateData);
+		const { fetchData,updateData } = this.constants();
+		fetchData('/vimeo',updateData);	
 	}
 
 	submitData = (e) => {
 		e.preventDefault();
-		const { postData,updateData } = this.props;
-		const { name,url,currentVideo } = this.props.vimeo.vimeo
-		postData('/vimeo','POST',{name,url,currentVideo},updateData);
+
+							//old way
+		// const { postData,updataData } = this.props;
+		// const { name,url,id } = this.props.vimeo.vimeo;
+	
+							//new way	
+		const { postData,updateData,name,url,id} = this.constants();
+		postData('/vimeo','POST',{name,url,id},updateData);	
 	}
 	
 	updateForm = (e) => {
-		const { updateData } = this.props;
+		const { updateData,name,url,id } = this.constants();
 		const { value } = e.currentTarget;
-		const { name,url,currentVideo } = this.props.vimeo.vimeo
 			
 		if (e.currentTarget.name === "name"){
-			updateData({name:value,url,id:currentVideo});
+			updateData({name:value,url,id});
 		}else{
-			updateData({name,url:value,id:currentVideo});
+			updateData({name,url:value,id});
 		}
 	}
-	
+
 	form = () => {
-		const { name,url } = this.props.vimeo.vimeo
+		const { name,url,id } = this.constants();
 		return(
 			<div>
 				<form onSubmit = {this.submitData}>
@@ -60,10 +78,9 @@ class VideoPlayerForm extends Component{
 	}
 	
 	currentVideoSlide = (e) => {
-		const {value} = e.currentTarget;
-		const { updateCurrentVideo } = this.props;
+		const { value } = e.currentTarget;
+		const { updateCurrentVideo } = this.constants();
 		updateCurrentVideo(value);
-		
 	}
 
 	numList = () => {
@@ -75,7 +92,7 @@ class VideoPlayerForm extends Component{
 						<li 
 							key = {i+1}
 							value = {i+1}
-							onClick = {(e)=>this.currentVideoSlide(e)}> 
+							onClick = {(e)=>this.currentVideoSlide()}> 
 							{i+1} 
 						</li>
 					)
@@ -85,14 +102,13 @@ class VideoPlayerForm extends Component{
 	}	
 	
 	render(){
-		const { currentVideo } = this.props.vimeo.vimeo;
 		return(
 			<div>
 				<div>
 					<h1> Video Player </h1>
 				</div>
 				<div>
-					{this.form(currentVideo)}
+					{this.form()}
 				</div>
 				<div>
 					<ul>

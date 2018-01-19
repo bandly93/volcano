@@ -6,19 +6,11 @@
 
 //update the current url to the new state;
 export const UPDATE_DATA = 'UPDATE_DATA';
-export const GET_ALL = 'GET_ALL';
 export const UPDATE_VIDEO = 'UPDATE_VIDEO';
 
 export const updateData = (data) => {
 	return {
 		type: UPDATE_DATA,
-		data
-	}
-}
-
-export const getData = (data) => {
-	return {
-		type: GET_ALL,
 		data
 	}
 }
@@ -35,14 +27,14 @@ export const vimeoReducer = (state = initialState, action) => {
 		case UPDATE_DATA:
 			return Object.assign({},state,action.data);
 		case UPDATE_VIDEO:
-			return Object.assign({},state,{currentVideo:action.data});
+			return Object.assign({},state,{id:action.data});
 		default:
 			return state;
 	}
 }
 
 let initialState = {
-	currentVideo: 1,
+	id: 1,
 	urlObj: [],
 	name: '',
 	url: ''

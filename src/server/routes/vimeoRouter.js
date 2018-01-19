@@ -2,8 +2,6 @@ var express = require('express');
 var vimeoRouter = express.Router();
 var Vimeo = require('../models/vimeo');
 
-
-
 const findAll = (req,res) => {
 	Vimeo.find({},(err,data) => {
 		if(err){
@@ -14,7 +12,6 @@ const findAll = (req,res) => {
 	})
 }
 
-
 vimeoRouter.route('/')
 .get((req,res) => {
 	findAll(req,res);
@@ -24,19 +21,18 @@ vimeoRouter.route('/')
 	//first check if entry already exist.
 	const { name,url,id }  = req.body;
 	
-	Vimeo.findOne({name,url},(err,response) => {
+	Vimeo.findOne({name,url,id},(err,response) => {
 		if(err){
 			console.log(err);
 		}else{
 			if(!response){
-				Vimeo.create({name,url},(err,response) => {
+				Vimeo.create({name,url,id},(err,response) => {
 					if(err){
 						console.log(err);
 					}else{
 						console.log("Successfully added entry into database");
 						findAll(req,res);
 					}
-			
 				})
 			}else{
 				console.log("Entry already exist");

@@ -12,6 +12,14 @@ import {
 
 class UploadTest extends Component{
 	
+	constants = () => {
+		const { fetchData,uploadAct,postData } = this.props;
+		const { folderName,folders,images } = this.props.upload;
+		return {
+			fetchData,uploadAct,postData,folderName,folders,images
+		}
+	}
+	
 	constructor(props){
 		super(props);
 		this.state = {
@@ -22,15 +30,14 @@ class UploadTest extends Component{
 
 	//get all folders name on page load.
 	componentDidMount(){
-		const { fetchData,uploadAct } = this.props;
+		const { fetchData,uploadAct } = this.constants();
 		fetchData('/upload',uploadAct);
 	}
 
 	//function to add photos to system
 	addPhotos=(e)=>{
 		e.preventDefault();
-		const { postData,uploadAct,upload } = this.props;
-		const { folderName } = upload;
+		const { postData,uploadAct,folderName } = this.constants();
 		const { images } = this.state;
 		postData('/upload','POST',{images,folderName},uploadAct);
 	}
@@ -38,7 +45,7 @@ class UploadTest extends Component{
 	//function to add folder to system
 	addFolder=(e)=>{
 		e.preventDefault();
-		const { postData,uploadAct } = this.props;
+		const { postData,uploadAct } = this.constants();
 		const { folder } = this.state;	
 		postData('/upload','POST',{folder},uploadAct);		
 	}
@@ -57,8 +64,7 @@ class UploadTest extends Component{
 	//function to delete a target photo or folder.	
 	deleteItem=(e)=>{
 		const { name,value } = e.currentTarget;
-		const { postData,uploadAct,upload } = this.props;
-		const { folderName } = upload;
+		const { postData,uploadAct,folderName } = this.constants();
 		postData('/upload','DELETE',{name,value,folderName},uploadAct);
 	}
 
@@ -96,7 +102,7 @@ class UploadTest extends Component{
 	
 	//function that sends current folder clicked to system.
 	currentBatch=(folderName)=>{
-		const { postData , uploadAct} = this.props;	
+		const { postData,uploadAct} = this.constants();	
 		postData('/upload','POST',{folderName},uploadAct);	
 	}
 
@@ -116,7 +122,7 @@ class UploadTest extends Component{
 
 	//returns a list of all folders with empty/non-empty logic.
 	folderLibrary = () => {
-		const { folderName,folders } = this.props.upload;
+		const { folderName,folders } = this.constants();
 		return(
 			folders.map(folder => 
 				<div key = {folder.name} className = "upload">
@@ -132,7 +138,7 @@ class UploadTest extends Component{
 	
 	toggleModal = (e) => {
 		//array of objects
-		const { images } = this.props.upload;		
+		const { images } = this.constants();	
 		for(let i = 0; i < images.length; i++){
 			if(images[i].name === e){
 				let modal = document.getElementsByClassName("modal")[i];
@@ -158,7 +164,7 @@ class UploadTest extends Component{
 
 	//returns a list of all photos with empty/non-empty logic.
 	photoLibrary = () => {
-		const { images } = this.props.upload;
+		const { images } = this.constants();
 		return(
 			images.map(image => 
 				<div key = {image.name} className = "upload">
@@ -218,7 +224,7 @@ class UploadTest extends Component{
 
 	//returns the file-storage-system viewer.
 	render(){
-		const { images,folders } = this.props.upload;
+		const { images,folders } = this.constants();
 		return(
 			<div className = "file-storage-system">
 				<div className = "panel-left">
