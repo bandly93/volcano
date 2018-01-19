@@ -15,15 +15,16 @@ class UploadTest extends Component{
 	constants = () => {
 		const { fetchData,uploadAct,postData } = this.props;
 		const { folderName,folders,images } = this.props.upload;
+		const { newImages,folder } = this.state;
 		return {
-			fetchData,uploadAct,postData,folderName,folders,images
+			fetchData,uploadAct,postData,folderName,folders,images,newImages,folder
 		}
 	}
 	
 	constructor(props){
 		super(props);
 		this.state = {
-			images:[],
+			newImages:[],
 			folder:''
 		}
 	}
@@ -37,23 +38,21 @@ class UploadTest extends Component{
 	//function to add photos to system
 	addPhotos=(e)=>{
 		e.preventDefault();
-		const { postData,uploadAct,folderName } = this.constants();
-		const { images } = this.state;
-		postData('/upload','POST',{images,folderName},uploadAct);
+		const { postData,uploadAct,folderName,newImages } = this.constants();
+		postData('/upload','POST',{newImages,folderName},uploadAct);
 	}
 
 	//function to add folder to system
 	addFolder=(e)=>{
 		e.preventDefault();
-		const { postData,uploadAct } = this.constants();
-		const { folder } = this.state;	
+		const { postData,uploadAct,folder } = this.constants();
 		postData('/upload','POST',{folder},uploadAct);		
 	}
 
 	//keep track of temporary photos to send over to system.
 	photoFormChange=(e)=>{
-		const images = constructPhotoArray(e.target.files);
-		this.setState({images});
+		const newImages = constructPhotoArray(e.target.files);
+		this.setState({newImages});
 	}
 
 	//keep track of folder to send over to system.

@@ -6,9 +6,9 @@ exports.get = (req,res) => {
 }
 
 exports.post = (req,res) => {
-	const { folderName,folder,images } = req.body;
+	const { folderName,folder,newImages } = req.body;
 	// if post request has images/folder data, add that data to the system.
-	if (folder||images){
+	if (folder||newImages){
 		crudFunctions(req,res,addFunc);
 	}else{
 		crudFunctions(req,res,getBoth);
@@ -96,9 +96,9 @@ const deleteFunc = (req,res) => {
 
 //add item to file storage system.
 const addFunc = (req,res) => {
-	const { images,folder,folderName } = req.body;
-	if (images){
-		images.map(image => {
+	const { newImages,folder,folderName } = req.body;
+	if (newImages){
+		newImages.map(image => {
 			var data = image.data.replace(/^data:image\/\w+;base64,/,"");
 			var buf = new Buffer(data,'base64');
 			fs.writeFile(folderPath+'/'+folderName+'/'+image.name,buf,(error) => {
