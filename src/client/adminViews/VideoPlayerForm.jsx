@@ -1,7 +1,8 @@
 import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData,postData } from '../redux/modules/fetchThunk.js';
-import { updateData,updateCurrentVideo } from '../redux/modules/vimeoModule.js';
+import { updateData } from '../redux/modules/vimeoModule.js';
+import VideoPlayer from '../components/VideoPlayer.jsx';
 
 //create four forms where you can add a vimeo url for the multimedia page.
 
@@ -11,10 +12,10 @@ import { updateData,updateCurrentVideo } from '../redux/modules/vimeoModule.js';
 class VideoPlayerForm extends Component{
 
 	constants = () => {
-		const { fetchData,updateData,postData,updateCurrentVideo } = this.props;
-		const { name,url,id,urlObj } = this.props.vimeo.vimeo;
+		const { fetchData,updateData,postData } = this.props;
+		const { name,url,id,urlObj } = this.props.vimeo
 		return{
-			fetchData,postData,updateData,updateCurrentVideo,
+			fetchData,postData,updateData,
 			name,url,id,urlObj
 		}
 	}
@@ -27,19 +28,17 @@ class VideoPlayerForm extends Component{
 	submitData = (e) => {
 		e.preventDefault();
 		const { postData,updateData,name,url,id } = this.constants();
-		postData('/vimeo','POST',{name,url,id},updateData);	
+		postData('/vimeo','POST',{name,url,id},updateData);
+		updateData({name:'',url:''});	
 	}
 	
 	updateForm = (e) => {
 		const { updateData,name,url,id } = this.constants();
 		const { value } = e.currentTarget;
-			
-		if (e.currentTarget.name === "name"){
-			updateData({name:value,url,id});
-		}else{
-			updateData({name,url:value,id});
-		}
+		updateData({[e.currentTarget.name]:value,id});
 	}
+	
+	
 
 	form = () => {
 		const { name,url,id } = this.constants();
@@ -66,10 +65,17 @@ class VideoPlayerForm extends Component{
 		)
 	}
 	
+	resetForm = () => {
+		const { updateData } = this.constants();
+		updateData();
+
+	}
+	
 	currentVideoSlide = (e) => {
 		const { value } = e.currentTarget;
-		const { updateCurrentVideo } = this.constants();
-		updateCurrentVideo(value);
+		const { updateData } = this.constants();
+		updateData({id:value});
+		updateData({name:'',url:''});
 	}
 
 	numList = () => {
@@ -100,12 +106,13 @@ class VideoPlayerForm extends Component{
 						<h3> Updating Video Slide {id} </h3>
 					</div>
 					<div>
-						<h3> {
+						<h3> 
+							{
 								urlObj[id-1]?
-								<div>
-									<span>{urlObj[id-1].name} : </span>
-									<span>{urlObj[id-1].url}</span>
-								</div>
+									<div>
+										<span>{urlObj[id-1].name} : </span>
+										<span>{urlObj[id-1].url}</span>
+									</div>
 								:null
 							} 
 						</h3>
@@ -129,7 +136,7 @@ class VideoPlayerForm extends Component{
 //use mapStateToProps to get access to data. 
 const mapStateToProps = (state) => {
 	return {
-		vimeo:state	
+		vimeo:state.vimeo	
 	}
 }
 //use mapDispatchToProps to make changes to the redux state. Add Files... etc
