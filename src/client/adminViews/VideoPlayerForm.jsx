@@ -1,8 +1,7 @@
 import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData,postData } from '../redux/modules/fetchThunk.js';
-import { updateData,getData,updateCurrentVideo } from '../redux/modules/vimeoModule.js';
- 
+import { updateData,updateCurrentVideo } from '../redux/modules/vimeoModule.js';
 
 //create four forms where you can add a vimeo url for the multimedia page.
 
@@ -12,13 +11,13 @@ import { updateData,getData,updateCurrentVideo } from '../redux/modules/vimeoMod
 class VideoPlayerForm extends Component{
 
 	componentDidMount(){
-		const { fetchData,getData,updateData } = this.props;
-		fetchData('/vimeo',getData);
+		const { fetchData,updateData } = this.props;
+		fetchData('/vimeo',updateData);
 	}
 
 	submitData = (e) => {
 		e.preventDefault();
-		const { postData } = this.props;
+		const { postData,updateData } = this.props;
 		const { name,url,currentVideo } = this.props.vimeo.vimeo
 		postData('/vimeo','POST',{name,url,currentVideo},updateData);
 	}
@@ -119,7 +118,6 @@ const mapDispatchToProps = (dispatch) => {
 		fetchData:(url,action) => dispatch(fetchData(url,action)),
 		postData:(url,method,data,action) => dispatch(postData(url,method,data,action)),
 		updateData:(data) => dispatch(updateData(data)),
-		getData:(data) => dispatch(getData(data)),
 		updateCurrentVideo:(data) => dispatch(updateCurrentVideo(data))
 	}
 }

@@ -33,9 +33,6 @@ export const updateCurrentVideo = (data) => {
 export const vimeoReducer = (state = initialState, action) => {
 	switch(action.type){
 		case UPDATE_DATA:
-			const { name,url } = action.data;
-			return Object.assign({},state,{name,url});
-		case GET_ALL:
 			return Object.assign({},state,action.data);
 		case UPDATE_VIDEO:
 			return Object.assign({},state,{currentVideo:action.data});

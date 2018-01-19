@@ -34,16 +34,15 @@ vimeoRouter.route('/')
 						console.log(err);
 					}else{
 						console.log("Successfully added entry into database");
-						findAll(req,res)
+						findAll(req,res);
 					}
+			
 				})
 			}else{
 				console.log("Entry already exist");
-			}	
-		}	
+			}
+		}
 	})
-	//send data back to the client;
-	
 })
 
 .delete((req,res) => {
