@@ -12,15 +12,10 @@ class VideoPlayerForm extends Component{
 
 	constants = () => {
 		const { fetchData,updateData,postData,updateCurrentVideo } = this.props;
-		const { name,url,id } = this.props.vimeo.vimeo;
+		const { name,url,id,urlObj } = this.props.vimeo.vimeo;
 		return{
-			fetchData,
-			postData,
-			updateData,
-			updateCurrentVideo,
-			name,
-			url,
-			id
+			fetchData,postData,updateData,updateCurrentVideo,
+			name,url,id,urlObj
 		}
 	}
 		
@@ -31,13 +26,7 @@ class VideoPlayerForm extends Component{
 
 	submitData = (e) => {
 		e.preventDefault();
-
-							//old way
-		// const { postData,updataData } = this.props;
-		// const { name,url,id } = this.props.vimeo.vimeo;
-	
-							//new way	
-		const { postData,updateData,name,url,id} = this.constants();
+		const { postData,updateData,name,url,id } = this.constants();
 		postData('/vimeo','POST',{name,url,id},updateData);	
 	}
 	
@@ -86,13 +75,13 @@ class VideoPlayerForm extends Component{
 	numList = () => {
 		let arr = [...Array(4).keys()];
 		return(
-			<div>
+			<div className = 'video-player-list'>
 				{	
 					arr.map(i => 
 						<li 
 							key = {i+1}
 							value = {i+1}
-							onClick = {(e)=>this.currentVideoSlide()}> 
+							onClick = {(e)=>this.currentVideoSlide(e)}> 
 							{i+1} 
 						</li>
 					)
@@ -102,18 +91,33 @@ class VideoPlayerForm extends Component{
 	}	
 	
 	render(){
+		const { id,urlObj } = this.constants();
 		return(
 			<div>
-				<div>
-					<h1> Video Player </h1>
-				</div>
-				<div>
-					{this.form()}
-				</div>
-				<div>
-					<ul>
-						{this.numList()}
-					</ul>
+				<h1 className = 'video-player-title'> Video Player </h1>
+				<div className = 'video-player-container'>
+					<div>
+						<h3> Updating Video Slide {id} </h3>
+					</div>
+					<div>
+						<h3> {
+								urlObj[id-1]?
+								<div>
+									<span>{urlObj[id-1].name} : </span>
+									<span>{urlObj[id-1].url}</span>
+								</div>
+								:null
+							} 
+						</h3>
+					</div>
+					<div>
+						{this.form()}
+					</div>
+					<div>
+						<ul>
+							{this.numList()}
+						</ul>
+					</div>
 				</div>
 			</div>
 		)

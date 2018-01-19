@@ -20,13 +20,13 @@ vimeoRouter.route('/')
 .post((req,res) => {
 	//first check if entry already exist.
 	const { name,url,id }  = req.body;
-	
-	Vimeo.findOne({name,url,id},(err,response) => {
+	Vimeo.find({$or:[{url},{name}]},(err,response) => {
 		if(err){
 			console.log(err);
 		}else{
-			if(!response){
-				Vimeo.create({name,url,id},(err,response) => {
+			if(response.length === 0){
+				//find that specific id and replace... keeps array fixed at 4
+				Vimeo.findOneAndUpdate({id},{$set:{name,url}},(err,response) => {
 					if(err){
 						console.log(err);
 					}else{

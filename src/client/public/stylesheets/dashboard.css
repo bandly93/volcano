@@ -285,7 +285,7 @@ a{
 	width:2em;
 	position:absolute;
 	top : 2%;
-	right:2%; 
+	right:2%;
 }
 
 .slideshow-container img {
@@ -308,6 +308,35 @@ a{
 .right-button{
 	right:5%;
 }
+/*-----------------------------Video Player ---------------------------*/
+.video-player-container ul {
+	list-style-type:none;
+	padding:0px;
+}
+
+.video-player-list {
+	display:inline-flex;
+
+}
+
+.video-player-list li{
+	border:2px solid black;
+	padding:1em;
+}
+.video-player-title{
+	text-align:center;
+
+}
+
+.video-player-container{
+	border:2px black solid;
+	margin:8%;
+	text-align:center;
+
+}
+
+
+
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
 @media only screen and (min-width:813px){
