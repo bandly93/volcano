@@ -1,8 +1,10 @@
 import React,{Component} from 'react';
 import SlideShow from '../components/SlideShow.jsx';
 import { uploadAct } from "../redux/modules/uploadModule";
+import { updateData } from '../redux/modules/vimeoModule'; 
 import { postData,fetchData } from "../redux/modules/fetchThunk";
 import { connect } from "react-redux";
+import VideoPlayer from '../components/VideoPlayer.jsx';
 import {
   BrowserRouter as Router,
   Route,
@@ -20,8 +22,9 @@ class Multimedia extends Component{
 	}
 
 	componentDidMount(){
-		const { fetchData,uploadAct } = this.props;	
+		const { fetchData,uploadAct,updateData } = this.props;	
 		fetchData("/upload",uploadAct);
+		fetchData("/vimeo",updateData);
 	}
 
 	moveToTop = () => {
@@ -66,6 +69,7 @@ class Multimedia extends Component{
 	
 	toggleModal = () => {
 		let modal = document.getElementsByClassName("modal")[0];
+		
 		if(modal.style.display === "block"){
 			modal.style.display = "none";
 		}else{
@@ -73,42 +77,61 @@ class Multimedia extends Component{
 		}
 	}	
 
+	photoDisplay = () => {
+		const { firstImages,folders } = this.props.upload;
+		let arr = [...Array(firstImages.length).keys()];	
+		return (
+			<div>
+				{
+					arr.map(i =>
+						<div key = {i}>
+							<img 
+								onClick = {(e) => this.onClickFunctions(e)}
+								name = {folders[i].name} 
+								src = {firstImages[i]}	
+								 />
+							<p> {folders[i].name} </p>
+						</div>
+					)
+				}
+			</div>
+		)
+	}
+	
+	videoDisplay = () => {
+		const { urlObj } = this.props.vimeo;
+		let arr = [...Array(urlObj.length).keys()];
+		
+		return (
+			<div>
+				{
+					arr.map(i => 
+						<div key = {i}>
+							<VideoPlayer url = {urlObj[i].url} />
+							<p> {urlObj[i].name} </p>
+						</div>
+					)	
+				}
+			</div>
+		)		
+	}
+
+
 	render(){
-		const { images } = this.props.upload;
-		//figure out way to check current images with images from props. this should fix the loading previous photo for a second issue./	
+		const { images,folders,firstImages } = this.props.upload;
+		const { urlObj } = this.props.vimeo;
+		//figure out way to check current images with images from props. this should fix the loading previous photo for a second issue./
 		return(
 			<div>
-				{images?this.modal(images):this.modal()}
+				{images?this.modal(images):this.modal()}	
 				<div className = "multimedia-flexbox">
 					<div className = "multimedia">
 						<h1>Photos</h1>
-						<img onClick = {(e) => this.onClickFunctions(e)} 
-							name = "Portraits" src='../images/uploads/Portraits/first.jpg'/>
-						<p>PORTRAITS</p>
-						<img onClick = {(e) => this.onClickFunctions(e)} 
-							name = "Creative" src='../images/uploads/Creative/first.jpeg'/>
-						<p>CREATIVE</p>
-						<img onClick = {(e) => this.onClickFunctions(e)} 
-							name = "Headshots" src='../images/uploads/Headshots/first.jpg'/>
-						<p>HEADSHOTS</p>
-						<img onClick = {(e) => this.onClickFunctions(e)}
-							 name = "WeddingPhotos" src='../images/uploads/WeddingPhotos/first.jpg'/>
-						<p>WEDDING PHOTOS</p>
+						{firstImages?this.photoDisplay():null}
 					</div>
 					<div className = "multimedia">
 						<h1>Motion</h1>
-						<img onClick = {this.moveToTop} 
-							name = "Lookbooks" src='https://via.placeholder.com/500x350'/>
-						<p>LOOKBOOKS</p>
-						<img onClick = {this.moveToTop} 
-							name = "WeddingVideos" src='https://via.placeholder.com/500x350'/>
-						<p>WEDDING VIDEOS</p>
-						<img onClick = {this.moveToTop} 
-							name = "MusicVideos" src='https://via.placeholder.com/500x350'/>
-						<p>MUSIC VIDEOS</p>
-						<img onClick = {this.moveToTop} 
-							name = "ShortFilms" src='https://via.placeholder.com/500x350'/>
-						<p>SHORT FILMS</p>
+						{urlObj?this.videoDisplay():null}
 					</div> 
 				</div>
 			</div>
@@ -120,13 +143,15 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		postData:(url,method,data,actFunc) => dispatch(postData(url,method,data,actFunc)),
 		fetchData:(url,actFunc) => dispatch(fetchData(url,actFunc)),
-		uploadAct:(upload) => dispatch(uploadAct(upload))
+		uploadAct:(upload) => dispatch(uploadAct(upload)),
+		updateData:(data) => dispatch(updateData(data))
 	}
 }
 
 const mapStateToProps = (state) => {
 	return{
-		upload:state.upload
+		upload:state.upload,
+		vimeo:state.vimeo
 	}
 }
 

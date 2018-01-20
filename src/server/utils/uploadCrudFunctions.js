@@ -2,7 +2,6 @@ var fs = require("fs");
 
 exports.get = (req,res) => {
 	crudFunctions(req,res);
-	//getFirstPhotos(req,res);
 }
 
 exports.post = (req,res) => {
@@ -31,19 +30,16 @@ const crudFunctions = (req,res,action) => {
 var folderPath = './src/client/public/images/uploads/';
 var imagePath = '../images/uploads/';
 
-/*
-//get first folders from every folder.
-const getFirstPhotos = () => {
-	let firstPhotosName = [];
+//get first photo from every folder.
+const getFirstPhotos = (req,res) => {
+	let firstImages = [];
 	let folders = fs.readdirSync(folderPath).filter(folder => folder != ".DS_Store");
 	let action = folders.map(folderName => {
 		let photoName = fs.readdirSync(folderPath+folderName).filter(photo => photo != ".DS_Store")[0];
-		firstPhotosName.push(imagePath+folderName+"/"+photoName);
+		firstImages.push(imagePath+folderName+"/"+photoName);
 	})
-	res.json({firstImages: firstPhotosName});
-
+	return firstImages;
 }
-*/
 //get all folders and specific photos from file storage system.
 const getBoth = (req,res) => {
 	const { folderName } = req.body;
@@ -53,7 +49,7 @@ const getBoth = (req,res) => {
 	let action2 = photos.map(photo => ({name:photo,path:imagePath+folderName+'/'+photo}));
 	let promiseArray = [Promise.resolve(action1),Promise.resolve(action2)];	
 	Promise.all(promiseArray).then(data => {
-		res.json({folders:data[0],images:data[1],folderName});
+		res.json({folders:data[0],images:data[1],folderName,firstImages:getFirstPhotos()});
 	}).catch(error => {
 		console.log("error from getBoth" + error);
 	})	
@@ -66,7 +62,7 @@ const getFolder = (req,res) => {
 	let promise = new Promise((resolve,reject) => {
 		resolve(action);
 	}).then(folders => {
-		res.json({folders});
+		res.json({folders,firstImages:getFirstPhotos()});
 	}).catch(error => {
 		console.error("error from getFolders " + error);
 	})

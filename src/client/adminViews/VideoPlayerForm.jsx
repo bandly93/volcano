@@ -36,9 +36,7 @@ class VideoPlayerForm extends Component{
 		const { updateData,name,url,id } = this.constants();
 		const { value } = e.currentTarget;
 		updateData({[e.currentTarget.name]:value,id});
-	}
-	
-	
+	}	
 
 	form = () => {
 		const { name,url,id } = this.constants();
