@@ -13,6 +13,7 @@ class SlideShow extends Component{
 		if(this.props.images === nextProps.images){return}
 		this.setState({index:0});
 	}
+
 	addOne = () => {
 		const { index } = this.state;
 		let length = this.props.images.length;

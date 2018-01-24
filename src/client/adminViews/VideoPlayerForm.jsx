@@ -13,10 +13,10 @@ class VideoPlayerForm extends Component{
 
 	constants = () => {
 		const { fetchData,updateData,postData } = this.props;
-		const { name,url,id,urlObj } = this.props.vimeo
+		const { name,url,id,urlObj,thumbnail } = this.props.vimeo
 		return{
 			fetchData,postData,updateData,
-			name,url,id,urlObj
+			name,url,id,urlObj,thumbnail
 		}
 	}
 		
@@ -28,15 +28,27 @@ class VideoPlayerForm extends Component{
 	submitData = (e) => {
 		e.preventDefault();
 		const { postData,updateData,name,url,id } = this.constants();
-		postData('/vimeo','POST',{name,url,id},updateData);
-		updateData({name:'',url:''});	
+		
+		let re = 'https://vimeo.com/'
+		let imgID = url.replace(re,'');
+		let src = "https://vimeo.com/api/v2/video/" + imgID + ".json";
+		
+		fetch(src,{credentials:'same-origin'})
+			.then(response => response.json())
+			.then(data => {
+				postData('/vimeo','POST',{name,url,id,thumbnail:data[0].thumbnail_large},updateData);
+				updateData({name:'',url:''});	
+			}).catch(error => {
+				console.log(error);
+			})
 	}
 	
 	updateForm = (e) => {
 		const { updateData,name,url,id } = this.constants();
 		const { value } = e.currentTarget;
 		updateData({[e.currentTarget.name]:value,id});
-	}	
+	}
+	
 
 	form = () => {
 		const { name,url,id } = this.constants();

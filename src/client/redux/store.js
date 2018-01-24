@@ -10,6 +10,7 @@ import editor from './modules/editorModule.js';
 import text from './modules/inputModule.js';
 import oneEditor from './modules/oneEditorModule.js';
 import vimeo from './modules/vimeoModule.js';
+import multimedia from './modules/multimediaModule.js';
 
 
 const reducers = combineReducers({
@@ -22,6 +23,7 @@ const reducers = combineReducers({
     editor,
     oneEditor,
 	vimeo,
+	multimedia,
 })
 
 export default function configureStore(initialState){

@@ -266,6 +266,10 @@ a{
 	width:absolute;
 }
 
+.modal-content iframe{
+	width:absolute;
+}
+
 .photo-dashboard{
 	display:flex;
 }
