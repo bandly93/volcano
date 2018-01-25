@@ -13,7 +13,6 @@ class VideoPlayer extends Component{
 		return src;
 	}
 	
-
 	render(){
 		const {url,toggleModal} = this.props;
 		const {screenWidth} = this.props.view;

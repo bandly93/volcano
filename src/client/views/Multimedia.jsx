@@ -21,19 +21,6 @@ class Multimedia extends Component{
 		fetchData("/vimeo",updateData);
 	}
 
-	/*
-	moveToTop = () => {
-		let scrollSpeed = -window.scrollY/(400/30),
-		scrollInterval = setInterval(() => {
-			if(window.scrollY != 0){
-				window.scrollBy(0,scrollSpeed);
-			}else{
-				clearInterval(scrollInterval);
-			}
-		},15);
-	}
-	*/
-
 	modal = (props) => {
 		if(typeof props === "string"){
 			return(
@@ -87,6 +74,7 @@ class Multimedia extends Component{
 					arr.map(i =>
 						<div key = {i}>
 							<img 
+								className = "multimedia-img" 
 								name = {folders[i].name} 
 								src = {firstImages[i]}
 								onClick = {(e)=>this.setModalProps(e)}
@@ -107,7 +95,8 @@ class Multimedia extends Component{
 				{
 					arr.map(i => 
 						<div key = {i}>
-							<img 
+							<img
+								className = "multimedia-img"
 								name = {urlObj[i].url}
 								src = {urlObj[i].thumbnail}
 								onClick = {(e) => this.setModalProps(e)}
@@ -119,7 +108,6 @@ class Multimedia extends Component{
 			</div>
 		)		
 	}
-
 
 	render(){
 		const { images,folders,firstImages } = this.props.upload;

@@ -7,24 +7,13 @@ export function uploadAct(upload){
 
 
 //reducer
-export const upload = (state = initialState,action)=>{
+export const upload = (state = [],action)=>{
 	switch(action.type){
 		case 'UPLOAD':
 			return action.upload
 		default:
 			return state;
 	}
-}
-
-
-let initialState = {
-	folders:[],
-	images:[{ 
-			name : "yee",
-			path:"../images/uploads/Creative/first.jpeg"
-		  }],
-	folderName:'',
-	firstImages:[]
 }
 
 export default upload;

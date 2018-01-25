@@ -72,8 +72,9 @@ input{
 	flex:1;
 }
 
-.multimedia img{
-	max-width:65%;
+.multimedia-img{
+	width:32vw;
+	height:22vw;
 }
 
 .multimedia-flexbox img:hover {
