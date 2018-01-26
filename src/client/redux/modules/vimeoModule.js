@@ -24,10 +24,11 @@ export const vimeoReducer = (state = initialState, action) => {
 }
 
 let initialState = {
-	id: 1,
-	urlObj: [],
 	name: '',
-	url: ''
+	url: '',
+	slideId:1,
+	slides:{},
+	videoId:1
 }
 
 export default vimeoReducer;

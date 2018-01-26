@@ -7,3 +7,10 @@ var vimeoData = new Schema({
 });
 
 module.exports = mongoose.model('VimeoData', vimeoData);
+
+//insert data
+	//collection.insert({slideId:1,items:[{name:"stuff",url:"stuff";"picId:"",thumbnail:""}]});
+//update data
+	//collection.update({slideId:1},{$push:{items:{name:"newstuff",url:"newstuff",picId:"2",thumbnail:"hello"}}});
+
+

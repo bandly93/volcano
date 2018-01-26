@@ -2,7 +2,6 @@ import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData,postData } from '../redux/modules/fetchThunk.js';
 import { updateData } from '../redux/modules/vimeoModule.js';
-import VideoPlayer from '../components/VideoPlayer.jsx';
 
 //create four forms where you can add a vimeo url for the multimedia page.
 
@@ -13,10 +12,10 @@ class VideoPlayerForm extends Component{
 
 	constants = () => {
 		const { fetchData,updateData,postData } = this.props;
-		const { name,url,id,urlObj,thumbnail } = this.props.vimeo
+		const { name,url,slideId,slides,videoId } = this.props.vimeo
 		return{
 			fetchData,postData,updateData,
-			name,url,id,urlObj,thumbnail
+			name,url,slideId,slides,videoId
 		}
 	}
 		
@@ -27,7 +26,7 @@ class VideoPlayerForm extends Component{
 
 	submitData = (e) => {
 		e.preventDefault();
-		const { postData,updateData,name,url,id } = this.constants();
+		const { postData,updateData } = this.constants();
 		
 		let re = 'https://vimeo.com/'
 		let imgID = url.replace(re,'');
@@ -36,7 +35,7 @@ class VideoPlayerForm extends Component{
 		fetch(src,{credentials:'same-origin'})
 			.then(response => response.json())
 			.then(data => {
-				postData('/vimeo','POST',{name,url,id,thumbnail:data[0].thumbnail_large},updateData);
+				postData('/vimeo','POST',{name,url,slideId,thumbnail:data[0].thumbnail_large},updateData);
 				updateData({name:'',url:''});	
 			}).catch(error => {
 				console.log(error);
@@ -44,14 +43,13 @@ class VideoPlayerForm extends Component{
 	}
 	
 	updateForm = (e) => {
-		const { updateData,name,url,id } = this.constants();
+		const { updateData,name,url,slideId } = this.constants();
 		const { value } = e.currentTarget;
-		updateData({[e.currentTarget.name]:value,id});
+		updateData({[e.currentTarget.name]:value,slideId});
 	}
 	
-
 	form = () => {
-		const { name,url,id } = this.constants();
+		const { name,url,slideId } = this.constants();
 		return(
 			<div>
 				<form onSubmit = {this.submitData}>
@@ -75,21 +73,16 @@ class VideoPlayerForm extends Component{
 		)
 	}
 	
-	resetForm = () => {
-		const { updateData } = this.constants();
-		updateData();
-
-	}
-	
+		
 	currentVideoSlide = (e) => {
-		const { value } = e.currentTarget;
+		const { value,type } = e.currentTarget;
 		const { updateData } = this.constants();
-		updateData({id:value});
+		updateData({[e.currentTarget.type]:value});
 		updateData({name:'',url:''});
 	}
 
-	numList = () => {
-		let arr = [...Array(4).keys()];
+	numList = (name,num) => {
+		let arr = [...Array(num).keys()];
 		return(
 			<div className = 'video-player-list'>
 				{	
@@ -97,6 +90,7 @@ class VideoPlayerForm extends Component{
 						<li 
 							key = {i+1}
 							value = {i+1}
+							type = {name}
 							onClick = {(e)=>this.currentVideoSlide(e)}> 
 							{i+1} 
 						</li>
@@ -107,21 +101,26 @@ class VideoPlayerForm extends Component{
 	}	
 	
 	render(){
-		const { id,urlObj } = this.constants();
+		const { slideId,slides,videoId } = this.constants();
 		return(
 			<div>
 				<h1 className = 'video-player-title'> Video Player </h1>
+				<div>
+					<ul>
+						{this.numList("slideId",slides.length)}
+					</ul>
+				</div>
 				<div className = 'video-player-container'>
 					<div>
-						<h3> Updating Video Slide {id} </h3>
+						<h3> Updating Video Slide {slideId} </h3>
 					</div>
 					<div>
 						<h3> 
 							{
-								urlObj[id-1]?
+								slides[slideId-1]?
 									<div>
-										<span>{urlObj[id-1].name} : </span>
-										<span>{urlObj[id-1].url}</span>
+										<span>{slides[slideId-1].items[videoId-1].name} : </span>
+										<span>{slides[slideId-1].items[videoId-1].url}</span>
 									</div>
 								:null
 							} 
@@ -132,7 +131,11 @@ class VideoPlayerForm extends Component{
 					</div>
 					<div>
 						<ul>
-							{this.numList()}
+							{
+								slides[slideId-1]?
+								this.numList("videoId",slides[slideId-1].items.length)
+								:null
+							}
 						</ul>
 					</div>
 				</div>

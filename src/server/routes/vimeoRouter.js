@@ -7,7 +7,7 @@ const findAll = (req,res) => {
 		if(err){
 			console.log(err);
 		}else{
-			res.json({urlObj:data});
+			res.json({slides:data});
 			console.log(data);	
 		}
 	})
@@ -19,6 +19,7 @@ vimeoRouter.route('/')
 })
 
 .post((req,res) => {
+	/*
 	console.log(req.body);
 	//first check if entry already exist.
 	const { name,url,id,thumbnail }  = req.body;
@@ -41,6 +42,7 @@ vimeoRouter.route('/')
 			}
 		}
 	})
+	*/
 })
 
 module.exports = vimeoRouter;
