@@ -73,11 +73,10 @@ class VideoPlayerForm extends Component{
 		)
 	}
 	
-		
 	currentVideoSlide = (e) => {
 		const { value,type } = e.currentTarget;
 		const { updateData } = this.constants();
-		updateData({[e.currentTarget.type]:value});
+		type === "slideId"?updateData({[type]:value,videoId:1}):updateData({[type]:value})	
 		updateData({name:'',url:''});
 	}
 
@@ -98,8 +97,8 @@ class VideoPlayerForm extends Component{
 				}
 			</div>
 		)
-	}	
-	
+	}
+
 	render(){
 		const { slideId,slides,videoId } = this.constants();
 		return(
