@@ -28,18 +28,19 @@ vimeoRouter.route('/')
 			{
 				"items.$.name":name,
 				"items.$.url":url,
-				"items.$.thumbnail":thumbnail
+				"items.$.thumbnail":thumbnail,
+				"items.$.videoId":videoId
 			}
 		},(err,response) => {
+			if(err){
+				console.log(err);
+			}else{
+				console.log("Successfully added entry into database");
+					findAll(req,res);
+			}
 		
-		if(err){
-			console.log(err);
-		}else{
-			console.log("Successfully added entry into database");
-			findAll(req,res);
 		}
-		
-	})
+	)
 })
 
 module.exports = vimeoRouter;
