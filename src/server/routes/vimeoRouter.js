@@ -1,12 +1,15 @@
 var express = require('express');
 var vimeoRouter = express.Router();
 var Vimeo = require('../models/vimeo');
+var ObjectId = require('mongodb').ObjectID;
 
 const findAll = (req,res) => {
-	Vimeo.find({},(err,data) => {
+	
+	Vimeo.find({},null,{sort:{slideId:1}},(err,data) => {
 		if(err){
 			console.log(err);
 		}else{
+			console.log(data)
 			res.json({slides:data});
 		}
 	})
@@ -17,11 +20,8 @@ vimeoRouter.route('/')
 	findAll(req,res);
 })
 
-.post((req,res) => {
-
-		//first check if entry already exist.
+.put((req,res) => {
 	const { name,url,videoId,slideId,thumbnail }  = req.body;
-
 	Vimeo.findOneAndUpdate(
 		{slideId,"items.videoId":videoId},
 		{$set:
@@ -29,18 +29,42 @@ vimeoRouter.route('/')
 				"items.$.name":name,
 				"items.$.url":url,
 				"items.$.thumbnail":thumbnail,
-				"items.$.videoId":videoId
 			}
 		},(err,response) => {
+			console.log(response);
 			if(err){
 				console.log(err);
 			}else{
 				console.log("Successfully added entry into database");
-					findAll(req,res);
+				findAll(req,res);
 			}
-		
 		}
 	)
 })
+
+.post((req,res) => {
+	const { name,url,videoId,slideId,thumbnail} = req.body;
+	Vimeo.update({slideId},{$push:{items:{name,url,videoId,thumbnail}}},(err,response) => {
+		if(err){
+			console.log(err)
+		}else{
+			console.log("Sucessfully incremented list.");
+			findAll(req,res);
+		}
+	})	
+})
+
+.delete((req,res) => {
+	const { _id,slideId } = req.body;
+	Vimeo.update({slideId},{$pull:{items:{_id}}},(err,response) => {
+		if(err){
+			console.log(err);
+		}else{
+			console.log("Successfully deleted video.");
+			findAll(req,res);
+		}
+	})
+})
+
 
 module.exports = vimeoRouter;

@@ -35,7 +35,7 @@ class VideoPlayerForm extends Component{
 		fetch(src,{credentials:'same-origin'})
 			.then(response => response.json())
 			.then(data => {
-				postData('/vimeo','POST',{name,url,slideId,videoId,thumbnail:data[0].thumbnail_large},updateData);
+				postData('/vimeo','PUT',{name,url,slideId,videoId,thumbnail:data[0].thumbnail_large},updateData);
 				updateData({name:'',url:''});	
 			}).catch(error => {
 				console.log(error);
@@ -75,10 +75,17 @@ class VideoPlayerForm extends Component{
 	
 	currentVideoSlide = (e) => {
 		const { value,type } = e.currentTarget;
-		const { updateData } = this.constants();
+		const { updateData,slideId } = this.constants();
 		type === "slideId"?updateData({[type]:value,videoId:1}):updateData({[type]:value})	
 		updateData({name:'',url:''});
 	}
+
+	incrementNumList = (e) => {
+		const { alt } = e.currentTarget;
+		const { postData,updateData,videoId,slideId,slides } = this.constants();
+		postData('/vimeo','POST',{name:'',url:'',slideId,videoId:slides[slideId-1].items.length+1,thumbnail:"https://i.vimeocdn.com/video/0_0.jpg"},updateData);
+	}
+	
 
 	numList = (name,num) => {
 		let arr = [...Array(num).keys()];
@@ -95,9 +102,20 @@ class VideoPlayerForm extends Component{
 						</li>
 					)
 				}
-				<img className = "add-button" src = "../images/icons/add.svg" />
+				<img 
+					className = "add-button" 
+					alt = {name}
+					src = "../images/icons/add.svg"
+					onClick = {(e) => this.incrementNumList(e)}
+				/>
 			</div>
 		)
+	}
+	
+	deleteCurrentSlide = () => {
+		const {postData,updateData,videoId,slideId,slides } = this.constants();
+		postData('/vimeo','DELETE',{slideId,_id:slides[slideId-1].items[videoId-1]._id},updateData)
+		updateData({slideId,videoId:videoId-1});
 	}
 
 	render(){
@@ -111,7 +129,7 @@ class VideoPlayerForm extends Component{
 					</ul>
 				</div>
 				<div className = 'video-player-container'>
-					<img className = "video-exit-icon" src = "../images/icons/exit.svg" />
+					<img className = "video-exit-icon" src = "../images/icons/exit.svg" onClick = {(e) => this.deleteCurrentSlide(e)}/>
 					<div>
 						<h3> Updating Slide {slideId}, Video {videoId} </h3>
 					</div>
