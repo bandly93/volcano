@@ -8,7 +8,6 @@ const findAll = (req,res) => {
 			console.log(err);
 		}else{
 			res.json({slides:data});
-			console.log(data);	
 		}
 	})
 }
@@ -19,30 +18,28 @@ vimeoRouter.route('/')
 })
 
 .post((req,res) => {
-	/*
-	console.log(req.body);
-	//first check if entry already exist.
-	const { name,url,id,thumbnail }  = req.body;
-	Vimeo.find({$or:[{url},{name}]},(err,response) => {
+
+		//first check if entry already exist.
+	const { name,url,videoId,slideId,thumbnail }  = req.body;
+
+	Vimeo.findOneAndUpdate(
+		{slideId,"items.videoId":videoId},
+		{$set:
+			{
+				"items.$.name":name,
+				"items.$.url":url,
+				"items.$.thumbnail":thumbnail
+			}
+		},(err,response) => {
+		
 		if(err){
 			console.log(err);
 		}else{
-			if(response.length === 0){
-				//find that specific id and replace... keeps array fixed at 4
-						Vimeo.findOneAndUpdate({id},{$set:{name,url,thumbnail}},(err,response) => {
-					if(err){
-						console.log(err);
-					}else{
-						console.log("Successfully added entry into database");
-						findAll(req,res);
-					}
-				})
-			}else{
-				console.log("Entry already exist");
-			}
+			console.log("Successfully added entry into database");
+			findAll(req,res);
 		}
+		
 	})
-	*/
 })
 
 module.exports = vimeoRouter;

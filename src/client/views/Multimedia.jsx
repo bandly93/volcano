@@ -88,8 +88,8 @@ class Multimedia extends Component{
 	}
 	
 	videoDisplay = () => {
-		const { urlObj } = this.props.vimeo;
-		let arr = [...Array(urlObj.length).keys()];	
+		const { slides } = this.props.vimeo;
+		let arr = [...Array(slides.length).keys()];	
 		return (
 			<div>
 				{
@@ -97,11 +97,11 @@ class Multimedia extends Component{
 						<div key = {i}>
 							<img
 								className = "multimedia-img"
-								name = {urlObj[i].url}
-								src = {urlObj[i].thumbnail}
+								name = {slides[i].items[0].url}
+								src = {slides[i].items[0].thumbnail}
 								onClick = {(e) => this.setModalProps(e)}
 								alt = 'video' />	
-							<p> {urlObj[i].name} </p>
+							<p> {slides[i].items[0].name} </p>
 						</div>
 					)	
 				}
@@ -112,7 +112,7 @@ class Multimedia extends Component{
 	render(){
 		const { images,folders,firstImages } = this.props.upload;
 		const { modalProps } = this.props.multimedia;
-		const { urlObj } = this.props.vimeo;
+		const { slides } = this.props.vimeo;
 		//figure out way to check current images with images from props. this should fix the loading previous photo for a second issue./
 		return(
 			<div>
@@ -124,7 +124,7 @@ class Multimedia extends Component{
 					</div>
 					<div className = "multimedia">
 						<h1>Motion</h1>
-						{urlObj?this.videoDisplay():null}
+						{slides.length > 1?this.videoDisplay():null}
 					</div> 
 				</div>
 			</div>

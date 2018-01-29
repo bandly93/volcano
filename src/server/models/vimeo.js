@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var vimeoData = new Schema({
 	slideId:Number,
-	items:[{name:String,url:String,picId:Number,thumbnail:String}]	
+	items:[{name:String,url:String,videoId:Number,thumbnail:String}]	
 });
 
 module.exports = mongoose.model('VimeoData', vimeoData);

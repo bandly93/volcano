@@ -313,13 +313,10 @@ a{
 	right:5%;
 }
 /*-----------------------------Video Player ---------------------------*/
-.video-player-container ul {
-	list-style-type:none;
-	padding:0px;
-}
-
-.video-player-list {
+.video-player-list{
 	display:inline-flex;
+	list-style-type:none;
+	padding:5px;
 
 }
 
@@ -329,15 +326,23 @@ a{
 }
 .video-player-title{
 	text-align:center;
-
 }
 
 .video-player-container{
 	border:2px black solid;
 	margin:8%;
 	text-align:center;
-
 }
+
+.add-button{
+	height:4vh;
+	padding:10px;
+}
+.video-exit-icon{
+	height:4vh;
+	float:right;
+}
+
 
 
 /*-----------------------------Desktop View ---------------------------*/

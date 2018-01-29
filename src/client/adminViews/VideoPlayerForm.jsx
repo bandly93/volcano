@@ -12,7 +12,7 @@ class VideoPlayerForm extends Component{
 
 	constants = () => {
 		const { fetchData,updateData,postData } = this.props;
-		const { name,url,slideId,slides,videoId } = this.props.vimeo
+		const { name,url,slideId,slides,videoId } = this.props.vimeo;
 		return{
 			fetchData,postData,updateData,
 			name,url,slideId,slides,videoId
@@ -26,16 +26,16 @@ class VideoPlayerForm extends Component{
 
 	submitData = (e) => {
 		e.preventDefault();
-		const { postData,updateData } = this.constants();
+		const { postData,updateData,name,url,slideId,videoId } = this.constants();
 		
 		let re = 'https://vimeo.com/'
 		let imgID = url.replace(re,'');
 		let src = "https://vimeo.com/api/v2/video/" + imgID + ".json";
-		
+
 		fetch(src,{credentials:'same-origin'})
 			.then(response => response.json())
 			.then(data => {
-				postData('/vimeo','POST',{name,url,slideId,thumbnail:data[0].thumbnail_large},updateData);
+				postData('/vimeo','POST',{name,url,slideId,videoId,thumbnail:data[0].thumbnail_large},updateData);
 				updateData({name:'',url:''});	
 			}).catch(error => {
 				console.log(error);
@@ -95,6 +95,7 @@ class VideoPlayerForm extends Component{
 						</li>
 					)
 				}
+				<img className = "add-button" src = "../images/icons/add.svg" />
 			</div>
 		)
 	}
@@ -110,8 +111,9 @@ class VideoPlayerForm extends Component{
 					</ul>
 				</div>
 				<div className = 'video-player-container'>
+					<img className = "video-exit-icon" src = "../images/icons/exit.svg" />
 					<div>
-						<h3> Updating Video Slide {slideId} </h3>
+						<h3> Updating Slide {slideId}, Video {videoId} </h3>
 					</div>
 					<div>
 						<h3> 
