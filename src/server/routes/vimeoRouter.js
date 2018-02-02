@@ -9,7 +9,6 @@ const findAll = (req,res) => {
 		if(err){
 			console.log(err);
 		}else{
-			console.log(data)
 			res.json({slides:data});
 		}
 	})
@@ -21,9 +20,9 @@ vimeoRouter.route('/')
 })
 
 .put((req,res) => {
-	const { name,url,videoId,slideId,thumbnail }  = req.body;
+	const { name,url,videoId,slideId,thumbnail,_id }  = req.body
 	Vimeo.findOneAndUpdate(
-		{slideId,"items.videoId":videoId},
+		{slideId,"items._id":_id},
 		{$set:
 			{
 				"items.$.name":name,
@@ -43,8 +42,8 @@ vimeoRouter.route('/')
 })
 
 .post((req,res) => {
-	const { name,url,videoId,slideId,thumbnail} = req.body;
-	Vimeo.update({slideId},{$push:{items:{name,url,videoId,thumbnail}}},(err,response) => {
+	const { name,url,videoId,slideId,thumbnail} = req.body.data;
+	Vimeo.update({slideId},{$push:{items:{name,url,thumbnail}}},(err,response) => {
 		if(err){
 			console.log(err)
 		}else{
@@ -55,7 +54,7 @@ vimeoRouter.route('/')
 })
 
 .delete((req,res) => {
-	const { _id,slideId } = req.body;
+	const { _id,slideId } = req.body.data;
 	Vimeo.update({slideId},{$pull:{items:{_id}}},(err,response) => {
 		if(err){
 			console.log(err);

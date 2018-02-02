@@ -2,6 +2,7 @@ import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData,postData } from '../redux/modules/fetchThunk.js';
 import { updateData } from '../redux/modules/vimeoModule.js';
+require('babel-polyfill');
 
 //create four forms where you can add a vimeo url for the multimedia page.
 
@@ -26,16 +27,17 @@ class VideoPlayerForm extends Component{
 
 	submitData = (e) => {
 		e.preventDefault();
-		const { postData,updateData,name,url,slideId,videoId } = this.constants();
+		const { postData,updateData,name,url,slideId,slides,videoId } = this.constants();
+		const {_id} = slides[slideId-1].items[videoId-1];
 		
 		let re = 'https://vimeo.com/'
 		let imgID = url.replace(re,'');
 		let src = "https://vimeo.com/api/v2/video/" + imgID + ".json";
-
+		
 		fetch(src,{credentials:'same-origin'})
 			.then(response => response.json())
 			.then(data => {
-				postData('/vimeo','PUT',{name,url,slideId,videoId,thumbnail:data[0].thumbnail_large},updateData);
+				postData('/vimeo','PUT',{name,url,slideId,_id,thumbnail:data[0].thumbnail_large},updateData);
 				updateData({name:'',url:''});	
 			}).catch(error => {
 				console.log(error);
@@ -73,19 +75,7 @@ class VideoPlayerForm extends Component{
 		)
 	}
 	
-	currentVideoSlide = (e) => {
-		const { value,type } = e.currentTarget;
-		const { updateData,slideId } = this.constants();
-		type === "slideId"?updateData({[type]:value,videoId:1}):updateData({[type]:value})	
-		updateData({name:'',url:''});
-	}
 
-	incrementNumList = (e) => {
-		const { alt } = e.currentTarget;
-		const { postData,updateData,videoId,slideId,slides } = this.constants();
-		postData('/vimeo','POST',{name:'',url:'',slideId,videoId:slides[slideId-1].items.length+1,thumbnail:"https://i.vimeocdn.com/video/0_0.jpg"},updateData);
-	}
-	
 
 	numList = (name,num) => {
 		let arr = [...Array(num).keys()];
@@ -111,11 +101,42 @@ class VideoPlayerForm extends Component{
 			</div>
 		)
 	}
+
+	currentVideoSlide = (e) => {
+		const { value,type } = e.currentTarget;
+		const { updateData,slideId } = this.constants();
+		type === "slideId"?updateData({[type]:value,videoId:1}):updateData({[type]:value})	
+		updateData({name:'',url:''});
+	}
 	
 	deleteCurrentSlide = () => {
 		const {postData,updateData,videoId,slideId,slides } = this.constants();
-		postData('/vimeo','DELETE',{slideId,_id:slides[slideId-1].items[videoId-1]._id},updateData)
-		updateData({slideId,videoId:videoId-1});
+		let slideLen = slides[slideId-1].items.length;
+		let data = {
+			slideId,_id:slides[slideId-1].items[videoId-1]._id,
+		}
+		postData('/vimeo','DELETE',{data},updateData)
+		if(videoId === slideLen){
+			updateData({videoId:slideLen-1})
+		}	
+	}	
+
+	upTwo = data => {
+		const { updateData,slides,slideId } = this.constants();
+		let slideLen = slides[slideId-1].items.length;
+		updateData(data);
+		updateData({videoId:slideLen+1})
+			
+	}	
+
+	incrementNumList = (e) => {
+		const { alt } = e.currentTarget;
+		const { postData,updateData,videoId,slideId,slides } = this.constants();
+		let slideLen = slides[slideId-1].items.length;
+		let data = {
+			name:'',url:'',slideId,thumbnail:'https://i.vimeocdn.com/video/0_0.jpg'
+		}
+		postData('/vimeo','POST',{data},this.upTwo)
 	}
 
 	render(){
@@ -129,7 +150,12 @@ class VideoPlayerForm extends Component{
 					</ul>
 				</div>
 				<div className = 'video-player-container'>
-					<img className = "video-exit-icon" src = "../images/icons/exit.svg" onClick = {(e) => this.deleteCurrentSlide(e)}/>
+					{
+						videoId !== 1?
+						<img className = "video-exit-icon" src = "../images/icons/exit.svg" onClick = {(e) => this.deleteCurrentSlide(e)}/>
+						:null
+
+					}
 					<div>
 						<h3> Updating Slide {slideId}, Video {videoId} </h3>
 					</div>
