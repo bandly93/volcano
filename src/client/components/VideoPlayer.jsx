@@ -2,9 +2,33 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
 class VideoPlayer extends Component{
-	//later for slideshow	
+	//later for slideshow
+	constructor(props){
+		super(props);
+		this.state = {
+			index:0
+		}
+	}
+	
 	componentWillReceiveProps(newProps){
-		this.getVideoId(newProps.url);	
+		if(this.props.videos === newProps.videos){return}
+		this.setState({index:0});
+	}
+
+	addOne = () => {
+		const { index } = this.state;
+		let length = this.props.videos.length;
+		this.setState({index: (index+1) % length});	
+	}
+
+	minusOne = () => {
+		const { index } = this.state;
+		let length = this.props.videos.length;
+		if(index <= 0){
+			this.setState({index : length - 1});
+		}else{
+			this.setState({index : index - 1});
+		}
 	}
 		
 	getVideoId = (url) => {
@@ -14,18 +38,24 @@ class VideoPlayer extends Component{
 	}
 	
 	render(){
-		const {url,toggleModal} = this.props;
+		const { videos,toggleModal } = this.props;
 		const {screenWidth} = this.props.view;
 		return(
-			<div>
+			<div className = 'slideshow-container'>
+				<div>
+					<button className = "left-button" onClick = {this.minusOne}> &#10094; </button>
+				</div>
 				<iframe 
-					src= {url?this.getVideoId(url):null}
+					src= {videos?this.getVideoId(videos[this.state.index].url):null}
 					width= {(screenWidth*0.75)}
 					height= {(((screenWidth/16)*9)*0.75)} 
 					frameBorder="0"
 					allowFullScreen = "true">
 				</iframe>
-				<img src = "../images/icons/exit.svg" id = "exit-icon-2" onClick = {toggleModal}/>
+				<div>
+					<button className = "right-button" onClick = {this.addOne}> &#10095; </button>
+					<img src = "../images/icons/exit.svg" id = "exit-icon-2" onClick = {toggleModal}/>
+				</div>
 			</div>
 		)
 	}

@@ -22,11 +22,13 @@ class Multimedia extends Component{
 	}
 
 	modal = (props) => {
-		if(typeof props === "string"){
+		const { modalType } = this.props.multimedia;
+		
+		if(modalType === 'video'){
 			return(
 				<div className = "modal">
 					<div className = "modal-content">
-						<VideoPlayer url = {props} toggleModal = {this.toggleModal}/>
+						<VideoPlayer videos = {props} toggleModal = {this.toggleModal}/>
 					</div>
 				</div>
 			)
@@ -57,10 +59,13 @@ class Multimedia extends Component{
 	setModalProps = (e) => {
 		const { name,alt } = e.currentTarget;
 		const { postData,uploadAct,modalAct } = this.props;
+		const { slides } = this.props.vimeo;
+		
 		if(alt === 'video'){
-			modalAct({modalProps:name});
+			modalAct({modalProps:slides[name-1].items,modalType:"video"});
 		}else{	
 			postData("/upload","POST",{folderName:name},uploadAct);
+			modalAct({modalType:"photo"});
 		}
 		this.toggleModal();
 	}	
@@ -97,7 +102,7 @@ class Multimedia extends Component{
 						<div key = {i}>
 							<img
 								className = "multimedia-img"
-								name = {slides[i].items[0].url}
+								name = {slides[i].slideId}
 								src = {slides[i].items[0].thumbnail}
 								onClick = {(e) => this.setModalProps(e)}
 								alt = 'video' />	

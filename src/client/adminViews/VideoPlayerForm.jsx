@@ -45,7 +45,7 @@ class VideoPlayerForm extends Component{
 	}
 	
 	updateForm = (e) => {
-		const { updateData,name,url,slideId } = this.constants();
+		const { updateData,slideId } = this.constants();
 		const { value } = e.currentTarget;
 		updateData({[e.currentTarget.name]:value,slideId});
 	}
@@ -75,8 +75,6 @@ class VideoPlayerForm extends Component{
 		)
 	}
 	
-
-
 	numList = (name,num) => {
 		let arr = [...Array(num).keys()];
 		return(
@@ -125,8 +123,7 @@ class VideoPlayerForm extends Component{
 		const { updateData,slides,slideId } = this.constants();
 		let slideLen = slides[slideId-1].items.length;
 		updateData(data);
-		updateData({videoId:slideLen+1})
-			
+		updateData({videoId:slideLen+1})	
 	}	
 
 	incrementNumList = (e) => {

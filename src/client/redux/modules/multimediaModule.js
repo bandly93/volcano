@@ -1,6 +1,7 @@
 
 let initialState = {
-	modalProps:null
+	modalProps:null,
+	modalType:null,
 }
 
 export const MODAL_DATA = "MODAL_DATA";
