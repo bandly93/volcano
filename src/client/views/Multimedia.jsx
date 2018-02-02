@@ -49,7 +49,7 @@ class Multimedia extends Component{
 		
 		if(modal.style.display === "block"){
 			modal.style.display = "none";
-			modalAct({modalProps:null});
+			modalAct({modalProps:null,modalType:null});
 		}else{
 			modal.style.display = "block";
 		}
