@@ -36,8 +36,11 @@ class VideoPlayerForm extends Component{
 		
 		fetch(src,{credentials:'same-origin'})
 			.then(response => response.json())
-			.then(data => {
-				postData('/vimeo','PUT',{name,url,slideId,_id,thumbnail:data[0].thumbnail_large},updateData);
+			.then(stuff => {
+				let data = {
+					name,url,slideId,_id,thumbnail:stuff[0].thumbnail_large
+				}
+				postData('/vimeo','PUT',{data},updateData);
 				updateData({name:'',url:''});	
 			}).catch(error => {
 				console.log(error);
@@ -85,7 +88,7 @@ class VideoPlayerForm extends Component{
 							key = {i+1}
 							value = {i+1}
 							type = {name}
-							onClick = {(e)=>this.currentVideoSlide(e)}> 
+							onClick = {(e)=>this.currentVideoSlide(e)}>
 							{i+1} 
 						</li>
 					)
@@ -108,7 +111,7 @@ class VideoPlayerForm extends Component{
 	}
 	
 	deleteCurrentSlide = () => {
-		const {postData,updateData,videoId,slideId,slides } = this.constants();
+		const { postData,updateData,videoId,slideId,slides } = this.constants();
 		let slideLen = slides[slideId-1].items.length;
 		let data = {
 			slideId,_id:slides[slideId-1].items[videoId-1]._id,

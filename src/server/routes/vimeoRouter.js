@@ -20,7 +20,7 @@ vimeoRouter.route('/')
 })
 
 .put((req,res) => {
-	const { name,url,videoId,slideId,thumbnail,_id }  = req.body
+	const { name,url,videoId,slideId,thumbnail,_id }  = req.body.data;
 	Vimeo.findOneAndUpdate(
 		{slideId,"items._id":_id},
 		{$set:
