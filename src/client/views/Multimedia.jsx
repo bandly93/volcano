@@ -44,11 +44,12 @@ class Multimedia extends Component{
 	}
 	
 	toggleModal = () => {
-		const { modalAct,uploadAct } = this.props;
+		const { modalAct,uploadAct,updateData } = this.props;
 		let modal = document.getElementsByClassName("modal")[0];
 		
 		if(modal.style.display === "block"){
 			modal.style.display = "none";
+			uploadAct({images:null});
 			modalAct({modalProps:null,modalType:null});
 		}else{
 			modal.style.display = "block";
