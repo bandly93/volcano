@@ -8,7 +8,7 @@ module.exports = function(passport,res){
 	},
 		function(req,username,password,done){
 			User.findOne({'username':username},function(err,user){
-				console.log(req.user)
+//				console.log(req.user)
 				if(err){
 					console.log('error')
 					return res.json(err);}

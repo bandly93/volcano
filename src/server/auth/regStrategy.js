@@ -19,7 +19,7 @@ module.exports = function(passport,res){
 						if(err){
 							console.log(err)
 						}
-						console.log('saved new user')
+//						console.log('saved new user')
 						console.log(req.user)
 						return res.json({success:'You are now registered.'})
 					})

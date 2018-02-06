@@ -72,10 +72,6 @@ input{
 	flex:1;
 }
 
-.multimedia-img{
-	width:32vw;
-	height:22vw;
-}
 
 .multimedia-flexbox img:hover {
 	opacity: 0.6;
@@ -189,6 +185,10 @@ input{
     .mainBlogs {
         padding:0 20%;
     }
+    .multimedia-img{
+        width:32vw;
+        height:22vw;
+    }
 }
 
 /*-----------------------------Mobile View ----------------------------*/
@@ -234,6 +234,9 @@ input{
     }    
     .about img{
         max-height:250px;
+    }
+    .multimedia-img{
+        width:100%;
     }
 }
 
