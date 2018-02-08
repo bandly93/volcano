@@ -93,12 +93,16 @@ class VideoPlayerForm extends Component{
 						</li>
 					)
 				}
-				<img 
-					className = "add-button" 
-					alt = {name}
-					src = "../images/icons/add.svg"
-					onClick = {(e) => this.incrementNumList(e)}
-				/>
+				{
+					name === "videoId"?
+					<img 
+						className = "add-button" 
+						alt = {name}
+						src = "../images/icons/add.svg"
+						onClick = {(e) => this.incrementNumList(e)}
+					/>
+					:null
+				}
 			</div>
 		)
 	}
@@ -145,6 +149,7 @@ class VideoPlayerForm extends Component{
 			<div>
 				<h1 className = 'video-player-title'> Video Player </h1>
 				<div>
+					<h3 className = "slide-title">Slide</h3>
 					<ul>
 						{this.numList("slideId",slides.length)}
 					</ul>
