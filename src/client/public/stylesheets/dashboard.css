@@ -234,8 +234,8 @@ a{
 }
 
 .thumbnail{
-	height:50px;
-	width:50px;
+	max-height:8vh;
+	max-width:8vw;
 }
 
 .thumbnail:hover{
@@ -263,6 +263,8 @@ a{
 }
 
 .modal-content img{
+	max-height:85vh;
+	max-width:69vw;
 	width:absolute;
 }
 
