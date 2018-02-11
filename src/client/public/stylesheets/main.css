@@ -80,6 +80,11 @@ input{
 	font-size:2vh;
 }
 
+.focus{
+	border-style:hidden;
+	padding:0;
+}
+
 /*-----------------------ABOUT PAGE---------------------------*/
 .about{
     display:flex;

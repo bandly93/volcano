@@ -36,14 +36,35 @@ class VideoPlayer extends Component{
 		let src = 'https://player.vimeo.com/video/' + videoId;
 		return src;
 	}
+
+	keyListener = (e) => {
+		const { keyCode } = e;
+		switch (keyCode){ 
+			case 39:
+				this.minusOne();
+				break;
+			case 37:
+				this.addOne();
+				break;
+			case 27:
+				this.props.toggleModal();
+				break;
+			default:
+				break;
+		}
+	}
 	
 	render(){
 		const { videos,toggleModal } = this.props;
 		const {screenWidth} = this.props.view;
 		return(
-			<div className = 'slideshow-container'>
+			<div className = 'slideshow-container' onKeyDown = {(e)=> this.keyListener(e)} >
 				<div>
-					<button className = "left-button" onClick = {this.minusOne}> &#10094; </button>
+					<button 
+						className = "left-button" 
+						onClick = {this.minusOne}> 
+						&#10094; 
+					</button>
 				</div>
 				<iframe 
 					src= {videos?this.getVideoId(videos[this.state.index].url):null}
@@ -53,8 +74,15 @@ class VideoPlayer extends Component{
 					allowFullScreen = "true">
 				</iframe>
 				<div>
-					<button className = "right-button" onClick = {this.addOne}> &#10095; </button>
-					<img src = "../images/icons/exit.svg" id = "exit-icon-2" onClick = {toggleModal}/>
+					<button 
+						className = "right-button" 
+						onClick = {this.addOne}
+						ref = "component"> 
+						&#10095; 
+					</button>
+					<button className = "focus" autoFocus>
+						<img id = "exit-icon-2" src = "../images/icons/exit.svg" onClick = {toggleModal}/>
+					</button>
 				</div>
 			</div>
 		)

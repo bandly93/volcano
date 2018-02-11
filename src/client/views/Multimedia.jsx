@@ -20,14 +20,14 @@ class Multimedia extends Component{
 		fetchData("/upload",uploadAct);
 		fetchData("/vimeo",updateData);
 	}
-
+		
 	modal = (props) => {
 		const { modalType } = this.props.multimedia;
 		
 		if(modalType === 'video'){
 			return(
-				<div className = "modal">
-					<div className = "modal-content">
+				<div className = "modal" >
+					<div className = "modal-content" >
 						<VideoPlayer videos = {props} toggleModal = {this.toggleModal}/>
 					</div>
 				</div>
@@ -35,7 +35,7 @@ class Multimedia extends Component{
 		}else{
 			return(
 				<div className = "modal">
-					<div className = "modal-content">
+					<div className = "modal-content" >
 						<SlideShow images = {props} toggleModal = {this.toggleModal}/>
 					</div>
 				</div>
@@ -46,7 +46,6 @@ class Multimedia extends Component{
 	toggleModal = () => {
 		const { modalAct,uploadAct,updateData } = this.props;
 		let modal = document.getElementsByClassName("modal")[0];
-		
 		if(modal.style.display === "block"){
 			modal.style.display = "none";
 			uploadAct({images:null});
