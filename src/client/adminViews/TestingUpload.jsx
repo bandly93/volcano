@@ -2,6 +2,7 @@ import React,{Component} from "react";
 import PhotoLibrary from "./PhotoLibrary.jsx";
 import {uploadAct} from '../redux/modules/uploadModule';
 import {postData,fetchData} from '../redux/modules/fetchThunk';
+import ImageCompressor from 'image-compressor.js';
 import {connect} from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -247,10 +248,22 @@ const constructPhotoArray = (photos) => {
 	for (let i = 0; i < photos.length; i++){
 		let reader = new FileReader();
 		let d = new Date();
-		reader.onload = function(event){
-			photoArray.push({id:d.getTime()+i,name:photos[i].name,data:event.target.result});
-		}
-		reader.readAsDataURL(photos[i]);
+		let transformedPhoto = new ImageCompressor(photos[i],{
+			quality:.6,
+			maxWidth:3200,
+			maxHeight:1900,
+			minWidth:1600,
+			minHeight:900,
+			success(result){
+				reader.onload = function(event){
+					photoArray.push({id:d.getTime()+i,name:photos[i].name,data:event.target.result});
+				}
+				reader.readAsDataURL(result);
+			},
+			error(e){
+				console.log(e.message);
+			}
+		})
 	}
 	return photoArray;
 }

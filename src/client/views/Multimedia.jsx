@@ -77,7 +77,7 @@ class Multimedia extends Component{
 			<div>
 				{
 					firstImages.map((image,i) =>
-						<div key = {i}>
+						<div key = {i} className ="multimedia-box">
 							<img 
 								className = "multimedia-img" 
 								name = {folders[i].name} 

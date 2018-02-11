@@ -36,6 +36,7 @@
     "express-session": "^1.15.6",
     "fs": "0.0.1-security",
     "helmet": "^3.9.0",
+    "image-compressor.js": "^1.0.0",
     "marked": "^0.3.6",
     "mongodb": "^2.2.31",
     "mongoose": "^4.11.13",
