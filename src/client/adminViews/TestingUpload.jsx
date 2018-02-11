@@ -249,11 +249,11 @@ const constructPhotoArray = (photos) => {
 		let reader = new FileReader();
 		let d = new Date();
 		let transformedPhoto = new ImageCompressor(photos[i],{
-			quality:.6,
-			maxWidth:3200,
-			maxHeight:1900,
+			quality:.5,
+			maxWidth:3600,
+			maxHeight:2250,
 			minWidth:1600,
-			minHeight:900,
+			minHeight:9000,
 			success(result){
 				reader.onload = function(event){
 					photoArray.push({id:d.getTime()+i,name:photos[i].name,data:event.target.result});
