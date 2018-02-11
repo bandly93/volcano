@@ -55,23 +55,28 @@ class VideoPlayerForm extends Component{
 	
 	form = () => {
 		const { name,url,slideId } = this.constants();
+		let inputOptions = [
+			{	
+				type:"text",
+				placeholder:"name",
+				name:"name",
+				value:name
+			},
+			{
+				type:"text",
+				placeholder:"url",
+				name:"url",
+				value:url
+			}
+		];
+
+		let input = inputOptions.map(({type,placeholder,name,value},i) =>
+			<input key={i} type={type} placeholder={placeholder} name={name} value={value} onChange={(e)=>this.updateForm(e)}/>
+		);
 		return(
 			<div>
 				<form onSubmit = {this.submitData}>
-					<input 
-						type = "text"
-						placeholder = "name"
-						name = "name"
-						value = {name}
-						onChange = {(e)=>this.updateForm(e)}
-					/>	
-					<input
-						type = "text"
-						placeholder = "url"
-						name = "url"
-						value = {url}
-						onChange = {(e)=>this.updateForm(e)}
-					/>
+					{input}
 					<input type = "submit" />
 				</form>
 			</div>

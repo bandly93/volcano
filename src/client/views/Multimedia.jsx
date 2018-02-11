@@ -73,16 +73,15 @@ class Multimedia extends Component{
 
 	photoDisplay = () => {
 		const { firstImages,folders } = this.props.upload;
-		let arr = [...Array(firstImages.length).keys()];	
 		return (
 			<div>
 				{
-					arr.map(i =>
+					firstImages.map((image,i) =>
 						<div key = {i}>
 							<img 
 								className = "multimedia-img" 
 								name = {folders[i].name} 
-								src = {firstImages[i]}
+								src = {image}
 								onClick = {(e)=>this.setModalProps(e)}
 								alt = 'photo'/>
 							<p> {folders[i].name} </p>
@@ -95,19 +94,18 @@ class Multimedia extends Component{
 	
 	videoDisplay = () => {
 		const { slides } = this.props.vimeo;
-		let arr = [...Array(slides.length).keys()];	
 		return (
 			<div>
 				{
-					arr.map(i => 
+					slides.map((slide,i) => 
 						<div key = {i}>
 							<img
 								className = "multimedia-img"
-								name = {slides[i].slideId}
-								src = {slides[i].items[0].thumbnail}
+								name = {slide.slideId}
+								src = {slide.items[0].thumbnail}
 								onClick = {(e) => this.setModalProps(e)}
 								alt = 'video' />	
-							<p> {slides[i].items[0].name} </p>
+							<p> {slide.items[0].name} </p>
 						</div>
 					)	
 				}
