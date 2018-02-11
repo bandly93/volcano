@@ -253,7 +253,7 @@ const constructPhotoArray = (photos) => {
 			maxWidth:3600,
 			maxHeight:2250,
 			minWidth:1600,
-			minHeight:9000,
+			minHeight:900,
 			success(result){
 				reader.onload = function(event){
 					photoArray.push({id:d.getTime()+i,name:photos[i].name,data:event.target.result});

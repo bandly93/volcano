@@ -260,6 +260,10 @@ a{
 	padding: 2%;
 	border:1px solid #888;
 	position:relative;
+	top:46%;
+	left:48%;
+	transform:translate(-50%,-50%);
+
 }
 
 .modal-content img{
