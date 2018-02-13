@@ -323,12 +323,15 @@ a{
 	display:inline-flex;
 	list-style-type:none;
 	padding:5px;
-
 }
 
 .video-player-list li{
 	border:2px solid black;
 	padding:1em;
+	border-radius:50%;
+	cursor:pointer;
+	height:0.5vh;
+	width:0.5vh;
 }
 .video-player-title{
 	text-align:center;

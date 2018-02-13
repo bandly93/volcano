@@ -1,11 +1,10 @@
 import React,{Component} from 'react';
-import SlideShow from '../components/SlideShow.jsx';
 import { uploadAct } from "../redux/modules/uploadModule";
 import { modalAct } from '../redux/modules/multimediaModule';
 import { updateData } from '../redux/modules/vimeoModule'; 
 import { postData,fetchData } from "../redux/modules/fetchThunk";
 import { connect } from "react-redux";
-import VideoPlayer from '../components/VideoPlayer.jsx';
+import {modal} from '../components/SlideShowUtils.jsx';
 import {
   BrowserRouter as Router,
   Route,
@@ -15,36 +14,30 @@ import {
 
 class Multimedia extends Component{
 
-	componentDidMount(){
-		const { fetchData,uploadAct,updateData } = this.props;	
-		fetchData("/upload",uploadAct);
-		fetchData("/vimeo",updateData);
-	}
-		
-	modal = (props) => {
-		const { modalType } = this.props.multimedia;
-		
-		if(modalType === 'video'){
-			return(
-				<div className = "modal" >
-					<div className = "modal-content" >
-						<VideoPlayer videos = {props} toggleModal = {this.toggleModal}/>
-					</div>
-				</div>
-			)
-		}else{
-			return(
-				<div className = "modal">
-					<div className = "modal-content" >
-						<SlideShow images = {props} toggleModal = {this.toggleModal}/>
-					</div>
-				</div>
-			)
+	constants = () => {
+		const { fetchData,uploadAct,updateData,modalAct,postData, } = this.props;
+		const { slides } = this.props.vimeo;
+		const { firstImages,folders,images,folderName } = this.props.upload;
+		const { modalProps,modalType } = this.props.multimedia;
+		return {
+			fetchData,uploadAct,updateData,modalAct,postData,
+			slides,firstImages,folders,images,folderName,modalProps,modalType
 		}
 	}
+
+	componentDidMount(){
+		const { fetchData,uploadAct,updateData } = this.constants();
+		fetchData("/upload",uploadAct);
+		fetchData("/vimeo",updateData);
+
+	}
 	
+	
+
+
+
 	toggleModal = () => {
-		const { modalAct,uploadAct,updateData } = this.props;
+		const { modalAct,uploadAct,updateData } = this.constants();
 		let modal = document.getElementsByClassName("modal")[0];
 		if(modal.style.display === "block"){
 			modal.style.display = "none";
@@ -58,8 +51,7 @@ class Multimedia extends Component{
 	//FIX RACE CONDITION
 	setModalProps = (e) => {
 		const { name,alt } = e.currentTarget;
-		const { postData,uploadAct,modalAct } = this.props;
-		const { slides } = this.props.vimeo;
+		const { postData,uploadAct,modalAct,slides } = this.constants();
 		
 		if(alt === 'video'){
 			modalAct({modalProps:slides[name-1].items,modalType:"video"});
@@ -71,7 +63,7 @@ class Multimedia extends Component{
 	}	
 
 	photoDisplay = () => {
-		const { firstImages,folders } = this.props.upload;
+		const { firstImages,folders } = this.constants();
 		return (
 			<div>
 				{
@@ -92,7 +84,7 @@ class Multimedia extends Component{
 	}
 	
 	videoDisplay = () => {
-		const { slides } = this.props.vimeo;
+		const { slides } = this.constants();
 		return (
 			<div>
 				{
@@ -113,13 +105,11 @@ class Multimedia extends Component{
 	}
 
 	render(){
-		const { images,folders,firstImages } = this.props.upload;
-		const { modalProps } = this.props.multimedia;
-		const { slides } = this.props.vimeo;
+		const { images,folders,firstImages,modalProps,slides,modalType } = this.constants();
 		//figure out way to check current images with images from props. this should fix the loading previous photo for a second issue./
 		return(
 			<div>
-				{modalProps?this.modal(modalProps):this.modal(images)}
+				{modalProps?modal(modalProps,modalType):modal(images,modalType)}
 				<div className = "multimedia-flexbox">
 					<div className = "multimedia">
 						<h1>Photos</h1>

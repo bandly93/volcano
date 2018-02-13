@@ -1,83 +1,56 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { updateIndex,grabIndex } from '../redux/modules/slideModule.js';
+import { uploadAct } from '../redux/modules/uploadModule.js';
+import { modalAct } from '../redux/modules/multimediaModule.js';
+
+
+import { keyListener,toggleModal,addOne } from '../components/SlideShowUtils.jsx';
 
 class SlideShow extends Component{
-	constructor(props){
-		super(props);
-		this.state = {
-			index : 0
-		}
-	}
-	
+
+
 	//resets index everytime a new image set is passed through.
 	componentWillReceiveProps(nextProps){
 		if(this.props.images === nextProps.images){return}
-		this.setState({index:0});
+		this.props.updateIndex({index:0});
 	}
 
-	addOne = () => {
-		const { index } = this.state;
-		let length = this.props.images.length;
-		this.setState({index: (index+1) % length});	
-	}
-
-	minusOne = () => {
-		const { index } = this.state;
-		let length = this.props.images.length;
-		if(index <= 0){
-			this.setState({index : length - 1});
-		}else{
-			this.setState({index : index - 1});
-		}
-	}
-
-	handleKey = (e) => {
-		const { keyCode } = e;
-		switch ( keyCode ) {
-			//right
-			case 39:
-				this.minusOne()
-				break;
-			//left
-			case 37:
-				this.addOne() 
-				break;
-			//esc
-			case 27:
-				this.props.toggleModal() 
-				break;
-			default:
-				break;
-		}
-	}	
-		
 	slideShow = (images) => {
-		const { toggleModal } = this.props;
+		const { uploadAct,modalAct } = this.props;
 		return (
 			<div 
 				className = 'slideshow-container' 
-				onKeyDown = {(e) => this.handleKey(e)}>
+				onKeyDown = {(e) => keyListener(e,this)}>
 				<div>
-					<button 
-						className = "left-button" 
-						onClick = {this.minusOne}> 
-						&#10094;
-					 </button>
+					{
+						images.length > 1?
+							<button 
+								className = "left-button" 
+								onClick = {()=>minusOne(this)}> 
+								&#10094;
+					 		</button>
+						:null
+					}
 				</div>
 				<div className = "slideshow-images">
-					<img src = {`${images[this.state.index].path}`}/>
+					<img src = {`${images[this.props.slide.index].path}`}/>
 				</div>
 				<div>
-					<button 
-						className = "right-button"
-						autoFocus
-						onClick = {this.addOne}> 
-						&#10095; 
-					</button>
+					{	
+						images.length > 1?
+							<button 
+								className = "right-button"
+								onClick = {()=>addOne(this)}> 
+								&#10095; 
+							</button>
+						:null
+					}
 					<button autoFocus className = "focus">	
 						<img 
 							src = "../images/icons/exit.svg"
 							id = "exit-icon-2" 
-							onClick = {toggleModal}/>
+							onClick = {()=>toggleModal(this)}/>
 					</button>
 				</div>
 			</div>
@@ -94,4 +67,19 @@ class SlideShow extends Component{
 	}
 }
 
-export default SlideShow;
+const mapDispatchToProps = (dispatch) => {
+	return{
+		updateIndex:(data) => dispatch(updateIndex(data)),
+		grabIndex:(data) => dispatch(grabIndex(data)),
+		uploadAct:(data) => dispatch(uploadAct(data)),
+		modalAct:(data) => dispatch(modalAct(data))
+	}
+}
+
+const mapStateToProps = (state) => {
+	return {
+		slide:state.slide
+	}
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SlideShow);

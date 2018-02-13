@@ -11,7 +11,7 @@ import text from './modules/inputModule.js';
 import oneEditor from './modules/oneEditorModule.js';
 import vimeo from './modules/vimeoModule.js';
 import multimedia from './modules/multimediaModule.js';
-
+import slide from './modules/slideModule.js';
 
 const reducers = combineReducers({
 	admin,
@@ -24,6 +24,7 @@ const reducers = combineReducers({
     oneEditor,
 	vimeo,
 	multimedia,
+	slide,
 })
 
 export default function configureStore(initialState){

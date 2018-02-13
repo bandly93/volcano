@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
+
 class VideoPlayer extends Component{
 	//later for slideshow
 	constructor(props){
@@ -60,11 +61,16 @@ class VideoPlayer extends Component{
 		return(
 			<div className = 'slideshow-container' onKeyDown = {(e)=> this.keyListener(e)} >
 				<div>
-					<button 
-						className = "left-button" 
-						onClick = {this.minusOne}> 
-						&#10094; 
-					</button>
+					{	
+						videos.length > 1?
+							<button 
+								className = "left-button" 
+								onClick = {this.minusOne}> 
+								&#10094; 
+							</button>
+						:null
+					
+					}
 				</div>
 				<iframe 
 					src= {videos?this.getVideoId(videos[this.state.index].url):null}
@@ -74,14 +80,20 @@ class VideoPlayer extends Component{
 					allowFullScreen = "true">
 				</iframe>
 				<div>
-					<button 
-						className = "right-button" 
-						onClick = {this.addOne}
-						ref = "component"> 
-						&#10095; 
-					</button>
+					{
+						videos.length > 1?
+							<button 
+								className = "right-button" 
+								onClick = {this.addOne}>
+								&#10095; 
+							</button>
+						:null
+					}
 					<button className = "focus" autoFocus>
-						<img id = "exit-icon-2" src = "../images/icons/exit.svg" onClick = {toggleModal}/>
+						<img 
+							id = "exit-icon-2" 
+							src = "../images/icons/exit.svg"
+							onClick = {toggleModal}/>
 					</button>
 				</div>
 			</div>
