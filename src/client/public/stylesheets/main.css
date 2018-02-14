@@ -72,18 +72,35 @@ input{
 	flex:1;
 }
 
-
 .multimedia-flexbox img:hover {
 	opacity: 0.6;
 }
 .multimedia p {
 	font-size:2vh;
 }
-
 .focus{
 	border-style:hidden;
 	padding:0;
 }
+
+.item-dot-number{
+	width:0.5vw;
+	height:0.5vw;
+	padding:5px;
+	margin:0.4%;
+	cursor: pointer;
+	border:2px solid black;
+	border-radius:50%;
+}
+
+#interactive-list{
+	list-style-type:none;
+	display:flex;
+	-webkit-padding-start:0px;
+	justify-content:center;
+}
+
+
 
 /*-----------------------ABOUT PAGE---------------------------*/
 .about{

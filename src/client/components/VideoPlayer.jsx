@@ -5,7 +5,7 @@ import { uploadAct } from '../redux/modules/uploadModule.js';
 import { modalAct } from '../redux/modules/multimediaModule.js';
 import { 
 	keyListener,toggleModal,addOne,minusOne,
-	rightButton,leftButton,focusButton	
+	rightButton,leftButton,focusButton,interactiveList	
 } from '../utils/SlideShowUtils.jsx';
 
 class VideoPlayer extends Component{
@@ -23,7 +23,7 @@ class VideoPlayer extends Component{
 	iFrame = (modalProps) => {
 		const { screenWidth } = this.props.view;
 		const { index } = this.props.slide;
-		return 	<iframe 
+		return <iframe 
 			src= {modalProps?this.getVideoId(modalProps[index].url):null}
 			width= {(screenWidth*0.75)}
 			height= {(((screenWidth/16)*9)*0.75)} 
@@ -33,29 +33,21 @@ class VideoPlayer extends Component{
 	}
 	
 	videoSlide = (modalProps) => {
-		return(
-			<div className = 'slideshow-container'
-				 onKeyDown = {(e)=>keyListener(e,this)}>
-				<div>
-					{modalProps.length > 1?leftButton(this):null}
-				</div>
-				{this.iFrame(modalProps)}
-				<div>
-					{modalProps.length > 1?rightButton(this):null}
-					{focusButton(this)}	
-				</div>
-			</div>
-		)
+		return <div className = 'slideshow-container'
+			onKeyDown = {(e)=>keyListener(e,this)}>
+			{modalProps.length > 1?leftButton(this):null}
+			{this.iFrame(modalProps)}
+			{modalProps.length > 1?rightButton(this):null}
+			{focusButton(this)}
+			{interactiveList(this)}
+		</div>
 	} 	
 	
 	render(){
 		const { modalProps } = this.props;
-		return (
-			<div>
-				{modalProps?this.videoSlide(modalProps):null}
-			</div>
-		)
-		
+		return <div>
+			{modalProps?this.videoSlide(modalProps):null}
+		</div>
 	}
 }
 
@@ -69,9 +61,9 @@ const mapDispatchToProps = (dispatch) => {
 } 
 
 const mapStateToProps = (state) => {
+	const { slide,view } = state;
 	return{
-		slide:state.slide,
-		view:state.view,
+		slide,view
 	}
 }
 

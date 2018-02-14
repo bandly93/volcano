@@ -2,16 +2,18 @@ import React from 'react';
 import SlideShow from '../components/SlideShow.jsx';
 import VideoPlayer from '../components/VideoPlayer.jsx';
 
-export const numList = (array) => {
-	return <ul>
+export const interactiveList = (_this) => {
+	const { updateIndex,modalProps } = _this.props; 
+	return <ul id = 'interactive-list'>
 		{
-			 array.map(({},i) => {
+			 modalProps.map(({},i) => 
 				<li
+					className = 'item-dot-number'
 					key = {i}
 					value = {i}
-					onClick = {(e) => this.sendIndex(e)}> 
+					onClick = {(e) => updateIndex({index:e.currentTarget.value})}> 
 				</li>
-			})
+			)
 		}
 	</ul>
 }
@@ -107,7 +109,7 @@ export const minusOne = (_this) =>{
 
 export const SlideShowUtils = {	
 	modal,addOne,minusOne,keyListener,toggleModal,leftButton,rightButton,
-	focusButton
+	focusButton,interactiveList
 }
 
 export default SlideShowUtils;

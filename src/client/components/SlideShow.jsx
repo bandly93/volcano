@@ -4,17 +4,11 @@ import { updateIndex,grabIndex } from '../redux/modules/slideModule.js';
 import { uploadAct } from '../redux/modules/uploadModule.js';
 import { modalAct } from '../redux/modules/multimediaModule.js';
 import { 
-	keyListener,
-	toggleModal,
-	addOne,
-	minusOne,
-	leftButton,
-	rightButton,focusButton
+	keyListener,toggleModal,addOne,minusOne,leftButton,
+	rightButton,focusButton,interactiveList
 } from '../utils/SlideShowUtils.jsx';
 
 class SlideShow extends Component{
-
-	//resets index everytime a new image set is passed through.
 	componentWillReceiveProps(nextProps){
 		if(this.props.modalProps === nextProps.modalProps){return}
 		this.props.updateIndex({index:0});
@@ -23,31 +17,26 @@ class SlideShow extends Component{
 	imageSlide = (modalProps) => {
 		const { uploadAct,modalAct } = this.props;
 		const { index } = this.props.slide;
-		return (
-			<div 
-				className = 'slideshow-container' 
-				onKeyDown = {(e) => keyListener(e,this)}>
-				<div>
-					{modalProps.length > 1?leftButton(this):null}
-				</div>
-				<div className = "slideshow-images">
-					<img src = {`${modalProps[index].path}`}/>
-				</div>
-				<div>
-					{modalProps.length > 1?rightButton(this):null}
-					{focusButton(this)}
-				</div>
+		return <div 
+			className = 'slideshow-container' 
+			onKeyDown = {(e) => keyListener(e,this)}>
+			{modalProps.length > 1?leftButton(this):null}
+			<div className = "slideshow-images">
+				<img src = {`${modalProps[index].path}`}/>
 			</div>
-		)
+			{modalProps.length > 1?rightButton(this):null}
+			{focusButton(this)}
+			<div>
+			{interactiveList(this)}
+			</div>
+		</div>
 	}
 
 	render(){
 		const { modalProps } = this.props
-		return (
-			<div>
-				{modalProps?this.imageSlide(modalProps):null}
-			</div>
-		)	
+		return <div>
+			{modalProps?this.imageSlide(modalProps):null}
+		</div>	
 	}
 }
 
