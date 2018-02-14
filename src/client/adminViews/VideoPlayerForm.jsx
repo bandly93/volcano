@@ -71,8 +71,15 @@ class VideoPlayerForm extends Component{
 		];
 
 		let input = inputOptions.map(({type,placeholder,name,value},i) =>
-			<input key={i} type={type} placeholder={placeholder} name={name} value={value} onChange={(e)=>this.updateForm(e)}/>
-		);
+			<input 
+				key={i} 
+				type={type} 
+				placeholder={placeholder} 
+				name={name}
+				value={value} 
+				onChange={(e)=>this.updateForm(e)}/>
+		);	
+
 		return(
 			<div>
 				<form onSubmit = {this.submitData}>

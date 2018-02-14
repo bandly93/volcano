@@ -4,7 +4,7 @@ import { modalAct } from '../redux/modules/multimediaModule';
 import { updateData } from '../redux/modules/vimeoModule'; 
 import { postData,fetchData } from "../redux/modules/fetchThunk";
 import { connect } from "react-redux";
-import {modal} from '../components/SlideShowUtils.jsx';
+import { modal,toggleModal } from '../utils/SlideShowUtils.jsx';
 import {
   BrowserRouter as Router,
   Route,
@@ -13,9 +13,8 @@ import {
 } from 'react-router-dom';
 
 class Multimedia extends Component{
-
 	constants = () => {
-		const { fetchData,uploadAct,updateData,modalAct,postData, } = this.props;
+		const { fetchData,uploadAct,updateData,modalAct,postData } = this.props;
 		const { slides } = this.props.vimeo;
 		const { firstImages,folders,images,folderName } = this.props.upload;
 		const { modalProps,modalType } = this.props.multimedia;
@@ -29,37 +28,20 @@ class Multimedia extends Component{
 		const { fetchData,uploadAct,updateData } = this.constants();
 		fetchData("/upload",uploadAct);
 		fetchData("/vimeo",updateData);
-
 	}
 	
-	
-
-
-
-	toggleModal = () => {
-		const { modalAct,uploadAct,updateData } = this.constants();
-		let modal = document.getElementsByClassName("modal")[0];
-		if(modal.style.display === "block"){
-			modal.style.display = "none";
-			uploadAct({images:null});
-			modalAct({modalProps:null,modalType:null});
-		}else{
-			modal.style.display = "block";
-		}
-	}
-
-	//FIX RACE CONDITION
+	//FIX RACE CONDITION && !!!
 	setModalProps = (e) => {
 		const { name,alt } = e.currentTarget;
-		const { postData,uploadAct,modalAct,slides } = this.constants();
-		
+		const { postData,uploadAct,modalAct,slides,images } = this.constants();
+
 		if(alt === 'video'){
-			modalAct({modalProps:slides[name-1].items,modalType:"video"});
-		}else{	
-			postData("/upload","POST",{folderName:name},uploadAct);
-			modalAct({modalType:"photo"});
+			modalAct({modalProps:slides[name-1].items,modalType:'video'})
+		}else{
+			postData('/upload','POST',{folderName:name},uploadAct)
+			modalAct({modalProps:images,modalType:'photo'})
 		}
-		this.toggleModal();
+		toggleModal(this)	
 	}	
 
 	photoDisplay = () => {
@@ -129,7 +111,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		postData:(url,method,data,actFunc) => dispatch(postData(url,method,data,actFunc)),
 		fetchData:(url,actFunc) => dispatch(fetchData(url,actFunc)),
-		uploadAct:(upload) => dispatch(uploadAct(upload)),
+		uploadAct:(data) => dispatch(uploadAct(data)),
 		updateData:(data) => dispatch(updateData(data)),
 		modalAct:(data) => dispatch(modalAct(data))
 	}

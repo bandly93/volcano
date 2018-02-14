@@ -1,114 +1,80 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { updateIndex,grabIndex } from '../redux/modules/slideModule.js';
+import { uploadAct } from '../redux/modules/uploadModule.js';
+import { modalAct } from '../redux/modules/multimediaModule.js';
+import { 
+	keyListener,toggleModal,addOne,minusOne,
+	rightButton,leftButton,focusButton	
+} from '../utils/SlideShowUtils.jsx';
 
 
 class VideoPlayer extends Component{
-	//later for slideshow
-	constructor(props){
-		super(props);
-		this.state = {
-			index:0
-		}
-	}
-	
-	componentWillReceiveProps(newProps){
-		if(this.props.videos === newProps.videos){return}
-		this.setState({index:0});
+	componentWillReceiveProps(nextProps){
+		if(this.props.videos === nextProps.videos){return}
+		this.props.updateIndex({index:0})
 	}
 
-	addOne = () => {
-		const { index } = this.state;
-		let length = this.props.videos.length;
-		this.setState({index: (index+1) % length});	
-	}
-
-	minusOne = () => {
-		const { index } = this.state;
-		let length = this.props.videos.length;
-		if(index <= 0){
-			this.setState({index : length - 1});
-		}else{
-			this.setState({index : index - 1});
-		}
-	}
-		
 	getVideoId = (url) => {
 		let videoId = url.replace('https://vimeo.com/','');
 		let src = 'https://player.vimeo.com/video/' + videoId;
 		return src;
 	}
 
-	keyListener = (e) => {
-		const { keyCode } = e;
-		switch (keyCode){ 
-			case 39:
-				this.minusOne();
-				break;
-			case 37:
-				this.addOne();
-				break;
-			case 27:
-				this.props.toggleModal();
-				break;
-			default:
-				break;
-		}
+	iFrame = (modalProps) => {
+		const { screenWidth } = this.props.view;
+		return 	<iframe 
+			src= {modalProps?this.getVideoId(modalProps[this.props.slide.index].url):null}
+			width= {(screenWidth*0.75)}
+			height= {(((screenWidth/16)*9)*0.75)} 
+			frameBorder="0"
+			allowFullScreen = "true">
+		</iframe>
 	}
 	
-	render(){
-		const { videos,toggleModal } = this.props;
-		const {screenWidth} = this.props.view;
+	videoSlide = (modalProps) => {
 		return(
-			<div className = 'slideshow-container' onKeyDown = {(e)=> this.keyListener(e)} >
+			<div className = 'slideshow-container' onKeyDown = {(e)=>keyListener(e,this)} >
 				<div>
-					{	
-						videos.length > 1?
-							<button 
-								className = "left-button" 
-								onClick = {this.minusOne}> 
-								&#10094; 
-							</button>
-						:null
-					
-					}
+					{modalProps.length > 1?leftButton():null}
 				</div>
-				<iframe 
-					src= {videos?this.getVideoId(videos[this.state.index].url):null}
-					width= {(screenWidth*0.75)}
-					height= {(((screenWidth/16)*9)*0.75)} 
-					frameBorder="0"
-					allowFullScreen = "true">
-				</iframe>
+				{this.iFrame(modalProps)}
 				<div>
-					{
-						videos.length > 1?
-							<button 
-								className = "right-button" 
-								onClick = {this.addOne}>
-								&#10095; 
-							</button>
-						:null
-					}
-					<button className = "focus" autoFocus>
-						<img 
-							id = "exit-icon-2" 
-							src = "../images/icons/exit.svg"
-							onClick = {toggleModal}/>
-					</button>
+					{modalProps.length > 1?rightButton():null}
+					{focusButton()}	
 				</div>
 			</div>
 		)
+	} 	
+	
+	render(){
+		const { videos } = this.props;
+		return (
+			<div>
+				{videos?this.videoSlide(videos):null}
+			</div>
+		)
+		
 	}
 }
 
+const mapDispatchToProps = (dispatch) => {
+	return{
+		updateIndex:(data) => dispatch(updateIndex(data)),
+		grabIndex:(data) => dispatch(grabIndex(data)),
+		uploadAct:(data) => dispatch(uploadAct(data)),
+		modalAct:(data) => dispatch(modalAct(data))
+	}
+} 
 
 const mapStateToProps = (state) => {
 	return{
-		view:state.view	
+		slide:state.slide,
+		view:state.view,
 	}
 }
 
-export default connect(mapStateToProps)(VideoPlayer);
+export default connect(mapStateToProps,mapDispatchToProps)(VideoPlayer);
 
 
 

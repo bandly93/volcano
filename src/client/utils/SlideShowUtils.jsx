@@ -16,6 +16,33 @@ export const numList = (array) => {
 	</ul>
 }
 
+export const leftButton = () => {
+	return <button 
+		className = 'left-button'
+		onClick = {()=> minusOne(this)}>
+		&#10094;
+	</button>
+} 
+
+export const rightButton = () => {
+	return <button
+		className = 'right-button'
+		onClick = {() => addOne(this)}>
+		&#10095;
+	</button>
+}
+
+export const focusButton = () => {
+	return <button
+		autoFocus
+		className = 'focus'>
+		<img 
+			src = '../images/icons/exit.svg'
+			id = 'exit-icon-2'
+			onClick = {() => toggleModal(this)}/>
+	</button>
+}
+
 export const keyListener = (e,_this) => {
 	const { keyCode } = e;
 	switch ( keyCode ) {
@@ -26,7 +53,7 @@ export const keyListener = (e,_this) => {
 			addOne(_this);
 			break;
 		case 27:
-			toggleModal(_this)
+			toggleModal(_this);
 			break;
 		default:
 			break;
@@ -35,26 +62,25 @@ export const keyListener = (e,_this) => {
 
 export const toggleModal = (_this) => {
 	const { modalAct,uploadAct } = _this.props;
-	console.log(_this.props);
-	let modal = document.getElementsByClassName('modal')[0];	
-	if (modal.style.display === 'block'){
-		modal.style.display = 'none';
+	let modalDiv = document.getElementsByClassName('modal')[0];
+	if(modalDiv.style.display === 'block'){
+		modalDiv.style.display = 'none';
 		uploadAct({images:null});
-		modalAct({modalProps:null,modalType:null});
+		modalAct({modalProps:null,modalType:null})
 	}else{
-		modal.style.display = 'block'
+		modalDiv.style.display = 'block';
 	}
 }
 
-export const modal = (props,modalType) => {
+export const modal = (modalProps,modalType) => {
 	return (
 		<div className = 'modal'>
 			<div className = 'modal-content'>
-				{
+				{	
 					modalType === 'video'?
-						<VideoPlayer videos = {props} />
+						<VideoPlayer videos = {modalProps} />
 					:
-						<SlideShow images = {props} />
+						<SlideShow images = {modalProps} />
 				}
 			</div>
 		</div>
@@ -63,13 +89,13 @@ export const modal = (props,modalType) => {
 
 export const addOne = (_this) => {
 	const { updateIndex } = _this.props;
-	const { index } = _this.props.slide
+	const { index } = _this.props.slide;
 	let length = _this.props.images.length;
 	updateIndex({index: ( index+1) % length});
 }
 
 export const minusOne = (_this) =>{
-	const { index } = _this.props.slide
+	const { index } = _this.props.slide;
 	let length = _this.props.images.length;
 	let { updateIndex } = _this.props;
 	index <= 0 ?
@@ -79,10 +105,9 @@ export const minusOne = (_this) =>{
 }
 
 
-export const SlideShowUtils = {
-	
-	modal,addOne,minusOne,keyListener,toggleModal
-	
+export const SlideShowUtils = {	
+	modal,addOne,minusOne,keyListener,toggleModal,leftButton,rightButton,
+	focusButton
 }
 
 export default SlideShowUtils;

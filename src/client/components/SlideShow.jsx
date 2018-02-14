@@ -3,12 +3,16 @@ import { connect } from 'react-redux';
 import { updateIndex,grabIndex } from '../redux/modules/slideModule.js';
 import { uploadAct } from '../redux/modules/uploadModule.js';
 import { modalAct } from '../redux/modules/multimediaModule.js';
-
-
-import { keyListener,toggleModal,addOne } from '../components/SlideShowUtils.jsx';
+import { 
+	keyListener,
+	toggleModal,
+	addOne,
+	minusOne,
+	leftButton,
+	rightButton,focusButton
+} from '../utils/SlideShowUtils.jsx';
 
 class SlideShow extends Component{
-
 
 	//resets index everytime a new image set is passed through.
 	componentWillReceiveProps(nextProps){
@@ -16,52 +20,31 @@ class SlideShow extends Component{
 		this.props.updateIndex({index:0});
 	}
 
-	slideShow = (images) => {
+	imageSlide = (modalProps) => {
 		const { uploadAct,modalAct } = this.props;
 		return (
 			<div 
 				className = 'slideshow-container' 
 				onKeyDown = {(e) => keyListener(e,this)}>
 				<div>
-					{
-						images.length > 1?
-							<button 
-								className = "left-button" 
-								onClick = {()=>minusOne(this)}> 
-								&#10094;
-					 		</button>
-						:null
-					}
+					{modalProps.length > 1?leftButton():null}
 				</div>
 				<div className = "slideshow-images">
-					<img src = {`${images[this.props.slide.index].path}`}/>
+					<img src = {`${modalProps[this.props.slide.index].path}`}/>
 				</div>
 				<div>
-					{	
-						images.length > 1?
-							<button 
-								className = "right-button"
-								onClick = {()=>addOne(this)}> 
-								&#10095; 
-							</button>
-						:null
-					}
-					<button autoFocus className = "focus">	
-						<img 
-							src = "../images/icons/exit.svg"
-							id = "exit-icon-2" 
-							onClick = {()=>toggleModal(this)}/>
-					</button>
+					{modalProps.length > 1?rightButton():null}
+					{focusButton()}
 				</div>
 			</div>
 		)
 	}
 
 	render(){
-		const { images } = this.props;
+		const { images } = this.props
 		return (
 			<div>
-				{images?this.slideShow(images):null}
+				{images?this.imageSlide(images):null}
 			</div>
 		)	
 	}
