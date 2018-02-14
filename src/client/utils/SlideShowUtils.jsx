@@ -3,7 +3,19 @@ import SlideShow from '../components/SlideShow.jsx';
 import VideoPlayer from '../components/VideoPlayer.jsx';
 
 export const interactiveList = (_this) => {
-	const { updateIndex,modalProps } = _this.props; 
+	const { updateIndex,modalProps } = _this.props;
+	const { index } = _this.props.slide;
+	let style = {
+		on:{
+			'backgroundColor':'black',
+			'border':'2px solid white'
+		},
+		off:{
+			'backgroundColor':'white',
+			'border':'2px solid black'
+		}
+
+	}
 	return <ul id = 'interactive-list'>
 		{
 			 modalProps.map(({},i) => 
@@ -11,6 +23,7 @@ export const interactiveList = (_this) => {
 					className = 'item-dot-number'
 					key = {i}
 					value = {i}
+					style = {index === i?style.on:style.off}
 					onClick = {(e) => updateIndex({index:e.currentTarget.value})}> 
 				</li>
 			)
@@ -49,10 +62,10 @@ export const keyListener = (e,_this) => {
 	const { keyCode } = e;
 	switch ( keyCode ) {
 		case 39:
-			minusOne(_this);
+			addOne(_this);
 			break;
 		case 37:
-			addOne(_this);
+			minusOne(_this);
 			break;
 		case 27:
 			toggleModal(_this);

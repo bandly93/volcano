@@ -93,14 +93,17 @@ input{
 	border-radius:50%;
 }
 
+.item-dot-number:hover{
+	border:2px solid white;
+	background-color:black;
+}
+
 #interactive-list{
 	list-style-type:none;
 	display:flex;
 	-webkit-padding-start:0px;
 	justify-content:center;
 }
-
-
 
 /*-----------------------ABOUT PAGE---------------------------*/
 .about{

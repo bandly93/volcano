@@ -255,6 +255,9 @@ a{
 }
 
 .modal-content{
+	/*max-width:88vw;
+	max-height:88vh;
+	*/
 	background-color:#fefefe;
 	margin: 2%;
 	padding: 2%;
