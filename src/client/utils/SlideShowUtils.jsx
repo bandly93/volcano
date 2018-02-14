@@ -16,30 +16,30 @@ export const numList = (array) => {
 	</ul>
 }
 
-export const leftButton = () => {
+export const leftButton = (_this) => {
 	return <button 
 		className = 'left-button'
-		onClick = {()=> minusOne(this)}>
+		onClick = {()=> minusOne(_this)}>
 		&#10094;
 	</button>
 } 
 
-export const rightButton = () => {
+export const rightButton = (_this) => {
 	return <button
 		className = 'right-button'
-		onClick = {() => addOne(this)}>
+		onClick = {() => addOne(_this)}>
 		&#10095;
 	</button>
 }
 
-export const focusButton = () => {
+export const focusButton = (_this) => {
 	return <button
 		autoFocus
 		className = 'focus'>
 		<img 
 			src = '../images/icons/exit.svg'
 			id = 'exit-icon-2'
-			onClick = {() => toggleModal(this)}/>
+			onClick = {() => toggleModal(_this)}/>
 	</button>
 }
 
@@ -78,9 +78,9 @@ export const modal = (modalProps,modalType) => {
 			<div className = 'modal-content'>
 				{	
 					modalType === 'video'?
-						<VideoPlayer videos = {modalProps} />
+						<VideoPlayer modalProps = {modalProps} />
 					:
-						<SlideShow images = {modalProps} />
+						<SlideShow modalProps = {modalProps} />
 				}
 			</div>
 		</div>
@@ -90,13 +90,13 @@ export const modal = (modalProps,modalType) => {
 export const addOne = (_this) => {
 	const { updateIndex } = _this.props;
 	const { index } = _this.props.slide;
-	let length = _this.props.images.length;
+	let length = _this.props.modalProps.length;
 	updateIndex({index: ( index+1) % length});
 }
 
 export const minusOne = (_this) =>{
 	const { index } = _this.props.slide;
-	let length = _this.props.images.length;
+	let length = _this.props.modalProps.length;
 	let { updateIndex } = _this.props;
 	index <= 0 ?
 		updateIndex({index: length - 1})

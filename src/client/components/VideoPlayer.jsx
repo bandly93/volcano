@@ -8,7 +8,6 @@ import {
 	rightButton,leftButton,focusButton	
 } from '../utils/SlideShowUtils.jsx';
 
-
 class VideoPlayer extends Component{
 	componentWillReceiveProps(nextProps){
 		if(this.props.videos === nextProps.videos){return}
@@ -23,8 +22,9 @@ class VideoPlayer extends Component{
 
 	iFrame = (modalProps) => {
 		const { screenWidth } = this.props.view;
+		const { index } = this.props.slide;
 		return 	<iframe 
-			src= {modalProps?this.getVideoId(modalProps[this.props.slide.index].url):null}
+			src= {modalProps?this.getVideoId(modalProps[index].url):null}
 			width= {(screenWidth*0.75)}
 			height= {(((screenWidth/16)*9)*0.75)} 
 			frameBorder="0"
@@ -34,24 +34,25 @@ class VideoPlayer extends Component{
 	
 	videoSlide = (modalProps) => {
 		return(
-			<div className = 'slideshow-container' onKeyDown = {(e)=>keyListener(e,this)} >
+			<div className = 'slideshow-container'
+				 onKeyDown = {(e)=>keyListener(e,this)}>
 				<div>
-					{modalProps.length > 1?leftButton():null}
+					{modalProps.length > 1?leftButton(this):null}
 				</div>
 				{this.iFrame(modalProps)}
 				<div>
-					{modalProps.length > 1?rightButton():null}
-					{focusButton()}	
+					{modalProps.length > 1?rightButton(this):null}
+					{focusButton(this)}	
 				</div>
 			</div>
 		)
 	} 	
 	
 	render(){
-		const { videos } = this.props;
+		const { modalProps } = this.props;
 		return (
 			<div>
-				{videos?this.videoSlide(videos):null}
+				{modalProps?this.videoSlide(modalProps):null}
 			</div>
 		)
 		

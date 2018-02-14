@@ -16,35 +16,36 @@ class SlideShow extends Component{
 
 	//resets index everytime a new image set is passed through.
 	componentWillReceiveProps(nextProps){
-		if(this.props.images === nextProps.images){return}
+		if(this.props.modalProps === nextProps.modalProps){return}
 		this.props.updateIndex({index:0});
 	}
 
 	imageSlide = (modalProps) => {
 		const { uploadAct,modalAct } = this.props;
+		const { index } = this.props.slide;
 		return (
 			<div 
 				className = 'slideshow-container' 
 				onKeyDown = {(e) => keyListener(e,this)}>
 				<div>
-					{modalProps.length > 1?leftButton():null}
+					{modalProps.length > 1?leftButton(this):null}
 				</div>
 				<div className = "slideshow-images">
-					<img src = {`${modalProps[this.props.slide.index].path}`}/>
+					<img src = {`${modalProps[index].path}`}/>
 				</div>
 				<div>
-					{modalProps.length > 1?rightButton():null}
-					{focusButton()}
+					{modalProps.length > 1?rightButton(this):null}
+					{focusButton(this)}
 				</div>
 			</div>
 		)
 	}
 
 	render(){
-		const { images } = this.props
+		const { modalProps } = this.props
 		return (
 			<div>
-				{images?this.imageSlide(images):null}
+				{modalProps?this.imageSlide(modalProps):null}
 			</div>
 		)	
 	}
