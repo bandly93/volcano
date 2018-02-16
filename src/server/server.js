@@ -29,13 +29,13 @@ db.once('open',function(){
 })
 
 // static files
-
+/*
 app.get('*.js', function (req, res, next) {
   req.url = req.url + '.gz';
   res.set('Content-Encoding', 'gzip');
   next();
 });
-
+*/
 
 app.use(express.static(path.resolve(__dirname ,'../../dist')));
 app.use('/',express.static(path.resolve(__dirname ,'../client/public')));
