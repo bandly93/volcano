@@ -4,7 +4,7 @@ import { updateIndex,grabIndex } from '../redux/modules/slideModule.js';
 import { uploadAct } from '../redux/modules/uploadModule.js';
 import { modalAct } from '../redux/modules/multimediaModule.js';
 import { 
-	keyListener,toggleModal,addOne,minusOne,
+	keyListener,toggleModal,addOne,minusOne,setFocus,
 	rightButton,leftButton,focusButton,interactiveList	
 } from '../utils/SlideShowUtils.jsx';
 
@@ -13,7 +13,7 @@ class VideoPlayer extends Component{
 		if(this.props.videos === nextProps.videos){return}
 		this.props.updateIndex({index:0})
 	}
-
+	
 	getVideoId = (url) => {
 		let videoId = url.replace('https://vimeo.com/','');
 		let src = 'https://player.vimeo.com/video/' + videoId;
@@ -34,6 +34,7 @@ class VideoPlayer extends Component{
 	
 	videoSlide = (modalProps) => {
 		return <div className = 'slideshow-container'
+			onClick = {() => setFocus(this)}
 			onKeyDown = {(e)=>keyListener(e,this)}>
 			{modalProps.length > 1?leftButton(this):null}
 			{this.iFrame(modalProps)}

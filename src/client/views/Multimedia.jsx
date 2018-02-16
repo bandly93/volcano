@@ -88,7 +88,6 @@ class Multimedia extends Component{
 
 	render(){
 		const { images,folders,firstImages,modalProps,slides,modalType } = this.constants();
-		//figure out way to check current images with images from props. this should fix the loading previous photo for a second issue./
 		return(
 			<div>
 				{modalProps?modal(modalProps,modalType):modal(images,modalType)}

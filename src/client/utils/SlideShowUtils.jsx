@@ -14,7 +14,6 @@ export const interactiveList = (_this) => {
 			'backgroundColor':'white',
 			'border':'2px solid black'
 		}
-
 	}
 	return <ul id = 'interactive-list'>
 		{
@@ -48,14 +47,21 @@ export const rightButton = (_this) => {
 }
 
 export const focusButton = (_this) => {
+	let button = 'button'
 	return <button
 		autoFocus
+		ref = {button}
 		className = 'focus'>
 		<img 
 			src = '../images/icons/exit.svg'
 			id = 'exit-icon-2'
 			onClick = {() => toggleModal(_this)}/>
 	</button>
+}
+
+export const setFocus = (_this) => {
+	const { button } = _this.refs;
+	button? button.focus():null
 }
 
 export const keyListener = (e,_this) => {
@@ -122,7 +128,7 @@ export const minusOne = (_this) =>{
 
 export const SlideShowUtils = {	
 	modal,addOne,minusOne,keyListener,toggleModal,leftButton,rightButton,
-	focusButton,interactiveList
+	focusButton,interactiveList,setFocus
 }
 
 export default SlideShowUtils;

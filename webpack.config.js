@@ -39,10 +39,7 @@ module.exports = {
     { test: /\.(jpg|png|gif)$/,loader: "file-loader" },
     { test: /\.css$/, use:[{loader:"style-loader"},{loader:"css-loader"}]}
   ]
-}
-
-
-/*,
+},
   plugins: [
 new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
@@ -69,7 +66,7 @@ new webpack.DefinePlugin({
       threshold: 10240,
       minRatio: 0.8
     })
-  ]*/
+  ]
 };
 
 

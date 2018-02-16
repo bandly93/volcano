@@ -5,7 +5,7 @@ import { uploadAct } from '../redux/modules/uploadModule.js';
 import { modalAct } from '../redux/modules/multimediaModule.js';
 import { 
 	keyListener,toggleModal,addOne,minusOne,leftButton,
-	rightButton,focusButton,interactiveList
+	rightButton,focusButton,interactiveList,setFocus
 } from '../utils/SlideShowUtils.jsx';
 
 class SlideShow extends Component{
@@ -14,11 +14,15 @@ class SlideShow extends Component{
 		this.props.updateIndex({index:0});
 	}
 
+	componentDidUpdate(){
+		setFocus(this)
+	}
+	
 	imageSlide = (modalProps) => {
 		const { uploadAct,modalAct } = this.props;
 		const { index } = this.props.slide;
-		return <div 
-			className = 'slideshow-container' 
+		return <div className = 'slideshow-container'
+			onClick = {() => setFocus(this)}
 			onKeyDown = {(e) => keyListener(e,this)}>
 			{modalProps.length > 1?leftButton(this):null}
 			<div className = "slideshow-images">
@@ -26,9 +30,7 @@ class SlideShow extends Component{
 			</div>
 			{modalProps.length > 1?rightButton(this):null}
 			{focusButton(this)}
-			<div>
 			{interactiveList(this)}
-			</div>
 		</div>
 	}
 
