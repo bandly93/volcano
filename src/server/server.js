@@ -8,6 +8,7 @@ app.use(morgan('dev'));
 var port = process.env.PORT || 3000;
 var path = require('path');
 var bodyParser = require('body-parser');
+
 app.use(bodyParser.urlencoded({
 	extended:true,
 	limit:'50mb',
@@ -29,13 +30,14 @@ db.once('open',function(){
 })
 
 // static files
-/*
+
 app.get('*.js', function (req, res, next) {
   req.url = req.url + '.gz';
   res.set('Content-Encoding', 'gzip');
+  res.set('Content-Type', 'text/javascript');
   next();
 });
-*/
+
 
 app.use(express.static(path.resolve(__dirname ,'../../dist')));
 app.use('/',express.static(path.resolve(__dirname ,'../client/public')));

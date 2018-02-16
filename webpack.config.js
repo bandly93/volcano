@@ -40,7 +40,7 @@ module.exports = {
     { test: /\.css$/, use:[{loader:"style-loader"},{loader:"css-loader"}]}
   ]
 }
-/*
+
 ,
   plugins: [
 new webpack.DefinePlugin({
@@ -69,5 +69,5 @@ new webpack.DefinePlugin({
       minRatio: 0.8
     })
   ]
-	*/
+
 };
