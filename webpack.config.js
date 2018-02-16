@@ -9,7 +9,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
-  devtool: 'source-map',
+//  devtool: 'source-map',
   devServer:{
     publicPath:'/',
     contentBase:'./src/client/public',
@@ -42,7 +42,7 @@ module.exports = {
 }
 
 
-/*,
+,
   plugins: [
 new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
@@ -69,7 +69,7 @@ new webpack.DefinePlugin({
       threshold: 10240,
       minRatio: 0.8
     })
-  ]*/
+  ]
 };
 
 
