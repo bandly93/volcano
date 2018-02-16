@@ -74,6 +74,7 @@ input{
 
 .multimedia-flexbox img:hover {
 	opacity: 0.6;
+	cursor:pointer;
 }
 .multimedia p {
 	font-size:2vh;
@@ -177,6 +178,10 @@ input{
     padding:1.5%;
     background-color:white;
     cursor:pointer;
+}
+.right-button,.left-button,#exit-icon-2{
+	cursor:pointer;
+
 }
 /*-----------------------------Desktop View ---------------------------*/
 /*-----------------------------Desktop View ---------------------------*/
