@@ -9,11 +9,6 @@ import {
 } from '../utils/SlideShowUtils.jsx';
 
 class VideoPlayer extends Component{
-	componentWillReceiveProps(nextProps){
-		if(this.props.videos === nextProps.videos){return}
-		this.props.updateIndex({index:0})
-	}
-	
 	getVideoId = (url) => {
 		let videoId = url.replace('https://vimeo.com/','');
 		let src = 'https://player.vimeo.com/video/' + videoId;

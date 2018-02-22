@@ -9,15 +9,7 @@ import {
 } from '../utils/SlideShowUtils.jsx';
 
 class SlideShow extends Component{
-	componentWillReceiveProps(nextProps){
-		if(this.props.modalProps === nextProps.modalProps){return}
-		this.props.updateIndex({index:0});
-	}
 
-	componentDidUpdate(){
-		setFocus(this)
-	}
-	
 	imageSlide = (modalProps) => {
 		const { uploadAct,modalAct } = this.props;
 		const { index } = this.props.slide;

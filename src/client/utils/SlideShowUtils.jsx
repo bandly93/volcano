@@ -82,11 +82,12 @@ export const keyListener = (e,_this) => {
 }
 
 export const toggleModal = (_this) => {
-	const { modalAct,uploadAct } = _this.props;
+	const { modalAct,uploadAct,updateIndex } = _this.props;
 	let modalDiv = document.getElementsByClassName('modal')[0];
 	if(modalDiv.style.display === 'block'){
 		modalDiv.style.display = 'none';
 		modalAct({modalProps:null,modalType:null})
+		updateIndex({index:0})
 	}else{
 		modalDiv.style.display = 'block';
 	}

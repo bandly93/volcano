@@ -34,18 +34,12 @@ class Multimedia extends Component{
 	setModalProps = (e) => {
 		const { name,alt } = e.currentTarget;
 		const { postData,uploadAct,modalAct,slides,images } = this.constants();
-		/*
+		
 		alt === 'video'?
 			modalAct({modalProps:slides[name-1].items,modalType:'video'})
 		:
-		*/	
-
-		
-		if(alt === 'video'){
-			modalAct({modalProps:slides[name-1].items,modalType:'video'})
-		}else{
 			postData('/upload','PUT',{folderName:name},modalAct)
-		}
+
 		toggleModal(this)	
 	}	
 
