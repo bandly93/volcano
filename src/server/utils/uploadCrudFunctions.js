@@ -4,6 +4,10 @@ exports.get = (req,res) => {
 	crudFunctions(req,res);
 }
 
+exports.put = (req,res) => {	
+	crudFunctions(req,res,getPhotos);
+}
+
 exports.post = (req,res) => {
 	const { folderName,folder,newImages } = req.body;
 	// if post request has images/folder data, add that data to the system.
@@ -18,7 +22,6 @@ exports.delete = (req,res) => {
 	crudFunctions(req,res,deleteFunc);
 }
 
-//action function.
 const crudFunctions = (req,res,action) => {
 	if(action){
 		action(req,res);
@@ -27,90 +30,94 @@ const crudFunctions = (req,res,action) => {
 	}
 }
 
-var folderPath = './src/client/public/images/uploads/';
-var imagePath = '../images/uploads/';
+let folderPath = './src/client/public/images/uploads/';
+let imagePath = '../images/uploads/';
+
+const controller = () => {
+	return {
+		folders:fs.readdirSync(folderPath).filter(folder => folder != '.DS_Store'),
+		photos:(folderName) => fs.readdirSync(folderPath+folderName).filter(photo => photo != '.DS_Store'),
+	}	
+}
 
 //get first photo from every folder.
 const getFirstPhotos = (req,res) => {
-	let firstImages = [];
-	let folders = fs.readdirSync(folderPath).filter(folder => folder != ".DS_Store");
-	let action = folders.map(folderName => {
-		let photoName = fs.readdirSync(folderPath+folderName).filter(photo => photo != ".DS_Store")[0];
-		firstImages.push(imagePath+folderName+"/"+photoName);
-	})
-	return firstImages;
+	const { folders,photos } = controller();	
+	return folders.map(folderName => imagePath+folderName+"/"+photos(folderName)[0])
 }
+
+const getPhotos = (req,res) => {
+	const { folderName } = req.body;
+	const { photos } = controller();
+	let action = photos(folderName).map(photo => ({name:photo,path:imagePath+folderName+'/'+photo}));
+	res.json({modalProps:action});
+}
+
 //get all folders and specific photos from file storage system.
 const getBoth = (req,res) => {
 	const { folderName } = req.body;
-	let photos = fs.readdirSync(folderPath+folderName).filter(photo => photo != ".DS_Store");
-	let folders = fs.readdirSync(folderPath).filter(folder => folder != ".DS_Store");
+	const { folders,photos } = controller();
 	let action1 = folders.map(folder => ({name:folder,path:imagePath+folder}));
-	let action2 = photos.map(photo => ({name:photo,path:imagePath+folderName+'/'+photo}));
-	let promiseArray = [Promise.resolve(action1),Promise.resolve(action2)];	
-	Promise.all(promiseArray).then(data => {
-		res.json({folders:data[0],images:data[1],folderName,firstImages:getFirstPhotos()});
-	}).catch(error => {
-		console.log("error from getBoth" + error);
-	})	
+	let action2 = photos(folderName).map(photo => ({name:photo,path:imagePath+folderName+'/'+photo}));
+	let data = {
+		folders:action1,images:action2,
+		folderName,firstImages:getFirstPhotos()
+	}
+	res.json(data);
 }
 
 //get all folders 
 const getFolder = (req,res) => {
-	let folders = fs.readdirSync(folderPath).filter(folder => folder != ".DS_Store");
-	let action = folders.map(folder => ({name:folder,path:imagePath+folder}));
-	let promise = new Promise((resolve,reject) => {
-		resolve(action);
-	}).then(folders => {
-		res.json({folders,firstImages:getFirstPhotos()});
-	}).catch(error => {
-		console.error("error from getFolders " + error);
-	})
+	const { folders } = controller();
+	let action = folders.map(folder => ({name:folder,path:imagePath+folder}));	
+	let data = {
+		folders:action,firstImages:getFirstPhotos()
+	}
+	res.json(data);
 }
 
 //delete the target item from file storage system.
 const deleteFunc = (req,res) => {
 	const { value,folderName,name } = req.body;
-	if(value === 'photo'){
-		fs.unlink(folderPath+folderName+"/"+name,(error) => {
-			if (error){
-				console.log("error from deletePhoto " + error);
-			}else{
+
+	value === 'photo'?
+		fs.unlink(folderPath+folderName+'/'+name,(error) => {
+			error?
+				console.log('error from deletePhoto ' + error)
+			:
 				getBoth(req,res)
-			}
 		})
-	}else if(value === 'folder'){
+	:
 		fs.rmdir(folderPath+name,(error) => {
-			if(error){
-				console.log("error from deleteFolder " + error);
-			}else{
+			error?
+				console.log('error from deleteFolder ' + error)
+			:
 				getFolder(req,res)
-			}
 		})
-	}
 }
 
 //add item to file storage system.
 const addFunc = (req,res) => {
 	const { newImages,folder,folderName } = req.body;
-	if (newImages){
-		newImages.map(image => {
-			var data = image.data.replace(/^data:image\/\w+;base64,/,"");
-			var buf = new Buffer(data,'base64');
-			fs.writeFile(folderPath+'/'+folderName+'/'+image.name,buf,(error) => {
-				if (error){
-					console.log("error from add Photos "+ error);
-				}
-				getBoth(req,res);	
-			});
+
+	newImages?
+		newImages.map(images => {
+			let data = images.data.replace(/^data:image\/\w+;base64,/,'')
+			let buf = new Buffer(data,'base64')
+			fs.writeFile(folderPath+'/'+folderName+'/'+images.name,buf,(error) => {
+				error?
+					console.log('error from addPhotos ' + error)
+				:
+					getBoth(req,res)
+			})
 		})
-	}else if(folder){
+	:
 		fs.mkdir(folderPath+folder,(error) => {
-			if(error){
-				console.log("error from add folder " + error);
-			}else{
-				getFolder(req,res);
-			}
-		});	
-	}	
+			error?
+				console.log('error from addFolder ' + error)
+			:
+				getFolder(req,res)
+			
+		})
+
 }

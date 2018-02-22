@@ -25,7 +25,7 @@ class Multimedia extends Component{
 	}
 
 	componentDidMount(){
-		const { fetchData,uploadAct,updateData } = this.constants();
+		const { fetchData,uploadAct,updateData,postData } = this.constants();
 		fetchData("/upload",uploadAct);
 		fetchData("/vimeo",updateData);
 	}
@@ -34,12 +34,17 @@ class Multimedia extends Component{
 	setModalProps = (e) => {
 		const { name,alt } = e.currentTarget;
 		const { postData,uploadAct,modalAct,slides,images } = this.constants();
+		/*
+		alt === 'video'?
+			modalAct({modalProps:slides[name-1].items,modalType:'video'})
+		:
+		*/	
 
+		
 		if(alt === 'video'){
 			modalAct({modalProps:slides[name-1].items,modalType:'video'})
 		}else{
-			postData('/upload','POST',{folderName:name},uploadAct)
-			modalAct({modalProps:images,modalType:'photo'})
+			postData('/upload','PUT',{folderName:name},modalAct)
 		}
 		toggleModal(this)	
 	}	
@@ -90,7 +95,7 @@ class Multimedia extends Component{
 		const { images,folders,firstImages,modalProps,slides,modalType } = this.constants();
 		return(
 			<div>
-				{modalProps?modal(modalProps,modalType):modal(images,modalType)}
+				{modalProps?modal(modalProps,modalType):modal()}
 				<div className = "multimedia-flexbox">
 					<div className = "multimedia">
 						<h1>Photos</h1>

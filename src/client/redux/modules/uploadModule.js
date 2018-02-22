@@ -6,7 +6,6 @@ export function uploadAct(data){
 	}
 }
 
-
 //reducer
 export const upload = (state = initialState,action)=>{
 	switch(action.type){
@@ -23,7 +22,5 @@ let initialState = {
 	folderName:null,
 	firstImages:[]
 }
-
-
 
 export default upload;

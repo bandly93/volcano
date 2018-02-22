@@ -9,6 +9,10 @@ uploadRouter.route('/')
 	crud.get(req,res);
 })
 
+.put((req,res)=>{
+	crud.put(req,res);
+})
+
 .post((req,res)=>{	
 	crud.post(req,res);	
 })

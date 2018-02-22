@@ -86,7 +86,6 @@ export const toggleModal = (_this) => {
 	let modalDiv = document.getElementsByClassName('modal')[0];
 	if(modalDiv.style.display === 'block'){
 		modalDiv.style.display = 'none';
-		uploadAct({images:null});
 		modalAct({modalProps:null,modalType:null})
 	}else{
 		modalDiv.style.display = 'block';
@@ -117,8 +116,8 @@ export const addOne = (_this) => {
 
 export const minusOne = (_this) =>{
 	const { index } = _this.props.slide;
-	let length = _this.props.modalProps.length;
 	let { updateIndex } = _this.props;
+	let length = _this.props.modalProps.length;
 	index <= 0 ?
 		updateIndex({index: length - 1})
 	:
