@@ -6,9 +6,7 @@ function Landing(){
 	return(
 		<div className='landing'>
 			<img />
-			<h1>Photos + Videos</h1>
-            <br/>
-            <Link to ='/h/multimedia'>Enter</Link>
+            <Link to ='/h/multimedia'>ENTER</Link>
 		</div>
 	)	
 }

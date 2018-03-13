@@ -26,8 +26,12 @@ input{
 }
 .landing a{
     color:white;
-    border:3px solid white;
-    padding:1%;
+    border:3px solid #a20405 ;
+    padding:1.5% 5%;
+    margin:4%;
+    font-family:system-ui;
+    font-weight:bold;
+    font-size:20px;
 }
     
 /*----------------------------- Navbar ----------------------*/
