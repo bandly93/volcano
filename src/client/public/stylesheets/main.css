@@ -262,7 +262,7 @@ input{
         width:40%;
     }
     .navLinks a{
-        padding:4% 4% 20% 4%; 
+        padding:4% 8% 20% 8%; 
     }
     .menuIcon{
         padding-right:2%;
@@ -282,6 +282,8 @@ input{
         padding:2vh;
         width:33%;
         z-index:3;
+        border-left:1px solid #a20405;
+        border-bottom:1px solid #a20405;
     }
    .about{
       margin-bottom:2%;

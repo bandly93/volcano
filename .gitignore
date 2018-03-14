@@ -4,7 +4,6 @@ nom-debug.log
 /*.env
 config.js
 sendgrid.env
-package-lock.json
 /dist
 ecosystem.config.js
 /src/client/public/images/uploads
