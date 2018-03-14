@@ -27,7 +27,7 @@ class RichEditor extends Component{
         this.update(RichUtils.onTab(e,blog.editor,maxDepth));
     }
     render() {
-    let className = 'RichEditor-editor';
+    let className = 'RichEditor-editor Border';
     const {editor,onChange} = this.props;
         return(
             <div className={className} onClick={this.focus}>

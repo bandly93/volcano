@@ -163,17 +163,12 @@ input{
 
 /*-----------------------FORM---------------------------*/
 
-.contact-form input:not(.submit){
-	width:300px;
-}
 
 .contact-form{
 	display:inline-block;
-	width:325px;
 	margin:3%;
 }
 .contact-form textarea{
-	width:305px;
 }
 .submit{
 	width:100px;
@@ -244,6 +239,15 @@ input{
         width:32vw;
         height:22vw;
     }
+    .contact-form input:not(.submit){
+        width:300px;
+    }
+    .contact-form{
+        width:325px;
+    }
+    .contact-form textarea{
+        width:305px;
+    }
 }
 
 /*-----------------------------Mobile View ----------------------------*/
@@ -286,8 +290,8 @@ input{
         border-bottom:1px solid #a20405;
     }
    .about{
-      margin-bottom:2%;
-      flex-wrap:wrap;
+        margin-bottom:2%;
+        flex-direction:column;
     }    
     .about img{
         max-height:250px;
@@ -301,6 +305,16 @@ input{
 		left:48%;
 		transform:translate(-50%,-50%);
 	}
+
+    .contact-form input:not(.submit){
+        width:78%;
+    }
+    .contact-form{
+        width:100%;
+    }
+    .contact-form textarea{
+        width:80%;
+    }
 }
 
 

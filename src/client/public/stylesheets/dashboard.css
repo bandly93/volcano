@@ -109,6 +109,7 @@ nav a{
     height:50px;
     padding:2%;
     background-color:#800000;
+    min-width:5%;
 }
 .dash-topnav{
     display:flex;
