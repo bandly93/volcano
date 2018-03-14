@@ -61,7 +61,8 @@ export const oneEditor = (state = initialState, action) => {
         case 'ONE_STATUS':
             return{
                 ...state,
-                status
+                status,
+                editor: EditorState.createEmpty()
                 }
         default:
             return state;

@@ -57,6 +57,8 @@ nav a{
 }
 .paginate a{
     flex:1;
+    text-decoration:none;
+    color:black;
 }
 
 /*-----------------------EDIT-BLOG---------------------------*/
