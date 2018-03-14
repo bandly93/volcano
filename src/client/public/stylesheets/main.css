@@ -240,13 +240,13 @@ input{
         height:22vw;
     }
     .contact-form input:not(.submit){
-        width:300px;
+        width:450px;
     }
     .contact-form{
-        width:325px;
+        width:475px;
     }
     .contact-form textarea{
-        width:305px;
+        width:455px;
     }
 }
 
