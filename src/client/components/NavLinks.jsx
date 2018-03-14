@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 
+/*
 const NavLinks= (props)=>{
     const {toggleMainNav,titles,path} = props;
     const {navLinks} = props.view;
@@ -15,7 +16,39 @@ const NavLinks= (props)=>{
         </span>
    ) 
 }
+*/
+const ColoredLinks = ({ label, to, activeOnlyWhenExact }) => (
+    <Route
+        path = {to}
+        exact= {activeOnlyWhenExact}
+        children = {( { match }) => (
+            <span id = {match ? 'active' : ''}>
+                <Link to={to}>{label}</Link>
+            </span>
+        )}
+    />
+)
 
-export default NavLinks;
 
-//style={{flexDirection:navDisplay}}
+const NewLinks= (props)=>{
+    const {toggleMainNav,titles,path} = props;
+    const {navLinks} = props.view;
+    const mappedLinks = titles.map(each =>
+        <ColoredLinks 
+            activeOnlyWhenExact={true}
+            to = {path+each.link} 
+            onClick={toggleMainNav} 
+            key={each.title}
+            label={each.title}
+        />
+    )
+    return(
+        <span className='navLinks' style={{display:navLinks}}>  
+            {mappedLinks}
+        </span>
+   ) 
+}
+
+//export default NavLinks;
+export default NewLinks;
+

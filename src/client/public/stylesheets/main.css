@@ -37,6 +37,8 @@ input{
 /*----------------------------- Navbar ----------------------*/
 .nav-container{
     text-align:center;
+    max-width:1024px;
+    margin:auto;
 }
 .nav-views {
     padding-top: 8vh;
@@ -48,7 +50,6 @@ input{
 /*    border:1px solid black; */
     flex:1;
 }
-
 .navBar span{
     flex:2;
     text-align:right;
@@ -67,10 +68,14 @@ input{
 }
 
 .navBar a:not(.logo){
+    color:black;
 	text-decoration: none;
-	color:black;
 	font-family: 'Anton', sans-serif;
 }
+#active a{
+    color:#a20405 ;
+}
+
 /*-------------------------multimedia--------------------*/
 .multimedia{
 	flex:1;
