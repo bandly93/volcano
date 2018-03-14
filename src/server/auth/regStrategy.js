@@ -9,7 +9,7 @@ module.exports = function(passport,res){
 		function(req,username,password,done){
 			User.findOne({'username':username},function(err,user){
 				if(err){
-					console.log('error')
+					//console.log('error')
 					return res.json(err);}
 				if(!user){
 					var newUser = new User();
@@ -17,10 +17,10 @@ module.exports = function(passport,res){
 					newUser.password = newUser.generateHash(password);
 					newUser.save(function(err){
 						if(err){
-							console.log(err)
+							//console.log(err)
 						}
-//						console.log('saved new user')
-						console.log(req.user)
+						//console.log('saved new user')
+						//console.log(req.user)
 						return res.json({success:'You are now registered.'})
 					})
 				}

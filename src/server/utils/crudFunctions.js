@@ -5,7 +5,7 @@ exports.getAll =(req,res,model,next) =>{
 	model.find({}).sort('-createdAt').limit(num).exec(function(err,content){
 		if(err){
 			//throw err;
-			console.log(err)
+			//console.log(err)
 			res.json({err:'error'});
 		}
         checkPagination(req,res,model,content,next); 
@@ -15,7 +15,7 @@ exports.getAll =(req,res,model,next) =>{
 exports.delete = (req,res,model,cb) =>{
 	model.findOneAndRemove(req.body).exec(function(err,removed){
 		if(err){
-			console.log(err);
+			//console.log(err);
 		}
 		cb(req,res,model);
 	})
@@ -25,7 +25,7 @@ exports.post = (req,res,model) =>{
 	var content = new model(req.body);
 	content.save(function(err){
 		if(err){
-			console.log(err);
+			//console.log(err);
 			res.json({err:'error'})
 		}
 		res.json({msg:'success!'})
@@ -33,12 +33,12 @@ exports.post = (req,res,model) =>{
 }
 
 exports.put = (res,model,id,change) =>{
-    console.log('put function');
-    console.log(id,change);
+    //console.log('put function');
+    //console.log(id,change);
     
     model.findOneAndUpdate(id,change).exec(function(err,update){
         if(err){
-            console.log(err);
+            //console.log(err);
 			res.json({
                 err:'error',
                 id: id._id
@@ -58,7 +58,7 @@ exports.getOld = (req,res,model,next) =>{
         .limit(num)
         .exec(function(err,content){
             if(err){
-                console.log(err)
+                //console.log(err)
                 res.json({err:'error'});
             }
             checkPagination(req,res,model,content,next);
@@ -75,7 +75,7 @@ exports.getNew = (req,res,model,next) =>{
         .limit(num)
         .exec(function(err,content){
             if(err){
-                console.log(err)
+                //console.log(err)
                 res.json({err:'error'});
             }
             checkPagination(req,res,model,content.reverse(),next);
@@ -92,14 +92,14 @@ function checkPagination(req,res,model,data,next){
     .limit(1)
     .exec(function(err,content){
         if(err){
-            console.log(err);
+            //console.log(err);
         }
         if(!content[0]){
-            //console.log('no new content');
+            ////console.log('no new content');
             paginate.new = false;
         }
         else{
-            //console.log(content)
+            ////console.log(content)
             paginate.new = true;
         }
     })
@@ -109,16 +109,16 @@ function checkPagination(req,res,model,data,next){
         .limit(1)
         .exec(function(err,content){
             if(err){
-                console.log(err);
+                //console.log(err);
             }
             if(!content[0]){
-                //console.log('no old content');
+                ////console.log('no old content');
                 paginate.old = false;
             }
             else{
             paginate.old = true;
-            //console.log('paginate function',paginate);
-            //console.log(content) 
+            ////console.log('paginate function',paginate);
+            ////console.log(content) 
             }
             
             res.json({

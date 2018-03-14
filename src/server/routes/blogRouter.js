@@ -32,7 +32,7 @@ blogRouter.route('/:id')
 })
 
 .post(function(req,res){
-    console.log(req.params,req.query)
+//    console.log(req.params,req.query)
     crud.getTen(req,res,Blog)    
 })
 

@@ -25,7 +25,7 @@ export function updateYT(id,input) {
     }
 }
 export function postStatus(status){
-    console.log(status);
+//    console.log(status);
     return{
         type: 'ONE_STATUS',
         status

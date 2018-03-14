@@ -8,26 +8,26 @@ module.exports = function(passport,res){
 	},
 		function(req,username,password,done){
 			User.findOne({'username':username},function(err,user){
-//				console.log(req.user)
+				//console.log(req.user)
 				if(err){
-					console.log('error')
+					//console.log('error')
 					return res.json(err);}
 				if(!user){
-					console.log('no user')
-					console.log(req.body)
-					console.log(done)
+					//console.log('no user')
+					//console.log(req.body)
+					//console.log(done)
 					return res.json({err:'User does not exist.'})		
 				}
 				if(!user.validPassword(password)){
-					console.log('pw not valid')
+					//console.log('pw not valid')
 					//res.json({err:'Incorrect password.'})
 					return res.json({err:'Invalid password'})
 				}
-				console.log('done')
+				//console.log('done')
 				req.login(user,function(err){
 					if(err){return next(err)}
-					console.log('req.user',req.user)
-					console.log('req.session',req.session.passport)
+					//console.log('req.user',req.user)
+					//console.log('req.session',req.session.passport)
 					return res.json({
                         user:user.username,
                         redirect:true,
