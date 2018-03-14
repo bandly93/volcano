@@ -63,14 +63,14 @@ input{
 /*    border:1px solid black; */
     flex:1;
 }
-.navBar a:hover {
+.navBar .logo:hover {
     -moz-transform: scale(1, -1);
     -webkit-transform: scale(1, -1);
     -o-transform: scale(1, -1);
     -ms-transform: scale(1, -1);
     transform: scale(1, -1);
 }
-.navBar span{
+.navBar > span{
     flex:2;
     text-align:right;
 }
@@ -92,10 +92,9 @@ input{
 	text-decoration: none;
 	font-family: 'Anton', sans-serif;
 }
-#active a{
+#active {
     color:#a20405 ;
 }
-
 /*-------------------------multimedia--------------------*/
 .multimedia{
 	flex:1;
@@ -254,12 +253,12 @@ input{
         padding-top:10%;
     }*/
     .navBar > a:not(.logo){
-	    padding:4%;
+	    padding:2% 4%;
     }
    .navBar a:not(.logo):not(.menuIcon){
 /*        display:none; */
     }
-    .navBar span{
+    .navBar > span{
         width:40%;
     }
     .navLinks a{
@@ -282,7 +281,7 @@ input{
         top:9vh;
         padding:2vh;
         width:33%;
-        z-index:2;
+        z-index:3;
     }
    .about{
       margin-bottom:2%;

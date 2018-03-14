@@ -17,14 +17,17 @@ const NavLinks= (props)=>{
    ) 
 }
 */
-const ColoredLinks = ({ label, to, activeOnlyWhenExact }) => (
+const ColoredLinks = ({ label, to, activeOnlyWhenExact, toggleMainNav }) => (
+
     <Route
         path = {to}
         exact= {activeOnlyWhenExact}
-        children = {( { match }) => (
-            <span id = {match ? 'active' : ''}>
-                <Link to={to}>{label}</Link>
-            </span>
+        children = {(props) => (
+            <Link id = {props.match ? 'active' : ''} 
+                onClick={toggleMainNav} 
+                to={to} >
+                {label}
+            </Link>
         )}
     />
 )
@@ -37,7 +40,7 @@ const NewLinks= (props)=>{
         <ColoredLinks 
             activeOnlyWhenExact={true}
             to = {path+each.link} 
-            onClick={toggleMainNav} 
+            toggleMainNav={toggleMainNav} 
             key={each.title}
             label={each.title}
         />
