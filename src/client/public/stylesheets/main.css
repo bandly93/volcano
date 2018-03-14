@@ -14,12 +14,18 @@ input{
 	margin:1%;
 }
 /*------------------------------Landing ------------------------ */
+.landing-wrapper {
+    background: rgba(0, 0, 0, 0.9);
+}
 .landing{
     text-align:center;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+}
+.landing-img {
+    max-width:960px;
 }
 .landing img{
     content:url('../images/logos/logo2.jpg');
@@ -32,6 +38,7 @@ input{
     font-family:system-ui;
     font-weight:bold;
     font-size:20px;
+    text-decoration:none;
 }
     
 /*----------------------------- Navbar ----------------------*/
@@ -203,9 +210,6 @@ input{
     }
     .nav-space{
         flex-grow:.75;
-    }
-    .landing img{
-        max-width:80%;
     }
     .menuIcon{
         display:none;

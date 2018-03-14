@@ -5,7 +5,9 @@ import {Link} from 'react-router-dom';
 function Landing(){
 	return(
 		<div className='landing'>
-			<img />
+            <div className='landing-img'>
+                <img />
+            </div>
             <Link to ='/h/multimedia'>ENTER</Link>
 		</div>
 	)	
