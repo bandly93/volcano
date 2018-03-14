@@ -41,7 +41,6 @@ class ContactForm extends Component{
 	}
 	render(){
 		return(
-			<div>
 				<form className='contact-form' onSubmit={this.sendMsg}>
 					<input type='text' name='name' placeholder='Name' 
 					value={this.state.name}
@@ -57,7 +56,6 @@ class ContactForm extends Component{
 					<br/>
 					<input type='submit' name='Submit' className='submit'/>
 				</form>
-			</div>
 		)
 	}	
 }

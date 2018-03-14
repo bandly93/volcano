@@ -48,13 +48,13 @@ input{
     transform: scale(1, -1);
 }    
 /*----------------------------- Navbar ----------------------*/
-.nav-container{
+.nav-container  {
     text-align:center;
     max-width:1024px;
     margin:auto;
 }
 .nav-views {
-    padding-top: 8vh;
+    padding:8vh 0vh;
 }
 .navBar{
 /*    border:1px solid black;*/
@@ -80,11 +80,14 @@ input{
 }
 .logo{
     padding:1%;
+    align-items:center;
+    justify-content:flex-start;
     text-align:left;
 }
 .logo img{
     content:url('../images/logos/volc.jpg');
     height:12vh;
+    max-height:125px;
 }
 
 .navBar a:not(.logo){
@@ -141,13 +144,9 @@ input{
 .about span{
     flex:1;
 }
-.about p{
-	padding: 2%;
-}
 .about img {
 	border-radius: 50%;
 }
-
 /*-----------------------FLASH MESSAGES---------------------------*/
 .err{
 	background-color: red;
@@ -166,9 +165,7 @@ input{
 
 .contact-form{
 	display:inline-block;
-	margin:3%;
-}
-.contact-form textarea{
+    padding:5%;
 }
 .submit{
 	width:100px;
@@ -229,6 +226,9 @@ input{
 		display:flex;
 		margin-bottom:4%;
 	}
+    .about p{
+        padding: 2%;
+    }
     .about img{
 	    max-height:300px;
     }
@@ -293,6 +293,9 @@ input{
         margin-bottom:2%;
         flex-direction:column;
     }    
+    .about p{
+        padding: 8%;
+    }
     .about img{
         max-height:250px;
     }
@@ -309,8 +312,8 @@ input{
     .contact-form input:not(.submit){
         width:78%;
     }
-    .contact-form{
-        width:100%;
+    .contact-form {
+        width:90%;
     }
     .contact-form textarea{
         width:80%;
