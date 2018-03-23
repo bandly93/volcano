@@ -3,16 +3,20 @@ var qs = require('qs');
 //action thunk
 export function fetchData(url,actFunc){
 	return(dispatch)=>{
-		fetch(url,{credentials:'same-origin'})
-			.then(response=> response.json())
-			.then(data=>{
-				actFunc(data)
+		fetch(url, {credentials:'same-origin'})
+			.then(function(res) {
+//                console.log(res);
+                return res.json()
+            })
+			.then(data => {
+ //                   console.log(data);
+                    return actFunc(data)
 			})
 	}
 }
 
 export function postData(url,method,data,actFunc){
-	return(dispatch)=>{
+	return(dispatch) => {
 		fetch(url,{
 			method:method,
 			credentials:'same-origin',
@@ -23,7 +27,7 @@ export function postData(url,method,data,actFunc){
         .catch(function(err){
             console.log('json error',err);
         })
-        .then(data=>{
+        .then(data => {
 			if(actFunc){
 				actFunc(data)
 			}

@@ -35,6 +35,7 @@ authRouter.route('/log')
         })
 	}
 	else{
+//        console.log('no user!');
 		res.json({})
 	}
 })

@@ -10,7 +10,7 @@ export function adminAct(admin){
 export const admin =(state={},action)=>{
 	switch(action.type){
 		case 'ADMIN':
-			return action.admin 
+			return action.admin || {}; 
 		default:
 			return state;
 	}

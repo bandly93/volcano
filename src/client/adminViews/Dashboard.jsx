@@ -22,9 +22,11 @@ class Dashboard extends Component{
         this.goHome = this.goHome.bind(this);
     }
     componentWillReceiveProps(nextProps){
+/*
         if(!nextProps.admin.user) {
             this.goHome();
         }
+*/
     } 
     goHome(){
         this.props.history.push('/h/multimedia');
@@ -53,7 +55,6 @@ class Dashboard extends Component{
 
 		return(
             <div>
-            {this.props.admin.user?
 			<Router>
 				<div className='dashboard'>
 					<nav className='dash-sidenav' style={{display:display}}>
@@ -77,7 +78,6 @@ class Dashboard extends Component{
 				
 				</div>
 			</Router>
-            :null}
             </div>
 		)
 	}	

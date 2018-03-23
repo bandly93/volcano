@@ -18,11 +18,8 @@ app.use(require('cookie-parser')());
 
 // database
 var mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 var url = process.env.MONGODB_URI || 'mongodb://localhost:27017/volcano'
-var promise = mongoose.connect(url,{
-	useMongoClient:true,
-})
+var promise = mongoose.connect(url)
 var db = mongoose.connection;
 db.on('error',console.error.bind(console,'connection error'));
 db.once('open',function(){

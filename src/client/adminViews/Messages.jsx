@@ -13,6 +13,8 @@ class Messages extends Component{
         this.allMsgID = this.allMsgID.bind(this);
 	}
 	componentDidMount(){
+//        console.log('will get data');
+  //      console.log(`/api/msg/data/${location.search}`);
         this.props.fetchData(`/api/msg/data/${location.search}`,
             this.props.allMsgAct)
 		//this.props.fetchData('/msg',this.props.allMsgAct)
