@@ -129,7 +129,6 @@ function findNew(paginate, model, data) {
 }
 function findOld(paginate, model, data) {
    // console.log('from old', paginate);
-
     return model.find({_id:{$lt:data[data.length-1]}})
     .sort('-createdAt')
     .limit(1)

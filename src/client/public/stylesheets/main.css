@@ -41,11 +41,9 @@ input{
     text-decoration:none;
 }
 .landing a:hover {
-    -moz-transform: scale(1, -1);
-    -webkit-transform: scale(1, -1);
-    -o-transform: scale(1, -1);
-    -ms-transform: scale(1, -1);
-    transform: scale(1, -1);
+    color:#a20405;
+    border:3px solid white;
+    background-color:white;
 }    
 /*----------------------------- Navbar ----------------------*/
 .nav-container  {
@@ -62,13 +60,6 @@ input{
 .navBar a{
 /*    border:1px solid black; */
     flex:1;
-}
-.navBar .logo:hover {
-    -moz-transform: scale(1, -1);
-    -webkit-transform: scale(1, -1);
-    -o-transform: scale(1, -1);
-    -ms-transform: scale(1, -1);
-    transform: scale(1, -1);
 }
 .navBar > span{
     flex:2;
