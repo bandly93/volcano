@@ -10,8 +10,11 @@ export function fetchData(url,actFunc){
             })
 			.then(data => {
  //                   console.log(data);
-                    return actFunc(data)
+                return actFunc(data)
 			})
+            .catch(function(err) {
+                console.log('error', err);
+            });
 	}
 }
 

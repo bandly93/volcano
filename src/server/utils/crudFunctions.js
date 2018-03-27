@@ -92,33 +92,39 @@ exports.getNew = (req,res,model,next) =>{
 }
 
 async function checkPage(req,res,model,data,next){
-    var paginate = {};
-    //console.log('checkPage new function'); 
-    let [newpage,oldpage] = await Promise.all([findNew(paginate, model, data),
-                        findOld(paginate, model, data)
-                        ])
-    //console.log('@@@@@@@@@@@ testing @@@@@@@@@@@2');
+    try {
+        var paginate = {};
+        //console.log('checkPage new function'); 
+        let [newpage,oldpage] = await Promise.all([
+                            findNew(paginate, model, data),
+                            findOld(paginate, model, data)
+                            ])
+        //console.log('@@@@@@@@@@@ testing @@@@@@@@@@@2');
 
-    if (newpage[0]) {
-        paginate.new = true;
-    }
-    else {
-        paginate.new = false;
-    }
+        if (newpage[0]) {
+            paginate.new = true;
+        }
+        else {
+            paginate.new = false;
+        }
 
-    if (oldpage[0]) {
-        paginate.old = true;
-    }
-    else {
-        paginate.old = false;
-    }
+        if (oldpage[0]) {
+            paginate.old = true;
+        }
+        else {
+            paginate.old = false;
+        }
 
-    const fetchedData = {
-        data:data,
-        page:paginate
-    } 
-//    console.log(fetchedData);
-    res.json(fetchedData);
+        const fetchedData = {
+            data:data,
+            page:paginate
+        } 
+    //    console.log(fetchedData);
+        res.json(fetchedData);
+    }
+    catch(e) {
+        res.json({err:'error'});
+    }
 }
 
 function findNew(paginate, model, data) {
