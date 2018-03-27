@@ -13,8 +13,12 @@ msgRouter.route('/')
 
 .post(function(req,res){
 	//sendEmail(req,res);
-	crud.post(req,res,Msg);
-
+    if (!req.body.info) {
+        crud.post(req,res,Msg);
+    }
+    else {
+		res.json({msg:'success!'})
+    }
 })
 
 

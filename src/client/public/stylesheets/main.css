@@ -153,7 +153,9 @@ input{
 
 /*-----------------------FORM---------------------------*/
 
-
+.form-info {
+    display:none;
+}
 .contact-form{
 	display:inline-block;
     padding:5%;

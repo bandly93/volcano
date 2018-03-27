@@ -10,7 +10,8 @@ class ContactForm extends Component{
 		this.state={
 			name:'',
 			email:'',
-			message:''
+			message:'',
+            info:''
 		}
 		this.sendMsg = this.sendMsg.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -23,36 +24,44 @@ class ContactForm extends Component{
 		return {
 			name:this.state.name,
 			email:this.state.email,
-			message:this.state.message
+			message:this.state.message,
+            info:this.state.info
 		}
 	}
 	reset(){
 		this.setState({
 			name:'',
 			email:'',
-			message:''
+			message:'',
+            info:''
 		})
 	}
 	sendMsg(e){
 		e.preventDefault();
 		//console.log(this.props)
-		this.props.postData('/msg','POST',this.msg(),this.props.msgAct);
+        if (!this.state.info) {
+            this.props.postData('/msg','POST',this.msg(),this.props.msgAct);
+        }
 		this.reset();
 	}
 	render(){
 		return(
 				<form className='contact-form' onSubmit={this.sendMsg}>
+					<input type='text' name='info' placeholder='Info' 
+                        className='form-info'
+                        value={this.state.info}
+                        onChange={this.handleChange}/>
 					<input type='text' name='name' placeholder='Name' 
-					value={this.state.name}
-					onChange={this.handleChange}/>
+                        value={this.state.name}
+                        onChange={this.handleChange}/>
 					<br/>
 					<input type='email' name='email' placeholder='Email' 
-					value={this.state.email}
-					onChange={this.handleChange}/>
+                        value={this.state.email}
+                        onChange={this.handleChange}/>
 					<br/>
 					<textarea rows='10' name='message'placeholder='Message'
-					value={this.state.message}
-					onChange={this.handleChange}></textarea>
+                        value={this.state.message}
+                        onChange={this.handleChange}></textarea>
 					<br/>
 					<input type='submit' name='Submit' className='submit'/>
 				</form>
