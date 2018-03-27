@@ -1,4 +1,4 @@
-//server
+//serve
 var express = require('express');
 var morgan = require('morgan');
 var app = express();
@@ -8,6 +8,7 @@ app.use(morgan('dev'));
 var port = process.env.PORT || 3000;
 var path = require('path');
 var bodyParser = require('body-parser');
+var config = require('../../config.js');
 
 app.use(bodyParser.urlencoded({
 	extended:true,
@@ -43,8 +44,12 @@ app.use('/',express.static(path.resolve(__dirname ,'../client/public')));
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('./models/user');
-app.use(require('express-session')({
-	secret: '9054f3048dgfd',
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+
+app.use(session({
+    store: new MongoStore({url:url}),
+	secret: config.secret,
 	resave:false,
 	saveUninitialized:false
 }));
@@ -71,7 +76,7 @@ app.use('/vimeo',vimeoRouter);
 
 // redirect to client
 app.get('*', function(req,res){
-  res.sendFile(path.resolve(__dirname ,'../client/public/index.html'))
+    res.sendFile(path.resolve(__dirname ,'../client/public/index.html'))
 })
 
 app.listen(port,function(){
