@@ -8,8 +8,6 @@ import {
 } from 'react-router-dom';
 import About from '../views/About.jsx';
 import Multimedia from '../views/Multimedia.jsx';
-import Shop from '../views/Shop.jsx';
-//import Blog from '../views/Blog.jsx';
 import {withRouter} from "react-router-dom";
 import {toggleMainNav} from '../redux/modules/viewModule';
 //import PropTypes from 'prop-types';
@@ -30,7 +28,6 @@ class NavBar extends Component{
         const titles =[
             {link: '/multimedia',title:'Multimedia',comp:Multimedia},
             {link:'/about' , title:'About+Contact',comp:About },
-            {link:'/shop', title:'Shop',comp:Shop },
             {link:'/blog' , title:'Blog',comp:Blog },
            ];
         const routes = titles.map(each => 

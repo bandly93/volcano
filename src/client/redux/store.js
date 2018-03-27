@@ -3,7 +3,6 @@ import thunk from 'redux-thunk';
 import admin from './modules/adminModule.js';
 import msg from './modules/msgModule.js';
 import allMsg from './modules/allMsgModule.js';
-import blog from './modules/blogModule.js';
 import view from './modules/viewModule.js';
 import upload from './modules/uploadModule.js';
 import editor from './modules/editorModule.js';
@@ -17,7 +16,6 @@ const reducers = combineReducers({
 	admin,
 	msg,
 	allMsg,
-	blog,
     view,
 	upload,
     editor,
