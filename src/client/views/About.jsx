@@ -32,7 +32,7 @@ There’s lots planned for Volcano Boyz (VB) Production’s future, including me
 	}
 	success(){
 		return(
-			<p className='success'>message successfully sent!</p>
+			<p className='success'>message sent!</p>
 		)
 	}
 	error(){

@@ -143,6 +143,7 @@ input{
 	background-color: red;
 	color:white;
 	padding:1%;
+    text-align:center;
 }
 .success{
 	background-color: green;
