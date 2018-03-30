@@ -47,12 +47,17 @@ var User = require('./models/user');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
-app.use(session({
+var sess = {
     store: new MongoStore({url:url}),
 	secret: config.secret,
 	resave:false,
-	saveUninitialized:false
-}));
+	saveUninitialized:false,
+}
+if (app.get('env') === 'production') {
+    app.set('trust proxy', 1);
+    sess.cookie.secure = true;
+}
+app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
 
