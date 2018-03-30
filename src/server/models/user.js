@@ -8,7 +8,7 @@ var User = new Schema({
 })
 
 User.methods.generateHash = function(password){
-	return bcrypt.hashSync(password,bcrypt.genSaltSync(8));
+	return bcrypt.hashSync(password,bcrypt.genSaltSync(12));
 }
 User.methods.validPassword = function(password){
 	return bcrypt.compareSync(password, this.password)
