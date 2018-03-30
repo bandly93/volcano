@@ -37,7 +37,6 @@ app.get('*.js', function (req, res, next) {
   next();
 });
 
-
 app.use(express.static(path.resolve(__dirname ,'../../dist')));
 app.use('/',express.static(path.resolve(__dirname ,'../client/public')));
 
@@ -57,7 +56,7 @@ var sess = {
 
 if (app.get('env') === 'production') {
     app.set('trust proxy', 1);
-    sess.cookie.secure = true;
+    sess.secure = true;
 }
 app.use(session(sess));
 app.use(passport.initialize());

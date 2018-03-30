@@ -41,13 +41,12 @@ module.exports = {
     { test: /\.css$/, use:[{loader:"style-loader"},{loader:"css-loader"}]}
   ]
 }
-/*
+
 ,
   plugins: [
     new webpack.DefinePlugin({
           'process.env.NODE_ENV': '"production"'
         }),
-        new webpack.optimize.UglifyJsPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
         new CompressionPlugin({
           asset: "[path].gz[query]",
@@ -57,7 +56,7 @@ module.exports = {
           minRatio: 0.8
         })
       ]
-*/
+
 };
 
 
