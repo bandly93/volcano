@@ -10,6 +10,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var config = require('../../config.js');
 
+
 app.use(bodyParser.urlencoded({
 	extended:true,
 	limit:'50mb',
@@ -53,6 +54,7 @@ var sess = {
 	resave:false,
 	saveUninitialized:false,
 }
+
 if (app.get('env') === 'production') {
     app.set('trust proxy', 1);
     sess.cookie.secure = true;
@@ -73,7 +75,7 @@ var vimeoRouter = require('./routes/vimeoRouter');
 app.use('/api', apiRouter);
 
 // client api
-app.use('/auth',authRouter);
+app.use('/auth', authRouter);
 app.use('/msg',msgRouter);
 app.use('/upload',uploadRouter);
 app.use('/editor',editorRouter);

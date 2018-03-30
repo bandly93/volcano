@@ -1,6 +1,7 @@
 var User = require('../models/user');
 var LocalStrategy = require('passport-local').Strategy;
 
+
 module.exports = function(passport,res){
 
 	passport.use('login',new LocalStrategy({
@@ -9,6 +10,7 @@ module.exports = function(passport,res){
 		function(req,username,password,done){
 			User.findOne({'username':username},function(err,user){
 				//console.log(req.user)
+                console.log('username: ', username);
 				if(err){
 					//console.log('error')
 					return res.json(err);

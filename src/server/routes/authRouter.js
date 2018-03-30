@@ -2,6 +2,8 @@ var express = require('express');
 var authRouter = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
+var sanitize = require('../utils/cleanData');
+
 
 passport.serializeUser(function(user, done) {
 	//console.log('--serialized--')
@@ -18,7 +20,8 @@ passport.deserializeUser(function(id, done) {
 
 authRouter.route('/reg')
 
-.post(function(req,res,next){
+.post(sanitize, function(req,res,next){
+
 	if(!req.body.username || !req.body.password){
 		return res.json({err:'incomplete form'})
 	}
@@ -39,7 +42,8 @@ authRouter.route('/log')
 		res.json({})
 	}
 })
-.post(function(req,res,next){
+.post(sanitize, function(req,res,next){
+
 	if(!req.body.username || !req.body.password){
 		return res.json({err:'incomplete form'})
 	}
