@@ -37,7 +37,7 @@ app.get('*.js', function (req, res, next) {
   next();
 });
 
-app.use(express.static(path.resolve(__dirname ,'../../dist')));
+app.use(express.static('dist'));
 app.use('/',express.static(path.resolve(__dirname ,'../client/public')));
 
 // passport
@@ -57,6 +57,7 @@ var sess = {
 if (app.get('env') === 'production') {
     app.set('trust proxy', 1);
     sess.secure = true;
+    console.log('Production mode');
 }
 app.use(session(sess));
 app.use(passport.initialize());
