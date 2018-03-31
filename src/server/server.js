@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({
 	limit:'50mb',
 	parameterLimit:50000000
 }));
-app.use(require('cookie-parser')());
+
 
 // database
 var mongoose = require('mongoose');
