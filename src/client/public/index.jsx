@@ -5,14 +5,15 @@ import {Provider, connect} from 'react-redux';
 import configureStore from '../redux/store';
 import {viewAct} from '../redux/modules/viewModule';
 import {fetchData} from '../redux/modules/fetchThunk';
-import {adminAct} from '../redux/modules/adminModule';
+import { loginAction } from '../redux/modules/authModule';
+
 
 
 class Index extends Component{
     componentDidMount(){
         const {getScreenSize} = this.props;
         window.addEventListener('resize',()=>getScreenSize(window.innerWidth));
-		this.props.fetchData('/auth/log',this.props.adminAct)
+		this.props.fetchData('/auth/log',this.props.loginAction)
     }
 	render(){
     //console.log(window.innerWidth); 
@@ -38,7 +39,7 @@ const mapDispatchToProps = (dispatch) =>{
     return{
         getScreenSize:(display) => dispatch(viewAct(display)),
 		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
-		adminAct:(admin)=>dispatch(adminAct(admin))
+        loginAction: (status) => dispatch(loginAction(status)),
     }
 };
 
