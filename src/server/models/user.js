@@ -3,8 +3,11 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcryptjs');
 
 var User = new Schema({
+    email: String,
 	username: { type: String},
 	password: String,
+    locked: {type:Boolean, default: false},
+    attempts: {type:Number, default: 0}
 })
 
 User.methods.generateHash = function(password){
