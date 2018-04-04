@@ -13,6 +13,7 @@ module.exports = function(passport,res){
                 return res.json({err:'there was an error'});
             }
             if(!user){
+                console.log(req.body);
                 var newUser = new User();
                 newUser.username = username;
                 newUser.password = newUser.generateHash(password);

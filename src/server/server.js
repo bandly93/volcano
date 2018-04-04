@@ -59,6 +59,7 @@ if (app.get('env') === 'production') {
     sess.secure = true;
     console.log('Production mode');
 }
+
 app.use(session(sess));
 app.use(passport.initialize());
 app.use(passport.session());
