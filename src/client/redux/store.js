@@ -11,6 +11,7 @@ import oneEditor from './modules/oneEditorModule.js';
 import vimeo from './modules/vimeoModule.js';
 import multimedia from './modules/multimediaModule.js';
 import slide from './modules/slideModule.js';
+import authReducer from './modules/authModule.js';
 
 const reducers = combineReducers({
 	admin,
@@ -23,6 +24,7 @@ const reducers = combineReducers({
 	vimeo,
 	multimedia,
 	slide,
+    authReducer,
 })
 
 export default function configureStore(initialState){
