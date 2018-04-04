@@ -10,7 +10,7 @@ class Login extends Component {
         e.preventDefault();
         const { postData, loginAction, auth } = this.props;
         const data = auth.login;
-        postData('/api/auth/log', 'POST', data, loginAction); 
+        postData('/auth/log', 'POST', data, loginAction); 
     }
     handleChange = (e) => {
         const { updateLI } = this.props;

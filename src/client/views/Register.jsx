@@ -8,7 +8,7 @@ class Register extends Component {
         e.preventDefault();
         const { postData, registerAction, auth } = this.props;
         const data = auth.register;
-        postData('/api/auth/reg', 'POST', data, registerAction); 
+        postData('/auth/reg', 'POST', data, registerAction); 
     }
     handleChange = (e) => {
         const { updateRI } = this.props;
