@@ -27,6 +27,10 @@ module.exports = function(passport,res){
                 }
                 return res.json({err: 'Invalid ID or password'});
             }
+            if (user.locked) {
+                console.log('account has been locked');
+                return res.json({err: 'an error occured'});
+            }
             req.login(user,function(err){
                 if(err){
                     return res.json({err:'there was an error'});
@@ -62,7 +66,7 @@ function preventBrute(user) {
 
         const url = generateUnlock();
         addLockedToDB(user.username, url); 
-        const fullUrl ='http://localhost:8080/api/locked/' + url;  
+        const fullUrl ='http://localhost:8080/locked/' + url;  
         sendEmail(fullUrl);
     }
     console.log(user);

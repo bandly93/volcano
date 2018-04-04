@@ -71,7 +71,7 @@ var uploadRouter = require('./routes/uploadRouter');
 var editorRouter = require('./routes/editorRouter');
 var apiRouter = require('./adminRoutes/apiRouter');
 var vimeoRouter = require('./routes/vimeoRouter');
-
+var lockedRouter = require('./routes/lockedRouter');
 // admin api
 app.use('/api', apiRouter);
 
@@ -81,6 +81,7 @@ app.use('/msg',msgRouter);
 app.use('/upload',uploadRouter);
 app.use('/editor',editorRouter);
 app.use('/vimeo',vimeoRouter);
+app.use('/locked', lockedRouter);
 
 // redirect to client
 app.get('*', function(req,res){
