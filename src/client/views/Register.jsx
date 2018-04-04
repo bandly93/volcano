@@ -14,16 +14,9 @@ class Register extends Component {
         const { updateRI } = this.props;
         updateRI(e.target.name, e.target.value);
     }
-    render() {
-        let { auth, updateRI } = this.props;
+    registerForm = () => {
+        let { auth } = this.props;
         return (
-            <Fragment>
-            {auth.status.err ? 
-                <h3 className='err'> {auth.status.err}</h3>
-                : null }
-            {auth.status.success ? 
-                <h3 className='success'> {auth.status.success}</h3>
-                : null }
             <form className='auth' onSubmit={this.register}>
                 <h2> Register </h2>
                 <input type='text' name='email' placeholder='email'
@@ -37,6 +30,20 @@ class Register extends Component {
                     onChange={this.handleChange}/>
                 <input type='submit' value='Register'/>
             </form>
+        )
+    }
+    render() {
+        let { auth, updateRI } = this.props;
+        return (
+            <Fragment>
+            {auth.status.err ? 
+                <h3 className='err'> {auth.status.err}</h3>
+                : null }
+            {auth.status.success ? 
+                <h3 className='success'> {auth.status.success}</h3>
+                : null }
+            {auth.status.user? <p> You have registered already</p> 
+                : this.registerForm() }
             </Fragment>
         )
     }

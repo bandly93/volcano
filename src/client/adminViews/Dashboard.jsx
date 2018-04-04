@@ -22,11 +22,11 @@ class Dashboard extends Component{
         this.goHome = this.goHome.bind(this);
     }
     componentWillReceiveProps(nextProps){
-/*
-        if(!nextProps.admin.user) {
+
+        if(!nextProps.auth.status.user) {
             this.goHome();
         }
-*/
+
     } 
     goHome(){
         this.props.history.push('/h/multimedia');
@@ -87,7 +87,7 @@ class Dashboard extends Component{
 const mapStateToProps = (state) =>{
     return{
         view:state.view,
-        admin: state.admin
+        auth:state.authReducer,
     }
 };
 
