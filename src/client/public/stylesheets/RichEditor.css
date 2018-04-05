@@ -7,6 +7,9 @@
   padding: 15px;
   text-align:left;
 }
+.RichEditor-root  figure {
+    text-align:center;
+}
 .editorButton{
     text-align:right;
 }

@@ -19,8 +19,9 @@ export function getBlockStyle(block) {
 // Media
 const styles = {
     media: {
-        width:'100%',
+        maxHeight:400,
         whiteSpace:'initial',
+        maxWidth:'100%'
     }
 }
 const Audio = (props) => {
