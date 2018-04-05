@@ -17,7 +17,7 @@ class Index extends Component{
     }
 	render(){
     //console.log(window.innerWidth); 
-    const {user} = this.props.admin;
+    const {user} = this.props.auth.status;
 		return(
 			<div className='react'>
 				<ClientRouter 
@@ -31,7 +31,7 @@ class Index extends Component{
 const mapStateToProps = (state) =>{
     return{
         display: state.display,
-        admin: state.admin
+        auth: state.authReducer,
     }
 };
 

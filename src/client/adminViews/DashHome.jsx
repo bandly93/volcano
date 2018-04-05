@@ -1,13 +1,13 @@
 import React,{Component} from 'react';
 import { connect } from 'react-redux';
 import {fetchData,postData} from '../redux/modules/fetchThunk';
-import {adminAct} from '../redux/modules/adminModule';
+import { loginAction } from '../redux/modules/authModule';
 
 
 
 class DashHome extends Component{
     logout=()=>{
-        this.props.fetchData('/auth/logout',this.props.adminAct)
+        this.props.fetchData('/auth/logout',this.props.loginAction)
     }
 	logoutButton(){
 		return(
@@ -18,11 +18,11 @@ class DashHome extends Component{
 		)
 	}
     render() {
-    const {admin} = this.props;
+    const {auth} = this.props;
         return(
             <div className='dash-container'>
                 <p className='dashHome'>Hello DashHome!</p>
-                {admin.user?this.logoutButton():null}
+                {auth.status.user?this.logoutButton():null}
             </div>
         )
     }
@@ -30,14 +30,14 @@ class DashHome extends Component{
 
 const mapStateToProps = (state) =>{
 	return{
-		admin:state.admin
+        auth: state.authReducer,
 	};
 };
 
 const mapDispatchToProps = (dispatch) =>{
 	return{
 		fetchData:(url,actFunc)=>dispatch(fetchData(url,actFunc)),
-		adminAct:(admin)=>dispatch(adminAct(admin))
+        loginAction: (status) => dispatch(loginAction(status)),
 	}
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DashHome);

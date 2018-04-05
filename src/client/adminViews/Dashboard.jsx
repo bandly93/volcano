@@ -22,11 +22,11 @@ class Dashboard extends Component{
         this.goHome = this.goHome.bind(this);
     }
     componentWillReceiveProps(nextProps){
-
+/*
         if(!nextProps.auth.status.user) {
             this.goHome();
         }
-
+*/
     } 
     goHome(){
         this.props.history.push('/h/multimedia');

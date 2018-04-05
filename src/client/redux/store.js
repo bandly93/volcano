@@ -1,6 +1,5 @@
 import {createStore, applyMiddleware, combineReducers,compose} from 'redux';
 import thunk from 'redux-thunk';
-import admin from './modules/adminModule.js';
 import msg from './modules/msgModule.js';
 import allMsg from './modules/allMsgModule.js';
 import view from './modules/viewModule.js';
@@ -14,7 +13,6 @@ import slide from './modules/slideModule.js';
 import authReducer from './modules/authModule.js';
 
 const reducers = combineReducers({
-	admin,
 	msg,
 	allMsg,
     view,
