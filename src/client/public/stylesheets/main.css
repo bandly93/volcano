@@ -13,6 +13,18 @@ input{
 	padding:1%;
 	margin:1%;
 }
+.auth {
+    display:flex;
+    flex-direction:column; 
+    text-align:center;
+    margin:auto;
+    max-width:400px;
+}
+.auth input {
+    margin:1vh;
+    height:5vh;
+}
+
 /*------------------------------Landing ------------------------ */
 .landing-wrapper {
     background: rgba(0, 0, 0, 0.9);
