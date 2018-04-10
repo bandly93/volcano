@@ -1,11 +1,12 @@
 .RichEditor-root {
-  margin:3%;
+  margin:auto;
   background: #fff;
   border: 1px solid #ddd;
   font-family: 'Georgia', serif;
   font-size: 21px;
   padding: 15px;
   text-align:left;
+  max-width:650px;
 }
 .RichEditor-root  figure {
     text-align:center;

@@ -1,9 +1,11 @@
 
 /*------------------------------BODY ------------------------ */
 html,body{
-	height:100%;
+	min-height:100vh;
 	margin:0;
+  padding:0;
 	font-family: 'Bitter', serif;
+  -moz-webkit-margin:0px;
 }
 
 nav a{
@@ -12,10 +14,13 @@ nav a{
 }
 /* --------------------------------Index -------------*/
 #index{
-	min-height:100%;
+	min-height:100vh;
 }
 #index > div:nth-child(1) > .landing{
 	min-height:100vh;
+}
+.react {
+  min-height:100vh;
 }
 /* --------------------------------LANDING ----------*/
 .landing{
@@ -93,11 +98,13 @@ nav a{
 	max-width: 100%;
 }
 /*-----------------------Dashboard---------------------------*/
+.dash-wrapper {
+}
 .dashboard{
-    display:flex;
+  display:flex;
+  height:100vh;
 }
 .dash-sidenav{
-    flex:1;
     flex-direction:column;
 }
 .dash-container hr{
@@ -120,9 +127,11 @@ nav a{
 .dash-topnav{
     display:flex;
     height:10vh;
+    width:100%;
 }
 .dash-view{
-    flex:4;
+    flex:1 1 auto;
+    overflow:auto;
 }
 
 .flex-space{
@@ -141,11 +150,13 @@ nav a{
 
 .dash-sidenav{
     background-color:#404040;
-    min-height:100vh;
 }
 .dash-sidenav a{
     color:white;
-    padding:10%;
+    padding:3%;
+    height:10vh;
+}
+.dash-sidenav div {
 }
 .dash-container{
     text-align:center;
@@ -153,11 +164,9 @@ nav a{
     max-width:1024px;
 }
 .profile-pic{
-    display:flex;
     background-color:teal;
-    padding:10% 5%;
-    height:50px;
-    justify-content:space-around;
+    padding:3%;
+    height:10vh;
 }
 .profile-pic img{
     content:url('../images/about/profile.jpg');
@@ -377,9 +386,10 @@ nav a{
         font-size:21px;
     }
     .dash-sidenav{
-    } 
+        flex: 0 0 auto;
+        flex-direction:column;
+    }
     .dash-sidenav a{
-        padding:10%;
         border:1px solid teal;
     } 
     .dash-container{
@@ -413,10 +423,12 @@ nav a{
         background-color:#404040;
         position:absolute;
         z-index:2;
+        flex:1;
+        height:100vh;
     }
     .dash-sidenav a{
         color:white;
-        padding:10%;
+        padding:5%;
     }
    /*---------------------------Dash Mobile Nav ----------*/
     .hamburger{

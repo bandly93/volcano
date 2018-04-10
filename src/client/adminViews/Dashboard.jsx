@@ -58,7 +58,7 @@ class Dashboard extends Component{
         )
 
 		return(
-      <div>
+      <div className='dash-wrapper'>
         <Router>
           <div className='dashboard'>
             <nav className='dash-sidenav' style={{display:display}}>
