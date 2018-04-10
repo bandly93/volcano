@@ -13,6 +13,10 @@ import {toggleMainNav} from '../redux/modules/viewModule';
 //import PropTypes from 'prop-types';
 import NavLinks from './NavLinks.jsx';
 import Blog from '../views/Blog.jsx';
+import logo from '../public/images/logos/volc.jpg';
+import menu from '../public/images/icons/menu.svg';
+
+
 
 class NavBar extends Component{
     constructor(){
@@ -39,18 +43,18 @@ class NavBar extends Component{
 				<div className = "nav-container" >
 					<nav className ='navBar' >
 						<a className='logo' onClick={this.goToLanding}>
-							<img/>
+							<img src = '/volc.jpg' />
 						</a>
-                        <a className='menuIcon' onClick={toggleMainNav}>
-                            <img/>
-                        </a>
-                        <NavLinks {...this.props} path={path} titles={titles}/>
+            <a className='menuIcon' onClick={toggleMainNav}>
+                <img src= '/menu.svg' />
+            </a>
+            <NavLinks {...this.props} path={path} titles={titles}/>
 					</nav>
-                    <div className = 'nav-views'>
-					<Switch>
-                        {routes}
-					</Switch>
-                    </div>
+            <div className = 'nav-views'>
+              <Switch>
+                    {routes}
+              </Switch>
+            </div>
 				</div>
 			</Router>
 		)

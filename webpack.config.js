@@ -37,11 +37,20 @@ module.exports = {
 		}
 	//	plugins:['transform-class-properties']
     },
-    { test: /\.(jpg|png|gif)$/,loader: "file-loader" },
+    { test: /\.(svg|jpg|png|gif)$/,
+      use: [
+        {
+          loader: "file-loader",
+          options: {
+            name: '[name].[ext]'
+          }
+        }
+      ]
+    },
     { test: /\.css$/, use:[{loader:"style-loader"},{loader:"css-loader"}]}
   ]
 }
-
+/*
 ,
   plugins: [
     new webpack.DefinePlugin({
@@ -56,7 +65,7 @@ module.exports = {
           minRatio: 0.8
         })
       ]
-
+*/
 };
 
 
