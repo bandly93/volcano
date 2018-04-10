@@ -15,6 +15,10 @@ import {toggleDashNav} from '../redux/modules/viewModule';
 import MyEditor from './TestBlog.jsx';
 import EditBlogs from './EditBlogs.jsx';
 import VideoPlayerForm from '../adminViews/VideoPlayerForm.jsx';
+import dashmenu from '../public/images/icons/hamburger.svg';
+import home from '../public/images/icons/home.svg';
+import hamburger from '../public/images/icons/hamburger.svg';
+
 
 class Dashboard extends Component{
     constructor(){
@@ -54,31 +58,35 @@ class Dashboard extends Component{
         )
 
 		return(
-            <div>
-			<Router>
-				<div className='dashboard'>
-					<nav className='dash-sidenav' style={{display:display}}>
-                        <div className='profile-pic'>
-                            <img></img>
-                            <p>Phuong Dang</p>
-                        </div>
-                        {links}
-					</nav>
+      <div>
+        <Router>
+          <div className='dashboard'>
+            <nav className='dash-sidenav' style={{display:display}}>
+                <div className='profile-pic'>
+                    <img src='/profile.jpg' />
+                    <p>Phuong Dang</p>
+                </div>
+                {links}
+            </nav>
 
-                    <div className='dash-view'>
-                        <nav className='dash-topnav'>
-                            <a className='hamburger' onClick={toggleDashNav}></a>
-                            <h1 className='flex-space title'> </h1> 
-                            <a className='home-icon'onClick={this.goHome} ></a> 
-                        </nav>
-                        <Switch>
-                            {routes}
-                        </Switch>
-                    </div>
-				
-				</div>
-			</Router>
+            <div className='dash-view'>
+                <nav className='dash-topnav'>
+                    <a className='hamburger' onClick={toggleDashNav}>
+                      <img src = '/hamburger.svg' />
+                    </a>
+                    <h1 className='flex-space title'> </h1> 
+                    <a className='home-icon'onClick={this.goHome} >
+                      <img src= '/home.svg' />
+                    </a> 
+                </nav>
+                <Switch>
+                    {routes}
+                </Switch>
             </div>
+          
+          </div>
+        </Router>
+      </div>
 		)
 	}	
 }

@@ -105,14 +105,21 @@ nav a{
 }
 
 .home-icon{
-    content:url('../images/icons/home.svg');
-    height:50px;
     padding:2%;
     background-color:#800000;
     min-width:5%;
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.home-icon img {
+  height:50px;
+  width:50px;
 }
 .dash-topnav{
     display:flex;
+    height:10vh;
 }
 .dash-view{
     flex:4;
@@ -384,6 +391,13 @@ nav a{
     .profile-pic{
         display:flex;
     }
+    .title {
+      flex:9;
+    }
+    .hamburger {
+      display:none;
+
+    }
 }
 
 /*-----------------------------Mobile View ----------------------------*/
@@ -406,10 +420,19 @@ nav a{
     }
    /*---------------------------Dash Mobile Nav ----------*/
     .hamburger{
-        content:url('../images/icons/hamburger.svg');
-        height:50px;
+        flex:1;
         padding:2%;
         background-color:teal;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+    .hamburger img {
+      height:50px;
+      width:50px;
+    }
+    .title {
+      flex:6;
     }
 }
 
