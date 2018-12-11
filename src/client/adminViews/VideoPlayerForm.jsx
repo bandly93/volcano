@@ -2,7 +2,6 @@ import React , { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchData,postData } from '../redux/modules/fetchThunk.js';
 import { updateData } from '../redux/modules/vimeoModule.js';
-require('babel-polyfill');
 
 //create four forms where you can add a vimeo url for the multimedia page.
 

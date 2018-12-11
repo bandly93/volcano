@@ -11,8 +11,7 @@ import {
   Switch
 } from 'react-router-dom';
 
-class UploadTest extends Component{
-	
+class UploadTest extends Component{	
 	constants = () => {
 		const { fetchData,uploadAct,postData } = this.props;
 		const { folderName,folders,images } = this.props.upload;

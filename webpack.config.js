@@ -3,12 +3,12 @@ var webpack = require('webpack');
 var path = require('path');
 var CompressionPlugin = require("compression-webpack-plugin");
 
-
 module.exports = {
-  entry: {index:'./src/client/public/index.jsx'},
+  entry: { index:'./src/client/public/index.jsx'},
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+		publicPath :'/',
   },
   devtool: 'source-map',
   devServer:{
@@ -24,32 +24,38 @@ module.exports = {
       }
     }
   },
-
   module: {
     rules: [
-    { 
-		test: /\.jsx?$/,
-		exclude: /node_modules/,
-		loader:"babel-loader", 
-		options:{
-			presets:['react','env','stage-3'],
-			plugins:['transform-class-properties']
-		}
-	//	plugins:['transform-class-properties']
-    },
-    { test: /\.(svg|jpg|png|gif)$/,
-      use: [
-        {
-          loader: "file-loader",
-          options: {
-            name: '[name].[ext]'
-          }
-        }
-      ]
-    },
-    { test: /\.css$/, use:[{loader:"style-loader"},{loader:"css-loader"}]}
-  ]
-}
+    	{ 
+				test: /\.(js|jsx)?$/,
+				exclude: /node_modules/,
+				use : [
+					{
+						loader : 'babel-loader',
+						options : {
+							presets:['@babel/preset-react','@babel/preset-env'],
+							plugins:['transform-class-properties']
+						}
+
+					}
+				]
+			},
+			{ 
+				test: /\.(svg|jpg|png|gif)$/,
+      	use: [
+        	{
+          	loader: "file-loader",
+          	options: {
+            	name: '[name].[ext]'
+          	}
+        	}
+      	]
+    	},
+    	{ 
+				test: /\.css$/, 
+				use:[{loader:"style-loader"},{loader:"css-loader"}]}
+  	]
+	}
 /*
 ,
   plugins: [
