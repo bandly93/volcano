@@ -4,7 +4,7 @@ var path = require('path');
 var CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
-  entry: { index:'./src/client/public/index.jsx'},
+  entry: { index:['@babel/polyfill','./src/client/public/index.jsx']},
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),

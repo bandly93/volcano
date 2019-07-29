@@ -3,8 +3,7 @@ var vimeoRouter = express.Router();
 var Vimeo = require('../models/vimeo');
 var ObjectId = require('mongodb').ObjectID;
 
-const findAll = (req,res) => {
-	
+const findAll = (req,res) => {	
 	Vimeo.find({},null,{sort:{slideId:1}},(err,data) => {
 		if(err){
 			console.log(err);
@@ -21,6 +20,7 @@ vimeoRouter.route('/')
 
 .put((req,res) => {
 	const { name,url,videoId,slideId,thumbnail,_id }  = req.body.data;
+	console.log(req.body.data);
 	Vimeo.findOneAndUpdate(
 		{slideId,"items._id":_id},
 		{$set:
@@ -64,6 +64,5 @@ vimeoRouter.route('/')
 		}
 	})
 })
-
 
 module.exports = vimeoRouter;

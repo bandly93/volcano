@@ -150,6 +150,10 @@ input{
 .about img {
 	border-radius: 50%;
 }
+#pd-img{
+
+    content:url(../images/about/pd.png);
+}
 /*-----------------------FLASH MESSAGES---------------------------*/
 .err{
 	background-color: red;

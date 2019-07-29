@@ -12,7 +12,6 @@ import {withRouter} from "react-router-dom";
 import {toggleMainNav} from '../redux/modules/viewModule';
 //import PropTypes from 'prop-types';
 import NavLinks from './NavLinks.jsx';
-import Blog from '../views/Blog.jsx';
 import logo from '../public/images/logos/volc.jpg';
 import menu from '../public/images/icons/menu.svg';
 
@@ -32,7 +31,6 @@ class NavBar extends Component{
         const titles =[
             {link: '/multimedia',title:'Multimedia',comp:Multimedia},
             {link:'/about' , title:'About+Contact',comp:About },
-            {link:'/blog' , title:'Blog',comp:Blog },
            ];
         const routes = titles.map(each => 
             <Route exact path={path+each.link}  component={each.comp} 

@@ -24,23 +24,23 @@ class VideoPlayerForm extends Component{
 		fetchData('/vimeo',updateData);	
 	}
 
-	submitData = (e) => {
+	submitData = async (e) => {
 		e.preventDefault();
 		const { postData,updateData,name,url,slideId,slides,videoId } = this.constants();
 		const {_id} = slides[slideId-1].items[videoId-1];
 		
 		let re = 'https://vimeo.com/'
 		let imgID = url.replace(re,'');
-		let src = "https://vimeo.com/api/v2/video/" + imgID + ".json";
+		let vimeoUrl = "https://vimeo.com/api/v2/video/" + imgID + ".json";
 		
-		fetch(src,{credentials:'same-origin'})
+		fetch(vimeoUrl,{credentials:'same-origin'})
 			.then(response => response.json())
 			.then(stuff => {
 				let data = {
 					name,url,slideId,_id,thumbnail:stuff[0].thumbnail_large
 				}
 				postData('/vimeo','PUT',{data},updateData);
-				updateData({name:'',url:''});	
+				//updateData({name:'',url:''});	
 			}).catch(error => {
 				console.log(error);
 			})
@@ -48,8 +48,8 @@ class VideoPlayerForm extends Component{
 	
 	updateForm = (e) => {
 		const { updateData,slideId } = this.constants();
-		const { value } = e.currentTarget;
-		updateData({[e.currentTarget.name]:value,slideId});
+		const { value,name } = e.currentTarget;
+		updateData({[name]:value,slideId});
 	}
 	
 	form = () => {
@@ -194,7 +194,7 @@ class VideoPlayerForm extends Component{
 						<ul>
 							{
 								slides[slideId-1]?
-								this.numList("videoId",slides[slideId-1].items.length)
+								this.numList("videoId",4)
 								:null
 							}
 						</ul>
@@ -214,13 +214,9 @@ const mapStateToProps = (state) => {
 	}
 }
 //use mapDispatchToProps to make changes to the redux state. Add Files... etc
-const mapDispatchToProps = (dispatch) => {
-	return {
-		fetchData:(url,action) => dispatch(fetchData(url,action)),
-		postData:(url,method,data,action) => dispatch(postData(url,method,data,action)),
-		updateData:(data) => dispatch(updateData(data)),
-		updateCurrentVideo:(data) => dispatch(updateCurrentVideo(data))
-	}
+const mapDispatchToProps = {
+	fetchData,
+	postData,
+	updateData,
 }
-
 export default connect(mapStateToProps,mapDispatchToProps)(VideoPlayerForm);
