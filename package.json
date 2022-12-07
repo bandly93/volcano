@@ -32,7 +32,7 @@
     "connect-mongo": "^2.0.1",
     "connect-mongodb-session": "^2.0.2",
     "draft-js": "^0.10.5",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-session": "^1.15.6",
     "fs": "0.0.1-security",
     "helmet": "^3.12.0",
